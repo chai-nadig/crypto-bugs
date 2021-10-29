@@ -99,7 +99,7 @@ def generateCombinations():
         traits.append(trait)
 
     # Sort for evaluation
-    traits = sorted(traits, key=lambda t: (t['Background'], t['Color'], t['Spots'], t['Accessory'], t['Eyes']))
+    # traits = sorted(traits, key=lambda t: (t['Background'], t['Color'], t['Spots'], t['Accessory'], t['Eyes']))
 
     return traits
 
