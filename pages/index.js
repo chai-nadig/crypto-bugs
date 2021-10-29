@@ -45,22 +45,19 @@ export default function Home() {
           <div className="mt-6 border-b-2 py-6">
             <div className="flex flex-wrap lg:flex-nowrap justify-around items-center">
                   <div className="lg:w-1/2 w-3/4">
-                    <h1 className="text-7xl Poppitandfinchsans text-white ">EVERYONE, meet <br/><span className="text-blau">cyrpto-bugs</span></h1>
-                    <p className="text-2xl text-white my-6  montserrat">Here at <span className="text-5xl Poppitandfinch ">boring</span> <span className="text-blau text-5xl Poppitandfinchsans">crypto-bugs</span> <span className="text-5xl Poppitandfinch">company</span>, we specialize in the world's <span className="text-span-2 font-bold">finest digital bugs</span>.<br />‍<br />We&#x27;ve put together a team spanning 3 continents, to bring you some of the most <br/>‍<span className="text-blau text-5xl Poppitandfinchsans">NUTRITIOUS </span><span className="text-5xl Poppitandfinch ">and</span><span className="text-blau text-5xl Poppitandfinchsans"> DELICIOUS</span> <br/>bugs out there.
+                    <h1 className="text-7xl text-white"><span className="text-crypto-red">crypto-bugs</span></h1>
+                    <p className="text-2xl text-white my-6">We've discovered and triaged a variety of bugs differing in severity and impact.
+                    A detailed <span class="text-bold-underlined">bug report</span> will be released soon.
+
                     </p>
                     <p className="text-2xl text-white my-6  montserrat">
-                    <strong>LAUNCH DATE:</strong> 29 June 2021. 2pm EST. <br />‍
-                    <span className="text-white text-2xl montserrat"><strong>TOTAL SUPPLY: 8888</strong> bugs.<br/><strong>PRICE: 0.025 ETH </strong>each.</span></p>
-                    <iframe src="https://free.timeanddate.com/countdown/i7vcex5b/n107/cf11/cm0/cu4/ct0/cs1/ca2/co0/cr0/ss0/cacfff/cpcfff/pct/tcfff/fn3/fs100/szw448/szh189/iso2021-06-29T21:00:00" allowtransparency="true" frameBorder="0" width="425" height="25"></iframe>
+                    <strong>RELEASE:</strong> 10 Dec 2021. 1pm PST. <br />‍
+                    <span className="text-white text-2xl montserrat"><strong>TOTAL SUPPLY: 11,111</strong> bugs.<br/>
+                    <strong>PRICE: 0.025 ETH </strong>each.</span></p>
+                    <iframe src="https://free.timeanddate.com/countdown/i7vcex5b/n107/cf11/cm0/cu4/ct0/cs1/ca2/co0/cr0/ss0/cacfff/cpcfff/pct/tcfff/fn3/fs100/szw448/szh189/iso2021-12-10T21:00:00" allowtransparency="true" frameBorder="0" width="425" height="25"></iframe>
 
                   </div>
                   <img  src="images/bug.png" width="250px" />
-            </div>
-            <div className="flex flex-col items-center">
-
-            <a href="/mint" className="mt-4 Poppitandfinchsans text-4xl border-6 bg-blau  text-white hover:text-black p-2 ">GO TO MINTING PAGE!</a>
-
-
             </div>
             </div>
 
