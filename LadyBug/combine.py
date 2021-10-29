@@ -6,8 +6,6 @@ directory = "./output"
 images = [file for file in os.listdir(directory) if file.endswith(".png")]
 total = len(images)
 
-print("combining {} files".format(total))
-
 
 def getNearestSquare(n):
     i = 1
@@ -17,24 +15,27 @@ def getNearestSquare(n):
     return i
 
 
-ns = getNearestSquare(total)
+def combine():
+    print("combining {} files".format(total))
 
-final = Image.new('RGBA', (ns * 24, ns * 24))
+    ns = getNearestSquare(total)
 
-print(images)
+    final = Image.new('RGBA', (ns * 24, ns * 24))
 
-imgNo = 0
+    print(images)
 
-for i in range(ns):
-    for j in range(ns):
-        if len(images) == 0 or imgNo >= total:
-            continue
+    imgNo = 0
 
-        file = '{}.png'.format(imgNo)
-        im1 = Image.open(directory + '/' + file).convert('RGBA')
+    for i in range(ns):
+        for j in range(ns):
+            if len(images) == 0 or imgNo >= total:
+                continue
 
-        final.paste(im1, (i * 24, j * 24))
+            file = '{}.png'.format(imgNo)
+            im1 = Image.open(directory + '/' + file).convert('RGBA')
 
-        imgNo += 1
+            final.paste(im1, (i * 24, j * 24))
 
-final.save('combined.png')
+            imgNo += 1
+
+    final.save('combined.png')
