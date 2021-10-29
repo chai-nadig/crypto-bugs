@@ -3,6 +3,63 @@ from IPython.display import display
 import random
 import json
 
+backgrounds = {
+    "SpiderWeb": 1,
+    "Stick": 1,
+    "Leaf": 1,
+    "Hearts": 1,
+    "Book": 1,
+    "Matrix": 1,
+    "Rainbow1": 1,
+    "Rainbow2": 1,
+    "Rainbow3": 1,
+}
+
+bugs = {
+    "Small": 1,
+}
+
+smallSpots = {
+    "SmallBlackSpotsA": 1,
+    "SmallBlackSpotsB": 1,
+    "SmallBlackSpotsC": 1,
+    "SmallDarkRedSpotsA": 1,
+    "SmallDarkRedSpotsB": 1,
+    "SmallDarkRedSpotsC": 1,
+    "SmallYellowSpotsA": 1,
+    "SmallYellowSpotsB": 1,
+    "SmallYellowSpotsC": 1,
+}
+smallColors = {
+    "SmallRed": 1,
+    "SmallBlue": 1,
+    "SmallBlack": 1,
+    "SmallGreen": 1,
+    "SmallINFlag": 1,
+    "SmallYellow": 1,
+}
+
+accessories = {
+    "Sombrero": 1,
+    "TopHat": 1,
+    "Turban": 1,
+}
+
+eyes = {
+    "BlueEyes": 1,
+    "RedEyes": 1,
+    "WhiteEyes": 1,
+}
+
+TOTAL_BUGS = (
+        len(backgrounds)
+        * len(bugs)
+        * len(smallSpots)
+        * len(smallColors)
+        * len(accessories)
+        * len(eyes)
+)
+
 
 def createCombo():
     trait = {
@@ -18,63 +75,6 @@ def createCombo():
 
 
 def generate():
-    backgrounds = {
-        "SpiderWeb": 1,
-        "Stick": 1,
-        "Leaf": 1,
-        "Hearts": 1,
-        "Book": 1,
-        "Matrix": 1,
-        "Rainbow1": 1,
-        "Rainbow2": 1,
-        "Rainbow3": 1,
-    }
-
-    bugs = {
-        "Small": 1,
-    }
-
-    smallSpots = {
-        "SmallBlackSpotsA": 1,
-        "SmallBlackSpotsB": 1,
-        "SmallBlackSpotsC": 1,
-        "SmallDarkRedSpotsA": 1,
-        "SmallDarkRedSpotsB": 1,
-        "SmallDarkRedSpotsC": 1,
-        "SmallYellowSpotsA": 1,
-        "SmallYellowSpotsB": 1,
-        "SmallYellowSpotsC": 1,
-    }
-    smallColors = {
-        "SmallRed": 1,
-        "SmallBlue": 1,
-        "SmallBlack": 1,
-        "SmallGreen": 1,
-        "SmallINFlag": 1,
-        "SmallYellow": 1,
-    }
-
-    accessories = {
-        "Sombrero": 1,
-        "TopHat": 1,
-        "Turban": 1,
-    }
-
-    eyes = {
-        "BlueEyes": 1,
-        "RedEyes": 1,
-        "WhiteEyes": 1,
-    }
-
-    TOTAL_BUGS = (
-            len(backgrounds)
-            * len(bugs)
-            * len(smallSpots)
-            * len(smallColors)
-            * len(accessories)
-            * len(eyes)
-    )
-
     traits = []
 
     for i in range(TOTAL_BUGS):
