@@ -5,3 +5,5 @@ output/
 .ipynb_checkpoints
 __pycache__
 combined.png
+*.json
+

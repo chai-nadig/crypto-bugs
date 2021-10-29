@@ -24,15 +24,15 @@ bugs = {
 }
 
 smallSpots = {
-    "SmallBlackSpotsA": 1,
+    # "SmallBlackSpotsA": 1,
     "SmallBlackSpotsB": 1,
-    "SmallBlackSpotsC": 1,
-    "SmallDarkRedSpotsA": 1,
+    # "SmallBlackSpotsC": 1,
+    # "SmallDarkRedSpotsA": 1,
     "SmallDarkRedSpotsB": 1,
-    "SmallDarkRedSpotsC": 1,
-    "SmallYellowSpotsA": 1,
+    # "SmallDarkRedSpotsC": 1,
+    # "SmallYellowSpotsA": 1,
     "SmallYellowSpotsB": 1,
-    "SmallYellowSpotsC": 1,
+    # "SmallYellowSpotsC": 1,
 }
 smallColors = {
     "SmallRed": 1,
@@ -65,7 +65,9 @@ TOTAL_BUGS = (
 )
 
 ignoreCombinations = [
-    ('SmallYellowSpotsA', 'SmallYellowSpotsB', 'SmallYellowSpotsC', 'SmallYellow')
+    ('SmallYellowSpotsA', 'SmallYellowSpotsB', 'SmallYellowSpotsC', 'SmallYellow'),
+    ('SmallGreen', 'Matrix', 'Leaf'),
+    ('Sombrero', 'SmallINFlag')
 ]
 
 
