@@ -43,11 +43,14 @@ font-display: swap;
 .text-crypto-red {
     color: #870019;
     font-family: "Lucida Console", "Courier New", monospace;
+    font-weight: bold;
+    text-shadow: 1px 2px #ff0000;
 }
 
 
 .text-white {
     font-family: "Lucida Console", "Courier New", monospace;
+    text-shadow: 1px 1px #ff0000;
 }
 
 .text-blau {
@@ -59,7 +62,7 @@ font-display: swap;
 }
 
 .text-bold-underlined {
-    text-decoration: underline;
+    /* text-decoration: underline; */
     font-weight: bold;
 
 }

@@ -51,10 +51,10 @@ export default function Home() {
 
                     </p>
                     <p className="text-2xl text-white my-6  montserrat">
-                    <strong>RELEASE:</strong> 10 Dec 2021. 1pm PST. <br />‍
+                    <strong>RELEASE:</strong> 30 Nov 2021. 1pm PST. <br />‍
                     <span className="text-white text-2xl montserrat"><strong>TOTAL SUPPLY: 11,111</strong> bugs.<br/>
                     <strong>PRICE: 0.025 ETH </strong>each.</span></p>
-                    <iframe src="https://free.timeanddate.com/countdown/i7vcex5b/n107/cf11/cm0/cu4/ct0/cs1/ca2/co0/cr0/ss0/cacfff/cpcfff/pct/tcfff/fn3/fs100/szw448/szh189/iso2021-12-10T21:00:00" allowtransparency="true" frameBorder="0" width="425" height="25"></iframe>
+                    <iframe src="https://free.timeanddate.com/countdown/i7vcex5b/n107/cf11/cm0/cu4/ct0/cs1/ca2/co0/cr0/ss0/cacfff/cpcfff/pct/tcfff/fn3/fs100/szw448/szh189/iso2021-11-30T21:00:00" allowtransparency="true" frameBorder="0" width="425" height="25"></iframe>
 
                   </div>
                   <img  src="images/bug.png" width="250px" />
