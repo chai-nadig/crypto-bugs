@@ -29,7 +29,6 @@ export default function Home() {
             <a href="/" className=""><img src="images/Hola.gif" width="108" alt="" className="logo-image" /></a>
             <nav className="flex flex-wrap flex-row justify-around Poppitandfinchsans">
               <a href="#about" className="text-4xl text-white hover:text-black m-6">About</a>
-              <a href="/mint" className="text-4xl text-white hover:text-black m-6">MINT!</a>
               <a href="#traits" className="text-4xl text-white hover:text-black m-6">Traits</a>
               <a href="#roadmap" className="text-4xl text-white hover:text-black m-6">Roadmap</a>
               <a href="#team" className="text-4xl text-white hover:text-black m-6">Team</a>
