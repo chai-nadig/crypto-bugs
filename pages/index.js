@@ -5,24 +5,22 @@ export default function Home() {
   return (
     <div id="bodyy" className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
-        <title>Boring Bananas Company</title>
-        <link rel="icon" href="/images/favicon.jpg" />
+        <title>crypto-bugs</title>
+        <link rel="icon" href="/images/favicon.png" />
 
-        <meta property="og:title" content="Boring Bananas Co." key="ogtitle" />
-        <meta property="og:description" content="Here at Boring Bananas company, we specialise in the world's finest digital bananas. We've put together a team spanning 3 continents, to bring you some of the most ‍NUTRITIOUS and DELICIOUS
-bananas out known to man." key="ogdesc" />
+        <meta property="og:title" content="crypto-bugs" key="ogtitle" />
+        <meta property="og:description" content="bugs in production. we ship them" key="ogdesc" />
         <meta property="og:type" content="website" key="ogtype" />
-        <meta property="og:url" content="https://boringbananas.co/" key="ogurl"/>
+        <meta property="og:url" content="https://crypto-bugs.com/" key="ogurl"/>
         <meta property="og:image" content="https://boringbananas.co/images/Hola.gif" key="ogimage"/>
         <meta property="og:site_name" content="https://boringbananas.co/" key="ogsitename" />
 
         <meta name="twitter:card" content="summary_large_image" key="twcard"/>
         <meta property="twitter:domain" content="boringbananas.co" key="twdomain" />
         <meta property="twitter:url" content="https://boringbananas.co/" key="twurl" />
-        <meta name="twitter:title" content="Boring Bananas Co." key="twtitle" />
-        <meta name="twitter:description" content="Here at boring Bananas company, we specialise in the world's finest digital bananas. We've put together a team spanning 3 continents, to bring you some of the most ‍NUTRITIOUS and DELICIOUS
-bananas out known to man." key="twdesc" />
-        <meta name="twitter:image" content="https://boringbananas.co/images/Hola.gif" key="twimage" />
+        <meta name="twitter:title" content="crypto-bugs" key="twtitle" />
+        <meta name="twitter:description" content="bugs in production. we ship them" key="twdesc" />
+//        <meta name="twitter:image" content="https://boringbananas.co/images/Hola.gif" key="twimage" />
       </Head>
 
 
@@ -32,12 +30,12 @@ bananas out known to man." key="twdesc" />
             <nav className="flex flex-wrap flex-row justify-around Poppitandfinchsans">
               <a href="#about" className="text-4xl text-white hover:text-black m-6">About</a>
               <a href="/mint" className="text-4xl text-white hover:text-black m-6">MINT!</a>
-              <a href="#traits" className="text-4xl text-white hover:text-black m-6">Banana traits</a>
+              <a href="#traits" className="text-4xl text-white hover:text-black m-6">Traits</a>
               <a href="#roadmap" className="text-4xl text-white hover:text-black m-6">Roadmap</a>
               <a href="#team" className="text-4xl text-white hover:text-black m-6">Team</a>
               <a href="#contact" className="text-4xl text-white hover:text-black m-6">Contact</a>
-              <a href="https://twitter.com/boringbananasco" className="text-4xl  hover:text-white m-6 text-blau">TWITTER</a>
-              <a href="https://discord.gg/8Wk9Hp6UyV" className="text-4xl  hover:text-white m-6 text-blau">DISCORD</a>
+//              <a href="https://twitter.com/boringbananasco" className="text-4xl  hover:text-white m-6 text-blau">TWITTER</a>
+//              <a href="https://discord.gg/8Wk9Hp6UyV" className="text-4xl  hover:text-white m-6 text-blau">DISCORD</a>
             </nav>
              
           </div>
@@ -50,12 +48,12 @@ bananas out known to man." key="twdesc" />
           <div className="mt-6 border-b-2 py-6">
             <div className="flex flex-wrap lg:flex-nowrap justify-around items-center">
                   <div className="lg:w-1/2 w-3/4">
-                    <h1 className="text-7xl Poppitandfinchsans text-white ">EVERYONE, meet <br/><span className="text-blau">boring bananas</span></h1>
-                    <p className="text-2xl text-white my-6  montserrat">Here at <span className="text-5xl Poppitandfinch ">boring</span> <span className="text-blau text-5xl Poppitandfinchsans">Bananas</span> <span className="text-5xl Poppitandfinch">company</span>, we specialize in the world's <span className="text-span-2 font-bold">finest digital bananas</span>.<br />‍<br />We&#x27;ve put together a team spanning 3 continents, to bring you some of the most <br/>‍<span className="text-blau text-5xl Poppitandfinchsans">NUTRITIOUS </span><span className="text-5xl Poppitandfinch ">and</span><span className="text-blau text-5xl Poppitandfinchsans"> DELICIOUS</span> <br/>bananas out there.
+                    <h1 className="text-7xl Poppitandfinchsans text-white ">EVERYONE, meet <br/><span className="text-blau">cyrpto-bugs</span></h1>
+                    <p className="text-2xl text-white my-6  montserrat">Here at <span className="text-5xl Poppitandfinch ">boring</span> <span className="text-blau text-5xl Poppitandfinchsans">crypto-bugs</span> <span className="text-5xl Poppitandfinch">company</span>, we specialize in the world's <span className="text-span-2 font-bold">finest digital bugs</span>.<br />‍<br />We&#x27;ve put together a team spanning 3 continents, to bring you some of the most <br/>‍<span className="text-blau text-5xl Poppitandfinchsans">NUTRITIOUS </span><span className="text-5xl Poppitandfinch ">and</span><span className="text-blau text-5xl Poppitandfinchsans"> DELICIOUS</span> <br/>bananas out there.
                     </p>
                     <p className="text-2xl text-white my-6  montserrat">
                     <strong>LAUNCH DATE:</strong> 29 June 2021. 2pm EST. <br />‍
-                    <span className="text-white text-2xl montserrat"><strong>TOTAL SUPPLY: 8888</strong> Bananas.<br/><strong>PRICE: 0.025 ETH </strong>each.</span></p>
+                    <span className="text-white text-2xl montserrat"><strong>TOTAL SUPPLY: 8888</strong> bugs.<br/><strong>PRICE: 0.025 ETH </strong>each.</span></p>
                     <iframe src="https://free.timeanddate.com/countdown/i7vcex5b/n107/cf11/cm0/cu4/ct0/cs1/ca2/co0/cr0/ss0/cacfff/cpcfff/pct/tcfff/fn3/fs100/szw448/szh189/iso2021-06-29T21:00:00" allowtransparency="true" frameBorder="0" width="425" height="25"></iframe>
 
                   </div>
@@ -76,12 +74,12 @@ bananas out known to man." key="twdesc" />
                 <div id="traits" className="flex flex-wrap justify-around items-center  mx-6 py-6">
                   <div className="border-4 border-blue-300 p-4"><img src="images/Traits4.gif" alt="" width="400px" className="feature-image"/></div>
                   <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
-                    <h2 className="text-blau Poppitandfinchsans text-6xl text-center">BANANA VARIETIES</h2>
-                    <p className="text-xl text-white my-6  montserrat"> Following the recent worldwide pandemic, <span className="font-bold"> emerging reports </span>  suggest that several <span className="font-bold"> banana species </span> have begun exhibiting <span className="font-bold"> strange characteristics. </span> Our research team located across the globe has commenced efforts to <span className="font-bold"> study and document </span>  these unusual phenomena.   
+                    <h2 className="text-blau Poppitandfinchsans text-6xl text-center">BUG VARIETIES</h2>
+                    <p className="text-xl text-white my-6  montserrat"> Following the recent worldwide pandemic, <span className="font-bold"> emerging reports </span>  suggest that several <span className="font-bold"> bug species </span> have begun exhibiting <span className="font-bold"> strange characteristics. </span> Our research team located across the globe has commenced efforts to <span className="font-bold"> study and document </span>  these unusual phenomena.
                     </p>
                     <p className="text-xl text-white my-6  montserrat"> Concerned about parties trying to suppress our research, the team has opted to store our findings on the blockchain to prevent interference. Although this is a costly endeavour, our mission has never been clearer.   
                     </p>
-                    <p className="text-xl text-white my-6  montserrat"> The fate of the world's bananas depends on it.
+                    <p className="text-xl text-white my-6  montserrat"> The fate of the world's bugs depends on it.
                     </p>
                     <p className="text-xl text-white my-6  montserrat"> Your support in this time of need is greatly appreciated!   
                     </p>
@@ -111,7 +109,7 @@ bananas out known to man." key="twdesc" />
               <p className="text-xl text-white text-center my-6  montserrat"> Simple. To be the largest contributor to charity in the NFT space, as measured by % <span className="font-bold"> of primary sales. </span>  
               </p>
               <h2 className="text-7xl text-center Poppitandfinchsans text-blau my-4">HOW WE'RE GIVING BACK</h2>
-              <p className="text-xl text-white my-6  montserrat">Ever since the inception of the <span className="text-5xl Poppitandfinch ">boring</span> <span className="text-blau text-5xl Poppitandfinchsans">Bananas</span> <span className="text-5xl Poppitandfinch">company</span> after <a target="_blank" href="https://twitter.com/thedigitalvee/status/1405896585142280192" className="underline text-black font-bold">this tweet</a>, our goal has been to <span className="text-blau text-5xl Poppitandfinchsans">GIVE BACK</span> as much as possible.
+              <p className="text-xl text-white my-6  montserrat">Ever since the inception of the <span className="text-5xl Poppitandfinch ">boring</span> <span className="text-blau text-5xl Poppitandfinchsans">Bugs</span> <span className="text-5xl Poppitandfinch">company</span> after <a target="_blank" href="https://twitter.com/thedigitalvee/status/1405896585142280192" className="underline text-black font-bold">this tweet</a>, our goal has been to <span className="text-blau text-5xl Poppitandfinchsans">GIVE BACK</span> as much as possible.
               </p>
               <p className="text-xl text-white my-6  montserrat"> A minimum of 
               <span className="font-bold"> 25% of all sales</span> are donated to charity. 
@@ -134,29 +132,29 @@ bananas out known to man." key="twdesc" />
               </div>
               
               <div id="team" className="mx-12 my-16 ">
-                <h2 className="text-7xl text-center Poppitandfinchsans text-blau my-4">BANANA RESEARCH TEAM</h2>
+                <h2 className="text-7xl text-center Poppitandfinchsans text-blau my-4">BUG RESEARCH TEAM</h2>
                 <div className="flex justify-around flex-wrap">
                   <div className="flex flex-col  my-6" style={{width:"360px"}}>
                     <div className="cards-image-mask"><img src="/images/Vee.png" width="360px" alt="" className="cards-image" /></div>
-                    <h3 className="my-4 text-center text-5xl text-center Poppitandfinchsans text-blau">Vee</h3>
-                    <a href="https://twitter.com/thedigitalvee" className="text-center text-4xl text-center Poppitandfinchsans underline text-white"> (@thedigitalvee)</a>
+                    <h3 className="my-4 text-center text-5xl text-center Poppitandfinchsans text-blau">hellstealz</h3>
+                    <a href="https://twitter.com/thedigitalvee" className="text-center text-4xl text-center Poppitandfinchsans underline text-white"> hellstealz@crypto-bugs.com</a>
                   </div>
                   <div className="flex flex-col  my-6" style={{width:"360px"}}>
                     <div className="cards-image-mask"><img src="/images/MJ.png" width="360px" alt="" className="cards-image" /></div>
-                    <h3 className="my-4 text-center text-5xl text-center Poppitandfinchsans text-blau">MJDATA</h3>
-                    <a href="https://twitter.com/champagneman" className="text-center text-4xl text-center Poppitandfinchsans underline text-white"> (@champagneman)</a>                </div>
-                  <div className="flex flex-col  my-6" style={{width:"360px"}}>
-                    <div className="cards-image-mask"><img src="/images/MB.png" width="360px" alt="" className="cards-image" /></div>
-                    <h3 className="my-4 text-center text-5xl text-center Poppitandfinchsans text-blau">MADBOOGIE</h3>
-                    <a href="https://twitter.com/madboogieart" className="text-center text-4xl text-center Poppitandfinchsans underline text-white"> (@madboogieart)</a>                </div>
-                  <div className="flex flex-col  my-6" style={{width:"360px"}}>
-                    <div className="cards-image-mask"><img src="/images/Jui.png" width="360px" alt="" className="cards-image" /></div>
-                    <h3 className="my-4 text-center text-5xl text-center Poppitandfinchsans text-blau">Jui</h3>
-                    <a href="https://twitter.com/mz09art" className="text-center text-4xl text-center Poppitandfinchsans underline text-white"> (@mz09art)</a>                </div>
-                  <div className="flex flex-col  my-6" style={{width:"360px"}}>
-                    <div className="cards-image-mask"><img src="/images/Berk.png" width="360px" alt="" className="cards-image" /></div>
-                    <h3 className="my-4 text-center text-5xl text-center Poppitandfinchsans text-blau">BERK</h3>
-                    <a href="https://twitter.com/berkozdemir" className="text-center text-4xl text-center Poppitandfinchsans underline text-white"> (@berkozdemir)</a>                </div>
+                    <h3 className="my-4 text-center text-5xl text-center Poppitandfinchsans text-blau">ag</h3>
+                    <a href="https://twitter.com/champagneman" className="text-center text-4xl text-center Poppitandfinchsans underline text-white"> ag@crypto-bugs.com </a>                </div>
+//                  <div className="flex flex-col  my-6" style={{width:"360px"}}>
+//                    <div className="cards-image-mask"><img src="/images/MB.png" width="360px" alt="" className="cards-image" /></div>
+//                    <h3 className="my-4 text-center text-5xl text-center Poppitandfinchsans text-blau">MADBOOGIE</h3>
+//                    <a href="https://twitter.com/madboogieart" className="text-center text-4xl text-center Poppitandfinchsans underline text-white"> (@madboogieart)</a>                </div>
+//                  <div className="flex flex-col  my-6" style={{width:"360px"}}>
+//                    <div className="cards-image-mask"><img src="/images/Jui.png" width="360px" alt="" className="cards-image" /></div>
+//                    <h3 className="my-4 text-center text-5xl text-center Poppitandfinchsans text-blau">Jui</h3>
+//                    <a href="https://twitter.com/mz09art" className="text-center text-4xl text-center Poppitandfinchsans underline text-white"> (@mz09art)</a>                </div>
+//                  <div className="flex flex-col  my-6" style={{width:"360px"}}>
+//                    <div className="cards-image-mask"><img src="/images/Berk.png" width="360px" alt="" className="cards-image" /></div>
+//                    <h3 className="my-4 text-center text-5xl text-center Poppitandfinchsans text-blau">BERK</h3>
+//                    <a href="https://twitter.com/berkozdemir" className="text-center text-4xl text-center Poppitandfinchsans underline text-white"> (@berkozdemir)</a>                </div>
                 
                 </div>
        
@@ -166,13 +164,13 @@ bananas out known to man." key="twdesc" />
               <div id="contact" className="flex flex-wrap justify-around items-center  mx-6 py-6">
                   <div className=" p-4"><img src="images/letstalk.png" alt="" width="400px" className="feature-image"/></div>
                   <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
-                    <h2 className="text-blau Poppitandfinchsans text-6xl text-center">CONTACT BANANA RESEARCH TEAM</h2>
+                    <h2 className="text-blau Poppitandfinchsans text-6xl text-center">CONTACT BUG RESEARCH TEAM</h2>
                     <p className="text-xl text-white my-6  montserrat"> We'd love to hear from you! 
                     </p>
-                    <p className="text-xl text-white my-6  montserrat"> Drop us a line at <a className="text-black underline font-bold" target="_blank" href="mailto:boringbananas69@gmail.com">boringbananas69@gmail.com</a>,<br/>
-                    or alternatively reach out to us on Twitter <a className="text-black underline font-bold" target="_blank" href="https://twitter.com/boringbananasco">@BoringBananasCo</a><br/> 
-                    Or alternatively, join our <a className="text-black underline font-bold" target="_blank" href="https://discord.gg/8Wk9Hp6UyV">Discord Server</a>.
-                    </p>
+//                    <p className="text-xl text-white my-6  montserrat"> Drop us a line at <a className="text-black underline font-bold" target="_blank" href="mailto:boringbananas69@gmail.com">boringbananas69@gmail.com</a>,<br/>
+//                    or alternatively reach out to us on Twitter <a className="text-black underline font-bold" target="_blank" href="https://twitter.com/boringbananasco">@BoringBananasCo</a><br/>
+//                    Or alternatively, join our <a className="text-black underline font-bold" target="_blank" href="https://discord.gg/8Wk9Hp6UyV">Discord Server</a>.
+//                    </p>
                   </div>
        
 
