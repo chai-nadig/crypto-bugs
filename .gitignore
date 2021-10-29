@@ -7,3 +7,4 @@ __pycache__
 combined.png
 node_modules/
 traits*json
+.next
