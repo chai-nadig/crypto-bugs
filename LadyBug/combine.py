@@ -1,8 +1,7 @@
-import os
-
-from PIL import Image, ImageOps
+from PIL import Image
 
 directory = "./output"
+
 
 def getNearestSquare(n):
     i = 1

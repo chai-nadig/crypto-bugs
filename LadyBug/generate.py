@@ -1,8 +1,7 @@
 import glob
 import os
 
-from PIL import Image, ImageOps
-from IPython.display import display
+from PIL import Image
 import random
 import json
 from collections import defaultdict
@@ -99,8 +98,6 @@ def generateCombinations():
 
         traits.append(trait)
 
-    # print(allUnique(traits))
-
     # Sort for evaluation
     traits = sorted(traits, key=lambda t: (t['Background'], t['Color'], t['Spots'], t['Accessory'], t['Eyes']))
 
@@ -160,8 +157,7 @@ def generateImages():
     print("eyes:", eyescount)
 
     # WRITE METADATA TO JSON FILE
-
-    with open('traits2.json', 'w') as outfile:
+    with open('traits.json', 'w') as outfile:
         json.dump(filteredTraits, outfile, indent=4)
 
     files = glob.glob('./output/*')
@@ -173,7 +169,6 @@ def generateImages():
     for item in filteredTraits:
         item["tokenId"] = i
         i = i + 1
-    # print(traits)
 
     # IMAGE GENERATION
     for item in filteredTraits:
@@ -192,11 +187,9 @@ def generateImages():
 
         # Convert to RGB
         rgb_im = com5.convert('RGBA')
-        #     display(rgb_im.resize((400,400), Image.NEAREST))
 
         file_name = str(item["tokenId"]) + ".png"
         rgb_im.save("./output/" + file_name)
-        # final.save("./output/" + file_name)
         print(f'{str(item["tokenId"])} done')
 
     return len(filteredTraits)
