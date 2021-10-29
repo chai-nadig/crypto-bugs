@@ -3,9 +3,6 @@ import os
 from PIL import Image, ImageOps
 
 directory = "./output"
-images = [file for file in os.listdir(directory) if file.endswith(".png")]
-total = len(images)
-
 
 def getNearestSquare(n):
     i = 1
@@ -15,20 +12,18 @@ def getNearestSquare(n):
     return i
 
 
-def combine():
+def combine(total):
     print("combining {} files".format(total))
 
     ns = getNearestSquare(total)
 
     final = Image.new('RGBA', (ns * 24, ns * 24))
 
-    print(images)
-
     imgNo = 0
 
     for i in range(ns):
         for j in range(ns):
-            if len(images) == 0 or imgNo >= total:
+            if imgNo >= total:
                 continue
 
             file = '{}.png'.format(imgNo)

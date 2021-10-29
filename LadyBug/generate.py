@@ -1,7 +1,11 @@
+import glob
+import os
+
 from PIL import Image, ImageOps
 from IPython.display import display
 import random
 import json
+from collections import defaultdict
 
 backgrounds = {
     "SpiderWeb": 1,
@@ -60,6 +64,10 @@ TOTAL_BUGS = (
         * len(eyes)
 )
 
+ignoreCombinations = [
+    ('SmallYellowSpotsA', 'SmallYellowSpotsB', 'SmallYellowSpotsC', 'SmallYellow')
+]
+
 
 def createCombo():
     trait = {
@@ -74,7 +82,12 @@ def createCombo():
     return trait
 
 
-def generate():
+def allUnique(x):
+    seen = list()
+    return not any(i in seen or seen.append(i) for i in x)
+
+
+def generateCombinations():
     traits = []
 
     for i in range(TOTAL_BUGS):
@@ -84,25 +97,31 @@ def generate():
 
         traits.append(trait)
 
-    def allUnique(x):
-        seen = list()
-        return not any(i in seen or seen.append(i) for i in x)
-
     # print(allUnique(traits))
 
     # Sort for evaluation
     traits = sorted(traits, key=lambda t: (t['Background'], t['Color'], t['Spots'], t['Accessory'], t['Eyes']))
 
-    # ADD TOKEN IDS TO JSON
-    i = 0
-    for item in traits:
-        item["tokenId"] = i
-        i = i + 1
+    return traits
 
-    # print(traits)
+
+def shouldIgnore(trait):
+    count = 0
+    for toIgnore in ignoreCombinations:
+        for key, value in trait.items():
+            if value in toIgnore:
+                count += 1
+
+    if count > 1:
+        return True
+
+    return False
+
+
+def generateImages():
+    traits = generateCombinations()
 
     # GET TRAIT COUNTS
-    from collections import defaultdict
 
     backgroundcounts = defaultdict(int)
     bugcounts = defaultdict(int)
@@ -111,14 +130,26 @@ def generate():
     accessorycount = defaultdict(int)
     eyescount = defaultdict(int)
 
-    for bug in traits:
-        backgroundcounts[bug["Background"]] += 1
-        bugcounts[bug["Bug"]] += 1
-        spotscounts[bug["Spots"]] += 1
-        colorcounts[bug["Color"]] += 1
-        accessorycount[bug["Accessory"]] += 1
-        eyescount[bug["Eyes"]] += 1
+    filteredTraits = []
 
+    ignored = 0
+    for trait in traits:
+        if shouldIgnore(trait):
+            ignored += 1
+            continue
+
+        backgroundcounts[trait["Background"]] += 1
+        bugcounts[trait["Bug"]] += 1
+        spotscounts[trait["Spots"]] += 1
+        colorcounts[trait["Color"]] += 1
+        accessorycount[trait["Accessory"]] += 1
+        eyescount[trait["Eyes"]] += 1
+
+        filteredTraits.append(trait)
+
+    print("TOTAL", TOTAL_BUGS)
+
+    print("ignored: ", ignored)
     print("background:", backgroundcounts)
     print("bugs:", bugcounts)
     print("spots:", spotscounts)
@@ -129,10 +160,21 @@ def generate():
     # WRITE METADATA TO JSON FILE
 
     with open('traits2.json', 'w') as outfile:
-        json.dump(traits, outfile, indent=4)
+        json.dump(filteredTraits, outfile, indent=4)
+
+    files = glob.glob('./output/*')
+    for f in files:
+        os.remove(f)
+
+    # ADD TOKEN IDS TO JSON
+    i = 0
+    for item in filteredTraits:
+        item["tokenId"] = i
+        i = i + 1
+    # print(traits)
 
     # IMAGE GENERATION
-    for item in traits:
+    for item in filteredTraits:
         im1 = Image.open(f'./Backgrounds/{item["Background"]}.png').convert('RGBA')
         im2 = Image.open(f'./Bugs/{item["Bug"]}.png').convert('RGBA')
         im3 = Image.open(f'./Colors/{item["Color"]}.png').convert('RGBA')
@@ -154,3 +196,5 @@ def generate():
         rgb_im.save("./output/" + file_name)
         # final.save("./output/" + file_name)
         print(f'{str(item["tokenId"])} done')
+
+    return len(filteredTraits)
