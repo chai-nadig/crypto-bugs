@@ -13,14 +13,14 @@ export default function Home() {
         <meta property="og:type" content="website" key="ogtype" />
         <meta property="og:url" content="https://crypto-bugs.com/" key="ogurl"/>
         <meta property="og:image" content="https://boringbananas.co/images/Hola.gif" key="ogimage"/>
-        <meta property="og:site_name" content="https://boringbananas.co/" key="ogsitename" />
+        <meta property="og:site_name" content="https://crypto-bugs.com/" key="ogsitename" />
 
         <meta name="twitter:card" content="summary_large_image" key="twcard"/>
-        <meta property="twitter:domain" content="boringbananas.co" key="twdomain" />
-        <meta property="twitter:url" content="https://boringbananas.co/" key="twurl" />
+        <meta property="twitter:domain" content="crypto-bugs.com" key="twdomain" />
+        <meta property="twitter:url" content="https://crypto-bugs.com/" key="twurl" />
         <meta name="twitter:title" content="crypto-bugs" key="twtitle" />
         <meta name="twitter:description" content="bugs in production. we ship them" key="twdesc" />
-//        <meta name="twitter:image" content="https://boringbananas.co/images/Hola.gif" key="twimage" />
+        <meta name="twitter:image" content="https://boringbananas.co/images/Hola.gif" key="twimage" />
       </Head>
 
 
@@ -34,8 +34,6 @@ export default function Home() {
               <a href="#roadmap" className="text-4xl text-white hover:text-black m-6">Roadmap</a>
               <a href="#team" className="text-4xl text-white hover:text-black m-6">Team</a>
               <a href="#contact" className="text-4xl text-white hover:text-black m-6">Contact</a>
-//              <a href="https://twitter.com/boringbananasco" className="text-4xl  hover:text-white m-6 text-blau">TWITTER</a>
-//              <a href="https://discord.gg/8Wk9Hp6UyV" className="text-4xl  hover:text-white m-6 text-blau">DISCORD</a>
             </nav>
              
           </div>
@@ -49,7 +47,7 @@ export default function Home() {
             <div className="flex flex-wrap lg:flex-nowrap justify-around items-center">
                   <div className="lg:w-1/2 w-3/4">
                     <h1 className="text-7xl Poppitandfinchsans text-white ">EVERYONE, meet <br/><span className="text-blau">cyrpto-bugs</span></h1>
-                    <p className="text-2xl text-white my-6  montserrat">Here at <span className="text-5xl Poppitandfinch ">boring</span> <span className="text-blau text-5xl Poppitandfinchsans">crypto-bugs</span> <span className="text-5xl Poppitandfinch">company</span>, we specialize in the world's <span className="text-span-2 font-bold">finest digital bugs</span>.<br />‍<br />We&#x27;ve put together a team spanning 3 continents, to bring you some of the most <br/>‍<span className="text-blau text-5xl Poppitandfinchsans">NUTRITIOUS </span><span className="text-5xl Poppitandfinch ">and</span><span className="text-blau text-5xl Poppitandfinchsans"> DELICIOUS</span> <br/>bananas out there.
+                    <p className="text-2xl text-white my-6  montserrat">Here at <span className="text-5xl Poppitandfinch ">boring</span> <span className="text-blau text-5xl Poppitandfinchsans">crypto-bugs</span> <span className="text-5xl Poppitandfinch">company</span>, we specialize in the world's <span className="text-span-2 font-bold">finest digital bugs</span>.<br />‍<br />We&#x27;ve put together a team spanning 3 continents, to bring you some of the most <br/>‍<span className="text-blau text-5xl Poppitandfinchsans">NUTRITIOUS </span><span className="text-5xl Poppitandfinch ">and</span><span className="text-blau text-5xl Poppitandfinchsans"> DELICIOUS</span> <br/>bugs out there.
                     </p>
                     <p className="text-2xl text-white my-6  montserrat">
                     <strong>LAUNCH DATE:</strong> 29 June 2021. 2pm EST. <br />‍
@@ -135,27 +133,15 @@ export default function Home() {
                 <h2 className="text-7xl text-center Poppitandfinchsans text-blau my-4">BUG RESEARCH TEAM</h2>
                 <div className="flex justify-around flex-wrap">
                   <div className="flex flex-col  my-6" style={{width:"360px"}}>
-                    <div className="cards-image-mask"><img src="/images/Vee.png" width="360px" alt="" className="cards-image" /></div>
+                    <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image" /></div>
                     <h3 className="my-4 text-center text-5xl text-center Poppitandfinchsans text-blau">hellstealz</h3>
-                    <a href="https://twitter.com/thedigitalvee" className="text-center text-4xl text-center Poppitandfinchsans underline text-white"> hellstealz@crypto-bugs.com</a>
+                    <a href="" className="text-center text-4xl text-center Poppitandfinchsans underline text-white"> hellstealz@crypto-bugs.com</a>
                   </div>
                   <div className="flex flex-col  my-6" style={{width:"360px"}}>
-                    <div className="cards-image-mask"><img src="/images/MJ.png" width="360px" alt="" className="cards-image" /></div>
+                    <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image" /></div>
                     <h3 className="my-4 text-center text-5xl text-center Poppitandfinchsans text-blau">ag</h3>
-                    <a href="https://twitter.com/champagneman" className="text-center text-4xl text-center Poppitandfinchsans underline text-white"> ag@crypto-bugs.com </a>                </div>
-//                  <div className="flex flex-col  my-6" style={{width:"360px"}}>
-//                    <div className="cards-image-mask"><img src="/images/MB.png" width="360px" alt="" className="cards-image" /></div>
-//                    <h3 className="my-4 text-center text-5xl text-center Poppitandfinchsans text-blau">MADBOOGIE</h3>
-//                    <a href="https://twitter.com/madboogieart" className="text-center text-4xl text-center Poppitandfinchsans underline text-white"> (@madboogieart)</a>                </div>
-//                  <div className="flex flex-col  my-6" style={{width:"360px"}}>
-//                    <div className="cards-image-mask"><img src="/images/Jui.png" width="360px" alt="" className="cards-image" /></div>
-//                    <h3 className="my-4 text-center text-5xl text-center Poppitandfinchsans text-blau">Jui</h3>
-//                    <a href="https://twitter.com/mz09art" className="text-center text-4xl text-center Poppitandfinchsans underline text-white"> (@mz09art)</a>                </div>
-//                  <div className="flex flex-col  my-6" style={{width:"360px"}}>
-//                    <div className="cards-image-mask"><img src="/images/Berk.png" width="360px" alt="" className="cards-image" /></div>
-//                    <h3 className="my-4 text-center text-5xl text-center Poppitandfinchsans text-blau">BERK</h3>
-//                    <a href="https://twitter.com/berkozdemir" className="text-center text-4xl text-center Poppitandfinchsans underline text-white"> (@berkozdemir)</a>                </div>
-                
+                    <a href="" className="text-center text-4xl text-center Poppitandfinchsans underline text-white"> ag@crypto-bugs.com </a>                </div>
+
                 </div>
        
 
@@ -165,12 +151,8 @@ export default function Home() {
                   <div className=" p-4"><img src="images/letstalk.png" alt="" width="400px" className="feature-image"/></div>
                   <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
                     <h2 className="text-blau Poppitandfinchsans text-6xl text-center">CONTACT BUG RESEARCH TEAM</h2>
-                    <p className="text-xl text-white my-6  montserrat"> We'd love to hear from you! 
+                    <p className="text-xl text-white my-6  montserrat"> We'd love to hear from you!
                     </p>
-//                    <p className="text-xl text-white my-6  montserrat"> Drop us a line at <a className="text-black underline font-bold" target="_blank" href="mailto:boringbananas69@gmail.com">boringbananas69@gmail.com</a>,<br/>
-//                    or alternatively reach out to us on Twitter <a className="text-black underline font-bold" target="_blank" href="https://twitter.com/boringbananasco">@BoringBananasCo</a><br/>
-//                    Or alternatively, join our <a className="text-black underline font-bold" target="_blank" href="https://discord.gg/8Wk9Hp6UyV">Discord Server</a>.
-//                    </p>
                   </div>
        
 
