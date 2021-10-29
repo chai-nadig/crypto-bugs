@@ -34,7 +34,7 @@ def combine():
             file = '{}.png'.format(imgNo)
             im1 = Image.open(directory + '/' + file).convert('RGBA')
 
-            final.paste(im1, (i * 24, j * 24))
+            final.paste(im1, (j * 24, i * 24))
 
             imgNo += 1
 
