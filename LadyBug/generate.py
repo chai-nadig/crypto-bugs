@@ -69,6 +69,8 @@ ignoreCombinations = [
     ('Sombrero', 'SmallINFlag')
 ]
 
+currentlocation = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+outputlocation = os.path.join(currentlocation, '../output/')
 
 def createCombo():
     trait = {
@@ -116,6 +118,8 @@ def shouldIgnore(trait):
 
     return False
 
+def getImage(img):
+    return Image.open(os.path.join(currentlocation, img)).convert('RGBA')
 
 def generateImages():
     traits = generateCombinations()
@@ -172,12 +176,12 @@ def generateImages():
 
     # IMAGE GENERATION
     for item in filteredTraits:
-        im1 = Image.open(f'./Backgrounds/{item["Background"]}.png').convert('RGBA')
-        im2 = Image.open(f'./Bugs/{item["Bug"]}.png').convert('RGBA')
-        im3 = Image.open(f'./Colors/{item["Color"]}.png').convert('RGBA')
-        im4 = Image.open(f'./Spots/{item["Spots"]}.png').convert('RGBA')
-        im5 = Image.open(f'./Accessories/{item["Accessory"]}.png').convert('RGBA')
-        im6 = Image.open(f'./Eyes/{item["Eyes"]}.png').convert('RGBA')
+        im1 = getImage(f'./Backgrounds/{item["Background"]}.png')
+        im2 = getImage(f'./Bugs/{item["Bug"]}.png')
+        im3 = getImage(f'./Colors/{item["Color"]}.png')
+        im4 = getImage(f'./Spots/{item["Spots"]}.png')
+        im5 = getImage(f'./Accessories/{item["Accessory"]}.png')
+        im6 = getImage(f'./Eyes/{item["Eyes"]}.png')
 
         com1 = Image.alpha_composite(im1, im2)
         com2 = Image.alpha_composite(com1, im3)
@@ -189,7 +193,7 @@ def generateImages():
         rgb_im = com5.convert('RGBA')
 
         file_name = str(item["tokenId"]) + ".png"
-        rgb_im.save("./output/" + file_name)
-        print(f'{str(item["tokenId"])} done')
+        rgb_im.save(outputlocation+file_name)
+        # print(f'{str(item["tokenId"])} done')
 
     return len(filteredTraits)
