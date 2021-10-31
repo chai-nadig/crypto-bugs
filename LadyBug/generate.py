@@ -7,7 +7,15 @@ import random
 import json
 from collections import defaultdict
 
-backgrounds = {
+simple_backgrounds = {
+    "PurpleBlue": 1,
+    "RedBlue": 1,
+    "YellowGreen": 1,
+    "RedPink": 1,
+    "BlueBlack": 1,
+}
+
+unique_backgrounds = {
     "SpiderWeb": 1,
     "Stick": 1,
     "Leaf": 1,
@@ -17,24 +25,23 @@ backgrounds = {
     "Rainbow1": 1,
     "Rainbow2": 1,
     "Rainbow3": 1,
-    "PurpleBlue": 1,
-    "RedBlue": 1,
-    "YellowGreen": 1,
-    "RedPink": 1,
-    "BlueBlack": 1,
 }
+backgrounds = {}
+backgrounds.update(simple_backgrounds)
+backgrounds.update(unique_backgrounds)
 
 bugs = {
     "Small": 1,
 }
 
 smallSpots = {
+    'None': 1,
     "SmallBlackSpotsA": 1,
     "SmallBlackSpotsB": 1,
     "SmallBlackSpotsC": 1,
-    "SmallDarkRedSpotsA": 1,
-    "SmallDarkRedSpotsB": 1,
-    "SmallDarkRedSpotsC": 1,
+    "SmallRedSpotsA": 1,
+    "SmallRedSpotsB": 1,
+    "SmallRedSpotsC": 1,
     "SmallYellowSpotsA": 1,
     "SmallYellowSpotsB": 1,
     "SmallYellowSpotsC": 1,
@@ -46,6 +53,9 @@ smallColors = {
     "SmallGreen": 1,
     "SmallINFlag": 1,
     "SmallYellow": 1,
+    "SmallOrange": 1,
+    "SmallPurple": 1,
+    "SmallCamo": 1,
 }
 
 accessories = {
@@ -74,17 +84,38 @@ TOTAL_BUGS = (
         * len(eyes)
 )
 
-ignoreCombinations = [
-    ('SmallYellowSpotsA', 'SmallYellowSpotsB', 'SmallYellowSpotsC', 'SmallYellow'),
-    ('SmallDarkRedSpotsA', 'SmallDarkRedSpotsB', 'SmallDarkRedSpotsC', 'SmallRed'),
-    ('SmallGreen', 'Matrix', 'Leaf'),
-    ('Sombrero', 'SmallINFlag'),
-    ('Sombrero', 'TopHat', 'Turban', "Crown", "SpiderWeb", "Stick", "Leaf", "Hearts", "Book", "Matrix", "Rainbow1",
-     "Rainbow2", "Rainbow3",)
-]
+
+def get_ignored_combinations():
+    small_spots_without_none = list(smallSpots.keys())
+    small_spots_without_none.remove('None')
+
+    accessories_without_none = list(accessories.keys())
+    accessories_without_none.remove('None')
+
+    ignore_combinations = [
+        {'Spots': ['SmallYellowSpotsA', 'SmallYellowSpotsB', 'SmallYellowSpotsC'],
+         'Color': ['SmallYellow', 'SmallOrange']},
+        {'Spots': ['SmallRedSpotsA', 'SmallRedSpotsB', 'SmallRedSpotsC'], 'Color': ['SmallRed']},
+        {'Color': ['SmallGreen'], 'Background': ['Matrix', 'Leaf']},
+        {'Color': ['SmallINFlag'], 'Background': list(unique_backgrounds.keys())},
+        {'Color': ['SmallINFlag'], 'Spots': small_spots_without_none},
+        {'Color': ['SmallINFlag'], 'Accessory': accessories_without_none},
+        {'Accessory': accessories_without_none,
+         'Background': list(unique_backgrounds.keys())},
+    ]
+
+    return ignore_combinations
+
 
 currentlocation = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 outputlocation = os.path.join(currentlocation, './output/')
+
+
+def get_trait_key(trait):
+    trait_key = ''
+    for key, value in trait.items():
+        trait_key = '{},{}:{}'.format(trait_key, key, value)
+    return trait_key
 
 
 def createCombo():
@@ -107,7 +138,7 @@ def allUnique(x):
 
 def generateCombinations():
     traits = []
-
+    trait_keys = set()
     for i in tqdm(
             iterable=range(TOTAL_BUGS),
             desc="Generating all combinations: {}".format(TOTAL_BUGS),
@@ -115,25 +146,31 @@ def generateCombinations():
             unit="combos",
     ):
         trait = createCombo()
-        while trait in traits:
-            trait = createCombo()
+        trait_key = get_trait_key(trait)
 
+        while trait_key in trait_keys:
+            trait = createCombo()
+            trait_key = get_trait_key(trait)
+
+        trait_keys.add(trait_key)
         traits.append(trait)
 
     return traits
 
 
 def shouldIgnore(trait):
-    count = 0
-    for toIgnore in ignoreCombinations:
+    for toIgnore in get_ignored_combinations():
+        count = 0
+
         for key, value in trait.items():
-            if value in toIgnore:
+            if value in toIgnore.get(key, []):
                 count += 1
 
         if count > 1:
             return True
 
-        count = 0
+    if trait['Spots'] == 'None':
+        return trait['Color'] != 'SmallINFlag'
 
     return False
 
