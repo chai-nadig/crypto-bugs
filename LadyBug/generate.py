@@ -64,6 +64,10 @@ accessories = {
     "TopHat": 1,
     "Turban": 1,
     "Crown": 1,
+    "Construction": 1,
+    "Graduation": 1,
+    "Beanie": 1,
+    "ChefCap": 1,
 }
 
 eyes = {
@@ -73,7 +77,7 @@ eyes = {
     "GreyEyes": 1,
 }
 
-TO_GENERATE = 10000
+TO_GENERATE = 11111
 
 TOTAL_BUGS = (
         len(backgrounds)
@@ -222,8 +226,8 @@ def generate_images():
         accessory_count[trait["Accessory"]] += 1
         eyes_count[trait["Eyes"]] += 1
 
-    print("total generated", len(filtered_traits))
     print("ignored: ", ignored)
+    print("total generated", len(filtered_traits))
     print("background:", background_counts)
     print("bugs:", bug_counts)
     print("spots:", spots_counts)
@@ -248,8 +252,9 @@ def generate_images():
     # IMAGE GENERATION
     for trait in tqdm(
             iterable=filtered_traits,
-            desc="Generating images",
+            desc="Generating {} images".format(len(filtered_traits)),
             unit="images",
+            total=len(filtered_traits),
     ):
         im1 = getImage(f'./Backgrounds/{trait["Background"]}.png')
         im2 = getImage(f'./Bugs/{trait["Bug"]}.png')

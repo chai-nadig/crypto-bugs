@@ -13,15 +13,13 @@ def getNearestSquare(n):
 
 
 def combine(total):
-    print("combining {} files".format(total))
-
     ns = getNearestSquare(total)
 
     final = Image.new('RGBA', (ns * 24, ns * 24))
 
     imgNo = 0
 
-    with tqdm(total=total, desc="Combining images", unit="image") as pbar:
+    with tqdm(total=total, desc="combining {} files".format(total), unit="image") as pbar:
         for i in range(ns):
             for j in range(ns):
                 if imgNo >= total:
