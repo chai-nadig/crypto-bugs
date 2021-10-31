@@ -84,7 +84,7 @@ ignoreCombinations = [
 ]
 
 currentlocation = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
-outputlocation = os.path.join(currentlocation, '../output/')
+outputlocation = os.path.join(currentlocation, './output/')
 
 
 def createCombo():
