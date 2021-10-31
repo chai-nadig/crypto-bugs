@@ -16,6 +16,8 @@ simple_backgrounds = {
 }
 
 unique_backgrounds = {
+    "Monitor": 1,
+    "Fire": 1,
     "SpiderWeb": 1,
     "Stick": 1,
     "Leaf": 1,
@@ -23,8 +25,8 @@ unique_backgrounds = {
     "Book": 1,
     "Matrix": 1,
     "Rainbow1": 1,
-    "Rainbow2": 1,
-    "Rainbow3": 1,
+    # "Rainbow2": 1,
+    # "Rainbow3": 1,
 }
 backgrounds = {}
 backgrounds.update(simple_backgrounds)
