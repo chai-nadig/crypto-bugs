@@ -1,6 +1,7 @@
 import glob
 import os
 
+from tqdm import tqdm
 from PIL import Image
 import random
 import json
@@ -107,7 +108,12 @@ def allUnique(x):
 def generateCombinations():
     traits = []
 
-    for i in range(TOTAL_BUGS):
+    for i in tqdm(
+            iterable=range(TOTAL_BUGS),
+            desc="Generating all combinations: {}".format(TOTAL_BUGS),
+            total=TOTAL_BUGS,
+            unit="combos",
+    ):
         trait = createCombo()
         while trait in traits:
             trait = createCombo()
@@ -141,7 +147,12 @@ def generate_images():
 
     ignored = 0
     filtered_traits = []
-    for trait in traits:
+
+    for trait in tqdm(
+            iterable=traits,
+            desc="Filtering combinations",
+            unit="combos",
+    ):
         if shouldIgnore(trait):
             ignored += 1
             continue
@@ -195,7 +206,11 @@ def generate_images():
         i = i + 1
 
     # IMAGE GENERATION
-    for trait in filtered_traits:
+    for trait in tqdm(
+            iterable=filtered_traits,
+            desc="Generating images",
+            unit="images",
+    ):
         im1 = Image.open(f'./Backgrounds/{trait["Background"]}.png').convert('RGBA')
         im2 = Image.open(f'./Bugs/{trait["Bug"]}.png').convert('RGBA')
         im3 = Image.open(f'./Colors/{trait["Color"]}.png').convert('RGBA')

@@ -1,4 +1,5 @@
 from PIL import Image
+from tqdm import tqdm
 
 directory = "./output"
 
@@ -20,16 +21,18 @@ def combine(total):
 
     imgNo = 0
 
-    for i in range(ns):
-        for j in range(ns):
-            if imgNo >= total:
-                continue
+    with tqdm(total=total, desc="Combining images", unit="image") as pbar:
+        for i in range(ns):
+            for j in range(ns):
+                if imgNo >= total:
+                    continue
 
-            file = '{}.png'.format(imgNo)
-            im1 = Image.open(directory + '/' + file).convert('RGBA')
+                file = '{}.png'.format(imgNo)
+                im1 = Image.open(directory + '/' + file).convert('RGBA')
 
-            final.paste(im1, (j * 24, i * 24))
+                final.paste(im1, (j * 24, i * 24))
 
-            imgNo += 1
+                imgNo += 1
+                pbar.update(1)
 
     final.save('combined.png')
