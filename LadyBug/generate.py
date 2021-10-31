@@ -139,7 +139,10 @@ def shouldIgnore(trait):
 
 
 def getImage(img):
-    return Image.open(os.path.join(currentlocation, img)).convert('RGBA')
+    if "None" not in img:
+        return Image.open(os.path.join(currentlocation, img)).convert('RGBA')
+
+    return Image.new('RGBA', (24, 24), (255, 0, 0, 0))
 
 
 def generate_images():
@@ -211,15 +214,12 @@ def generate_images():
             desc="Generating images",
             unit="images",
     ):
-        im1 = Image.open(f'./Backgrounds/{trait["Background"]}.png').convert('RGBA')
-        im2 = Image.open(f'./Bugs/{trait["Bug"]}.png').convert('RGBA')
-        im3 = Image.open(f'./Colors/{trait["Color"]}.png').convert('RGBA')
-        im4 = Image.open(f'./Spots/{trait["Spots"]}.png').convert('RGBA')
-        im5 = (
-            Image.open(f'./Accessories/{trait["Accessory"]}.png').convert('RGBA')
-            if trait["Accessory"] != "None" else Image.new('RGBA', (24, 24), (255, 0, 0, 0))
-        )
-        im6 = Image.open(f'./Eyes/{trait["Eyes"]}.png').convert('RGBA')
+        im1 = getImage(f'./Backgrounds/{trait["Background"]}.png')
+        im2 = getImage(f'./Bugs/{trait["Bug"]}.png')
+        im3 = getImage(f'./Colors/{trait["Color"]}.png')
+        im4 = getImage(f'./Spots/{trait["Spots"]}.png')
+        im5 = getImage(f'./Accessories/{trait["Accessory"]}.png')
+        im6 = getImage(f'./Eyes/{trait["Eyes"]}.png')
 
         com1 = Image.alpha_composite(im1, im2)
         com2 = Image.alpha_composite(com1, im3)
@@ -231,7 +231,6 @@ def generate_images():
         rgb_im = com5.convert('RGBA')
 
         file_name = str(trait["tokenId"]) + ".png"
-        rgb_im.save("./output/" + file_name)
-        # print(f'{str(trait["tokenId"])} done')
+        rgb_im.save(outputlocation + file_name)
 
     return len(filtered_traits)
