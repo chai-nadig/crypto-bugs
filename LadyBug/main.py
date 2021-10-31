@@ -1,5 +1,5 @@
-from LadyBug.combine import combine
-from LadyBug.generate import generate_images
+from combine import combine
+from generate import generate_images
 
 total = generate_images()
 

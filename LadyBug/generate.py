@@ -82,6 +82,9 @@ ignoreCombinations = [
      "Rainbow2", "Rainbow3",)
 ]
 
+currentlocation = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+outputlocation = os.path.join(currentlocation, '../output/')
+
 
 def createCombo():
     trait = {
@@ -127,6 +130,10 @@ def shouldIgnore(trait):
         count = 0
 
     return False
+
+
+def getImage(img):
+    return Image.open(os.path.join(currentlocation, img)).convert('RGBA')
 
 
 def generate_images():
