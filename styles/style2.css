@@ -55,8 +55,10 @@ font-display: swap;
     font-weight: 500;
 }
 
-.text-blau {
-    color: #13c5eb;
+
+li {
+  margin-left: 40px;
+  list-style-type: circle;
 }
 
 .bg-blau {

@@ -16,6 +16,11 @@ backgrounds = {
     "Rainbow1": 1,
     "Rainbow2": 1,
     "Rainbow3": 1,
+    "PurpleBlue": 1,
+    "RedBlue": 1,
+    "YellowGreen": 1,
+    "RedPink": 1,
+    "BlueBlack": 1,
 }
 
 bugs = {
@@ -23,15 +28,15 @@ bugs = {
 }
 
 smallSpots = {
-    # "SmallBlackSpotsA": 1,
+    "SmallBlackSpotsA": 1,
     "SmallBlackSpotsB": 1,
-    # "SmallBlackSpotsC": 1,
-    # "SmallDarkRedSpotsA": 1,
+    "SmallBlackSpotsC": 1,
+    "SmallDarkRedSpotsA": 1,
     "SmallDarkRedSpotsB": 1,
-    # "SmallDarkRedSpotsC": 1,
-    # "SmallYellowSpotsA": 1,
+    "SmallDarkRedSpotsC": 1,
+    "SmallYellowSpotsA": 1,
     "SmallYellowSpotsB": 1,
-    # "SmallYellowSpotsC": 1,
+    "SmallYellowSpotsC": 1,
 }
 smallColors = {
     "SmallRed": 1,
@@ -43,16 +48,21 @@ smallColors = {
 }
 
 accessories = {
+    "None": 1,
     "Sombrero": 1,
     "TopHat": 1,
     "Turban": 1,
+    "Crown": 1,
 }
 
 eyes = {
     "BlueEyes": 1,
     "RedEyes": 1,
     "WhiteEyes": 1,
+    "GreyEyes": 1,
 }
+
+TO_GENERATE = 10000
 
 TOTAL_BUGS = (
         len(backgrounds)
@@ -65,8 +75,11 @@ TOTAL_BUGS = (
 
 ignoreCombinations = [
     ('SmallYellowSpotsA', 'SmallYellowSpotsB', 'SmallYellowSpotsC', 'SmallYellow'),
+    ('SmallDarkRedSpotsA', 'SmallDarkRedSpotsB', 'SmallDarkRedSpotsC', 'SmallRed'),
     ('SmallGreen', 'Matrix', 'Leaf'),
-    ('Sombrero', 'SmallINFlag')
+    ('Sombrero', 'SmallINFlag'),
+    ('Sombrero', 'TopHat', 'Turban', "Crown", "SpiderWeb", "Stick", "Leaf", "Hearts", "Book", "Matrix", "Rainbow1",
+     "Rainbow2", "Rainbow3",)
 ]
 
 
@@ -98,9 +111,6 @@ def generateCombinations():
 
         traits.append(trait)
 
-    # Sort for evaluation
-    # traits = sorted(traits, key=lambda t: (t['Background'], t['Color'], t['Spots'], t['Accessory'], t['Eyes']))
-
     return traits
 
 
@@ -111,54 +121,61 @@ def shouldIgnore(trait):
             if value in toIgnore:
                 count += 1
 
-    if count > 1:
-        return True
+        if count > 1:
+            return True
+
+        count = 0
 
     return False
 
 
-def generateImages():
+def generate_images():
     traits = generateCombinations()
 
-    # GET TRAIT COUNTS
-
-    backgroundcounts = defaultdict(int)
-    bugcounts = defaultdict(int)
-    spotscounts = defaultdict(int)
-    colorcounts = defaultdict(int)
-    accessorycount = defaultdict(int)
-    eyescount = defaultdict(int)
-
-    filteredTraits = []
-
     ignored = 0
+    filtered_traits = []
     for trait in traits:
         if shouldIgnore(trait):
             ignored += 1
             continue
 
-        backgroundcounts[trait["Background"]] += 1
-        bugcounts[trait["Bug"]] += 1
-        spotscounts[trait["Spots"]] += 1
-        colorcounts[trait["Color"]] += 1
-        accessorycount[trait["Accessory"]] += 1
-        eyescount[trait["Eyes"]] += 1
+        filtered_traits.append(trait)
 
-        filteredTraits.append(trait)
+    filtered_traits = random.sample(filtered_traits, k=min(TO_GENERATE, len(filtered_traits)))
 
-    print("TOTAL", TOTAL_BUGS)
+    # Sort for evaluation
+    filtered_traits = sorted(filtered_traits,
+                             key=lambda t: (t['Background'], t['Color'], t['Spots'], t['Accessory'], t['Eyes']))
 
+    # GET TRAIT COUNTS
+
+    background_counts = defaultdict(int)
+    bug_counts = defaultdict(int)
+    spots_counts = defaultdict(int)
+    color_counts = defaultdict(int)
+    accessory_count = defaultdict(int)
+    eyes_count = defaultdict(int)
+
+    for trait in filtered_traits:
+        background_counts[trait["Background"]] += 1
+        bug_counts[trait["Bug"]] += 1
+        spots_counts[trait["Spots"]] += 1
+        color_counts[trait["Color"]] += 1
+        accessory_count[trait["Accessory"]] += 1
+        eyes_count[trait["Eyes"]] += 1
+
+    print("total generated", len(filtered_traits))
     print("ignored: ", ignored)
-    print("background:", backgroundcounts)
-    print("bugs:", bugcounts)
-    print("spots:", spotscounts)
-    print("colors:", colorcounts)
-    print("accessory:", accessorycount)
-    print("eyes:", eyescount)
+    print("background:", background_counts)
+    print("bugs:", bug_counts)
+    print("spots:", spots_counts)
+    print("colors:", color_counts)
+    print("accessory:", accessory_count)
+    print("eyes:", eyes_count)
 
     # WRITE METADATA TO JSON FILE
     with open('traits.json', 'w') as outfile:
-        json.dump(filteredTraits, outfile, indent=4)
+        json.dump(filtered_traits, outfile, indent=4)
 
     files = glob.glob('./output/*')
     for f in files:
@@ -166,18 +183,21 @@ def generateImages():
 
     # ADD TOKEN IDS TO JSON
     i = 0
-    for item in filteredTraits:
-        item["tokenId"] = i
+    for trait in filtered_traits:
+        trait["tokenId"] = i
         i = i + 1
 
     # IMAGE GENERATION
-    for item in filteredTraits:
-        im1 = Image.open(f'./Backgrounds/{item["Background"]}.png').convert('RGBA')
-        im2 = Image.open(f'./Bugs/{item["Bug"]}.png').convert('RGBA')
-        im3 = Image.open(f'./Colors/{item["Color"]}.png').convert('RGBA')
-        im4 = Image.open(f'./Spots/{item["Spots"]}.png').convert('RGBA')
-        im5 = Image.open(f'./Accessories/{item["Accessory"]}.png').convert('RGBA')
-        im6 = Image.open(f'./Eyes/{item["Eyes"]}.png').convert('RGBA')
+    for trait in filtered_traits:
+        im1 = Image.open(f'./Backgrounds/{trait["Background"]}.png').convert('RGBA')
+        im2 = Image.open(f'./Bugs/{trait["Bug"]}.png').convert('RGBA')
+        im3 = Image.open(f'./Colors/{trait["Color"]}.png').convert('RGBA')
+        im4 = Image.open(f'./Spots/{trait["Spots"]}.png').convert('RGBA')
+        im5 = (
+            Image.open(f'./Accessories/{trait["Accessory"]}.png').convert('RGBA')
+            if trait["Accessory"] != "None" else Image.new('RGBA', (24, 24), (255, 0, 0, 0))
+        )
+        im6 = Image.open(f'./Eyes/{trait["Eyes"]}.png').convert('RGBA')
 
         com1 = Image.alpha_composite(im1, im2)
         com2 = Image.alpha_composite(com1, im3)
@@ -188,8 +208,8 @@ def generateImages():
         # Convert to RGB
         rgb_im = com5.convert('RGBA')
 
-        file_name = str(item["tokenId"]) + ".png"
+        file_name = str(trait["tokenId"]) + ".png"
         rgb_im.save("./output/" + file_name)
-        print(f'{str(item["tokenId"])} done')
+        # print(f'{str(trait["tokenId"])} done')
 
-    return len(filteredTraits)
+    return len(filtered_traits)
