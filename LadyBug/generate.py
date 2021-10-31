@@ -198,7 +198,7 @@ def generate_images():
     with open('traits.json', 'w') as outfile:
         json.dump(filtered_traits, outfile, indent=4)
 
-    files = glob.glob('./output/*')
+    files = glob.glob(outputlocation + "*")
     for f in files:
         os.remove(f)
 
