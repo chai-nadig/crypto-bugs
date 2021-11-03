@@ -7,9 +7,10 @@ import random
 import json
 from collections import defaultdict
 
+# add up to or 100,
 simple_backgrounds = {
-    "PurpleBlue": 1,
-    "RedBlue": 1,
+    "PurpleBlue": 20,
+    "RedBlue": 20,
     "YellowGreen": 1,
     "RedPink": 1,
     "BlueBlack": 1,
@@ -18,15 +19,25 @@ simple_backgrounds = {
 unique_backgrounds = {
     "Monitor": 1,
     "Fire": 1,
+    "Clouds": 1,
+    "Wave": 1,
     "SpiderWeb": 1,
     "Stick": 1,
     "Leaf": 1,
     "Hearts": 1,
-    "Book": 1,
+    "Book": 1,  # improve the book
     "Matrix": 1,
     "Rainbow1": 1,
-    # "Rainbow2": 1,
+    "Rainbow2": 1,
     # "Rainbow3": 1,
+
+    # Cricket
+    # Tennis
+    # Football
+    # Basketball
+    # Soccer
+
+    # Brick Wall
 }
 backgrounds = {}
 backgrounds.update(simple_backgrounds)
@@ -40,13 +51,13 @@ smallSpots = {
     'None': 1,
     "SmallBlackSpotsA": 1,
     "SmallBlackSpotsB": 1,
-    "SmallBlackSpotsC": 1,
+    # "SmallBlackSpotsC": 1,
     "SmallRedSpotsA": 1,
     "SmallRedSpotsB": 1,
-    "SmallRedSpotsC": 1,
+    # "SmallRedSpotsC": 1,
     "SmallYellowSpotsA": 1,
     "SmallYellowSpotsB": 1,
-    "SmallYellowSpotsC": 1,
+    # "SmallYellowSpotsC": 1,
 }
 smallColors = {
     "SmallRed": 1,
@@ -64,13 +75,16 @@ accessories = {
     "None": 1,
     "Sombrero": 1,
     "TopHat": 1,
-    "Turban": 1,
+    "Turban": 1,  # Rare
     "Crown": 1,
     "Construction": 1,
     "Graduation": 1,
-    "Beanie": 1,
+    # "Beanie": 1,  # not very clear, can be removed
     "ChefCap": 1,
+    "Bikini": 1,
+    # underwear / boxer
 }
+# Sports ->
 
 eyes = {
     "BlueEyes": 1,
@@ -101,7 +115,7 @@ def get_ignored_combinations():
     ignore_combinations = [
         {'Spots': ['SmallYellowSpotsA', 'SmallYellowSpotsB', 'SmallYellowSpotsC'],
          'Color': ['SmallYellow', 'SmallOrange']},
-        {'Spots': ['SmallRedSpotsA', 'SmallRedSpotsB', 'SmallRedSpotsC'], 'Color': ['SmallRed']},
+        {'Spots': ['SmallRedSpotsA', 'SmallRedSpotsB', 'SmallRedSpotsC'], 'Color': ['SmallRed', 'SmallPurple']},
         {'Color': ['SmallGreen'], 'Background': ['Matrix', 'Leaf']},
         {'Color': ['SmallINFlag'], 'Background': list(unique_backgrounds.keys())},
         {'Color': ['SmallINFlag'], 'Spots': small_spots_without_none},
