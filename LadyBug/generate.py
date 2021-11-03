@@ -17,6 +17,7 @@ simple_backgrounds = {
 }
 
 unique_backgrounds = {
+    "TennisBalls": 1,
     "Monitor": 1,
     "Fire": 1,
     "Clouds": 1,
@@ -32,7 +33,6 @@ unique_backgrounds = {
     # "Rainbow3": 1,
 
     # Cricket
-    # Tennis
     # Football
     # Basketball
     # Soccer
@@ -122,6 +122,8 @@ def get_ignored_combinations():
         {'Color': ['SmallINFlag'], 'Accessory': accessories_without_none},
         {'Accessory': accessories_without_none,
          'Background': list(unique_backgrounds.keys())},
+        {"Accessory": ['Bikini'], 'Spots': ['SmallRedSpotsA', 'SmallRedSpotsB', 'SmallRedSpotsC']},
+        {"Accessory": ['Bikini'], 'Color': ['SmallRed']},
     ]
 
     return ignore_combinations
