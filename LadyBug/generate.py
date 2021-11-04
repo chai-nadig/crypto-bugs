@@ -80,7 +80,7 @@ accessories = {
     "Crown": 1,
     "Construction": 1,
     "Graduation": 1,
-    "Beanie": 1,  # not very clear, can be removed
+    "Beanie": 1,
     "ChefCap": 1,
     "Bikini": 1,
     "VikingHelmet": 1,
@@ -88,6 +88,10 @@ accessories = {
     "WizardHat": 1,
     "BeachHat": 1,
     "Bedroom": 1,
+    "Halo": 1,
+    "ClownHat": 1,
+    "RedHair": 1,
+    "PirateHat": 1,
 }
 # Sports ->
 
@@ -128,7 +132,7 @@ def get_ignored_combinations():
         {'Accessory': accessories_without_none,
          'Background': list(unique_backgrounds.keys())},
         {"Accessory": ['Bikini'], 'Spots': ['SmallRedSpotsA', 'SmallRedSpotsB', 'SmallRedSpotsC']},
-        {"Accessory": ['Bikini'], 'Color': ['SmallRed']},
+        {"Accessory": ['Bikini'], 'Color': ['SmallRed', 'SmallPurple']},
         {"Accessory": ["WizardHat"], "Background": ['BlueBlack', 'RedBlue']},
     ]
 
