@@ -17,6 +17,7 @@ simple_backgrounds = {
 }
 
 unique_backgrounds = {
+    "AmericanFootball": 1,
     "TennisBalls": 1,
     "Monitor": 1,
     "Fire": 1,
@@ -64,7 +65,7 @@ smallColors = {
     "SmallBlue": 1,
     "SmallBlack": 1,
     "SmallGreen": 1,
-    "SmallINFlag": 1,
+    # "SmallINFlag": 1,
     "SmallYellow": 1,
     "SmallOrange": 1,
     "SmallPurple": 1,
@@ -79,10 +80,12 @@ accessories = {
     "Crown": 1,
     "Construction": 1,
     "Graduation": 1,
-    # "Beanie": 1,  # not very clear, can be removed
+    "Beanie": 1,  # not very clear, can be removed
     "ChefCap": 1,
     "Bikini": 1,
-    # underwear / boxer
+    "VikingHelmet": 1,
+    "Belt": 1,
+    "WizardHat": 1,
 }
 # Sports ->
 
@@ -124,6 +127,7 @@ def get_ignored_combinations():
          'Background': list(unique_backgrounds.keys())},
         {"Accessory": ['Bikini'], 'Spots': ['SmallRedSpotsA', 'SmallRedSpotsB', 'SmallRedSpotsC']},
         {"Accessory": ['Bikini'], 'Color': ['SmallRed']},
+        {"Accessory": ["WizardHat"], "Background": ['BlueBlack', 'RedBlue']},
     ]
 
     return ignore_combinations
@@ -206,7 +210,7 @@ def getImage(img):
 
 def generate_images():
     traits = generateCombinations()
-
+    number_of_combinations = len(traits)
     ignored = 0
     filtered_traits = []
 
@@ -245,7 +249,9 @@ def generate_images():
         eyes_count[trait["Eyes"]] += 1
 
     print("ignored: ", ignored)
-    print("total generated", len(filtered_traits))
+    print("possible: ", number_of_combinations - ignored)
+    print("total generated:", len(filtered_traits))
+    print("ungenerated:", number_of_combinations - ignored - len(filtered_traits))
     print("background:", background_counts)
     print("bugs:", bug_counts)
     print("spots:", spots_counts)
