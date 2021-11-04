@@ -86,6 +86,7 @@ accessories = {
     "VikingHelmet": 1,
     "Belt": 1,
     "WizardHat": 1,
+    "BeachHat": 1,
 }
 # Sports ->
 
