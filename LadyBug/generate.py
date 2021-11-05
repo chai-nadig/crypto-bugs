@@ -33,6 +33,8 @@ unique_backgrounds = {
     "Matrix": 3,
     "Rainbow1": 4,
     "Rainbow2": 1,
+    "Brickwall": 3,
+    "Road": 3,
 
     # "Rainbow3": 1,
     # Cricket
@@ -62,15 +64,15 @@ bugs = {
 
 smallSpots = {
     'None': 1,
-    "SmallBlackSpotsA": 1,
+    "SmallBlackSpotsA": 0.5,
     "SmallBlackSpotsB": 1,
-    # "SmallBlackSpotsC": 1,
-    "SmallRedSpotsA": 1,
+    # "SmallBlackSpotsC": 0.25,
+    "SmallRedSpotsA": 0.5,
     "SmallRedSpotsB": 1,
-    # "SmallRedSpotsC": 1,
-    "SmallYellowSpotsA": 1,
+    # "SmallRedSpotsC": 0.25,
+    "SmallYellowSpotsA": 0.5,
     "SmallYellowSpotsB": 1,
-    # "SmallYellowSpotsC": 1,
+    # "SmallYellowSpotsC": 0.25,
 }
 smallColors = {
     "SmallRed": 1,
@@ -106,7 +108,8 @@ accessories = {
     "PirateHat": 1.5,
     "Tux": 3,
     "BathRobe": 2,
-    "Cloak": 2,
+    "Cloak": 0.5,
+    "SnorkelGear": 1,
 }
 
 total_accessories_weight = sum(accessories.values())
@@ -125,7 +128,7 @@ eyes = {
     "BlueEyes": 1,
     "RedEyes": 1,
     "WhiteEyes": 1,
-    "GreyEyes": 1,
+    "GreyEyes": 0.25,
 }
 
 TOTAL_BUGS = (
@@ -155,7 +158,7 @@ def get_ignored_combinations():
         {'Spots': ['SmallYellowSpotsA', 'SmallYellowSpotsB', 'SmallYellowSpotsC'],
          'Color': ['SmallYellow', 'SmallOrange']},
 
-        # Ignore Red spots with Red or Purple Colored Bugs
+        # Ignore Red spots with Red Colored Bugs
         {'Spots': ['SmallRedSpotsA', 'SmallRedSpotsB', 'SmallRedSpotsC'], 'Color': ['SmallRed', 'SmallPurple']},
 
         # Ignore Green Colored bug with Matrix or Leaf Background
@@ -173,11 +176,11 @@ def get_ignored_combinations():
         # Ignore all combinations of accessories and unique backgrounds
         {'Accessory': accessories_without_none, 'Background': list(unique_backgrounds.keys())},
 
-        # Ignore bikini, or cloak accessory with red spots
-        {"Accessory": ['Bikini', "Cloak"], 'Spots': ['SmallRedSpotsA', 'SmallRedSpotsB', 'SmallRedSpotsC']},
+        # Ignore bikini accessory with red spots
+        {"Accessory": ['Bikini'], 'Spots': ['SmallRedSpotsA', 'SmallRedSpotsB', 'SmallRedSpotsC']},
 
         # Ignore cloak with redpink background
-        {"Accessory": ["Cloak"], 'Spots': ['RedPink']},
+        {"Accessory": ["Cloak"], 'Background': ['RedPink']},
 
         # Ignore bikini accessory with red or purple colored bugs
         {"Accessory": ['Bikini'], 'Color': ['SmallRed', 'SmallPurple']},
@@ -185,8 +188,14 @@ def get_ignored_combinations():
         # Ignore Wizard hat accessory with blueblack or redblue backgrounds
         {"Accessory": ["WizardHat"], "Background": ['BlueBlack', 'RedBlue']},
 
-        # Ignore pirate hat accessory with purpleblue background
-        {"Accessory": ["PirateHat"], "Background": ['PurpleBlue']},
+        # Ignore pirate hat and cloak  accessory with purpleblue background
+        {"Accessory": ["PirateHat", "Cloak"], "Background": ['PurpleBlue']},
+
+        # Ignore snorkel gear with orange color bug
+        {"Accessory": ["SnorkelGear"], "Color": ["SmallOrange"]},
+
+        # Ignore snorkel gear with grey eyes
+        {"Accessory": ["SnorkelGear"], "Eyes": ["GreyEyes"]},
     ]
 
     return ignore_combinations
