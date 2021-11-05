@@ -7,42 +7,54 @@ import random
 import json
 from collections import defaultdict
 
+TO_GENERATE = 11111
+
 # add up to or 100,
 simple_backgrounds = {
-    "PurpleBlue": 20,
-    "RedBlue": 20,
-    "YellowGreen": 1,
-    "RedPink": 1,
-    "BlueBlack": 1,
+    "PurpleBlue": 5,
+    "RedBlue": 5,
+    "YellowGreen": 5,
+    "RedPink": 5,
+    "BlueBlack": 5,
 }
 
 unique_backgrounds = {
     "AmericanFootball": 1,
     "TennisBalls": 1,
-    "Monitor": 1,
-    "Fire": 1,
-    "Clouds": 1,
-    "Wave": 1,
-    "SpiderWeb": 1,
-    "Stick": 1,
-    "Leaf": 1,
-    "Hearts": 1,
-    "Book": 1,  # improve the book
-    "Matrix": 1,
-    "Rainbow1": 1,
+    "Monitor": 2,
+    "Fire": 5,
+    "Clouds": 5,
+    "Wave": 5,
+    "SpiderWeb": 2,
+    "Stick": 5,
+    "Leaf": 3,
+    "Hearts": 2,
+    "Book": 2,
+    "Matrix": 3,
+    "Rainbow1": 4,
     "Rainbow2": 1,
-    # "Rainbow3": 1,
 
+    # "Rainbow3": 1,
     # Cricket
     # Football
     # Basketball
     # Soccer
-
     # Brick Wall
 }
+
 backgrounds = {}
 backgrounds.update(simple_backgrounds)
 backgrounds.update(unique_backgrounds)
+
+total_background_weight = sum(backgrounds.values())
+probs = []
+
+for bg, w in backgrounds.items():
+    p = (w / (total_background_weight * 1.0))
+    probs.append(p)
+    print('{}: {}, {}'.format(bg, p, p * TO_GENERATE))
+
+print(sum(probs))
 
 bugs = {
     "Small": 1,
@@ -73,26 +85,40 @@ smallColors = {
 }
 
 accessories = {
-    "None": 1,
-    "Sombrero": 1,
-    "TopHat": 1,
+    "None": 2,
+    "Sombrero": 3,
+    "TopHat": 3,
     "Turban": 1,  # Rare
-    "Crown": 1,
-    "Construction": 1,
-    "Graduation": 1,
+    "Crown": 3,
+    "Construction": 2,
+    "Graduation": 2,
     "Beanie": 1,
-    "ChefCap": 1,
-    "Bikini": 1,
-    "VikingHelmet": 1,
-    "Belt": 1,
-    "WizardHat": 1,
-    "BeachHat": 1,
-    "Bedroom": 1,
-    "Halo": 1,
-    "ClownHat": 1,
-    "RedHair": 1,
-    "PirateHat": 1,
+    "ChefCap": 3,
+    "Bikini": 2,
+    "VikingHelmet": 3,
+    "Belt": 2,
+    "WizardHat": 3,
+    "BeachHat": 3,
+    "Bedroom": 2,
+    "Halo": 3,
+    "ClownHat": 3,
+    "RedHair": 2,
+    "PirateHat": 1.5,
+    "Tux": 3,
+    "BathRobe": 2,
+    "Cloak": 2,
 }
+
+total_accessories_weight = sum(accessories.values())
+probs = []
+
+for a, w in accessories.items():
+    p = (w / (total_accessories_weight * 1.0))
+    probs.append(p)
+    print('{}: {}, {}'.format(a, p, p * TO_GENERATE))
+
+print(sum(probs))
+
 # Sports ->
 
 eyes = {
@@ -101,8 +127,6 @@ eyes = {
     "WhiteEyes": 1,
     "GreyEyes": 1,
 }
-
-TO_GENERATE = 11111
 
 TOTAL_BUGS = (
         len(backgrounds)
@@ -113,6 +137,11 @@ TOTAL_BUGS = (
         * len(eyes)
 )
 
+trait_keys = set()
+
+currentlocation = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+outputlocation = os.path.join(currentlocation, './output/')
+
 
 def get_ignored_combinations():
     small_spots_without_none = list(smallSpots.keys())
@@ -122,72 +151,45 @@ def get_ignored_combinations():
     accessories_without_none.remove('None')
 
     ignore_combinations = [
+        # Ignore Yellow spots with Yellow or Orange colored bugs
         {'Spots': ['SmallYellowSpotsA', 'SmallYellowSpotsB', 'SmallYellowSpotsC'],
          'Color': ['SmallYellow', 'SmallOrange']},
+
+        # Ignore Red spots with Red or Purple Colored Bugs
         {'Spots': ['SmallRedSpotsA', 'SmallRedSpotsB', 'SmallRedSpotsC'], 'Color': ['SmallRed', 'SmallPurple']},
+
+        # Ignore Green Colored bug with Matrix or Leaf Background
         {'Color': ['SmallGreen'], 'Background': ['Matrix', 'Leaf']},
+
+        # Ignore Flag with any unique background
         {'Color': ['SmallINFlag'], 'Background': list(unique_backgrounds.keys())},
+
+        # Ignore Flag with all spots
         {'Color': ['SmallINFlag'], 'Spots': small_spots_without_none},
+
+        # Ignore Flag with all accessories
         {'Color': ['SmallINFlag'], 'Accessory': accessories_without_none},
-        {'Accessory': accessories_without_none,
-         'Background': list(unique_backgrounds.keys())},
-        {"Accessory": ['Bikini'], 'Spots': ['SmallRedSpotsA', 'SmallRedSpotsB', 'SmallRedSpotsC']},
+
+        # Ignore all combinations of accessories and unique backgrounds
+        {'Accessory': accessories_without_none, 'Background': list(unique_backgrounds.keys())},
+
+        # Ignore bikini, or cloak accessory with red spots
+        {"Accessory": ['Bikini', "Cloak"], 'Spots': ['SmallRedSpotsA', 'SmallRedSpotsB', 'SmallRedSpotsC']},
+
+        # Ignore cloak with redpink background
+        {"Accessory": ["Cloak"], 'Spots': ['RedPink']},
+
+        # Ignore bikini accessory with red or purple colored bugs
         {"Accessory": ['Bikini'], 'Color': ['SmallRed', 'SmallPurple']},
+
+        # Ignore Wizard hat accessory with blueblack or redblue backgrounds
         {"Accessory": ["WizardHat"], "Background": ['BlueBlack', 'RedBlue']},
+
+        # Ignore pirate hat accessory with purpleblue background
+        {"Accessory": ["PirateHat"], "Background": ['PurpleBlue']},
     ]
 
     return ignore_combinations
-
-
-currentlocation = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
-outputlocation = os.path.join(currentlocation, './output/')
-
-
-def get_trait_key(trait):
-    trait_key = ''
-    for key, value in trait.items():
-        trait_key = '{},{}:{}'.format(trait_key, key, value)
-    return trait_key
-
-
-def createCombo():
-    trait = {
-        "Background": random.choices(list(backgrounds.keys()), list(backgrounds.values()))[0],
-        "Bug": random.choices(list(bugs.keys()), list(bugs.values()))[0],
-        "Spots": random.choices(list(smallSpots.keys()), list(smallSpots.values()))[0],
-        "Color": random.choices(list(smallColors.keys()), list(smallColors.values()))[0],
-        "Accessory": random.choices(list(accessories.keys()), list(accessories.values()))[0],
-        "Eyes": random.choices(list(eyes.keys()), list(eyes.values()))[0],
-    }
-
-    return trait
-
-
-def allUnique(x):
-    seen = list()
-    return not any(i in seen or seen.append(i) for i in x)
-
-
-def generateCombinations():
-    traits = []
-    trait_keys = set()
-    for i in tqdm(
-            iterable=range(TOTAL_BUGS),
-            desc="Generating all combinations: {}".format(TOTAL_BUGS),
-            total=TOTAL_BUGS,
-            unit="combos",
-    ):
-        trait = createCombo()
-        trait_key = get_trait_key(trait)
-
-        while trait_key in trait_keys:
-            trait = createCombo()
-            trait_key = get_trait_key(trait)
-
-        trait_keys.add(trait_key)
-        traits.append(trait)
-
-    return traits
 
 
 def shouldIgnore(trait):
@@ -202,9 +204,72 @@ def shouldIgnore(trait):
             return True
 
     if trait['Spots'] == 'None':
-        return trait['Color'] != 'SmallINFlag'
+
+        # None spots can go with Flag
+        if trait['Color'] == 'SmallINFlag':
+            return False
+
+        # None spots cannot go with anything Tux or BathRobe
+        if trait['Accessory'] not in ('Tux', 'BathRobe'):
+            return True
 
     return False
+
+
+def createCombo():
+    trait = {
+        "Background": random.choices(list(backgrounds.keys()), list(backgrounds.values()))[0],
+        "Bug": random.choices(list(bugs.keys()), list(bugs.values()))[0],
+        "Spots": random.choices(list(smallSpots.keys()), list(smallSpots.values()))[0],
+        "Color": random.choices(list(smallColors.keys()), list(smallColors.values()))[0],
+        "Accessory": random.choices(list(accessories.keys()), list(accessories.values()))[0],
+        "Eyes": random.choices(list(eyes.keys()), list(eyes.values()))[0],
+    }
+
+    if trait['Accessory'] == 'Bedroom':
+        trait['Background'] = 'None'
+
+    elif trait['Accessory'] == 'Tux':
+        trait['Color'] = 'None'
+        trait['Spots'] = 'None'
+
+    elif trait['Accessory'] == 'BathRobe':
+        trait['Spots'] = 'None'
+
+    return trait
+
+
+def get_trait_key(trait):
+    trait_key = ''
+    for key, value in trait.items():
+        trait_key = '{},{}:{}'.format(trait_key, key, value)
+    return trait_key
+
+
+def allUnique(x):
+    seen = list()
+    return not any(i in seen or seen.append(i) for i in x)
+
+
+def generateCombinations():
+    traits = []
+    for i in tqdm(
+            iterable=range(TO_GENERATE),
+            desc="Generating {} combinations".format(TO_GENERATE),
+            total=TO_GENERATE,
+            unit="combos",
+    ):
+        trait = createCombo()
+        trait_key = get_trait_key(trait)
+
+        while trait_key in trait_keys or shouldIgnore(trait):
+            trait = createCombo()
+            trait_key = get_trait_key(trait)
+
+        trait_keys.add(trait_key)
+        traits.append(trait)
+
+    return traits
 
 
 def getImage(img):
@@ -216,58 +281,10 @@ def getImage(img):
 
 def generate_images():
     traits = generateCombinations()
-    number_of_combinations = len(traits)
-    ignored = 0
-    filtered_traits = []
-
-    for trait in tqdm(
-            iterable=traits,
-            desc="Filtering combinations",
-            unit="combos",
-    ):
-        if shouldIgnore(trait):
-            ignored += 1
-            continue
-
-        filtered_traits.append(trait)
-
-    filtered_traits = random.sample(filtered_traits, k=min(TO_GENERATE, len(filtered_traits)))
 
     # Sort for evaluation
-    filtered_traits = sorted(filtered_traits,
-                             key=lambda t: (t['Background'], t['Color'], t['Spots'], t['Accessory'], t['Eyes']))
-
-    # GET TRAIT COUNTS
-
-    background_counts = defaultdict(int)
-    bug_counts = defaultdict(int)
-    spots_counts = defaultdict(int)
-    color_counts = defaultdict(int)
-    accessory_count = defaultdict(int)
-    eyes_count = defaultdict(int)
-
-    for trait in filtered_traits:
-        background_counts[trait["Background"]] += 1
-        bug_counts[trait["Bug"]] += 1
-        spots_counts[trait["Spots"]] += 1
-        color_counts[trait["Color"]] += 1
-        accessory_count[trait["Accessory"]] += 1
-        eyes_count[trait["Eyes"]] += 1
-
-    print("ignored: ", ignored)
-    print("possible: ", number_of_combinations - ignored)
-    print("total generated:", len(filtered_traits))
-    print("ungenerated:", number_of_combinations - ignored - len(filtered_traits))
-    print("background:", background_counts)
-    print("bugs:", bug_counts)
-    print("spots:", spots_counts)
-    print("colors:", color_counts)
-    print("accessory:", accessory_count)
-    print("eyes:", eyes_count)
-
-    # WRITE METADATA TO JSON FILE
-    with open('traits.json', 'w') as outfile:
-        json.dump(filtered_traits, outfile, indent=4)
+    traits = sorted(traits,
+                    key=lambda t: (t['Background'], t['Color'], t['Spots'], t['Accessory'], t['Eyes']))
 
     files = glob.glob(outputlocation + "*")
     for f in files:
@@ -275,16 +292,16 @@ def generate_images():
 
     # ADD TOKEN IDS TO JSON
     i = 0
-    for trait in filtered_traits:
+    for trait in traits:
         trait["tokenId"] = i
         i = i + 1
 
     # IMAGE GENERATION
     for trait in tqdm(
-            iterable=filtered_traits,
-            desc="Generating {} images".format(len(filtered_traits)),
+            iterable=traits,
+            desc="Generating {} images".format(len(traits)),
             unit="images",
-            total=len(filtered_traits),
+            total=len(traits),
     ):
         im1 = getImage(f'./Backgrounds/{trait["Background"]}.png')
         im2 = getImage(f'./Bugs/{trait["Bug"]}.png')
@@ -305,4 +322,37 @@ def generate_images():
         file_name = str(trait["tokenId"]) + ".png"
         rgb_im.save(outputlocation + file_name)
 
-    return len(filtered_traits)
+    # GET TRAIT COUNTS
+
+    background_counts = defaultdict(int)
+    bug_counts = defaultdict(int)
+    spots_counts = defaultdict(int)
+    color_counts = defaultdict(int)
+    accessory_count = defaultdict(int)
+    eyes_count = defaultdict(int)
+
+    for trait in traits:
+        if trait['Accessory'] == 'BedRoom':
+            trait['Background'] = 'BedRoom'
+            trait['Accessory'] = 'None'
+
+        background_counts[trait["Background"]] += 1
+        bug_counts[trait["Bug"]] += 1
+        spots_counts[trait["Spots"]] += 1
+        color_counts[trait["Color"]] += 1
+        accessory_count[trait["Accessory"]] += 1
+        eyes_count[trait["Eyes"]] += 1
+
+    print("background:", background_counts)
+    print("bugs:", bug_counts)
+    print("spots:", spots_counts)
+    print("colors:", color_counts)
+    print("accessory:", accessory_count)
+    print("eyes:", eyes_count)
+
+    # WRITE METADATA TO JSON FILE
+
+    with open('traits.json', 'w') as outfile:
+        json.dump(traits, outfile, indent=4)
+
+    return len(traits)
