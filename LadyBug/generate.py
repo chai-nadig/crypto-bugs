@@ -26,15 +26,17 @@ unique_backgrounds = {
     "Clouds": 5,
     "Wave": 5,
     "SpiderWeb": 2,
-    "Stick": 5,
-    "Leaf": 3,
+    "Stick": 2,
+    "Leaf": 2,
     "Hearts": 2,
     "Book": 2,
     "Matrix": 3,
     "Rainbow1": 4,
     "Rainbow2": 1,
-    "Brickwall": 3,
+    "Brickwall": 4,
     "Road": 3,
+    "Beach": 5,
+    "Sunset": 4,
 
     # "Rainbow3": 1,
     # Cricket
@@ -108,8 +110,10 @@ accessories = {
     "PirateHat": 1.5,
     "Tux": 3,
     "BathRobe": 2,
-    "Cloak": 0.5,
+    "Cloak": 0.25,
     "SnorkelGear": 1,
+    "RedSunGlasses": 1,
+    "GreySunGlasses": 1,
 }
 
 total_accessories_weight = sum(accessories.values())
@@ -194,8 +198,12 @@ def get_ignored_combinations():
         # Ignore snorkel gear with orange color bug
         {"Accessory": ["SnorkelGear"], "Color": ["SmallOrange"]},
 
-        # Ignore snorkel gear with grey eyes
-        {"Accessory": ["SnorkelGear"], "Eyes": ["GreyEyes"]},
+        # Ignore red sunglasses with red bug
+        {"Accessory": ["RedSunGlasses"], "Color": ["SmallRed"]},
+
+        # Ignore grey sunglasses with red bug
+        {"Accessory": ["GreySunGlasses"], "Color": ["SmallBlack"]},
+
     ]
 
     return ignore_combinations
@@ -244,6 +252,9 @@ def createCombo():
 
     elif trait['Accessory'] == 'BathRobe':
         trait['Spots'] = 'None'
+
+    elif trait["Accessory"] in ("RedSunGlasses", "GreySunGlasses", "SnorkelGear"):
+        trait["Eyes"] = 'None'
 
     return trait
 
