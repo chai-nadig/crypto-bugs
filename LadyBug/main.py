@@ -21,8 +21,8 @@ assert allUnique([get_trait_key(trait) for trait in traits])
 with open('traits.json', 'w') as outfile:
     json.dump(traits, outfile, indent=4)
 
-count_traits(traits)
-
 combine(traits)
+
+count_traits(traits)
 
 print("done")
