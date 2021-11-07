@@ -23,7 +23,7 @@ export default function Home() {
         <meta name="twitter:image" content="https://crypto-bugs.com/images/bug.png" key="twimage" />
       </Head>
 
-      <div >
+      <div>
           <div className="flex items-center justify-between w-full border-b-2	pb-6">
             <a href="/" className=""><img src="images/bug.png" width="108" alt="" className="logo-image" /></a>
             <nav className="flex flex-wrap flex-row justify-around">
