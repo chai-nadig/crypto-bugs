@@ -281,10 +281,6 @@ def getImage(img):
 
 
 def generate_images(traits):
-    # Sort for evaluation
-    traits = sorted(traits,
-                    key=lambda t: (t['Background'], t['Color'], t['Spots'], t['Accessory'], t['Eyes']))
-
     files = glob.glob(outputlocation + "*")
     for f in files:
         os.remove(f)

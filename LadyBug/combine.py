@@ -13,6 +13,10 @@ def getNearestSquare(n):
 
 
 def combine(traits):
+    # Sort for evaluation
+    traits = sorted(traits,
+                    key=lambda t: (t['Background'], t['Color'], t['Spots'], t['Accessory'], t['Eyes']))
+
     total = len(traits)
 
     ns = getNearestSquare(total)
