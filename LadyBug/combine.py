@@ -31,7 +31,7 @@ def combine(traits):
                 if imgNo >= total:
                     continue
 
-                file = '{}.png'.format(imgNo)
+                file = '{}.png'.format(traits[imgNo]['tokenId'])
                 im1 = Image.open(directory + '/' + file).convert('RGBA')
 
                 final.paste(im1, (j * 24, i * 24))
