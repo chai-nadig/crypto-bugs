@@ -31,13 +31,14 @@ unique_backgrounds = {
     "Hearts": 2,
     "Book": 2,
     "Matrix": 3,
-    "Rainbow1": 4,
-    "Rainbow2": 1,
+    "Rainbow1": 3,
     "Brickwall": 4,
     "Road": 3,
     "Beach": 5,
     "Sunset": 4,
+    "City": 4,
 
+    # "Rainbow2": 1,
     # "Rainbow3": 1,
     # Cricket
     # Football
@@ -50,30 +51,21 @@ backgrounds = {}
 backgrounds.update(simple_backgrounds)
 backgrounds.update(unique_backgrounds)
 
-total_background_weight = sum(backgrounds.values())
-probs = []
-
-for bg, w in backgrounds.items():
-    p = (w / (total_background_weight * 1.0))
-    probs.append(p)
-    print('{}: {}, {}'.format(bg, p, p * TO_GENERATE))
-
-print(sum(probs))
-
 bugs = {
     "Small": 1,
 }
 
 smallSpots = {
-    'None': 1,
+    'NoneSpots': 1,
     "SmallBlackSpotsA": 0.5,
     "SmallBlackSpotsB": 1,
-    # "SmallBlackSpotsC": 0.25,
     "SmallRedSpotsA": 0.5,
     "SmallRedSpotsB": 1,
-    # "SmallRedSpotsC": 0.25,
     "SmallYellowSpotsA": 0.5,
     "SmallYellowSpotsB": 1,
+
+    # "SmallBlackSpotsC": 0.25,
+    # "SmallRedSpotsC": 0.25,
     # "SmallYellowSpotsC": 0.25,
 }
 smallColors = {
@@ -81,15 +73,16 @@ smallColors = {
     "SmallBlue": 1,
     "SmallBlack": 1,
     "SmallGreen": 1,
-    # "SmallINFlag": 1,
     "SmallYellow": 1,
     "SmallOrange": 1,
     "SmallPurple": 1,
     "SmallCamo": 1,
+
+    # "SmallINFlag": 1,
 }
 
 accessories = {
-    "None": 2,
+    "NoneAccessory": 2,
     "Sombrero": 3,
     "TopHat": 3,
     "Turban": 1,  # Rare
@@ -112,21 +105,9 @@ accessories = {
     "BathRobe": 2,
     "Cloak": 0.25,
     "SnorkelGear": 1,
-    "RedSunGlasses": 1,
-    "GreySunGlasses": 1,
+    "RedSunGlasses": 0.25,
+    "GreySunGlasses": 0.25,
 }
-
-total_accessories_weight = sum(accessories.values())
-probs = []
-
-for a, w in accessories.items():
-    p = (w / (total_accessories_weight * 1.0))
-    probs.append(p)
-    print('{}: {}, {}'.format(a, p, p * TO_GENERATE))
-
-print(sum(probs))
-
-# Sports ->
 
 eyes = {
     "BlueEyes": 1,
@@ -144,18 +125,16 @@ TOTAL_BUGS = (
         * len(eyes)
 )
 
-trait_keys = set()
-
 currentlocation = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 outputlocation = os.path.join(currentlocation, './output/')
 
 
 def get_ignored_combinations():
     small_spots_without_none = list(smallSpots.keys())
-    small_spots_without_none.remove('None')
+    small_spots_without_none.remove('NoneSpots')
 
     accessories_without_none = list(accessories.keys())
-    accessories_without_none.remove('None')
+    accessories_without_none.remove('NoneAccessory')
 
     ignore_combinations = [
         # Ignore Yellow spots with Yellow or Orange colored bugs
@@ -220,7 +199,7 @@ def shouldIgnore(trait):
         if count > 1:
             return True
 
-    if trait['Spots'] == 'None':
+    if trait['Spots'] == 'NoneSpots':
 
         # None spots can go with Flag
         if trait['Color'] == 'SmallINFlag':
@@ -244,17 +223,17 @@ def createCombo():
     }
 
     if trait['Accessory'] == 'Bedroom':
-        trait['Background'] = 'None'
+        trait['Background'] = 'NoneBackground'
 
     elif trait['Accessory'] == 'Tux':
-        trait['Color'] = 'None'
-        trait['Spots'] = 'None'
+        trait['Color'] = 'NoneColor'
+        trait['Spots'] = 'NoneSpots'
 
     elif trait['Accessory'] == 'BathRobe':
-        trait['Spots'] = 'None'
+        trait['Spots'] = 'NoneAccessory'
 
     elif trait["Accessory"] in ("RedSunGlasses", "GreySunGlasses", "SnorkelGear"):
-        trait["Eyes"] = 'None'
+        trait["Eyes"] = 'NoneEyes'
 
     return trait
 
@@ -273,6 +252,8 @@ def allUnique(x):
 
 def generateCombinations():
     traits = []
+    trait_keys = set()
+
     for i in tqdm(
             iterable=range(TO_GENERATE),
             desc="Generating {} combinations".format(TO_GENERATE),
@@ -299,9 +280,7 @@ def getImage(img):
     return Image.new('RGBA', (24, 24), (255, 0, 0, 0))
 
 
-def generate_images():
-    traits = generateCombinations()
-
+def generate_images(traits):
     # Sort for evaluation
     traits = sorted(traits,
                     key=lambda t: (t['Background'], t['Color'], t['Spots'], t['Accessory'], t['Eyes']))
@@ -342,6 +321,44 @@ def generate_images():
         file_name = str(trait["tokenId"]) + ".png"
         rgb_im.save(outputlocation + file_name)
 
+    return traits
+
+
+def post_process(traits):
+    for trait in traits:
+        if trait['Accessory'] == 'BedRoom':
+            trait['Background'] = 'BedRoom'
+            trait['Accessory'] = 'NoneAccessory'
+
+        if trait['Accessory'] in ('Tux', 'Cloak', 'Bikini') or trait['Background'] in ('Matrix', 'Fire', 'Rainbow1'):
+            trait['Severity'] = 'Blocker'
+
+        elif trait['Accessory'] in ('RedHair', 'BeachHat') or trait['Background'] in ('Sunset', 'City'):
+            trait['Severity'] = 'Critical'
+
+        elif trait['Accessory'] in ('Crown', 'VikingHelmet', 'Halo', 'TopHat') or trait['Background'] in ('Stick',):
+            trait['Severity'] = 'Major'
+
+        elif (trait['Accessory'] in ('BathRobe', 'Turban', 'PirateHat', 'Belt', 'Construction', 'ChefCap') or
+              trait['Background'] in ('AmericanFootball', 'TennisBall', 'Leaf', 'Monitor', 'Hearts', 'SpiderWeb')):
+            trait['Severity'] = 'Minor'
+        else:
+            trait['Severity'] = 'Trivial'
+
+        for key, value in trait.items():
+            if key == "tokenId":
+                continue
+
+            if "None" in value:
+                trait[key] = 'None'
+
+            if key != "Bug" and "Small" in value:
+                trait[key] = value[5:]
+
+    return traits
+
+
+def count_traits(traits):
     # GET TRAIT COUNTS
 
     background_counts = defaultdict(int)
@@ -350,29 +367,26 @@ def generate_images():
     color_counts = defaultdict(int)
     accessory_count = defaultdict(int)
     eyes_count = defaultdict(int)
+    severity_count = defaultdict(int)
 
     for trait in traits:
-        if trait['Accessory'] == 'BedRoom':
-            trait['Background'] = 'BedRoom'
-            trait['Accessory'] = 'None'
-
         background_counts[trait["Background"]] += 1
         bug_counts[trait["Bug"]] += 1
         spots_counts[trait["Spots"]] += 1
         color_counts[trait["Color"]] += 1
         accessory_count[trait["Accessory"]] += 1
         eyes_count[trait["Eyes"]] += 1
+        severity_count[trait['Severity']] += 1
 
-    print("background:", background_counts)
-    print("bugs:", bug_counts)
-    print("spots:", spots_counts)
-    print("colors:", color_counts)
-    print("accessory:", accessory_count)
-    print("eyes:", eyes_count)
+    print_csv(background_counts)
+    print_csv(bug_counts)
+    print_csv(spots_counts)
+    print_csv(color_counts)
+    print_csv(accessory_count)
+    print_csv(eyes_count)
+    print_csv(severity_count)
 
-    # WRITE METADATA TO JSON FILE
 
-    with open('traits.json', 'w') as outfile:
-        json.dump(traits, outfile, indent=4)
-
-    return len(traits)
+def print_csv(d):
+    for key, value in d.items():
+        print("{},{}".format(key, value))

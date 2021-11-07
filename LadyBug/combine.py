@@ -12,7 +12,9 @@ def getNearestSquare(n):
     return i
 
 
-def combine(total):
+def combine(traits):
+    total = len(traits)
+
     ns = getNearestSquare(total)
 
     final = Image.new('RGBA', (ns * 24, ns * 24))
