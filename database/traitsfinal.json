@@ -24,7 +24,7 @@
     "Color": "SmallGreen",
     "Accessory": "TopHat",
     "Eyes": "WhiteEyes",
-    "imageIPFS": "QmYZHdTqBLLAwwLTiUEgzNdRYxJf7MPLSHdoKLuLMWu6Ex"
+    "imageIPFS": "QmXNLsQKCjsUypLH8HNz4rFgRSqBMoAptXJcjd6LbAe4DU"
   },
   {
     "Background": "Stick",
@@ -69,7 +69,7 @@
     "Color": "SmallBlack",
     "Accessory": "Turban",
     "Eyes": "WhiteEyes",
-    "imageIPFS": "QmTKonusDN5815RbHRcFBDrqqXkzH1J48XXTzS8RoX6nX"
+    "imageIPFS": "QmcCzEdhgEW7qmeZpzqKK6hgp72FdhPwBrcY1RPYYMLQnw"
   },
   {
     "Background": "Rainbow3",
@@ -77,7 +77,8 @@
     "Spots": "SmallDarkRedSpotsB",
     "Color": "SmallYellow",
     "Accessory": "TopHat",
-    "Eyes": "WhiteEyes"
+    "Eyes": "WhiteEyes",
+    "imageIPFS": "QmSbyVvyC24G1J9RsAGLG1XPMwtPyJGh6Tizb51KB3ePos"
   },
   {
     "Background": "Rainbow1",
@@ -85,7 +86,8 @@
     "Spots": "SmallBlackSpotsB",
     "Color": "SmallBlack",
     "Accessory": "Turban",
-    "Eyes": "WhiteEyes"
+    "Eyes": "WhiteEyes",
+    "imageIPFS": "QmTJBkMTuJeKWY3ndZWNXSuTHnds9GPGiG1kJm6we1EmE8"
   },
   {
     "Background": "Hearts",
@@ -93,7 +95,8 @@
     "Spots": "SmallBlackSpotsB",
     "Color": "SmallRed",
     "Accessory": "Sombrero",
-    "Eyes": "WhiteEyes"
+    "Eyes": "WhiteEyes",
+    "imageIPFS": "QmVmQJ8kbw6h2xTZzz8qPUz9MRzLAxyWJiDsJW1xB72mp7"
   },
   {
     "Background": "Hearts",
