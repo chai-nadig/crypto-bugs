@@ -40,11 +40,11 @@ unique_backgrounds = {
 
     # "Rainbow2": 1,
     # "Rainbow3": 1,
+
     # Cricket
     # Football
     # Basketball
     # Soccer
-    # Brick Wall
 }
 
 backgrounds = {}
@@ -128,6 +128,27 @@ TOTAL_BUGS = (
 currentlocation = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 outputlocation = os.path.join(currentlocation, './output/')
 
+backgrounds_with_accessories = {
+    'Beach': ['RedSunGlasses', 'GreySunGlasses', 'Bikini', 'BeachHat', 'PirateHat'],
+    'Book': ['Graduation'],
+    'Brickwall': ['Construction'],
+    'City': ['Tux'],
+    'Clouds': ['RedSunGlasses', 'GreySunGlasses'],
+    'Fire': ['Cloak'],
+    'SpiderWeb': ['WizardHat'],
+    'Sunset': ['GreySunGlasses'],
+    'Wave': ['RedSunGlasses', 'GreySunGlasses', 'Bikini', 'BeachHat', 'PirateHat'],
+}
+
+
+def allowed_accessories_as_ignore_combination(background, allowed):
+    allowed.append('NoneAccessory')
+
+    return {
+        'Background': [background],
+        'Accessory': set([a for a in list(accessories.keys()) if a not in allowed])
+    }
+
 
 def get_ignored_combinations():
     small_spots_without_none = list(smallSpots.keys())
@@ -156,9 +177,6 @@ def get_ignored_combinations():
         # Ignore Flag with all accessories
         {'Color': ['SmallINFlag'], 'Accessory': accessories_without_none},
 
-        # Ignore all combinations of accessories and unique backgrounds
-        {'Accessory': accessories_without_none, 'Background': list(unique_backgrounds.keys())},
-
         # Ignore bikini accessory with red spots
         {"Accessory": ['Bikini'], 'Spots': ['SmallRedSpotsA', 'SmallRedSpotsB', 'SmallRedSpotsC']},
 
@@ -183,17 +201,29 @@ def get_ignored_combinations():
         # Ignore grey sunglasses with red bug
         {"Accessory": ["GreySunGlasses"], "Color": ["SmallBlack"]},
 
+        # Ignore graduation cap with black color bug
+        {"Accessory": ["Graduation"], "Color": ["SmallBlack"]}
+
     ]
+
+    for bg in unique_backgrounds:
+        if bg in backgrounds_with_accessories:
+            ignore_combinations.append(allowed_accessories_as_ignore_combination(bg, backgrounds_with_accessories[bg]))
+        else:
+            ignore_combinations.append({'Background': [bg], 'Accessory': set(accessories_without_none)})
 
     return ignore_combinations
 
 
+ignored_combinations = get_ignored_combinations()
+
+
 def shouldIgnore(trait):
-    for toIgnore in get_ignored_combinations():
+    for toIgnore in ignored_combinations:
         count = 0
 
         for key, value in trait.items():
-            if value in toIgnore.get(key, []):
+            if value in toIgnore.get(key, set()):
                 count += 1
 
         if count > 1:
@@ -313,6 +343,8 @@ def generate_images(traits):
 
         # Convert to RGB
         rgb_im = com5.convert('RGBA')
+
+        rgb_im = rgb_im.resize((120, 120), Image.NEAREST)
 
         file_name = str(trait["tokenId"]) + ".png"
         rgb_im.save(outputlocation + file_name)
