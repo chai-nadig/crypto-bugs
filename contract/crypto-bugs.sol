@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-// GO TO LINE 1904 TO SEE WHERE THE BANANA CONTRACT STARTS
+// GO TO LINE 1904 TO SEE WHERE THE CRYPTO-BUGS CONTRACT STARTS
  
 // File: @openzeppelin/contracts/utils/Context.sol
 
@@ -1881,77 +1881,58 @@ abstract contract Ownable is Context {
 }
 
 
-// Following the recent worldwide pandemic, emerging reports suggest that several banana species have begun exhibiting strange characteristics. Our research team located across the globe has commenced efforts to study and document these unusual phenomena.
 
-// Concerned about parties trying to suppress our research, the team has opted to store our findings on the blockchain to prevent interference. Although this is a costly endeavour, our mission has never been clearer.
-
-// The fate of the world's bananas depends on it.
-
-// from our website (https://boringbananas.co)
-
-// BoringBananasCo is a community-centered enterprise focussed on preserving our research about the emerging reports that several banana species have begun exhibiting strange characteristics following the recent worldwide pandemic. 
-// Our research team located across the globe has commenced efforts to study and document these unusual phenomena. 
-// Concerned about parties trying to suppress our research, the team has opted to store our findings on the blockchain to prevent interference. 
-// Although this is a costly endeavour, our mission has never been clearer. 
-// The fate of the world's bananas depends on it.
-
-// BANANA RESEARCH TEAM:
-
-// VEE - @thedigitalvee
-// MJDATA - @ChampagneMan
-// MADBOOGIE - @MadBoogieArt
-// JUI - @mz09art
-// BERK - @berkozdemir
+// Crypto Bugs Contract
 
 pragma solidity ^0.7.0;
 pragma abicoder v2;
 
-contract BoringBananasCo is ERC721, Ownable {
+contract CryptoBugs is ERC721, Ownable {
     
     using SafeMath for uint256;
 
-    string public BANANA_PROVENANCE = ""; // IPFS URL WILL BE ADDED WHEN BANANAS ARE ALL SOLD OUT
+    string public BUG_PROVENANCE = ""; // IPFS URL WILL BE ADDED WHEN BUGS ARE ALL SOLD OUT
     
     string public LICENSE_TEXT = ""; // IT IS WHAT IT SAYS
     
-    bool licenseLocked = false; // TEAM CAN'T EDIT THE LICENSE AFTER THIS GETS TRUE
+    bool licenseLocked = false;
 
-    uint256 public constant bananaPrice = 25000000000000000; // 0.025 ETH
+    uint256 public constant bugPrice = 25000000000000000; // 0.025 ETH ~113.81 USD
 
-    uint public constant maxBananaPurchase = 20;
+    uint public constant maxBugPurchase = 20;
 
-    uint256 public constant MAX_BANANAS = 8888;
+    uint256 public constant MAX_BUGS = 11111;
 
     bool public saleIsActive = false;
     
-    mapping(uint => string) public bananaNames;
+    mapping(uint => string) public bugNames;
     
-    // Reserve 125 Bananas for team - Giveaways/Prizes etc
-    uint public bananaReserve = 125;
+    // Reserve 111 Bugs for team - Giveaways/Prizes etc
+    uint public bugReserve = 111;
     
-    event bananaNameChange(address _by, uint _tokenId, string _name);
+    event bugNameChange(address _by, uint _tokenId, string _name);
     
     event licenseisLocked(string _licenseText);
 
-    constructor() ERC721("Boring Bananas Co.", "BBC") { }
+    constructor() ERC721("crypto-bugs", "ladybugs") { }
     
     function withdraw() public onlyOwner {
         uint balance = address(this).balance;
         msg.sender.transfer(balance);
     }
     
-    function reserveBananas(address _to, uint256 _reserveAmount) public onlyOwner {        
+    function reserveBugs(address _to, uint256 _reserveAmount) public onlyOwner {
         uint supply = totalSupply();
-        require(_reserveAmount > 0 && _reserveAmount <= bananaReserve, "Not enough reserve left for team");
+        require(_reserveAmount > 0 && _reserveAmount <= bugReserve, "Not enough bug reserve left for team");
         for (uint i = 0; i < _reserveAmount; i++) {
             _safeMint(_to, supply + i);
         }
-        bananaReserve = bananaReserve.sub(_reserveAmount);
+        bugReserve = bugReserve.sub(_reserveAmount);
     }
 
 
     function setProvenanceHash(string memory provenanceHash) public onlyOwner {
-        BANANA_PROVENANCE = provenanceHash;
+        BUG_PROVENANCE = provenanceHash;
     }
 
     function setBaseURI(string memory baseURI) public onlyOwner {
@@ -1981,7 +1962,7 @@ contract BoringBananasCo is ERC721, Ownable {
     
     // Returns the license for tokens
     function tokenLicense(uint _id) public view returns(string memory) {
-        require(_id < totalSupply(), "CHOOSE A BANANA WITHIN RANGE");
+        require(_id < totalSupply(), "CHOOSE A BUG WITHIN RANGE");
         return LICENSE_TEXT;
     }
     
@@ -1998,38 +1979,35 @@ contract BoringBananasCo is ERC721, Ownable {
     }
     
     
-    function mintBoringBanana(uint numberOfTokens) public payable {
-        require(saleIsActive, "Sale must be active to mint Banana");
-        require(numberOfTokens > 0 && numberOfTokens <= maxBananaPurchase, "Can only mint 20 tokens at a time");
-        require(totalSupply().add(numberOfTokens) <= MAX_BANANAS, "Purchase would exceed max supply of Bananas");
-        require(msg.value >= bananaPrice.mul(numberOfTokens), "Ether value sent is not correct");
+    function mintBugs(uint numberOfTokens) public payable {
+        require(saleIsActive, "Sale must be active to mint bug");
+        require(numberOfTokens > 0 && numberOfTokens <= maxBugPurchase, "Can only mint 20 bugs at a time");
+        require(totalSupply().add(numberOfTokens) <= MAX_BUGS, "Purchase would exceed max supply of bugs");
+        require(msg.value >= bugPrice.mul(numberOfTokens), "Ether value sent is not correct");
         
         for(uint i = 0; i < numberOfTokens; i++) {
             uint mintIndex = totalSupply();
-            if (totalSupply() < MAX_BANANAS) {
+            if (totalSupply() < MAX_BUGS) {
                 _safeMint(msg.sender, mintIndex);
             }
         }
-
     }
      
-    function changeBananaName(uint _tokenId, string memory _name) public {
-        require(ownerOf(_tokenId) == msg.sender, "Hey, your wallet doesn't own this banana!");
-        require(sha256(bytes(_name)) != sha256(bytes(bananaNames[_tokenId])), "New name is same as the current one");
-        bananaNames[_tokenId] = _name;
+    function changeBugName(uint _tokenId, string memory _name) public {
+        require(ownerOf(_tokenId) == msg.sender, "Hey, your wallet doesn't own this bug!");
+        require(sha256(bytes(_name)) != sha256(bytes(bugNames[_tokenId])), "New name is same as the current one");
+        bugNames[_tokenId] = _name;
         
-        emit bananaNameChange(msg.sender, _tokenId, _name);
-        
+        emit bugNameChange(msg.sender, _tokenId, _name);
     }
     
-    function viewBananaName(uint _tokenId) public view returns( string memory ){
-        require( _tokenId < totalSupply(), "Choose a banana within range" );
-        return bananaNames[_tokenId];
+    function viewBugName(uint _tokenId) public view returns( string memory ){
+        require( _tokenId < totalSupply(), "Choose a bug within range" );
+        return bugNames[_tokenId];
     }
     
-    
-    // GET ALL BANANAS OF A WALLET AS AN ARRAY OF STRINGS. WOULD BE BETTER MAYBE IF IT RETURNED A STRUCT WITH ID-NAME MATCH
-    function bananaNamesOfOwner(address _owner) external view returns(string[] memory ) {
+    // GET ALL BUGS OF A WALLET AS AN ARRAY OF STRINGS. WOULD BE BETTER MAYBE IF IT RETURNED A STRUCT WITH ID-NAME MATCH
+    function bugNamesOfOwner(address _owner) external view returns(string[] memory ) {
         uint256 tokenCount = balanceOf(_owner);
         if (tokenCount == 0) {
             // Return an empty array
@@ -2038,10 +2016,9 @@ contract BoringBananasCo is ERC721, Ownable {
             string[] memory result = new string[](tokenCount);
             uint256 index;
             for (index = 0; index < tokenCount; index++) {
-                result[index] = bananaNames[ tokenOfOwnerByIndex(_owner, index) ] ;
+                result[index] = bugNames[ tokenOfOwnerByIndex(_owner, index) ] ;
             }
             return result;
         }
     }
-    
 }
