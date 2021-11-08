@@ -4,7 +4,7 @@ export const INFURA_ADDRESS = "https://eth-rinkeby.alchemyapi.io/v2/tW2Y3Zv9gDRm
 
 
 //export const ADDRESS = "0xB9aB19454ccb145F9643214616c5571B8a4EF4f2"
-export const ADDRESS = "0x08974ff3dc59170588abfa00ade685f7ae2274a8"
+export const ADDRESS = "0x950fe34104aB1bfd492A4be684CB574c9c616F6e"
 
 
 export const ABI = [

@@ -70,9 +70,6 @@ contract CryptoBugs is ERC721, Ownable {
             address included = addrs[i];
             between[included] = true;
         }
-
-
-        setBaseURI("http://ac8b-136-25-26-64.ngrok.io/api/");
     }
 
     function setProvenanceHash(string memory provenanceHash) public onlyOwner {
@@ -126,7 +123,7 @@ contract CryptoBugs is ERC721, Ownable {
     }
 
     function setBaseURI(string memory baseURI) public onlyOwner {
-        setBaseURI(baseURI);
+        _setBaseURI(baseURI);
     }
 
 
