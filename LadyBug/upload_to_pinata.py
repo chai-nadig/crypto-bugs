@@ -22,8 +22,8 @@ for img in os.listdir(img_path):
     path_to_file = img_path + '/' + img
     file = {'file': open(path_to_file, "rb")}
     response: requests.Response = requests.post(url=url, files=file, headers=Header)
-    print(response.json())
-    hash_response.append(response.json())
+    if response.ok:
+        hash_response.append(response.json())
 
 with open('hashresponse.txt', 'w') as f:
     f.write(json.dumps(hash_response))
