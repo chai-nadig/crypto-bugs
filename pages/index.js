@@ -59,7 +59,7 @@ export default function Home() {
               <img src="images/ani.gif" alt="" width="400px" class="feature-image"/></div>
               <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
                 <h2 className="text-crypto-red text-6xl text-center">SEVERITY</h2>
-                <p class="text-2xl text-white my-6">Our devs have triaged the bugs under these standard severity levels:
+                <p class="text-2xl text-white my-6">Our devs have triaged the bugs under these severity levels:
                   <ul>
                     <li> blocker </li>
                     <li> critical </li>
@@ -72,7 +72,7 @@ export default function Home() {
             </div>
             <div id="gallery" className="mx-6 py-6">
               <h2 className="text-crypto-red text-7xl text-center">FEATURES</h2>
-              <p class="text-xl text-white my-6"><b>crypto-bugs</b> have different features for color, eye color, background, accessory and spots pattern.  </p>
+              <p class="text-xl text-white my-6"><b>crypto-bugs</b> have different features like background, accessory, color, spots and eye color.  </p>
               <div className="flex flex-wrap  items-center mx-6 py-6">
                 <div className="md:w-1/2">
                   <div className=" border-blue-300 p-2"><img src="images/gallery1.jpeg" alt="" width="600px" className="feature-image"/>

@@ -5,7 +5,9 @@
         "Spots": "SmallYellowSpotsB",
         "Color": "SmallRed",
         "Accessory": "TopHat",
-        "Eyes": "WhiteEyes"
+        "Eyes": "WhiteEyes",
+        "imageIPFS": "QmSRHdzC6utJ2CqFv9s8h5S9k3ypCVU6wCDjo3LuSR7dnP"
+
     },
     {
         "Background": "Hearts",
@@ -13,7 +15,8 @@
         "Spots": "SmallYellowSpotsB",
         "Color": "SmallRed",
         "Accessory": "TopHat",
-        "Eyes": "BlueEyes"
+        "Eyes": "BlueEyes",
+        "imageIPFS": "QmSh5xwwmStFHzGgPv9dyKjY8aaL9cFHawQbTXpy9SkmY2"
     },
     {
         "Background": "Rainbow3",
@@ -21,7 +24,8 @@
         "Spots": "SmallBlackSpotsB",
         "Color": "SmallGreen",
         "Accessory": "TopHat",
-        "Eyes": "WhiteEyes"
+        "Eyes": "WhiteEyes",
+        "imageIPFS": "QmYZHdTqBLLAwwLTiUEgzNdRYxJf7MPLSHdoKLuLMWu6Ex"
     },
     {
         "Background": "Stick",

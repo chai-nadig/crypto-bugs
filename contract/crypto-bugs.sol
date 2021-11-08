@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-// GO TO LINE 1904 TO SEE WHERE THE BANANA CONTRACT STARTS
+// GO TO LINE 1904 TO SEE WHERE THE CRYPTO-BUGS CONTRACT STARTS
  
 // File: @openzeppelin/contracts/utils/Context.sol
 
@@ -1891,17 +1891,17 @@ contract CryptoBugs is ERC721, Ownable {
     
     using SafeMath for uint256;
 
-    string public BUG_PROVENANCE = ""; // IPFS URL WILL BE ADDED WHEN BANANAS ARE ALL SOLD OUT
+    string public BUG_PROVENANCE = ""; // IPFS URL WILL BE ADDED WHEN BUGS ARE ALL SOLD OUT
     
     string public LICENSE_TEXT = ""; // IT IS WHAT IT SAYS
     
-    bool licenseLocked = false; // TEAM CAN'T EDIT THE LICENSE AFTER THIS GETS TRUE
+    bool licenseLocked = false;
 
     uint256 public constant bugPrice = 25000000000000000; // 0.025 ETH ~113.81 USD
 
     uint public constant maxBugPurchase = 20;
 
-    uint256 public constant MAX_BUGS = 1111;
+    uint256 public constant MAX_BUGS = 11111;
 
     bool public saleIsActive = false;
     
@@ -1932,7 +1932,7 @@ contract CryptoBugs is ERC721, Ownable {
 
 
     function setProvenanceHash(string memory provenanceHash) public onlyOwner {
-        BANANA_PROVENANCE = provenanceHash;
+        BUG_PROVENANCE = provenanceHash;
     }
 
     function setBaseURI(string memory baseURI) public onlyOwner {
@@ -1991,7 +1991,6 @@ contract CryptoBugs is ERC721, Ownable {
                 _safeMint(msg.sender, mintIndex);
             }
         }
-
     }
      
     function changeBugName(uint _tokenId, string memory _name) public {
@@ -2000,7 +1999,6 @@ contract CryptoBugs is ERC721, Ownable {
         bugNames[_tokenId] = _name;
         
         emit bugNameChange(msg.sender, _tokenId, _name);
-        
     }
     
     function viewBugName(uint _tokenId) public view returns( string memory ){
@@ -2008,7 +2006,7 @@ contract CryptoBugs is ERC721, Ownable {
         return bugNames[_tokenId];
     }
     
-    // GET ALL BANANAS OF A WALLET AS AN ARRAY OF STRINGS. WOULD BE BETTER MAYBE IF IT RETURNED A STRUCT WITH ID-NAME MATCH
+    // GET ALL BUGS OF A WALLET AS AN ARRAY OF STRINGS. WOULD BE BETTER MAYBE IF IT RETURNED A STRUCT WITH ID-NAME MATCH
     function bugNamesOfOwner(address _owner) external view returns(string[] memory ) {
         uint256 tokenCount = balanceOf(_owner);
         if (tokenCount == 0) {

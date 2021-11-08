@@ -22,7 +22,7 @@ export default function Mint() {
 
   const [saleStarted, setSaleStarted] = useState(false)
 
-  const [bananaPrice, setBananaPrice] = useState(0)
+  const [bugPrice, setBugPrice] = useState(0)
 
   useEffect( async() => { 
 
@@ -45,8 +45,8 @@ export default function Mint() {
         // checks if connected network is mainnet (change this to rinkeby if you wanna test on testnet)
         .then((network) => {
           console.log(network);
-          if(network != "main") {
-            alert("You are on " + network+ " network. Change network to mainnet or you won't be able to do anything here")
+          if(network != "rinkeby") {
+            alert("You are on " + network+ " network. Change network to rinkeby or you won't be able to do anything here")
           }
         });
 
@@ -88,13 +88,13 @@ export default function Mint() {
  
       const price = Number(bugPrice)  * how_many_bugs
 
-      const gasAmount = await bugContract.methods.mintBugs(how_many_bananas).estimateGas({from: walletAddress, value: price})
+      const gasAmount = await bugContract.methods.mintBugs(how_many_bugs).estimateGas({from: walletAddress, value: price})
       console.log("estimated gas",gasAmount)
 
       console.log({from: walletAddress, value: price})
 
       bugContract.methods
-        .mintBoringBanana(how_many_bugs)
+        .mintBugs(how_many_bugs)
         .send({from: walletAddress, value: price, gas: String(gasAmount)})
         .on('transactionHash', function(hash){
           console.log("transactionHash", hash)
@@ -161,7 +161,7 @@ export default function Mint() {
                     className="pl-4 text-4xl  inline bg-grey-lighter  py-2 font-normal rounded text-grey-darkest font-bold"
                   />
                   
-                  <span className="flex text-5xl text-white items-center bg-grey-lighter rounded rounded-r-none px-3 font-bold">BANANAS!</span>
+                  <span className="flex text-5xl text-white items-center bg-grey-lighter rounded rounded-r-none px-3 font-bold">BUGS!</span>
     
                 </div>
                 {saleStarted ? 

@@ -14,17 +14,17 @@ const bugsApi = async(req, res) => {
   const bugsContract = new web3infura.eth.Contract(ABI, ADDRESS)
 
   // IF YOU ARE USING INSTA REVEAL MODEL, USE THIS TO GET HOW MANY NFTS ARE MINTED
-//   const totalSupply = await bugsContract.methods.totalSupply().call();
-//   console.log(totalSupply)
+   const totalSupply = await bugsContract.methods.totalSupply().call();
+   console.log(totalSupply)
   
 
 // THE ID YOU ASKED IN THE URL
   const query = req.query.id;
 
   // IF YOU ARE USING INSTA REVEAL MODEL, UNCOMMENT THIS AND COMMENT THE TWO LINES BELOW
-//   if(parseInt(query) < totalSupply) {
-  const totalBugs = 11111;
-  if(parseInt(query) < totalBugs) {
+   if(parseInt(query) < totalSupply) {
+//  const totalBugs = 11111;
+//  if(parseInt(query) < totalBugs) {
     // CALL CUSTOM TOKEN NAME IN THE CONTRACT
     const tokenNameCall = await bugsContract.methods.bugNames(query).call();
     let tokenName = `#${query}${(tokenNameCall === '') ? "" : ` - ${tokenNameCall}`}`
@@ -42,7 +42,7 @@ const bugsApi = async(req, res) => {
       "name": tokenName,
       "description": "",
       "tokenId" : parseInt(query),
-      "image": `https://gateway.pinata.cloud/ipfs/${trait["imageIPFS"]}`,
+      "image": `https://ipfs.io/ipfs/${trait["imageIPFS"]}`,
       "external_url":"https://crypto-bugs.com",
       "attributes": [
           {
@@ -71,6 +71,7 @@ const bugsApi = async(req, res) => {
     res.statusCode = 200
     res.json(metadata)
   } else {
+    console.log("We're here")
     res.statuscode = 404
     res.json({error: "The bug you requested is out of range"})
   }
