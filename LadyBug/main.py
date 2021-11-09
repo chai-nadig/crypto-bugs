@@ -1,5 +1,6 @@
 import json
 
+from upload_to_pinata import upload_to_pinata
 from combine import combine
 from generate import (
     generate_images,
@@ -18,11 +19,13 @@ traits = post_process(traits)
 
 assert allUnique([get_trait_key(trait) for trait in traits])
 
-with open('traits.json', 'w') as outfile:
-    json.dump(traits, outfile, indent=4)
-
 combine(traits)
 
 count_traits(traits)
+
+traits = upload_to_pinata(traits)
+
+with open('traits.json', 'w') as outfile:
+    json.dump(traits, outfile, indent=4)
 
 print("done")
