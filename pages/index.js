@@ -103,23 +103,6 @@ return (
     <div id="roadmap" className="mx-6 py-6 border-b-2">
       <h2 className="text-6xl text-center text-crypto-red my-4">ROADMAP</h2>
       <img src="/images/roadmap_bugs_11.png"/>
-      <p className="text-xl text-white my-6  montserrat">Ever since the inception of the <span className="text-5xl Poppitandfinch ">boring</span> <span className="text-blau text-5xl Poppitandfinchsans">Bugs</span> <span className="text-5xl Poppitandfinch">company</span> after <a target="_blank" href="https://twitter.com/thedigitalvee/status/1405896585142280192" className="underline text-black font-bold">this tweet</a>, our goal has been to <span className="text-blau text-5xl Poppitandfinchsans">GIVE BACK</span> as much as possible.
-      </p>
-      <p className="text-xl text-white my-6 montserrat"> A minimum of
-        <span className="font-bold"> 25% of all sales</span> are donated to charity.
-      </p>
-      <p className="text-xl text-white my-6  montserrat"> At 100% sellout, we pledge to donate <span className="font-bold"> 60 ETH </span> from primary sales.
-      </p>
-      <h2 className="text-6xl text-center text-crypto-red my-4">HOW WE'RE GIVING BACK</h2>
-      <ul className="">
-        <li className="text-xl text-white my-6  montserrat"><span className="font-bold"> 4 x 10 ETH donations: </span> The first of these will be made to <a target="_blank" href="https://girlswhocode.com/" className="underline text-black font-bold">Girls Who Code</a>, working to empower young women and <span className="font-bold"> close the gender gap </span> in technology. We know women are unrepresented in the NFT space - lets help to fix this! The remaining donations will be made via community vote using <a target="_blank" href="https://thegivingblock.com/" className="underline text-black font-bold">the Giving Block</a>.</li>
-        <li className="text-xl text-white my-6  montserrat"><span className="font-bold"> 20 ETH to Community Wallet: </span> Directed towards supporting creators that want to make a positive contribution to the NFT space.</li>
-        <li className="text-xl text-white my-6  montserrat"><span className="font-bold"> Secondary sales: 5% royalty </span> (2.5% donation, 2.5% to the team). Secondary sales are directed towards charities voted on by the community monthly.</li>
-      </ul>
-      <p className="text-xl text-white my-6 montserrat"> In addition, we have been, and continue to make <span className="font-bold underline"> high quality content for the NFT community </span> through our <span className="font-bold underline"> PROJECT IN PROGRESS </span> series, to help budding creators to along their journey.
-      </p>
-      <p className="text-xl text-white my-6 montserrat"> All fully annotated source code for image generation and the smart contract will be made available after launch as a community resource.
-      </p>
     </div>
     <div id="team" className="mx-12 my-16 ">
       <h2 className="text-crypto-red text-6xl text-center">TEAM</h2>
