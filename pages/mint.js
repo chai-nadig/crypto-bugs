@@ -171,7 +171,7 @@ export default function Mint() {
             </div>
             {saleStarted ?
             <button onClick={() => mintBug(how_many_bugs)} className="mt-4 text-4xl border-6 bg-blau  text-white hover:text-black p-2 ">BUG ME {how_many_bugs} bugs for {(bugPrice * how_many_bugs) / (10 ** 18)} ETH + GAS</button>
-            : <button className="mt-4 text-4xl border-6 bg-blau  text-white hover:text-black p-2 ">SALE IS NOT ACTIVE OR NO WALLET IS CONNECTED</button>
+            : <button className="mt-4 text-4xl border-6 bg-red  text-white hover:text-black p-2 ">SALE IS NOT ACTIVE OR NO WALLET IS CONNECTED</button>
             }
 
             { minted ? <div className="text-4xl text-crypto-red mt-6 border-b-2 py-6"> Successfully minted {how_many_bugs} bugs! </div>
