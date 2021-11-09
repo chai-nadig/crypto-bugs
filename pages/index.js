@@ -20,14 +20,17 @@ return (
   </Head>
   <div>
     <div className="flex items-center justify-between w-full border-b-2	pb-6">
-      <a href="/" className=""><img src="images/13.png" width="120" alt="" className="logo-image" /></a>
+      <div className="border-4 border-red-800 p-1">
+        <a href="/" className=""><img src="images/13.png" width="120px" className="logo-image" /></a>
+      </div>
+
       <nav className="flex flex-wrap flex-row justify-around">
-        <a href="#about" className="text-4xl text-white hover:text-black m-6">About</a>
-        <a href="#severity" className="text-4xl text-white hover:text-black m-6">Severity</a>
-        <a href="#traits" className="text-4xl text-white hover:text-black m-6">Traits</a>
-        <a href="#roadmap" className="text-4xl text-white hover:text-black m-6">Roadmap</a>
-        <a href="#team" className="text-4xl text-white hover:text-black m-6">Team</a>
-        <a href="#contact" className="text-4xl text-white hover:text-black m-6">Contact</a>
+        <a href="/#about" className="text-4xl text-white hover:text-black m-6">About</a>
+        <a href="/#severity" className="text-4xl text-white hover:text-black m-6">Severity</a>
+        <a href="/#traits" className="text-4xl text-white hover:text-black m-6">Traits</a>
+        <a href="/#roadmap" className="text-4xl text-white hover:text-black m-6">Roadmap</a>
+        <a href="/mint" className="text-4xl text-white hover:text-black m-6">Mint</a>
+        <a href="/#team" className="text-4xl text-white hover:text-black m-6">Team</a>
       </nav>
     </div>
   </div>
@@ -53,11 +56,13 @@ return (
           </p>
           <iframe src="https://free.timeanddate.com/countdown/i7vcex5b/n107/cf11/cm0/cu4/ct0/cs1/ca2/co0/cr0/ss0/cacfff/cpcfff/pct/tcfff/fn3/fs100/szw448/szh189/iso2021-11-11T21:00:00" allowtransparency="true" frameBorder="0" width="425" height="25"></iframe>
         </div>
-        <img  src="images/1391.png" width="240px" />
+        <div className="border-4 border-red-500 p-2">
+          <img  src="images/1391.png" width="240px" />
+        </div>
       </div>
     </div>
     <div id="severity" className="flex flex-wrap justify-around items-center mx-6 py-6 border-b-2">
-      <div className="border-4 border-red-300 p-4">
+      <div className="border-4 border-red-500 p-2">
         <img src="images/ani2.gif" alt="" width="240px" class="feature-image"/>
       </div>
       <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
@@ -81,7 +86,7 @@ return (
       </p>
       <div className="flex flex-wrap  items-center mx-6 py-6">
         <div className="md:w-1/2">
-          <div className=" border-blue-300 p-2"><span class="text-white">sunset bug</span><img src="images/set2/1216.png" alt="" width="400" className="feature-image"/>
+          <div className=" p-2"><span class="text-white">sunset bug</span><img src="images/set2/1216.png" alt="" width="400" className="feature-image"/>
           </div>
         </div>
         <div className="md:w-1/2 flex flex-wrap">
@@ -91,7 +96,7 @@ return (
           <div className=" p-2 "><span class="text-white">grad bug</span><img src="images/set2/1646.png" alt="" width="200px" className="feature-image"/></div>
         </div>
       </div>
-      <p class="text-xl text-white my-6"><i>*suggestive names, you're free to name your bug as you please!</i>
+      <p class="text-xl text-white my-6"><i>Name your bug as you please!</i>
       </p>
 
     </div>
