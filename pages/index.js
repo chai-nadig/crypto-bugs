@@ -57,22 +57,24 @@ return (
         </div>
       </div>
     </div>
-    <div id="severity" className="flex flex-wrap justify-around items-center mx-6 py-6 border-b-2">
-      <div className="border-4 border-red-500 p-2">
-        <img src="images/ani2.gif" alt="" width="240px" class="feature-image"/>
-      </div>
-      <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
-        <h2 className="text-crypto-red text-6xl text-center">SEVERITY</h2>
-        <p class="text-2xl text-white my-6">
-          Severity levels more or less correspond to the rarity of traits.
-        <ul>
-          <li> <span className="text-red-700">blocker </span></li>
-          <li> <span className="text-red-600">critical </span> </li>
-          <li> <span className="text-red-500">major </span> </li>
-          <li> <span className="text-red-400">minor </span> </li>
-          <li> <span className="text-red-300">trivial </span> </li>
-        </ul>
-        </p>
+    <div id="severity" className="justify-around items-center mx-6 py-6 border-b-2">
+      <h2 className="text-crypto-red text-6xl text-center">SEVERITY</h2>
+      <div className="flex flex-wrap justify-around items-center mx-6 py-6">
+        <div className="border-4 border-red-500 p-2">
+          <img src="images/ani2.gif" alt="" width="240px" class="feature-image"/>
+        </div>
+        <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
+          <p class="text-2xl text-white my-6">
+            Severity levels more or less correspond to the rarity of traits.
+            <ul>
+              <li> <span className="text-red-700">blocker </span></li>
+              <li> <span className="text-red-600">critical </span> </li>
+              <li> <span className="text-red-500">major </span> </li>
+              <li> <span className="text-red-400">minor </span> </li>
+              <li> <span className="text-red-300">trivial </span> </li>
+            </ul>
+          </p>
+        </div>
       </div>
     </div>
     <div id="traits" className="mx-6 py-6 border-b-2">
