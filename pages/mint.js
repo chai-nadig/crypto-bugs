@@ -44,27 +44,29 @@ export default function Mint() {
       alert("No Ethereum interface injected into browser. Read-only access");
     }
 
-    window.ethereum.enable()
-      .then(function(accounts) {
-        window.web3.eth.net.getNetworkType()
-          // checks if connected network is mainnet (change this to rinkeby if you wanna test on testnet)
-          .then((network) => {
-            console.log(network);
-            if (network != "rinkeby") {
-              alert("You are on " + network + " network. Change network to rinkeby or you won't be able to do anything here")
-            }
-          });
+//    window.ethereum.enable()
+//      .then(function(accounts) {
+//        window.web3.eth.net.getNetworkType()
+//          // checks if connected network is mainnet (change this to rinkeby if you wanna test on testnet)
+//          .then((network) => {
+//            console.log(network);
+//            if (network != "rinkeby") {
+//              alert("You are on " + network + " network. Change network to rinkeby or you won't be able to do anything here")
+//            }
+//          });
+//
+//        let wallet = accounts[0]
+//        setWalletAddress(wallet)
+//        setSignedIn(true)
+//        callContractData(wallet)
+//
+//      })
+//      .catch(function(error) {
+//        // Handle error. Likely the user rejected the login
+//        console.error(error)
+//      })
 
-        let wallet = accounts[0]
-        setWalletAddress(wallet)
-        setSignedIn(true)
-        callContractData(wallet)
-
-      })
-      .catch(function(error) {
-        // Handle error. Likely the user rejected the login
-        console.error(error)
-      })
+        setSignedIn(false)
   }
 
   async function signOut() {
@@ -156,7 +158,8 @@ export default function Mint() {
       <div className="md:w-2/3 w-4/5">
         <div className="mt-6 border-b-2 py-6">
           <div className="flex flex-col items-center">
-            <span className="flex text-5xl text-white items-center my-4 ">TOTAL BUGS MINTED:  <span className="text-red text-6xl"> {!signedIn ?  <>-</> : <>{totalSupply}</> } / 11,111</span></span>
+            <span className="flex text-5xl text-white items-center my-4 ">TOTAL BUGS MINTED:  <span className="text-red text-6xl"> {!signedIn ?  0 : totalSupply } / 11,111</span></span>
+            {saleStarted ?
             <div id="mint" className="flex justify-around  mt-8 mx-6">
               <span className="flex text-5xl text-white items-center bg-grey-lighter rounded rounded-r-none px-3 font-bold">BUG ME</span>
               <input
@@ -168,10 +171,10 @@ export default function Mint() {
                 name=""
                 className="pl-4 text-4xl  inline bg-grey-lighter  py-2 font-normal rounded text-grey-darkest font-bold" />
               <span className="flex text-5xl text-white items-center bg-grey-lighter rounded rounded-r-none px-3 font-bold">BUGS!</span>
-            </div>
+            </div> :<div></div>}
             {saleStarted ?
             <button onClick={() => mintBug(how_many_bugs)} className="mt-4 text-4xl border-6 bg-blau  text-white hover:text-black p-2 ">BUG ME {how_many_bugs} bugs for {(bugPrice * how_many_bugs) / (10 ** 18)} ETH + GAS</button>
-            : <button className="mt-4 text-4xl border-6 bg-red  text-white hover:text-black p-2 ">SALE IS NOT ACTIVE OR NO WALLET IS CONNECTED</button>
+            : <button className="mt-4 text-4xl border-6 bg-red  text-white hover:text-black p-2 ">SALE IS NOT ACTIVE</button>
             }
 
             { minted ? <div className="text-4xl text-crypto-red mt-6 border-b-2 py-6"> Successfully minted {how_many_bugs} bugs! </div>
