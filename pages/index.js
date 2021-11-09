@@ -39,22 +39,18 @@ return (
       <div className="flex flex-wrap lg:flex-nowrap justify-around items-center">
         <div className="lg:w-1/2 w-3/4">
           <h1 className="text-6xl text-white"><span className="text-crypto-red">crypto-bugs-0x2b67</span></h1>
-          <p className="text-2xl text-white my-6">We've discovered a variety of bugs and triaged then under different severities.
-            A detailed <span class="text-bold-underlined">bug report</span> will be released soon.
+          <p className="text-2xl text-white my-6">We've discovered a variety of bugs and triaged their severities.
+
           </p>
           <p className="text-2xl text-white my-6">
-            On 11/11 we will be reporting 11,111 (0x2b67 in hexadecimal) bugs. <br/>
+            On <span className="text-red">11/11/21</span> a detailed bug report of <span className="text-red">11,111</span> (0x2b67 in hexadecimal) bugs will be release. <br/>
           </p>
           <p className="text-2xl text-white my-6">
-            <b>The first 111 swatters who join our bug bash will receive an NFT of the bug for free!</b><br/>
-            <span class="text-red">Join our Discord <u><a target="_blank" href="https://discord.gg/Sw2PgseN">here!</a></u></span>
+            The first 111 swatters who join our bug bash will receive an NFT of the bug for free!<br/>
           </p>
-          <p className="text-2xl text-white my-6">
-            <strong>RELEASE:</strong> 11/11/2021. 1:00 pm PST.<br />
-            <span className="text-white text-2xl"><strong>TOTAL SUPPLY: 11,111</strong> bugs.<br/>
-            <strong>PRICE: 0.025 ETH </strong>each.</span>
+          <p>
+            <span class="text-red text-2xl">Join our Discord <u><a target="_blank" href="https://discord.gg/Sw2PgseN">here!</a></u></span>
           </p>
-          <iframe src="https://free.timeanddate.com/countdown/i7vcex5b/n107/cf11/cm0/cu4/ct0/cs1/ca2/co0/cr0/ss0/cacfff/cpcfff/pct/tcfff/fn3/fs100/szw448/szh189/iso2021-11-11T21:00:00" allowtransparency="true" frameBorder="0" width="425" height="25"></iframe>
         </div>
         <div className="border-4 border-red-500 p-2">
           <img  src="images/1391.png" width="240px" />
@@ -70,11 +66,11 @@ return (
         <p class="text-2xl text-white my-6">
           Severity levels more or less correspond to the rarity of traits.
         <ul>
-          <li> blocker </li>
-          <li> critical </li>
-          <li> major </li>
-          <li> minor </li>
-          <li> trivial </li>
+          <li> <span className="text-red-700">blocker </span></li>
+          <li> <span className="text-red-600">critical </span> </li>
+          <li> <span className="text-red-500">major </span> </li>
+          <li> <span className="text-red-400">minor </span> </li>
+          <li> <span className="text-red-300">trivial </span> </li>
         </ul>
         </p>
       </div>
