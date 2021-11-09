@@ -79,8 +79,8 @@ return (
     </div>
     <div id="traits" className="mx-6 py-6 border-b-2">
       <h2 className="text-crypto-red text-6xl text-center">TRAITS</h2>
-      <p class="text-2xl text-white my-6"><b>crypto-bugs-0x2b67</b> have traits like background, accessory, color, spots and eye color.
-        There are some bugs with combinations of a unique background and an accessory.
+      <p class="text-2xl text-white my-6"><b>crypto-bugs-0x2b67</b> have traits like background, accessory, color, spots, and eye color.
+        There are some bugs with combinations of unique backgrounds and accessories.
       </p>
       <div className="flex flex-wrap  items-center mx-6 py-6">
         <div className="md:w-1/2">
