@@ -146,12 +146,12 @@ export default function Mint() {
             <a href="/" className=""><img src="images/13.png" width="120px" className="logo-image" /></a>
           </div>
           <nav className="flex flex-wrap flex-row justify-around">
-            <a href="/#about" className="text-4xl text-white hover:text-black m-6">About</a>
-            <a href="/#severity" className="text-4xl text-white hover:text-black m-6">Severity</a>
-            <a href="/#traits" className="text-4xl text-white hover:text-black m-6">Traits</a>
-            <a href="/#roadmap" className="text-4xl text-white hover:text-black m-6">Roadmap</a>
-            <a href="/mint" className="text-4xl text-white hover:text-black m-6">Mint</a>
-            <a href="/#team" className="text-4xl text-white hover:text-black m-6">Team</a>
+            <a href="/#about" className="text-4xl text-white-shadow hover:text-black m-6">About</a>
+            <a href="/#severity" className="text-4xl text-white-shadow hover:text-black m-6">Severity</a>
+            <a href="/#traits" className="text-4xl text-white-shadow hover:text-black m-6">Traits</a>
+            <a href="/#roadmap" className="text-4xl text-white-shadow hover:text-black m-6">Roadmap</a>
+            <a href="/mint" className="text-4xl text-white-shadow hover:text-black m-6">Mint</a>
+            <a href="/#team" className="text-4xl text-white-shadow hover:text-black m-6">Team</a>
           </nav>
         </div>
       </div>

@@ -25,12 +25,12 @@ return (
       </div>
 
       <nav className="flex flex-wrap flex-row justify-around">
-        <a href="/#about" className="text-4xl text-white hover:text-black m-6">About</a>
-        <a href="/#severity" className="text-4xl text-white hover:text-black m-6">Severity</a>
-        <a href="/#traits" className="text-4xl text-white hover:text-black m-6">Traits</a>
-        <a href="/#roadmap" className="text-4xl text-white hover:text-black m-6">Roadmap</a>
-        <a href="/mint" className="text-4xl text-white hover:text-black m-6">Mint</a>
-        <a href="/#team" className="text-4xl text-white hover:text-black m-6">Team</a>
+        <a href="/#about" className="text-4xl text-white-shadow hover:text-black m-6">About</a>
+        <a href="/#severity" className="text-4xl text-white-shadow hover:text-black m-6">Severity</a>
+        <a href="/#traits" className="text-4xl text-white-shadow hover:text-black m-6">Traits</a>
+        <a href="/#roadmap" className="text-4xl text-white-shadow hover:text-black m-6">Roadmap</a>
+        <a href="/mint" className="text-4xl text-white-shadow hover:text-black m-6">Mint</a>
+        <a href="/#team" className="text-4xl text-white-shadow hover:text-black m-6">Team</a>
       </nav>
     </div>
   </div>
@@ -43,13 +43,13 @@ return (
 
           </p>
           <p className="text-2xl text-white my-6">
-            On <span className="text-red">11/11/21</span> a detailed bug report of <span className="text-red">11,111</span> (0x2b67 in hexadecimal) bugs will be release. <br/>
+            On <span className="text-red">11/11/21</span> a detailed bug report of <span className="text-red">11,111</span> (0x2b67 in hexadecimal) bugs will be released. <br/>
           </p>
           <p className="text-2xl text-white my-6">
             The first 111 swatters who join our bug bash will receive an NFT of the bug for free!<br/>
           </p>
           <p>
-            <span class="text-red text-2xl">Join our Discord <u><a target="_blank" href="https://discord.gg/Sw2PgseN">here!</a></u></span>
+            <span class="text-red text-2xl">Join our Discord <u><a className="text-white-shadow hover:text-black" target="_blank" href="https://discord.gg/Sw2PgseN">here!</a></u></span>
           </p>
         </div>
         <div className="border-4 border-red-500 p-2">
@@ -105,8 +105,9 @@ return (
         <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
           <span className="text-red text-4xl">LAUNCH - 11/11/21</span>
           <p class="text-2xl text-white my-6">
-            Start of our bug bash! Reporting 11,111 bugs.
-            First 111 swatters will receive a bug NFT for free!
+            <span className="text-red">Start of our bug bash!</span><br/>
+             Reporting 11,111 bugs.
+            First 111 swatters will receive an NFT of the bug for free!
           </p>
         </div>
       </div>
@@ -115,7 +116,7 @@ return (
           <span className="text-red text-4xl">11% SOLD</span>
           <p class="text-2xl text-white my-6">
             <span className="text-red">Free T-Shirts!</span><br/>
-            Swatters that have bugs with an <b>exclusive trait</b> will be eligible for a free T-Shirt printed with their bug.
+            Swatters with bugs that have <b>exclusive traits</b> will be eligible for a free T-Shirt printed with their bug!
           </p>
           <p class="text-2xl text-white my-6">
           Trait will be revealed after 11% of bugs are sold. Claim your T-Shirt on our website.
@@ -132,8 +133,8 @@ return (
         <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
           <span className="text-red text-4xl">33% SOLD</span>
           <p class="text-2xl text-white my-6">
-            <span className="text-red">Donation to <u><a className="hover:text-black" href="https://www.catf.us/" target="_blank">Clean Air Task Force</a></u></span><br/>
-            We're concerned about climate! This is how we wanted to give back.
+            <span className="text-red">Donate to <u><a className="text-white-shadow hover:text-black" href="https://www.catf.us/" target="_blank">Clean Air Task Force</a></u></span><br/>
+            We're concerned about the climate! This is how we want to give back.
           </p>
           <p class="text-2xl text-white my-6">
             We will donate 10.18 ETH (11.11% of sales) after 3,666 bugs have sold.
@@ -163,7 +164,7 @@ return (
             This time we'll donate to two non-profits that are chosen by the community.
           </p>
           <p class="text-2xl text-white my-6">
-            We will totally donate 29.41 ETH (11.11% of remaining sales) in this round, after 10,999 bugs have sold.
+            In this round, we will totally donate 29.41 ETH (11.11% of remaining sales) after 10,999 bugs have sold.
           </p>
         </div>
       </div>
@@ -171,17 +172,32 @@ return (
     <div id="team" className="mx-12 my-16 ">
       <h2 className="text-crypto-red text-6xl text-center">TEAM</h2>
       <div className="flex justify-around flex-wrap">
-        <div className="flex flex-col  my-6" style={{width:"360px"}}>
+        <div className="flex flex-col  my-6">
           <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image" /></div>
-          <h3 className="my-4 text-center text-5xl text-center text-red">hellstealz</h3>
-          <a href="mailto:hellstealz@crypto-bugs.com" className="text-center text-4xl text-center underline text-white"> hellstealz@crypto-bugs.com</a>
+          <h3 className="my-4 text-center text-5xl text-center text-red hover:text-red">hellstealz</h3>
+          <p className="text-center text-white text-2xl">
+            <span className="text-3xl">Artist</span><br/>
+            hellstealz@crypto-bugs.com
+          </p>
         </div>
-        <div className="flex flex-col  my-6" style={{width:"360px"}}>
+        <div className="flex flex-col  my-6">
           <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image" /></div>
           <h3 className="my-4 text-center text-5xl text-center text-red">ag</h3>
-          <a href="mailto:ag@crypto-bugs.com" className="text-center text-4xl text-center underline text-white"> ag@crypto-bugs.com </a>
+          <p className="text-center text-white text-2xl">
+            <span className="text-3xl">Engineer</span><br/>
+            ag@crypto-bugs.com
+          </p>
         </div>
       </div>
+      <p class="text-2xl text-white my-6">
+        We're two software engineers, that got really engrossed in the world of NFT after hearing about
+        <a className="text-white-shadow hover:text-black" href="https://www.theverge.com/2021/3/11/22325054/beeple-christies-nft-sale-cost-everydays-69-million" target="_blank"> Beeple's sale for $69 Million!</a>
+      </p>
+      <p class="text-2xl text-white my-6">
+        <strong className="text-crypto-red ">crypto-bugs-0x2b67 </strong> took two weeks to go from idea to product.
+        We bought a drawing tablet one weekend, started drawing bugs, adding backgrounds and accessories, and that was a lot of fun!
+        It's amazing how much you can do in a 24 x 24 pixel canvas!
+      </p>
       <div className="flex justify-around flex-wrap">
         <div className="flex flex-col  my-6" style={{width:"360px"}}>
           <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image"/></div>
