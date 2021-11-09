@@ -131,14 +131,14 @@ export default function Mint() {
         <meta property="og:description" content="bugs in production. we ship them" key="ogdesc" />
         <meta property="og:type" content="website" key="ogtype" />
         <meta property="og:url" content="https://crypto-bugs.com/" key="ogurl"/>
-        <meta property="og:image" content="https://crypto-bugs.com/images/bug.png" key="ogimage"/>
+        <meta property="og:image" content="https://crypto-bugs.com/images/13.png" key="ogimage"/>
         <meta property="og:site_name" content="https://crypto-bugs.com/" key="ogsitename" />
         <meta name="twitter:card" content="summary_large_image" key="twcard"/>
         <meta property="twitter:domain" content="crypto-bugs.com" key="twdomain" />
         <meta property="twitter:url" content="https://crypto-bugs.com/" key="twurl" />
         <meta name="twitter:title" content="crypto-bugs" key="twtitle" />
         <meta name="twitter:description" content="bugs in production. we ship them" key="twdesc" />
-        <meta name="twitter:image" content="https://crypto-bugs.com/images/bug.png" key="twimage" />
+        <meta name="twitter:image" content="https://crypto-bugs.com/images/13.png" key="twimage" />
       </Head>
       <div>
         <div className="flex items-center justify-between w-full border-b-2 pb-6">
