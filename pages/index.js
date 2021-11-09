@@ -181,7 +181,7 @@ return (
           <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image" /></div>
           <h3 className="my-4 text-center text-5xl text-center text-red hover:text-red">hellstealz</h3>
           <p className="text-center text-white text-2xl">
-            <span className="text-3xl">Artist</span><br/>
+            <span className="text-3xl">Artist | Engineer</span><br/>
             hellstealz@crypto-bugs.com
           </p>
         </div>
