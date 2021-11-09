@@ -46,7 +46,7 @@ return (
             On <span className="text-red">11/11/21</span> a detailed bug report of <span className="text-red">11,111</span> (0x2b67 in hexadecimal) bugs will be released. <br/>
           </p>
           <p className="text-2xl text-white my-6">
-            The first 111 swatters who join our bug bash will receive an NFT of the bug for free!<br/>
+            First 111 swatters who bring along three friends to the bug bash will receive an NFT of the bug for free!<br/>
           </p>
           <p>
             <span class="text-red text-2xl">Join our Discord <u><a className="text-white-shadow hover:text-black" target="_blank" href="https://discord.gg/Sw2PgseN">here!</a></u></span>
@@ -109,7 +109,10 @@ return (
           <p class="text-2xl text-white my-6">
             <span className="text-red">Start of our bug bash!</span><br/>
              Reporting 11,111 bugs.
-            First 111 swatters will receive an NFT of the bug for free!
+            First 111 swatters who bring along three friends will receive an NFT of the bug for free!
+          </p>
+           <p>
+            <span class="text-red text-2xl">Join our Discord <u><a className="text-white-shadow hover:text-black" target="_blank" href="https://discord.gg/Sw2PgseN">here!</a></u></span>
           </p>
         </div>
       </div>
@@ -200,12 +203,9 @@ return (
         We bought a drawing tablet one weekend, started drawing bugs, adding backgrounds and accessories, and that was a lot of fun!
         It's amazing how much you can do in a 24 x 24 pixel canvas!
       </p>
-      <div className="flex justify-around flex-wrap">
-        <div className="flex flex-col  my-6" style={{width:"360px"}}>
-          <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image"/></div>
-          <h3 className="my-4 text-center text-4xl text-center text-red"><u><a target="_blank" href="https://discord.gg/Sw2PgseN">Join our discord</a></u></h3>
-        </div>
-      </div>
+      <p className="text-center">
+         <span class="text-red text-3xl">Join our Discord <u><a className="text-white-shadow hover:text-black" target="_blank" href="https://discord.gg/Sw2PgseN">here!</a></u></span>
+      </p>
     </div>
   </div>
 </div>
