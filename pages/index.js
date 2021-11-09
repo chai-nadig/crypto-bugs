@@ -41,7 +41,11 @@ return (
           <p className="text-2xl text-white my-6">
             On 11/11 we will be releasing 11,111 bugs.<br/>
           </p>
-          <p>
+          <p className="text-2xl text-white my-6">
+            <b>The first 111 swatters who join our bug bash will receive a bug for free!</b><br/>
+            <span class="text-red">Join our discord server <u><a target="_blank" href="https://discord.gg/Sw2PgseN">here!</a></u></span>
+          </p>
+          <p className="text-2xl text-white my-6">
             <strong>RELEASE:</strong> 11 Nov 2021. 1:00 pm PST.<br />
             <span className="text-white text-2xl"><strong>TOTAL SUPPLY: 11,111</strong> bugs.<br/>
             <strong>PRICE: 0.025 ETH </strong>each.</span>
@@ -76,16 +80,19 @@ return (
       </p>
       <div className="flex flex-wrap  items-center mx-6 py-6">
         <div className="md:w-1/2">
-          <div className=" border-blue-300 p-2"><span class="text-white">Sunset bug</span><img src="images/set2/1216.png" alt="" width="400" className="feature-image"/>
+          <div className=" border-blue-300 p-2"><span class="text-white">sunset bug</span><img src="images/set2/1216.png" alt="" width="400" className="feature-image"/>
           </div>
         </div>
         <div className="md:w-1/2 flex flex-wrap">
-          <div className=" p-2 "><span class="text-white">Hipster bug</span><img src="images/set2/1815.png" alt="" width="200px" className="feature-image"/></div>
-          <div className=" p-2 "><span class="text-white">Angel bug</span><img src="images/set2/1265.png" alt="" width="200px" className="feature-image"/></div>
-          <div className=" p-2 "><span class="text-white">Witch bug bug</span><img src="images/set2/1479.png" alt="" width="200px" className="feature-image"/></div>
-          <div className=" p-2 "><span class="text-white">Grad bug</span><img src="images/set2/1646.png" alt="" width="200px" className="feature-image"/></div>
+          <div className=" p-2 "><span class="text-white">hipster bug</span><img src="images/set2/1815.png" alt="" width="200px" className="feature-image"/></div>
+          <div className=" p-2 "><span class="text-white">angel bug</span><img src="images/set2/1265.png" alt="" width="200px" className="feature-image"/></div>
+          <div className=" p-2 "><span class="text-white">witch bug</span><img src="images/set2/1479.png" alt="" width="200px" className="feature-image"/></div>
+          <div className=" p-2 "><span class="text-white">grad bug</span><img src="images/set2/1646.png" alt="" width="200px" className="feature-image"/></div>
         </div>
       </div>
+      <p class="text-xl text-white my-6"><i>*suggestive names, you're free to name your bug as you please!</i>
+      </p>
+
     </div>
     <div id="roadmap" className="">
       <img src="/images/Roadmap.png"/>
