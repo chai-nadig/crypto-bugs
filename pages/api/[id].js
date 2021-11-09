@@ -1,22 +1,21 @@
-import {INFURA_ADDRESS, ADDRESS, ABI} from "../../config.js"
+import {ALCHEMY_ADDRESS, ADDRESS, ABI} from "../../config.js"
 import Web3 from "web3";
 
 // import the json containing all metadata. not recommended, try to fetch the database from a middleware if possible, I use MONGODB for example
 import traits from "../../database/traitsfinal.json";
 
-const infuraAddress = INFURA_ADDRESS
+const infuraAddress = ALCHEMY_ADDRESS
 
 const bugsApi = async(req, res) => {
 
     // SOME WEB3 STUFF TO CONNECT TO SMART CONTRACT
   const provider = new Web3.providers.HttpProvider(infuraAddress)
-  const web3infura = new Web3(provider);
-  const bugsContract = new web3infura.eth.Contract(ABI, ADDRESS)
+  const web3alchemy = new Web3(provider);
+  const bugsContract = new web3alchemy.eth.Contract(ABI, ADDRESS)
 
   // IF YOU ARE USING INSTA REVEAL MODEL, USE THIS TO GET HOW MANY NFTS ARE MINTED
    const totalSupply = await bugsContract.methods.totalSupply().call();
-   console.log(totalSupply)
-  
+
 
 // THE ID YOU ASKED IN THE URL
   const query = req.query.id;
@@ -33,7 +32,6 @@ const bugsApi = async(req, res) => {
     // let tokenName= `#${query}`
 
     const trait = traits[parseInt(query)]
-    // const trait = traits[ Math.floor(Math.random() * 8888) ] // for testing on rinkeby 
 
     // CHECK OPENSEA METADATA STANDARD DOCUMENTATION https://docs.opensea.io/docs/metadata-standards
     let metadata = {}
@@ -42,7 +40,7 @@ const bugsApi = async(req, res) => {
       "name": tokenName,
       "description": "",
       "tokenId" : parseInt(query),
-      "image": `https://ipfs.io/ipfs/${trait["imageIPFS"]}`,
+      "image": `https://gateway.pinata.cloud/ipfs/${trait["imageIPFS"]}`,
       "external_url":"https://crypto-bugs.com",
       "attributes": [
           {
@@ -65,19 +63,19 @@ const bugsApi = async(req, res) => {
             "trait_type": "Accessory",
             "value": trait["Accessory"]
           },
+          {
+            "trait_type": "Severity",
+            "value": trait["Severity"]
+          }
       ]
     }
       // console.log(metadata)
     res.statusCode = 200
     res.json(metadata)
   } else {
-    console.log("We're here")
     res.statuscode = 404
     res.json({error: "The bug you requested is out of range"})
   }
-
-  // this is after the reveal
-
 }
 
 export default bugsApi

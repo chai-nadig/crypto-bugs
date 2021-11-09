@@ -4,7 +4,6 @@ import os
 from tqdm import tqdm
 from PIL import Image
 import random
-import json
 from collections import defaultdict
 
 TO_GENERATE = 11111
@@ -40,11 +39,11 @@ unique_backgrounds = {
 
     # "Rainbow2": 1,
     # "Rainbow3": 1,
+
     # Cricket
     # Football
     # Basketball
     # Soccer
-    # Brick Wall
 }
 
 backgrounds = {}
@@ -128,6 +127,37 @@ TOTAL_BUGS = (
 currentlocation = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 outputlocation = os.path.join(currentlocation, './output/')
 
+backgrounds_with_accessories = {
+    'Beach': ['RedSunGlasses', 'GreySunGlasses', 'Bikini', 'BeachHat', 'PirateHat'],
+    'Book': ['Graduation'],
+    'Brickwall': ['Construction'],
+    'City': ['Tux'],
+    'Clouds': ['RedSunGlasses', 'GreySunGlasses'],
+    'Fire': ['Cloak'],
+    'SpiderWeb': ['WizardHat'],
+    'Sunset': ['GreySunGlasses'],
+    'Wave': ['RedSunGlasses', 'GreySunGlasses', 'Bikini', 'BeachHat', 'PirateHat'],
+}
+
+
+def is_combo(trait):
+    return trait['Background'] in backgrounds_with_accessories and trait['Accessory'] in backgrounds_with_accessories[
+        trait['Background']]
+
+
+def get_combo_key(trait):
+    return '{}:{}'.format(trait['Background'], trait['Accessory'])
+
+
+def allowed_accessories_as_ignore_combination(background, allowed):
+    aa = [a for a in allowed]
+    aa.append('NoneAccessory')
+
+    return {
+        'Background': [background],
+        'Accessory': set([a for a in list(accessories.keys()) if a not in aa])
+    }
+
 
 def get_ignored_combinations():
     small_spots_without_none = list(smallSpots.keys())
@@ -156,9 +186,6 @@ def get_ignored_combinations():
         # Ignore Flag with all accessories
         {'Color': ['SmallINFlag'], 'Accessory': accessories_without_none},
 
-        # Ignore all combinations of accessories and unique backgrounds
-        {'Accessory': accessories_without_none, 'Background': list(unique_backgrounds.keys())},
-
         # Ignore bikini accessory with red spots
         {"Accessory": ['Bikini'], 'Spots': ['SmallRedSpotsA', 'SmallRedSpotsB', 'SmallRedSpotsC']},
 
@@ -183,17 +210,29 @@ def get_ignored_combinations():
         # Ignore grey sunglasses with red bug
         {"Accessory": ["GreySunGlasses"], "Color": ["SmallBlack"]},
 
+        # Ignore graduation cap with black color bug
+        {"Accessory": ["Graduation"], "Color": ["SmallBlack"]}
+
     ]
+
+    for bg in unique_backgrounds:
+        if bg in backgrounds_with_accessories:
+            ignore_combinations.append(allowed_accessories_as_ignore_combination(bg, backgrounds_with_accessories[bg]))
+        else:
+            ignore_combinations.append({'Background': [bg], 'Accessory': set(accessories_without_none)})
 
     return ignore_combinations
 
 
+ignored_combinations = get_ignored_combinations()
+
+
 def shouldIgnore(trait):
-    for toIgnore in get_ignored_combinations():
+    for toIgnore in ignored_combinations:
         count = 0
 
         for key, value in trait.items():
-            if value in toIgnore.get(key, []):
+            if value in toIgnore.get(key, set()):
                 count += 1
 
         if count > 1:
@@ -314,6 +353,8 @@ def generate_images(traits):
         # Convert to RGB
         rgb_im = com5.convert('RGBA')
 
+        rgb_im = rgb_im.resize((120, 120), Image.NEAREST)
+
         file_name = str(trait["tokenId"]) + ".png"
         rgb_im.save(outputlocation + file_name)
 
@@ -321,12 +362,41 @@ def generate_images(traits):
 
 
 def post_process(traits):
-    for trait in traits:
+    for trait in tqdm(
+            iterable=traits,
+            desc="Postprocessing {} traits".format(len(traits)),
+            unit="traits",
+            total=len(traits),
+    ):
         if trait['Accessory'] == 'BedRoom':
             trait['Background'] = 'BedRoom'
             trait['Accessory'] = 'NoneAccessory'
 
-        if trait['Accessory'] in ('Tux', 'Cloak', 'Bikini') or trait['Background'] in ('Matrix', 'Fire', 'Rainbow1'):
+        if is_combo(trait):
+            combo_to_severity = {
+                'Wave:BeachHat': 'Minor',
+                'Beach:BeachHat': 'Minor',
+                'City:Tux': 'Blocker',
+                'Beach:PirateHat': 'Trivial',
+                'Wave:GreySunGlasses': 'Trivial',
+                'Brickwall:Construction': 'Trivial',
+                'Wave:PirateHat': 'Trivial',
+                'Beach:RedSunGlasses': 'Blocker',
+                'SpiderWeb:WizardHat': 'Minor',
+                'Fire:Cloak': 'Blocker',
+                'Book:Graduation': 'Major',
+                'Beach:Bikini': 'Critical',
+                'Wave:Bikini': 'Major',
+                'Clouds:RedSunGlasses': 'Minor',
+                'Sunset:GreySunGlasses': 'Critical',
+                'Beach:GreySunGlasses': 'Minor',
+                'Clouds:GreySunGlasses': 'Minor',
+                'Wave:RedSunGlasses': 'Minor',
+            }
+            combo_key = get_combo_key(trait)
+            trait['Severity'] = combo_to_severity[combo_key]
+
+        elif trait['Accessory'] in ('Tux', 'Cloak', 'Bikini') or trait['Background'] in ('Matrix', 'Fire', 'Rainbow1'):
             trait['Severity'] = 'Blocker'
 
         elif trait['Accessory'] in ('RedHair', 'BeachHat') or trait['Background'] in ('Sunset', 'City'):
@@ -351,6 +421,15 @@ def post_process(traits):
             if key != "Bug" and "Small" in value:
                 trait[key] = value[5:]
 
+    for trait in traits:
+        assert 'Severity' in trait
+        assert trait['Severity'] in ['Blocker', 'Critical', 'Major', 'Minor', 'Trivial']
+
+        assert 'NoneAccessory' not in trait['Accessory']
+        assert 'NoneBackground' not in trait['Background']
+        assert 'NoneColor' not in trait['Color']
+        assert 'NoneSpots' not in trait['Spots']
+
     return traits
 
 
@@ -364,15 +443,26 @@ def count_traits(traits):
     accessory_count = defaultdict(int)
     eyes_count = defaultdict(int)
     severity_count = defaultdict(int)
+    combo_count = defaultdict(int)
 
-    for trait in traits:
-        background_counts[trait["Background"]] += 1
+    for trait in tqdm(
+            iterable=traits,
+            desc="Counting individual traits in {}".format(len(traits)),
+            unit="trait",
+            total=len(traits),
+    ):
+
         bug_counts[trait["Bug"]] += 1
         spots_counts[trait["Spots"]] += 1
         color_counts[trait["Color"]] += 1
-        accessory_count[trait["Accessory"]] += 1
         eyes_count[trait["Eyes"]] += 1
         severity_count[trait['Severity']] += 1
+
+        if is_combo(trait):
+            combo_count[get_combo_key(trait)] += 1
+        else:
+            background_counts[trait["Background"]] += 1
+            accessory_count[trait["Accessory"]] += 1
 
     print_csv(background_counts)
     print_csv(bug_counts)
@@ -380,6 +470,7 @@ def count_traits(traits):
     print_csv(color_counts)
     print_csv(accessory_count)
     print_csv(eyes_count)
+    print_csv(combo_count)
     print_csv(severity_count)
 
 

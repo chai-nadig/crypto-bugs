@@ -21,7 +21,7 @@ def combine(traits):
 
     ns = getNearestSquare(total)
 
-    final = Image.new('RGBA', (ns * 24, ns * 24))
+    final = Image.new('RGBA', (ns * 120, ns * 120))
 
     imgNo = 0
 
@@ -34,7 +34,7 @@ def combine(traits):
                 file = '{}.png'.format(traits[imgNo]['tokenId'])
                 im1 = Image.open(directory + '/' + file).convert('RGBA')
 
-                final.paste(im1, (j * 24, i * 24))
+                final.paste(im1, (j * 120, i * 120))
 
                 imgNo += 1
                 pbar.update(1)
