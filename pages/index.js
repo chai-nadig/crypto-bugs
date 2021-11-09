@@ -43,7 +43,7 @@ return (
             A detailed <span class="text-bold-underlined">bug report</span> will be released soon.
           </p>
           <p className="text-2xl text-white my-6">
-            On 11/11 we will be releasing 11,111 bugs.<br/>
+            On 11/11 we will be releasing 11,111 (0x2b67 in hexadecimal) bugs. <br/>
           </p>
           <p className="text-2xl text-white my-6">
             <b>The first 111 swatters who join our bug bash will receive a bug for free!</b><br/>
