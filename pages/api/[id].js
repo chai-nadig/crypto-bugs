@@ -1,10 +1,10 @@
-import {INFURA_ADDRESS, ADDRESS, ABI} from "../../config.js"
+import {ALCHEMY_ADDRESS, ADDRESS, ABI} from "../../config.js"
 import Web3 from "web3";
 
 // import the json containing all metadata. not recommended, try to fetch the database from a middleware if possible, I use MONGODB for example
 import traits from "../../database/traitsfinal.json";
 
-const infuraAddress = INFURA_ADDRESS
+const infuraAddress = ALCHEMY_ADDRESS
 
 const bugsApi = async(req, res) => {
 
