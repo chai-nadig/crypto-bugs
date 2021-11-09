@@ -102,7 +102,7 @@ return (
     </div>
     <div id="roadmap" className="mx-6 py-6 border-b-2">
       <h2 className="text-6xl text-center text-crypto-red my-4">ROADMAP</h2>
-
+      <img src="/images/roadmap_bugs_11.png"/>
       <p className="text-xl text-white my-6  montserrat">Ever since the inception of the <span className="text-5xl Poppitandfinch ">boring</span> <span className="text-blau text-5xl Poppitandfinchsans">Bugs</span> <span className="text-5xl Poppitandfinch">company</span> after <a target="_blank" href="https://twitter.com/thedigitalvee/status/1405896585142280192" className="underline text-black font-bold">this tweet</a>, our goal has been to <span className="text-blau text-5xl Poppitandfinchsans">GIVE BACK</span> as much as possible.
       </p>
       <p className="text-xl text-white my-6 montserrat"> A minimum of
