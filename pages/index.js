@@ -87,7 +87,7 @@ export default function Home() {
               </div>
             </div>
             <div id="roadmap" className="">
-              <img src="/images/Roadmap.png"/>
+              <img src="/images/roadmap_bugs_11.png"/>
               <h2 className="text-7xl text-center text-blau my-4">OUR MISSION STATEMENT</h2>
               <p className="text-xl text-white text-center my-6  montserrat"> Simple. To be the largest contributor to charity in the NFT space, as measured by % <span className="font-bold"> of primary sales. </span>
               </p>
