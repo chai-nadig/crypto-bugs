@@ -24,6 +24,7 @@ return (
       <nav className="flex flex-wrap flex-row justify-around">
         <a href="#about" className="text-4xl text-white hover:text-black m-6">About</a>
         <a href="#severity" className="text-4xl text-white hover:text-black m-6">Severity</a>
+        <a href="#traits" className="text-4xl text-white hover:text-black m-6">Traits</a>
         <a href="#roadmap" className="text-4xl text-white hover:text-black m-6">Roadmap</a>
         <a href="#team" className="text-4xl text-white hover:text-black m-6">Team</a>
         <a href="#contact" className="text-4xl text-white hover:text-black m-6">Contact</a>
@@ -43,7 +44,7 @@ return (
           </p>
           <p className="text-2xl text-white my-6">
             <b>The first 111 swatters who join our bug bash will receive a bug for free!</b><br/>
-            <span class="text-red">Join our discord server <u><a target="_blank" href="https://discord.gg/Sw2PgseN">here!</a></u></span>
+            <span class="text-red">Join our Discord <u><a target="_blank" href="https://discord.gg/Sw2PgseN">here!</a></u></span>
           </p>
           <p className="text-2xl text-white my-6">
             <strong>RELEASE:</strong> 11 Nov 2021. 1:00 pm PST.<br />
@@ -73,7 +74,7 @@ return (
         </p>
       </div>
     </div>
-    <div id="gallery" className="mx-6 py-6 border-b-2">
+    <div id="traits" className="mx-6 py-6 border-b-2">
       <h2 className="text-crypto-red text-7xl text-center">TRAITS</h2>
       <p class="text-2xl text-white my-6"><b>crypto-bugs</b> have different traits like background, accessory, color, spots and eye color.
         There are some bug with combinations of a unique background and an accessory.
@@ -94,12 +95,9 @@ return (
       </p>
 
     </div>
-    <div id="roadmap" className="">
-      <img src="/images/Roadmap.png"/>
-      <h2 className="text-7xl text-center text-blau my-4">OUR MISSION STATEMENT</h2>
-      <p className="text-xl text-white text-center my-6  montserrat"> Simple. To be the largest contributor to charity in the NFT space, as measured by % <span className="font-bold"> of primary sales. </span>
-      </p>
-      <h2 className="text-7xl text-center text-blau my-4">HOW WE'RE GIVING BACK</h2>
+    <div id="roadmap" className="mx-6 py-6 border-b-2">
+      <h2 className="text-6xl text-center text-crypto-red my-4">ROADMAP</h2>
+
       <p className="text-xl text-white my-6  montserrat">Ever since the inception of the <span className="text-5xl Poppitandfinch ">boring</span> <span className="text-blau text-5xl Poppitandfinchsans">Bugs</span> <span className="text-5xl Poppitandfinch">company</span> after <a target="_blank" href="https://twitter.com/thedigitalvee/status/1405896585142280192" className="underline text-black font-bold">this tweet</a>, our goal has been to <span className="text-blau text-5xl Poppitandfinchsans">GIVE BACK</span> as much as possible.
       </p>
       <p className="text-xl text-white my-6 montserrat"> A minimum of
@@ -107,7 +105,7 @@ return (
       </p>
       <p className="text-xl text-white my-6  montserrat"> At 100% sellout, we pledge to donate <span className="font-bold"> 60 ETH </span> from primary sales.
       </p>
-      <h2 className="text-6xl text-center text-blau my-4">ROADMAP</h2>
+      <h2 className="text-7xl text-center text-crypto-red my-4">HOW WE'RE GIVING BACK</h2>
       <ul className="">
         <li className="text-xl text-white my-6  montserrat"><span className="font-bold"> 4 x 10 ETH donations: </span> The first of these will be made to <a target="_blank" href="https://girlswhocode.com/" className="underline text-black font-bold">Girls Who Code</a>, working to empower young women and <span className="font-bold"> close the gender gap </span> in technology. We know women are unrepresented in the NFT space - lets help to fix this! The remaining donations will be made via community vote using <a target="_blank" href="https://thegivingblock.com/" className="underline text-black font-bold">the Giving Block</a>.</li>
         <li className="text-xl text-white my-6  montserrat"><span className="font-bold"> 20 ETH to Community Wallet: </span> Directed towards supporting creators that want to make a positive contribution to the NFT space.</li>
@@ -119,26 +117,24 @@ return (
       </p>
     </div>
     <div id="team" className="mx-12 my-16 ">
-      <h2 className="text-7xl text-center text-blau my-4">BUG RESEARCH TEAM</h2>
+      <h2 className="text-crypto-red text-7xl text-center">TEAM</h2>
       <div className="flex justify-around flex-wrap">
         <div className="flex flex-col  my-6" style={{width:"360px"}}>
           <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image" /></div>
-          <h3 className="my-4 text-center text-5xl text-center Poppitandfinchsans text-blau">hellstealz</h3>
-          <a href="" className="text-center text-4xl text-center Poppitandfinchsans underline text-white"> hellstealz@crypto-bugs.com</a>
+          <h3 className="my-4 text-center text-5xl text-center text-red">hellstealz</h3>
+          <a href="mailto:hellstealz@crypto-bugs.com" className="text-center text-4xl text-center underline text-white"> hellstealz@crypto-bugs.com</a>
         </div>
         <div className="flex flex-col  my-6" style={{width:"360px"}}>
           <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image" /></div>
-          <h3 className="my-4 text-center text-5xl text-center Poppitandfinchsans text-blau">ag</h3>
-          <a href="" className="text-center text-4xl text-center Poppitandfinchsans underline text-white"> ag@crypto-bugs.com </a>
+          <h3 className="my-4 text-center text-5xl text-center text-red">ag</h3>
+          <a href="mailto:ag@crypto-bugs.com" className="text-center text-4xl text-center underline text-white"> ag@crypto-bugs.com </a>
         </div>
       </div>
-    </div>
-    <div id="contact" className="flex flex-wrap justify-around items-center  mx-6 py-6">
-      <div className=" p-4"><img src="images/letstalk.png" alt="" width="400px" className="feature-image"/></div>
-      <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
-        <h2 className="text-blau Poppitandfinchsans text-6xl text-center">CONTACT BUG RESEARCH TEAM</h2>
-        <p className="text-xl text-white my-6  montserrat"> We'd love to hear from you!
-        </p>
+      <div className="flex justify-around flex-wrap">
+        <div className="flex flex-col  my-6" style={{width:"360px"}}>
+          <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image"/></div>
+          <h3 className="my-4 text-center text-4xl text-center text-red"><u><a target="_blank" href="https://discord.gg/Sw2PgseN">Join our discord</a></u></h3>
+        </div>
       </div>
     </div>
   </div>
