@@ -113,12 +113,12 @@ return (
       </div>
       <div className="flex flex-wrap justify-around items-center mx-6 py-6">
         <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
-          <span className="text-red text-4xl">11% SOLD</span>
-          <p class="text-2xl text-white my-6">
+          <span className="text-red text-right text-4xl">11% SOLD</span>
+          <p class="text-2xl text-right text-white my-6">
             <span className="text-red">Free T-Shirts!</span><br/>
             Swatters with bugs that have <b>exclusive traits</b> will be eligible for a free T-Shirt printed with their bug!
           </p>
-          <p class="text-2xl text-white my-6">
+          <p class="text-2xl text-right text-white my-6">
           Trait will be revealed after 11% of bugs are sold. Claim your T-Shirt on our website.
           </p>
         </div>
@@ -134,7 +134,7 @@ return (
           <span className="text-red text-4xl">33% SOLD</span>
           <p class="text-2xl text-white my-6">
             <span className="text-red">Donate to <u><a className="text-white-shadow hover:text-black" href="https://www.catf.us/" target="_blank">Clean Air Task Force</a></u></span><br/>
-            We're concerned about the climate! This is how we want to give back.
+            We are concerned about the climate! This is how we want to give back.
           </p>
           <p class="text-2xl text-white my-6">
             We will donate 10.18 ETH (11.11% of sales) after 3,666 bugs have sold.
@@ -143,8 +143,8 @@ return (
       </div>
       <div className="flex flex-wrap justify-around items-center mx-6 py-6">
         <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
-          <span className="text-red text-4xl">66% SOLD</span>
-          <p class="text-2xl text-white my-6">
+          <span className="text-red text-right text-4xl">66% SOLD</span>
+          <p class="text-2xl text-right text-white my-6">
             <span className="text-red">Twitter Banners!</span><br/>
             All swatters will get a Twitter Banner to show off your cool bugs! Claim your banner on our website.
           </p>
