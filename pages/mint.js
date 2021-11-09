@@ -141,7 +141,7 @@ export default function Mint() {
         <meta name="twitter:image" content="https://crypto-bugs.com/images/bug.png" key="twimage" />
       </Head>
       <div>
-        <div className="flex items-center justify-between w-full border-b-2	pb-6">
+        <div className="flex items-center justify-between absolute top-0 w-full border-b-2 pb-6">
           <div className="border-4 border-red-800 p-1">
             <a href="/" className=""><img src="images/13.png" width="120px" className="logo-image" /></a>
           </div>
@@ -169,7 +169,7 @@ export default function Mint() {
                 value={how_many_bugs}
                 onChange={ e => set_how_many_bugs(e.target.value) }
                 name=""
-                className="pl-4 text-4xl  inline bg-grey-lighter  py-2 font-normal rounded text-grey-darkest font-bold" />
+                className="pl-4 text-4xl inline bg-grey-lighter  py-2 font-normal rounded text-grey-darkest font-bold" />
               <span className="flex text-5xl text-white items-center bg-grey-lighter rounded rounded-r-none px-3 font-bold">BUGS!</span>
             </div> :<div></div>}
             {saleStarted ?

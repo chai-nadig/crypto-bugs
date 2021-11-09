@@ -4,7 +4,6 @@ import os
 from tqdm import tqdm
 from PIL import Image
 import random
-import json
 from collections import defaultdict
 
 TO_GENERATE = 11111
@@ -139,6 +138,15 @@ backgrounds_with_accessories = {
     'Sunset': ['GreySunGlasses'],
     'Wave': ['RedSunGlasses', 'GreySunGlasses', 'Bikini', 'BeachHat', 'PirateHat'],
 }
+
+
+def is_combo(trait):
+    return trait['Background'] in backgrounds_with_accessories and trait['Accessory'] in backgrounds_with_accessories[
+        trait['Background']]
+
+
+def get_combo_key(trait):
+    return '{}:{}'.format(trait['Background'], trait['Accessory'])
 
 
 def allowed_accessories_as_ignore_combination(background, allowed):
@@ -396,15 +404,24 @@ def count_traits(traits):
     accessory_count = defaultdict(int)
     eyes_count = defaultdict(int)
     severity_count = defaultdict(int)
+    combo_count = defaultdict(int)
 
-    for trait in traits:
-        background_counts[trait["Background"]] += 1
-        bug_counts[trait["Bug"]] += 1
-        spots_counts[trait["Spots"]] += 1
-        color_counts[trait["Color"]] += 1
-        accessory_count[trait["Accessory"]] += 1
-        eyes_count[trait["Eyes"]] += 1
-        severity_count[trait['Severity']] += 1
+    for trait in tqdm(
+            iterable=traits,
+            desc="Counting individual traits in {}".format(len(traits)),
+            unit="trait",
+            total=len(traits),
+    ):
+        if is_combo(trait):
+            combo_count[get_combo_key(trait)] += 1
+        else:
+            background_counts[trait["Background"]] += 1
+            bug_counts[trait["Bug"]] += 1
+            spots_counts[trait["Spots"]] += 1
+            color_counts[trait["Color"]] += 1
+            accessory_count[trait["Accessory"]] += 1
+            eyes_count[trait["Eyes"]] += 1
+            severity_count[trait['Severity']] += 1
 
     print_csv(background_counts)
     print_csv(bug_counts)
@@ -413,6 +430,7 @@ def count_traits(traits):
     print_csv(accessory_count)
     print_csv(eyes_count)
     print_csv(severity_count)
+    print_csv(combo_count)
 
 
 def print_csv(d):
