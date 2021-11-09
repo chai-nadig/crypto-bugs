@@ -368,8 +368,8 @@ def post_process(traits):
             unit="traits",
             total=len(traits),
     ):
-        if trait['Accessory'] == 'BedRoom':
-            trait['Background'] = 'BedRoom'
+        if trait['Accessory'] == 'Bedroom':
+            trait['Background'] = 'Bedroom'
             trait['Accessory'] = 'NoneAccessory'
 
         if is_combo(trait):

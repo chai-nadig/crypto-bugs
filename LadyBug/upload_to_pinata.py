@@ -4,6 +4,7 @@ More: https://docs.pinata.cloud/api-pinning/pin-file
 """
 import requests
 from tqdm import tqdm
+import json
 
 Header = {
     'pinata_api_key': "480276fcf43ffc03f46b",
@@ -15,7 +16,9 @@ url = "https://api.pinata.cloud/pinning/pinFileToIPFS"
 directory = "./output"
 
 
-def upload_to_pinata(traits):
+def upload_to_pinata(traits_file):
+    traits = json.loads(traits_file)
+
     total = len(traits)
 
     with tqdm(total=total, desc='Uploading {} images to pinata'.format(total), unit="images") as pbar:
@@ -37,3 +40,9 @@ def upload_to_pinata(traits):
             pbar.update(1)
 
     return traits
+
+
+traits = json.loads('traits.json')
+
+
+print(traits)

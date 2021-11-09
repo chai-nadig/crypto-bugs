@@ -101,8 +101,76 @@ return (
 
     </div>
     <div id="roadmap" className="mx-6 py-6 border-b-2">
-      <h2 className="text-6xl text-center text-crypto-red my-4">ROADMAP</h2>
-      <img src="/images/roadmap_bugs_11.png"/>
+      <h2 className="text-crypto-red text-6xl text-center">ROADMAP</h2>
+      <div className="flex flex-wrap justify-around items-center mx-6 py-6">
+        <div className="border-4 border-red-500 p-2">
+          <img src="images/set3/3.png"  width="240px" class="feature-image"/>
+        </div>
+        <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
+          <span className="text-red text-4xl">LAUNCH - 11/11/21</span>
+          <p class="text-2xl text-white my-6">
+            Start of our bug bash! Reporting 11,111 bugs.
+            First 111 swatters will receive a bug NFT for free!
+          </p>
+        </div>
+      </div>
+      <div className="flex flex-wrap justify-around items-center mx-6 py-6">
+        <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
+          <span className="text-red text-4xl">11% SOLD</span>
+          <p class="text-2xl text-white my-6">
+            <span className="text-red">Free T-Shirts!</span><br/>
+            Swatters that have bugs with an <b>exclusive trait</b> will be eligible for a free T-Shirt printed with their bug.
+          </p>
+          <p class="text-2xl text-white my-6">
+          Trait will be revealed after 11% of bugs are sold. Claim your T-Shirt on our website.
+          </p>
+        </div>
+        <div className="border-4 border-red-500 p-2">
+          <img src="images/set3/2.png"  width="240px" class="feature-image"/>
+        </div>
+      </div>
+      <div className="flex flex-wrap justify-around items-center mx-6 py-6">
+        <div className="border-4 border-red-500 p-2">
+          <img src="images/set3/5.png"  width="240px" class="feature-image"/>
+        </div>
+        <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
+          <span className="text-red text-4xl">33% SOLD</span>
+          <p class="text-2xl text-white my-6">
+            <span className="text-red">Donation to <u><a className="hover:text-black" href="https://www.catf.us/" target="_blank">Clean Air Task Force</a></u></span><br/>
+            We're concerned about climate! This is how we wanted to give back.
+          </p>
+          <p class="text-2xl text-white my-6">
+            We will donate 10.18 ETH (11.11% of sales) after 3,666 bugs have sold.
+          </p>
+        </div>
+      </div>
+      <div className="flex flex-wrap justify-around items-center mx-6 py-6">
+        <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
+          <span className="text-red text-4xl">66% SOLD</span>
+          <p class="text-2xl text-white my-6">
+            <span className="text-red">Twitter Banners!</span><br/>
+            All swatters will get a Twitter Banner to show off your cool bugs! Claim your banner on our website.
+          </p>
+        </div>
+        <div className="border-4 border-red-500 p-2">
+          <img src="images/set3/1.jpeg"  width="240px" class="feature-image"/>
+        </div>
+      </div>
+      <div className="flex flex-wrap justify-around items-center mx-6 py-6">
+        <div className="border-4 border-red-500 p-2">
+          <img src="images/set3/4.png"  width="240px" class="feature-image"/>
+        </div>
+        <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
+          <span className="text-red text-4xl">99% SOLD</span>
+          <p class="text-2xl text-white my-6">
+            <span className="text-red">Another round of donation</span><br/>
+            This time we'll donate to two non-profits that are chosen by the community.
+          </p>
+          <p class="text-2xl text-white my-6">
+            We will totally donate 29.41 ETH (11.11% of remaining sales) in this round, after 10,999 bugs have sold.
+          </p>
+        </div>
+      </div>
     </div>
     <div id="team" className="mx-12 my-16 ">
       <h2 className="text-crypto-red text-6xl text-center">TEAM</h2>

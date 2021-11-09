@@ -141,7 +141,7 @@ export default function Mint() {
         <meta name="twitter:image" content="https://crypto-bugs.com/images/bug.png" key="twimage" />
       </Head>
       <div>
-        <div className="flex items-center justify-between absolute top-0 w-full border-b-2 pb-6">
+        <div className="flex items-center justify-between w-full border-b-2 pb-6">
           <div className="border-4 border-red-800 p-1">
             <a href="/" className=""><img src="images/13.png" width="120px" className="logo-image" /></a>
           </div>

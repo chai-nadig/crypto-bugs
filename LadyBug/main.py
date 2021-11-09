@@ -23,9 +23,9 @@ combine(traits)
 
 count_traits(traits)
 
-traits = upload_to_pinata(traits)
-
 with open('traits.json', 'w') as outfile:
     json.dump(traits, outfile, indent=4)
+
+# traits = upload_to_pinata('traits.json')
 
 print("done")
