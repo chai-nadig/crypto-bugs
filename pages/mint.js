@@ -157,10 +157,11 @@ export default function Mint() {
       </div>
       <div className="md:w-2/3 w-4/5">
         <div className="mt-6 border-b-2 py-6">
-          <div className="flex flex-col items-center">
+        <h1 className="text-6xl text-center text-white py-6"><span className="text-crypto-red">crypto-bugs-0x2b67</span></h1>
+          <div className="flex flex-col items-center py-6">
             <span className="flex text-5xl text-white items-center my-4 ">TOTAL BUGS MINTED:  <span className="text-red text-6xl"> {!signedIn ?  0 : totalSupply } / 11,111</span></span>
             {saleStarted ?
-            <div id="mint" className="flex justify-around  mt-8 mx-6">
+            <div id="mint" className="flex justify-around  mt-8 mx-6 py-6">
               <span className="flex text-5xl text-white items-center bg-grey-lighter rounded rounded-r-none px-3 font-bold">BUG ME</span>
               <input
                 type="number"

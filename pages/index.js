@@ -36,9 +36,9 @@ return (
   </div>
   <div className="md:w-2/3 w-4/5 " id="about">
     <div className="mt-6 border-b-2 py-6">
-      <div className="flex flex-wrap lg:flex-nowrap justify-around items-center">
+      <h1 className="text-6xl text-center text-white"><span className="text-crypto-red">crypto-bugs-0x2b67</span></h1>
+      <div className="flex flex-wrap lg:flex-nowrap justify-around items-center py-6">
         <div className="lg:w-1/2 w-3/4">
-          <h1 className="text-6xl text-white"><span className="text-crypto-red">crypto-bugs-0x2b67</span></h1>
           <p className="text-2xl text-white my-6">We've discovered a variety of bugs and triaged their severities.
 
           </p>
