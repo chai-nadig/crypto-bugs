@@ -38,7 +38,7 @@ return (
     <div className="mt-6 border-b-2 py-6">
       <div className="flex flex-wrap lg:flex-nowrap justify-around items-center">
         <div className="lg:w-1/2 w-3/4">
-          <h1 className="text-7xl text-white"><span className="text-crypto-red">crypto-bugs</span></h1>
+          <h1 className="text-6xl text-white"><span className="text-crypto-red">crypto-bugs-0x2b67</span></h1>
           <p className="text-2xl text-white my-6">We've discovered and triaged a variety of bugs differing in severity and impact.
             A detailed <span class="text-bold-underlined">bug report</span> will be released soon.
           </p>
@@ -50,7 +50,7 @@ return (
             <span class="text-red">Join our Discord <u><a target="_blank" href="https://discord.gg/Sw2PgseN">here!</a></u></span>
           </p>
           <p className="text-2xl text-white my-6">
-            <strong>RELEASE:</strong> 11 Nov 2021. 1:00 pm PST.<br />
+            <strong>RELEASE:</strong> 11/11/2021. 1:00 pm PST.<br />
             <span className="text-white text-2xl"><strong>TOTAL SUPPLY: 11,111</strong> bugs.<br/>
             <strong>PRICE: 0.025 ETH </strong>each.</span>
           </p>
@@ -81,7 +81,7 @@ return (
     </div>
     <div id="traits" className="mx-6 py-6 border-b-2">
       <h2 className="text-crypto-red text-7xl text-center">TRAITS</h2>
-      <p class="text-2xl text-white my-6"><b>crypto-bugs</b> have different traits like background, accessory, color, spots and eye color.
+      <p class="text-2xl text-white my-6"><b>crypto-bugs-0x2b67</b> have different traits like background, accessory, color, spots and eye color.
         There are some bug with combinations of a unique background and an accessory.
       </p>
       <div className="flex flex-wrap  items-center mx-6 py-6">
