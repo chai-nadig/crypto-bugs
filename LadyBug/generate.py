@@ -150,11 +150,12 @@ def get_combo_key(trait):
 
 
 def allowed_accessories_as_ignore_combination(background, allowed):
-    allowed.append('NoneAccessory')
+    aa = [a for a in allowed]
+    aa.append('NoneAccessory')
 
     return {
         'Background': [background],
-        'Accessory': set([a for a in list(accessories.keys()) if a not in allowed])
+        'Accessory': set([a for a in list(accessories.keys()) if a not in aa])
     }
 
 
@@ -361,12 +362,41 @@ def generate_images(traits):
 
 
 def post_process(traits):
-    for trait in traits:
+    for trait in tqdm(
+            iterable=traits,
+            desc="Postprocessing {} traits".format(len(traits)),
+            unit="traits",
+            total=len(traits),
+    ):
         if trait['Accessory'] == 'BedRoom':
             trait['Background'] = 'BedRoom'
             trait['Accessory'] = 'NoneAccessory'
 
-        if trait['Accessory'] in ('Tux', 'Cloak', 'Bikini') or trait['Background'] in ('Matrix', 'Fire', 'Rainbow1'):
+        if is_combo(trait):
+            combo_to_severity = {
+                'Wave:BeachHat': 'Minor',
+                'Beach:BeachHat': 'Minor',
+                'City:Tux': 'Blocker',
+                'Beach:PirateHat': 'Trivial',
+                'Wave:GreySunGlasses': 'Trivial',
+                'Brickwall:Construction': 'Trivial',
+                'Wave:PirateHat': 'Trivial',
+                'Beach:RedSunGlasses': 'Blocker',
+                'SpiderWeb:WizardHat': 'Minor',
+                'Fire:Cloak': 'Blocker',
+                'Book:Graduation': 'Major',
+                'Beach:Bikini': 'Critical',
+                'Wave:Bikini': 'Major',
+                'Clouds:RedSunGlasses': 'Minor',
+                'Sunset:GreySunGlasses': 'Critical',
+                'Beach:GreySunGlasses': 'Minor',
+                'Clouds:GreySunGlasses': 'Minor',
+                'Wave:RedSunGlasses': 'Minor',
+            }
+            combo_key = get_combo_key(trait)
+            trait['Severity'] = combo_to_severity[combo_key]
+
+        elif trait['Accessory'] in ('Tux', 'Cloak', 'Bikini') or trait['Background'] in ('Matrix', 'Fire', 'Rainbow1'):
             trait['Severity'] = 'Blocker'
 
         elif trait['Accessory'] in ('RedHair', 'BeachHat') or trait['Background'] in ('Sunset', 'City'):
@@ -391,6 +421,15 @@ def post_process(traits):
             if key != "Bug" and "Small" in value:
                 trait[key] = value[5:]
 
+    for trait in traits:
+        assert 'Severity' in trait
+        assert trait['Severity'] in ['Blocker', 'Critical', 'Major', 'Minor', 'Trivial']
+
+        assert 'NoneAccessory' not in trait['Accessory']
+        assert 'NoneBackground' not in trait['Background']
+        assert 'NoneColor' not in trait['Color']
+        assert 'NoneSpots' not in trait['Spots']
+
     return traits
 
 
@@ -412,16 +451,18 @@ def count_traits(traits):
             unit="trait",
             total=len(traits),
     ):
+
+        bug_counts[trait["Bug"]] += 1
+        spots_counts[trait["Spots"]] += 1
+        color_counts[trait["Color"]] += 1
+        eyes_count[trait["Eyes"]] += 1
+        severity_count[trait['Severity']] += 1
+
         if is_combo(trait):
             combo_count[get_combo_key(trait)] += 1
         else:
             background_counts[trait["Background"]] += 1
-            bug_counts[trait["Bug"]] += 1
-            spots_counts[trait["Spots"]] += 1
-            color_counts[trait["Color"]] += 1
             accessory_count[trait["Accessory"]] += 1
-            eyes_count[trait["Eyes"]] += 1
-            severity_count[trait['Severity']] += 1
 
     print_csv(background_counts)
     print_csv(bug_counts)
@@ -429,8 +470,8 @@ def count_traits(traits):
     print_csv(color_counts)
     print_csv(accessory_count)
     print_csv(eyes_count)
-    print_csv(severity_count)
     print_csv(combo_count)
+    print_csv(severity_count)
 
 
 def print_csv(d):
