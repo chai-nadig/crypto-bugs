@@ -39,14 +39,14 @@ return (
       <div className="flex flex-wrap lg:flex-nowrap justify-around items-center">
         <div className="lg:w-1/2 w-3/4">
           <h1 className="text-6xl text-white"><span className="text-crypto-red">crypto-bugs-0x2b67</span></h1>
-          <p className="text-2xl text-white my-6">We've discovered and triaged a variety of bugs differing in severity and impact.
+          <p className="text-2xl text-white my-6">We've discovered a variety of bugs and triaged then under different severities.
             A detailed <span class="text-bold-underlined">bug report</span> will be released soon.
           </p>
           <p className="text-2xl text-white my-6">
-            On 11/11 we will be releasing 11,111 (0x2b67 in hexadecimal) bugs. <br/>
+            On 11/11 we will be reporting 11,111 (0x2b67 in hexadecimal) bugs. <br/>
           </p>
           <p className="text-2xl text-white my-6">
-            <b>The first 111 swatters who join our bug bash will receive a bug for free!</b><br/>
+            <b>The first 111 swatters who join our bug bash will receive an NFT of the bug for free!</b><br/>
             <span class="text-red">Join our Discord <u><a target="_blank" href="https://discord.gg/Sw2PgseN">here!</a></u></span>
           </p>
           <p className="text-2xl text-white my-6">
@@ -67,7 +67,7 @@ return (
       </div>
       <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
         <h2 className="text-crypto-red text-6xl text-center">SEVERITY</h2>
-        <p class="text-2xl text-white my-6">Bugs have been triaged under these severity levels.
+        <p class="text-2xl text-white my-6">
           Severity levels more or less correspond to the rarity of traits.
         <ul>
           <li> blocker </li>
@@ -81,8 +81,8 @@ return (
     </div>
     <div id="traits" className="mx-6 py-6 border-b-2">
       <h2 className="text-crypto-red text-7xl text-center">TRAITS</h2>
-      <p class="text-2xl text-white my-6"><b>crypto-bugs-0x2b67</b> have different traits like background, accessory, color, spots and eye color.
-        There are some bug with combinations of a unique background and an accessory.
+      <p class="text-2xl text-white my-6"><b>crypto-bugs-0x2b67</b> have traits like background, accessory, color, spots and eye color.
+        There are some bugs with combinations of a unique background and an accessory.
       </p>
       <div className="flex flex-wrap  items-center mx-6 py-6">
         <div className="md:w-1/2">
@@ -96,7 +96,7 @@ return (
           <div className=" p-2 "><span class="text-white">grad bug</span><img src="images/set2/1646.png" alt="" width="200px" className="feature-image"/></div>
         </div>
       </div>
-      <p class="text-xl text-white my-6"><i>Name your bug as you please!</i>
+      <p class="text-xl text-white my-6"><i>name your bug as you please!</i>
       </p>
 
     </div>
