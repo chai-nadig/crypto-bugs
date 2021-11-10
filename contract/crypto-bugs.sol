@@ -1833,7 +1833,7 @@ contract CryptoBugs is ERC721, Ownable {
 
 
     /// @param addrs The address received funds will be split between.
-    constructor(address[] memory addrs) ERC721("crypto-bugs-0x2b67", "ladybugs") {
+    constructor(address[] memory addrs) ERC721("crypto-bugs-0x2b67", "cb0x2b67") {
         // Contracts can be deployed to addresses with ETH already in them. We
         // want to call balance on address not the balance function defined
         // below so a cast is necessary.

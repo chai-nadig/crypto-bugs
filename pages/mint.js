@@ -30,7 +30,7 @@ export default function Mint() {
 
   const [bugPrice, setBugPrice] = useState(0)
 
-  const [minted, setMinted] = useState(false)
+  const [minted, setMinted] = useState(0)
 
   useEffect(async () => {
     signIn()
@@ -111,7 +111,7 @@ export default function Mint() {
           gas: String(gasAmount)
         })
         .on('transactionHash', function(hash) {
-          setMinted(true);
+          setMinted(how_many_bugs);
           console.log("transactionHash", hash)
         })
     } else {
@@ -176,7 +176,7 @@ export default function Mint() {
             : <button className="mt-4 text-4xl border-6 bg-red  text-white hover:text-black p-2 ">SALE IS NOT ACTIVE</button>
             }
 
-            { minted ? <div className="text-4xl text-crypto-red mt-6 py-6"> Successfully minted {how_many_bugs} bug{how_many_bugs == 1? '': 's'}! </div>
+            { minted != 0 ? <div className="text-4xl text-crypto-red mt-6 py-6"> Successfully minted {minted} bug{minted == 1? '': 's'}! </div>
               : <div></div>
             }
           </div>
