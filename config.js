@@ -1,6 +1,6 @@
 // GET YOUR ALCHEMY API ENDPOINT FROM https://infura.io/
 export const ALCHEMY_ADDRESS = "https://eth-rinkeby.alchemyapi.io/v2/tW2Y3Zv9gDRmwJanbmUIgrSw1N_cBROL"
-export const ADDRESS = "0x5403481ef0643bFeAfa35f81EF8fc97E6D430165"
+export const ADDRESS = "0x515e69E3A361Fb355e7F73eAD437347Cc6681611"
 
 export const ABI = [
   {
@@ -306,25 +306,6 @@ export const ABI = [
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_owner",
-        "type": "address"
-      }
-    ],
-    "name": "bugNamesOfOwner",
-    "outputs": [
-      {
-        "internalType": "string[]",
-        "name": "",
-        "type": "string[]"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [],
     "name": "bugPrice",
     "outputs": [
@@ -348,24 +329,6 @@ export const ABI = [
       }
     ],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_tokenId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "_name",
-        "type": "string"
-      }
-    ],
-    "name": "changeBugName",
-    "outputs": [],
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -491,19 +454,6 @@ export const ABI = [
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "owner",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -520,13 +470,6 @@ export const ABI = [
       }
     ],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "renounceOwnership",
-    "outputs": [],
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -658,38 +601,12 @@ export const ABI = [
   {
     "inputs": [
       {
-        "internalType": "uint256",
-        "name": "max",
-        "type": "uint256"
-      }
-    ],
-    "name": "setMaxBugPurchase",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
         "internalType": "string",
         "name": "provenanceHash",
         "type": "string"
       }
     ],
     "name": "setProvenanceHash",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "totalBugs",
-        "type": "uint256"
-      }
-    ],
-    "name": "setTotalBugs",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -811,7 +728,7 @@ export const ABI = [
     "inputs": [
       {
         "internalType": "address",
-        "name": "_owner",
+        "name": "owner",
         "type": "address"
       }
     ],
@@ -873,38 +790,6 @@ export const ABI = [
     "name": "transferFrom",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "newOwner",
-        "type": "address"
-      }
-    ],
-    "name": "transferOwnership",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_tokenId",
-        "type": "uint256"
-      }
-    ],
-    "name": "viewBugName",
-    "outputs": [
-      {
-        "internalType": "string",
-        "name": "",
-        "type": "string"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   },
   {
