@@ -199,7 +199,7 @@ return (
           <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image" /></div>
           <h3 className="my-4 text-center text-5xl text-center text-red hover:text-red">uv</h3>
           <p className="text-center text-white text-2xl">
-            <span className="text-3xl">Community Manager</span><br/>
+            <span className="text-3xl">Comms</span><br/>
             uv@crypto-bugs.com
           </p>
         </div>
