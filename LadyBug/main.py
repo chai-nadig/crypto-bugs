@@ -11,21 +11,32 @@ from generate import (
     get_trait_key,
 )
 
-traits = generateCombinations()
+ONLY_UPLOAD_TO_PINATA = True
 
-traits = generate_images(traits)
+if __name__ == "__main__":
 
-traits = post_process(traits)
+    if not ONLY_UPLOAD_TO_PINATA:
 
-assert allUnique([get_trait_key(trait) for trait in traits])
+        traits = generateCombinations()
 
-combine(traits)
+        traits = generate_images(traits)
 
-count_traits(traits)
+        traits = post_process(traits)
 
-with open('traits.json', 'w') as outfile:
-    json.dump(traits, outfile, indent=4)
+        assert allUnique([get_trait_key(trait) for trait in traits])
 
-# traits = upload_to_pinata('traits.json')
+        combine(traits)
 
-print("done")
+        count_traits(traits)
+
+        with open('traits.json', 'w') as outfile:
+            json.dump(traits, outfile, indent=4)
+
+    else:
+
+        traits = upload_to_pinata('traits.json')
+
+        with open('../database/traitsfinal.json', 'w') as outfile:
+            json.dump(traits, outfile, indent=4)
+
+    print("done")

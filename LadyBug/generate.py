@@ -416,7 +416,7 @@ def post_process(traits):
                 continue
 
             if "None" in value:
-                trait[key] = 'None'
+                trait[key] = None
 
             if key != "Bug" and "Small" in value:
                 trait[key] = value[5:]
@@ -425,10 +425,10 @@ def post_process(traits):
         assert 'Severity' in trait
         assert trait['Severity'] in ['Blocker', 'Critical', 'Major', 'Minor', 'Trivial']
 
-        assert 'NoneAccessory' not in trait['Accessory']
-        assert 'NoneBackground' not in trait['Background']
-        assert 'NoneColor' not in trait['Color']
-        assert 'NoneSpots' not in trait['Spots']
+        assert 'NoneAccessory' != trait['Accessory']
+        assert 'NoneBackground' != trait['Background']
+        assert 'NoneColor' != trait['Color']
+        assert 'NoneSpots' != trait['Spots']
 
     return traits
 
