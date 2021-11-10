@@ -1,7 +1,4 @@
 
-// File: contracts/crypto-bugs.sol
-
-
 // File: @openzeppelin/contracts@3.3.0/utils/Strings.sol
 
 
@@ -1709,7 +1706,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata, IERC721Enumerable 
     function _beforeTokenTransfer(address from, address to, uint256 tokenId) internal virtual { }
 }
 
-// File: crypto-bugs.sol
+// File: contracts/crypto-bugs.sol
 
 pragma solidity ^0.7.0;
 pragma abicoder v2;
@@ -1735,18 +1732,12 @@ contract CryptoBugs is ERC721  {
     // Unit in WEI. 0.025 ETH = ~113.81 USD
     uint256 public bugPrice = 25000000000000000;
 
-    uint public maxBugPurchase = 20;
-
     uint256 public TOTAL_BUGS = 11111;
 
     bool public saleIsActive = false;
 
-    mapping(uint => string) public bugNames;
-
     // Reserve 111 Bugs for team - Giveaways/Prizes etc
     uint public bugReserve = 111;
-
-    event bugNameChange(address _by, uint _tokenId, string _name);
 
     event licenseisLocked(string _licenseText);
 
@@ -1769,7 +1760,7 @@ contract CryptoBugs is ERC721  {
 
 
     /// @param addrs The address received funds will be split between.
-    constructor(address[] memory addrs) ERC721("crypto-bugs-0x2b68", "cb0x2b68") {
+    constructor(address[] memory addrs) ERC721("crypto-bugs-0x2b67", "cb0x2b67") {
         address msgSender = _msgSender();
         _owner = msgSender;
 
@@ -1816,6 +1807,7 @@ contract CryptoBugs is ERC721  {
 
     function reserveBugs(address _to, uint256 _reserveAmount) public onlyOwner {
         require(_reserveAmount > 0 && _reserveAmount <= bugReserve, "Not enough bug reserve left for team");
+        require(totalSupply().add(_reserveAmount) <= TOTAL_BUGS, "Reserve amount would exceed max supply of bugs");
 
         uint256 supply = totalSupply();
         for (uint i = 0; i < _reserveAmount; i++) {
@@ -1852,7 +1844,7 @@ contract CryptoBugs is ERC721  {
 
     function mintBugs(uint numberOfTokens) public payable {
         require(saleIsActive, "Sale must be active to mint bug");
-        require(numberOfTokens > 0 && numberOfTokens <= maxBugPurchase, "Can only mint 20 bugs at a time");
+        require(numberOfTokens > 0 && numberOfTokens <= 20, "Can only mint upto 20 bugs at a time");
         require(totalSupply().add(numberOfTokens) <= TOTAL_BUGS, "Purchase would exceed max supply of bugs");
         require(msg.value >= bugPrice.mul(numberOfTokens), "Ether value sent is not correct");
 
