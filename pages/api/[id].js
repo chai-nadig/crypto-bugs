@@ -24,12 +24,7 @@ const bugsApi = async(req, res) => {
    if(parseInt(query) < totalSupply) {
 //  const totalBugs = 11111;
 //  if(parseInt(query) < totalBugs) {
-    // CALL CUSTOM TOKEN NAME IN THE CONTRACT
-    const tokenNameCall = await bugsContract.methods.bugNames(query).call();
-    let tokenName = `#${query}${(tokenNameCall === '') ? "" : ` - ${tokenNameCall}`}`
-
-    // IF YOU ARE NOT USING CUSTOM NAMES, JUST USE THIS
-    // let tokenName= `#${query}`
+    let tokenName = `#${query}`
 
     const trait = traits[parseInt(query)]
 

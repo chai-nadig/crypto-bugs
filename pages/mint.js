@@ -32,6 +32,8 @@ export default function Mint() {
 
   const [minted, setMinted] = useState(0)
 
+  const [error, setError] = useState('')
+
   useEffect(async () => {
     signIn()
   }, [])
@@ -89,6 +91,14 @@ export default function Mint() {
   }
 
   async function mintBug(how_many_bugs) {
+    if (how_many_bugs > 20) {
+      setError('Can only mint upto 20 bugs at a time');
+      return
+    } else {
+      setError('');
+    }
+
+
     if (bugContract) {
       const price = Number(bugPrice) * how_many_bugs
 
@@ -179,6 +189,8 @@ export default function Mint() {
             { minted != 0 ? <div className="text-4xl text-crypto-red mt-6 py-6"> Successfully minted {minted} bug{minted == 1? '': 's'}! </div>
               : <div></div>
             }
+
+            { error != '' ? <div className="text-4xl text-red mt-6 py-6"> {error} </div> : <div></div> }
           </div>
         </div>
       </div>

@@ -1,4 +1,7 @@
 
+// File: contracts/crypto-bugs.sol
+
+
 // File: @openzeppelin/contracts@3.3.0/utils/Strings.sol
 
 
@@ -1766,7 +1769,7 @@ contract CryptoBugs is ERC721  {
 
 
     /// @param addrs The address received funds will be split between.
-    constructor(address[] memory addrs) ERC721("crypto-bugs-0x2b67", "cb0x2b67") {
+    constructor(address[] memory addrs) ERC721("crypto-bugs-0x2b68", "cb0x2b68") {
         address msgSender = _msgSender();
         _owner = msgSender;
 
