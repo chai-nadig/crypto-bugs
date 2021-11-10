@@ -1776,7 +1776,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata, IERC721Enumerable 
     function _beforeTokenTransfer(address from, address to, uint256 tokenId) internal virtual { }
 }
 
-// File: contracts/crypto-bug.sol
+// File: contracts/crypto-bugs.sol
 
 pragma solidity ^0.7.0;
 pragma abicoder v2;
