@@ -211,7 +211,7 @@ return (
         We're three software techies, that got really engrossed in the world of NFT recently. Mostly inspired by
         <a className="text-white-shadow hover:text-black" href="https://www.theverge.com/2021/3/11/22325054/beeple-christies-nft-sale-cost-everydays-69-million" target="_blank"> Beeple's sale for $69 Million</a>
         &nbsp; and <a className="text-white-shadow hover:text-black" href="https://www.larvalabs.com/cryptopunks" target="_blank"> 24 x 24 bit art by Cryptopunks,</a>
-        &nbsp; we landed on <b className="text-red ">crypto-bugs-0x2b67.</b>
+        &nbsp; we came up with <b className="text-red ">crypto-bugs-0x2b67.</b>
       </p>
       <p class="text-2xl text-white my-6">
         <b className="text-red ">crypto-bugs-0x2b67 </b> took two weeks to go from idea to product.
