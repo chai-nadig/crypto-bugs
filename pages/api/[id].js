@@ -36,38 +36,57 @@ const bugsApi = async(req, res) => {
     // CHECK OPENSEA METADATA STANDARD DOCUMENTATION https://docs.opensea.io/docs/metadata-standards
     let metadata = {}
     // GENERAL BUG METADATA
+
+    attributes = []
+    if (trait['Background']) {
+      attributes.push({
+        "trait_type": "Background",
+        "value": trait["Background"]
+      });
+    }
+
+    if (trait['Color']) {
+      attributes.push({
+        "trait_type": "Color",
+        "value": trait["Color"]
+      });
+    }
+
+    if (trait['Spots']) {
+       attributes.push({
+         "trait_type": "Spots",
+         "value": trait["Spots"]
+      });
+    }
+
+    if (trait['Eyes']) {
+      attributes.push({
+        "trait_type": "Eyes",
+        "value": trait["Eyes"]
+      });
+    }
+
+    if (trait['Accessory']) {
+      attributes.push({
+        "trait_type": "Accessory",
+        "value": trait["Accessory"]
+      });
+    }
+
+    if (trait['Severity']) {
+      attributes.push({
+        "trait_type": "Severity",
+        "value": trait["Severity"]
+      });
+    }
+
     metadata = {
       "name": tokenName,
       "description": "",
       "tokenId" : parseInt(query),
       "image": `https://gateway.pinata.cloud/ipfs/${trait["imageIPFS"]}`,
       "external_url":"https://crypto-bugs.com",
-      "attributes": [
-          {
-            "trait_type": "Background",
-            "value": trait["Background"]
-          },
-          {
-            "trait_type": "Color",
-            "value": trait["Color"]
-          },
-          {
-            "trait_type": "Spots",
-            "value": trait["Spots"]
-          },
-          {
-            "trait_type": "Eyes",
-            "value": trait["Eyes"]
-          },
-          {
-            "trait_type": "Accessory",
-            "value": trait["Accessory"]
-          },
-          {
-            "trait_type": "Severity",
-            "value": trait["Severity"]
-          }
-      ]
+      "attributes": attributes,
     }
       // console.log(metadata)
     res.statusCode = 200

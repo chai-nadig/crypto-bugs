@@ -6,7 +6,7 @@ return (
     <title>crypto-bugs</title>
     <link rel="icon" href="/images/favicon.png" />
     <meta property="og:title" content="crypto-bugs" key="ogtitle" />
-    <meta property="og:description" content="bugs in production. we ship them" key="ogdesc" />
+    <meta property="og:description" content="a variety of NFT bugs triaged under severities blocker, critical, major, minor and trivial" key="ogdesc" />
     <meta property="og:type" content="website" key="ogtype" />
     <meta property="og:url" content="https://crypto-bugs.com/" key="ogurl"/>
     <meta property="og:image" content="https://crypto-bugs.com/images/13.png" key="ogimage"/>
@@ -15,7 +15,7 @@ return (
     <meta property="twitter:domain" content="crypto-bugs.com" key="twdomain" />
     <meta property="twitter:url" content="https://crypto-bugs.com/" key="twurl" />
     <meta name="twitter:title" content="crypto-bugs" key="twtitle" />
-    <meta name="twitter:description" content="bugs in production. we ship them" key="twdesc" />
+    <meta name="twitter:description" content="a variety of NFT bugs triaged under severities blocker, critical, major, minor and trivial." key="twdesc" />
     <meta name="twitter:image" content="https://crypto-bugs.com/images/13.png" key="twimage" />
   </Head>
   <div>
