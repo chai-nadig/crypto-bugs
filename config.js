@@ -1,6 +1,6 @@
 // GET YOUR ALCHEMY API ENDPOINT FROM https://infura.io/
 export const ALCHEMY_ADDRESS = "https://eth-rinkeby.alchemyapi.io/v2/tW2Y3Zv9gDRmwJanbmUIgrSw1N_cBROL"
-export const ADDRESS = "0x950fe34104aB1bfd492A4be684CB574c9c616F6e"
+export const ADDRESS = "0xc52e1ead487f18dfbd9c7b2bd061a904c2fad03c"
 
 export const ABI = [
   {
