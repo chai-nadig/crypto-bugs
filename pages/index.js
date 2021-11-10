@@ -194,12 +194,27 @@ return (
           </p>
         </div>
       </div>
+      <div className="flex justify-around flex-wrap">
+        <div className="flex flex-col  my-6">
+          <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image" /></div>
+          <h3 className="my-4 text-center text-5xl text-center text-red hover:text-red">uv</h3>
+          <p className="text-center text-white text-2xl">
+            <span className="text-3xl">Community Manager</span><br/>
+            uv@crypto-bugs.com
+          </p>
+        </div>
+        <div className="flex flex-col  my-6">
+          <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image" /></div>
+        </div>
+      </div>
       <p class="text-2xl text-white my-6">
-        We're two software engineers, that got really engrossed in the world of NFT after hearing about
-        <a className="text-white-shadow hover:text-black" href="https://www.theverge.com/2021/3/11/22325054/beeple-christies-nft-sale-cost-everydays-69-million" target="_blank"> Beeple's sale for $69 Million!</a>
+        We're three software engineers, that got really engrossed in the world of NFT recently. Mostly inspired by
+        <a className="text-white-shadow hover:text-black" href="https://www.theverge.com/2021/3/11/22325054/beeple-christies-nft-sale-cost-everydays-69-million" target="_blank"> Beeple's sale for $69 Million</a>
+        &nbsp; and <a className="text-white-shadow hover:text-black" href="https://www.larvalabs.com/cryptopunks" target="_blank"> 24 x 24 bit art by Cryptopunks,</a>
+        &nbsp; we landed on <b className="text-red ">crypto-bugs-0x2b67.</b>
       </p>
       <p class="text-2xl text-white my-6">
-        <strong className="text-crypto-red ">crypto-bugs-0x2b67 </strong> took two weeks to go from idea to product.
+        <b className="text-red ">crypto-bugs-0x2b67 </b> took two weeks to go from idea to product.
         We bought a drawing tablet one weekend, started drawing bugs, adding backgrounds and accessories, and that was a lot of fun!
         It's amazing how much you can do in a 24 x 24 pixel canvas!
       </p>
