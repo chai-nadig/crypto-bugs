@@ -1721,7 +1721,7 @@ contract CryptoBugs is ERC721  {
 
     using SafeMath for uint256;
 
-    // IPFS URL WILL BE ADDED WHEN BUGS ARE ALL SOLD OUT
+    // IPFS URL WILL BE ADDED WHEN ALL BUGS ARE SOLD OUT
     string public BUG_PROVENANCE = "";
 
     string public LICENSE_TEXT = "";
@@ -1729,15 +1729,13 @@ contract CryptoBugs is ERC721  {
     // TEAM CAN'T EDIT THE LICENSE AFTER THIS GETS TRUE
     bool licenseLocked = false;
 
-    // Unit in WEI. 0.025 ETH = ~113.81 USD
+    // Unit in WEI. 0.025 ETH
     uint256 public bugPrice = 25000000000000000;
-
-    uint256 public TOTAL_BUGS = 11111;
 
     bool public saleIsActive = false;
 
-    // Reserve 111 Bugs for team - Giveaways/Prizes etc
-    uint public bugReserve = 111;
+    // Reserve 100 Bugs for team - Giveaways/Prizes etc
+    uint256 public bugReserve = 100;
 
     event licenseisLocked(string _licenseText);
 
@@ -1746,17 +1744,17 @@ contract CryptoBugs is ERC721  {
     // reading from the map but not writing to the map using the
     // amountsWithdrew(address) method of the contract. It's public mainly for
     // testing.
-    mapping(address => uint) public amountsWithdrew;
+    mapping(address => uint256) public amountsWithdrew;
 
     // A set of parties to split the funds between. They are initialized in the
     // constructor.
     mapping(address => bool) public between;
 
     // The number of ways incoming funds will we split.
-    uint public numberOfSplits;
+    uint256 public numberOfSplits;
 
     // The total amount of funds which has been deposited into the contract.
-    uint public totalFunds;
+    uint256 public totalFunds;
 
 
     /// @param addrs The address received funds will be split between.
@@ -1771,10 +1769,9 @@ contract CryptoBugs is ERC721  {
 
         numberOfSplits = addrs.length;
 
-        for (uint i = 0; i < addrs.length; i++) {
+        for (uint256 i = 0; i < addrs.length; i++) {
             // loop over addrs and update set of included accounts
-            address included = addrs[i];
-            between[included] = true;
+            between[addrs[i]] = true;
         }
         emit OwnershipTransferred(address(0), msgSender);
     }
@@ -1807,10 +1804,10 @@ contract CryptoBugs is ERC721  {
 
     function reserveBugs(address _to, uint256 _reserveAmount) public onlyOwner {
         require(_reserveAmount > 0 && _reserveAmount <= bugReserve, "Not enough bug reserve left for team");
-        require(totalSupply().add(_reserveAmount) <= TOTAL_BUGS, "Reserve amount would exceed max supply of bugs");
+        require(totalSupply().add(_reserveAmount) <= 11111, "Reserve amount would exceed max supply of bugs");
 
         uint256 supply = totalSupply();
-        for (uint i = 0; i < _reserveAmount; i++) {
+        for (uint256 i = 0; i < _reserveAmount; i++) {
             _safeMint(_to, supply + i);
         }
         bugReserve = bugReserve.sub(_reserveAmount);
@@ -1837,74 +1834,36 @@ contract CryptoBugs is ERC721  {
     }
 
     // Returns the license for tokens
-    function tokenLicense(uint _id) public view returns(string memory) {
+    function tokenLicense(uint256 _id) public view returns(string memory) {
         require(_id < totalSupply(), "CHOOSE A BUG WITHIN RANGE");
         return LICENSE_TEXT;
     }
 
-    function mintBugs(uint numberOfTokens) public payable {
+    function mintBugs(uint256 numberOfTokens) public payable {
         require(saleIsActive, "Sale must be active to mint bug");
         require(numberOfTokens > 0 && numberOfTokens <= 20, "Can only mint upto 20 bugs at a time");
-        require(totalSupply().add(numberOfTokens) <= TOTAL_BUGS, "Purchase would exceed max supply of bugs");
+        require(totalSupply().add(numberOfTokens) <= 11111, "Purchase would exceed max supply of bugs");
         require(msg.value >= bugPrice.mul(numberOfTokens), "Ether value sent is not correct");
 
-        for(uint i = 0; i < numberOfTokens; i++) {
-            uint mintIndex = totalSupply();
-            if (totalSupply() < TOTAL_BUGS) {
+        for(uint256 i = 0; i < numberOfTokens; i++) {
+            uint256 mintIndex = totalSupply();
+            if (totalSupply() < 11111) {
                 _safeMint(msg.sender, mintIndex);
             }
         }
         totalFunds += bugPrice.mul(numberOfTokens);
     }
 
-    // To save on transaction fees, it's beneficial to withdraw in one big
-    // transaction instead of many little ones. That's why a withdrawal flow is
-    // being used.
-
-    /// @notice Withdraws from the sender's share of funds and deposits into the
-    /// sender's account. If there are insufficient funds in the contract, or
-    /// more than the share is being withdrawn, throws, canceling the
-    /// transaction.
-    /// @param amount The amount of funds in wei to withdraw from the contract.
-    function withdraw(uint amount) public {
-        withdrawInternal(amount, false);
-    }
-
     /// @notice Withdraws all funds available to the sender and deposits them
     /// into the sender's account.
+    /// Checks whether the sender is allowed to withdraw
     function withdrawAll() public {
-        withdrawInternal(0, true);
-    }
-
-    // Since `withdrawInternal` is internal, it isn't in the ABI and can't be
-    // called from outside of the contract.
-
-    /// @notice Checks whether the sender is allowed to withdraw and has
-    /// sufficient funds, then withdraws.
-    /// @param requested The amount of funds in wei to withdraw from the
-    /// contract. If the `all` parameter is true, the `amount` parameter is
-    /// ignored. If funds are insufficient, throws.
-    /// @param all If true, withdraws all funds the sender has access to from
-    /// this contract.
-    function withdrawInternal(uint requested, bool all) internal {
         // Require the withdrawer to be included in `between` at contract
         // creation time.
         require(between[msg.sender]);
 
         // Decide the amount to withdraw based on the `all` parameter.
-        uint available = balance();
-        uint transferring = 0;
-
-        if (all) {
-            transferring = available;
-        }
-        else {
-            transferring = requested;
-        }
-
-        // Ensures the funds are available to make the transfer, otherwise
-        // throws.
-        require(transferring <= available);
+        uint256 transferring = balance();
 
         // Updates the internal state, this is done before the transfer to
         // prevent re-entrancy bugs.
@@ -1918,12 +1877,12 @@ contract CryptoBugs is ERC721  {
     // We do integer division (floor(a / b)) when calculating each share, because
     // solidity doesn't have a decimal number type. This means there will be a
     // maximum remainder of count - 1 wei locked in the contract. We ignore this
-    // because it is such a small amount of ethereum (1 Wei = 10^(-18)
-    // Ethereum). The extra Wei can be extracted by depositing an amount to make
-    // totalInput evenly divisable between count parties.
+    // because it is such a small amount of ethereum (1 Wei = 10^(-18) Ethereum).
+    // The extra Wei can be extracted by depositing an amount to make
+    // totalFunds evenly divisible between numberOfSplits parties.
 
     /// @notice Gets the amount of funds in Wei available to the sender.
-    function balance() public view returns (uint) {
+    function balance() public view returns (uint256) {
         if (!between[msg.sender]) {
             // The sender of the message isn't part of the split. Ignore them.
             return 0;
@@ -1931,9 +1890,9 @@ contract CryptoBugs is ERC721  {
 
         // `share` is the amount of funds which are available to each of the
         // accounts specified in the constructor.
-        uint share = totalFunds / numberOfSplits;
-        uint withdrew = amountsWithdrew[msg.sender];
-        uint available = share - withdrew;
+        uint256 share = totalFunds / numberOfSplits;
+        uint256 withdrew = amountsWithdrew[msg.sender];
+        uint256 available = share - withdrew;
 
         assert(available >= 0 && available <= share);
 
