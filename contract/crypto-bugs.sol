@@ -1776,9 +1776,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata, IERC721Enumerable 
     function _beforeTokenTransfer(address from, address to, uint256 tokenId) internal virtual { }
 }
 
-// File: contracts/crypto-bugs-short.sol
-
-
+// File: contracts/crypto-bug.sol
 
 pragma solidity ^0.7.0;
 pragma abicoder v2;
@@ -1835,7 +1833,7 @@ contract CryptoBugs is ERC721, Ownable {
 
 
     /// @param addrs The address received funds will be split between.
-    constructor(address[] memory addrs) ERC721("crypto-bugs-0x2B67", "cb0x2B67") {
+    constructor(address[] memory addrs) ERC721("crypto-bugs-0x2b67", "ladybugs") {
         // Contracts can be deployed to addresses with ETH already in them. We
         // want to call balance on address not the balance function defined
         // below so a cast is necessary.
