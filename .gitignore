@@ -7,6 +7,4 @@ combined.png
 node_modules/
 .next
 /venv/
-/traits.json
-LadyBug/traits.json
 LadyBug/output/*
