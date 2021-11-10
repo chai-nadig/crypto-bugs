@@ -1231,76 +1231,6 @@ abstract contract Context {
     }
 }
 
-// File: @openzeppelin/contracts@3.3.0/access/Ownable.sol
-
-
-
-pragma solidity >=0.6.0 <0.8.0;
-
-/**
- * @dev Contract module which provides a basic access control mechanism, where
- * there is an account (an owner) that can be granted exclusive access to
- * specific functions.
- *
- * By default, the owner account will be the one that deploys the contract. This
- * can later be changed with {transferOwnership}.
- *
- * This module is used through inheritance. It will make available the modifier
- * `onlyOwner`, which can be applied to your functions to restrict their use to
- * the owner.
- */
-abstract contract Ownable is Context {
-    address private _owner;
-
-    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
-
-    /**
-     * @dev Initializes the contract setting the deployer as the initial owner.
-     */
-    constructor () internal {
-        address msgSender = _msgSender();
-        _owner = msgSender;
-        emit OwnershipTransferred(address(0), msgSender);
-    }
-
-    /**
-     * @dev Returns the address of the current owner.
-     */
-    function owner() public view returns (address) {
-        return _owner;
-    }
-
-    /**
-     * @dev Throws if called by any account other than the owner.
-     */
-    modifier onlyOwner() {
-        require(_owner == _msgSender(), "Ownable: caller is not the owner");
-        _;
-    }
-
-    /**
-     * @dev Leaves the contract without owner. It will not be possible to call
-     * `onlyOwner` functions anymore. Can only be called by the current owner.
-     *
-     * NOTE: Renouncing ownership will leave the contract without an owner,
-     * thereby removing any functionality that is only available to the owner.
-     */
-    function renounceOwnership() public virtual onlyOwner {
-        emit OwnershipTransferred(_owner, address(0));
-        _owner = address(0);
-    }
-
-    /**
-     * @dev Transfers ownership of the contract to a new account (`newOwner`).
-     * Can only be called by the current owner.
-     */
-    function transferOwnership(address newOwner) public virtual onlyOwner {
-        require(newOwner != address(0), "Ownable: new owner is the zero address");
-        emit OwnershipTransferred(_owner, newOwner);
-        _owner = newOwner;
-    }
-}
-
 // File: @openzeppelin/contracts@3.3.0/token/ERC721/ERC721.sol
 
 
@@ -1776,15 +1706,18 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata, IERC721Enumerable 
     function _beforeTokenTransfer(address from, address to, uint256 tokenId) internal virtual { }
 }
 
-// File: contracts/crypto-bugs.sol
+// File: crypto-bugs.sol
 
 pragma solidity ^0.7.0;
 pragma abicoder v2;
 
 
 
+contract CryptoBugs is ERC721  {
 
-contract CryptoBugs is ERC721, Ownable {
+    address private _owner;
+
+    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
     using SafeMath for uint256;
 
@@ -1834,6 +1767,9 @@ contract CryptoBugs is ERC721, Ownable {
 
     /// @param addrs The address received funds will be split between.
     constructor(address[] memory addrs) ERC721("crypto-bugs-0x2b67", "cb0x2b67") {
+        address msgSender = _msgSender();
+        _owner = msgSender;
+
         // Contracts can be deployed to addresses with ETH already in them. We
         // want to call balance on address not the balance function defined
         // below so a cast is necessary.
@@ -1846,6 +1782,7 @@ contract CryptoBugs is ERC721, Ownable {
             address included = addrs[i];
             between[included] = true;
         }
+        emit OwnershipTransferred(address(0), msgSender);
     }
 
     function setProvenanceHash(string memory provenanceHash) public onlyOwner {
@@ -1864,24 +1801,10 @@ contract CryptoBugs is ERC721, Ownable {
         emit licenseisLocked(LICENSE_TEXT);
     }
 
-
     /// @notice Sets the bug price.
     /// @param price The price in wei per bug.
     function setBugPrice(uint256 price) public onlyOwner {
         bugPrice = price;
-    }
-
-    /// @notice Sets the maximum number of bugs a person can mint at one time
-    /// @param max The number of bugs to mint at one time
-    function setMaxBugPurchase(uint max) public onlyOwner {
-        maxBugPurchase = max;
-    }
-
-
-    /// @notice Sets the total number of bugs available to mint
-    /// @param totalBugs The number of bugs available
-    function setTotalBugs(uint256 totalBugs) public onlyOwner {
-        TOTAL_BUGS = totalBugs;
     }
 
     function flipSaleState() public onlyOwner {
@@ -1903,8 +1826,8 @@ contract CryptoBugs is ERC721, Ownable {
     }
 
 
-    function tokensOfOwner(address _owner) external view returns(uint256[] memory ) {
-        uint256 tokenCount = balanceOf(_owner);
+    function tokensOfOwner(address owner) external view returns(uint256[] memory ) {
+        uint256 tokenCount = balanceOf(owner);
         if (tokenCount == 0) {
             // Return an empty array
             return new uint256[](0);
@@ -1912,7 +1835,7 @@ contract CryptoBugs is ERC721, Ownable {
             uint256[] memory result = new uint256[](tokenCount);
             uint256 index;
             for (index = 0; index < tokenCount; index++) {
-                result[index] = tokenOfOwnerByIndex(_owner, index);
+                result[index] = tokenOfOwnerByIndex(owner, index);
             }
             return result;
         }
@@ -1937,36 +1860,6 @@ contract CryptoBugs is ERC721, Ownable {
             }
         }
         totalFunds += bugPrice.mul(numberOfTokens);
-    }
-
-    function changeBugName(uint _tokenId, string memory _name) public {
-        require(ownerOf(_tokenId) == msg.sender, "Hey, your wallet doesn't own this bug!");
-        require(sha256(bytes(_name)) != sha256(bytes(bugNames[_tokenId])), "New name is same as the current one");
-        bugNames[_tokenId] = _name;
-
-        emit bugNameChange(msg.sender, _tokenId, _name);
-    }
-
-    function viewBugName(uint _tokenId) public view returns( string memory ){
-        require( _tokenId < totalSupply(), "Choose a bug within range" );
-        return bugNames[_tokenId];
-    }
-
-
-    // GET ALL BUGS OF A WALLET AS AN ARRAY OF STRINGS. WOULD BE BETTER MAYBE IF IT RETURNED A STRUCT WITH ID-NAME MATCH
-    function bugNamesOfOwner(address _owner) external view returns(string[] memory ) {
-        uint256 tokenCount = balanceOf(_owner);
-        if (tokenCount == 0) {
-            // Return an empty array
-            return new string[](0);
-        } else {
-            string[] memory result = new string[](tokenCount);
-            uint256 index;
-            for (index = 0; index < tokenCount; index++) {
-                result[index] = bugNames[tokenOfOwnerByIndex(_owner, index)] ;
-            }
-            return result;
-        }
     }
 
     // To save on transaction fees, it's beneficial to withdraw in one big
@@ -2050,5 +1943,13 @@ contract CryptoBugs is ERC721, Ownable {
         assert(available >= 0 && available <= share);
 
         return available;
+    }
+
+    /**
+     * @dev Throws if called by any account other than the owner.
+     */
+    modifier onlyOwner() {
+        require(_owner == _msgSender(), "Ownable: caller is not the owner");
+        _;
     }
 }
