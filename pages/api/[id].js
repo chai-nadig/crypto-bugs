@@ -37,7 +37,7 @@ const bugsApi = async(req, res) => {
     let metadata = {}
     // GENERAL BUG METADATA
 
-    attributes = []
+    let attributes = [];
     if (trait['Background']) {
       attributes.push({
         "trait_type": "Background",

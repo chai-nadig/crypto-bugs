@@ -176,7 +176,7 @@ export default function Mint() {
             : <button className="mt-4 text-4xl border-6 bg-red  text-white hover:text-black p-2 ">SALE IS NOT ACTIVE</button>
             }
 
-            { minted ? <div className="text-4xl text-crypto-red mt-6 border-b-2 py-6"> Successfully minted {how_many_bugs} bug{how_many_bugs == 1? '': 's'}! </div>
+            { minted ? <div className="text-4xl text-crypto-red mt-6 py-6"> Successfully minted {how_many_bugs} bug{how_many_bugs == 1? '': 's'}! </div>
               : <div></div>
             }
           </div>
