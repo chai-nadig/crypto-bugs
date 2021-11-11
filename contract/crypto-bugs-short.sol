@@ -47,10 +47,9 @@ contract CryptoBugs is ERC721, Ownable  {
 
 
     /// @param addrs The address received funds will be split between.
-    constructor(address[] memory addrs) ERC721("crypto-bugs-0x2b67", "cb0x2b67") {
-        // Contracts can be deployed to addresses with ETH already in them. We
-        // want to call balance on address not the balance function defined
-        // below so a cast is necessary.
+    constructor(address[] memory addrs, string memory baseURI) ERC721("crypto-bugs-0x2b67", "cb0x2b67") {
+        // Contracts can be deployed to addresses with ETH already in them.
+        // We want to call balance on address.
         totalFunds = address(this).balance;
 
         numberOfSplits = addrs.length;
@@ -59,6 +58,7 @@ contract CryptoBugs is ERC721, Ownable  {
             // loop over addrs and update set of included accounts
             between[addrs[i]] = true;
         }
+        _setBaseURI(baseURI);
     }
 
     function setProvenanceHash(string memory provenanceHash) public onlyOwner {
@@ -148,7 +148,7 @@ contract CryptoBugs is ERC721, Ownable  {
         require(between[msg.sender]);
 
         // Decide the amount to withdraw based on the `all` parameter.
-        uint256 transferring = balance();
+        uint256 transferring = splitBalance();
 
         // Updates the internal state, this is done before the transfer to
         // prevent re-entrancy bugs.
@@ -167,7 +167,7 @@ contract CryptoBugs is ERC721, Ownable  {
     // totalFunds evenly divisible between numberOfSplits parties.
 
     /// @notice Gets the amount of funds in Wei available to the sender.
-    function balance() public view returns (uint256) {
+    function splitBalance() public view returns (uint256) {
         if (!between[msg.sender]) {
             // The sender of the message isn't part of the split. Ignore them.
             return 0;

@@ -1,6 +1,6 @@
 // GET YOUR ALCHEMY API ENDPOINT FROM https://infura.io/
 export const ALCHEMY_ADDRESS = "https://eth-rinkeby.alchemyapi.io/v2/tW2Y3Zv9gDRmwJanbmUIgrSw1N_cBROL"
-export const ADDRESS = "0xe14a75570a7082319425D49dbB485f34fFd28616"
+export const ADDRESS = "0x6d1794538C3332245Ba94b811DFC43f8dA265964"
 
 export const ABI = [
 			{
@@ -9,6 +9,11 @@ export const ABI = [
 						"internalType": "address[]",
 						"name": "addrs",
 						"type": "address[]"
+					},
+					{
+						"internalType": "string",
+						"name": "baseURI",
+						"type": "string"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -182,19 +187,6 @@ export const ABI = [
 				"name": "approve",
 				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "balance",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -559,6 +551,19 @@ export const ABI = [
 				"name": "setProvenanceHash",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "splitBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
