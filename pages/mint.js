@@ -39,37 +39,36 @@ export default function Mint() {
   }, [])
 
   async function signIn() {
-//    if (typeof window.web3 !== 'undefined') {
-//      // Use existing gateway
-//      window.web3 = new Web3(window.ethereum);
-//    } else {
-//      alert("No Ethereum interface injected into browser. Read-only access");
-//    }
-//
-//    window.ethereum.enable()
-//      .then(function(accounts) {
-//        window.web3.eth.net.getNetworkType()
-//          // checks if connected network is mainnet (change this to rinkeby if you wanna test on testnet)
-//          .then((network) => {
-//            console.log(network);
-//            if (network != "rinkeby") {
-//              alert("You are on " + network + " network. Change network to rinkeby or you won't be able to do anything here")
-//            }
-//          });
-//
-//        let wallet = accounts[0]
-//        setWalletAddress(wallet)
-//        setSignedIn(true)
-//        callContractData(wallet)
-//
-//      })
-//      .catch(function(error) {
-//        // Handle error. Likely the user rejected the login
-//        console.error(error)
-//      })
+    if (typeof window.web3 !== 'undefined') {
+      // Use existing gateway
+      window.web3 = new Web3(window.ethereum);
+    } else {
+      alert("No Ethereum interface injected into browser. Read-only access");
+    }
 
-    setSignedIn(false);
+    window.ethereum.enable()
+      .then(function(accounts) {
+        window.web3.eth.net.getNetworkType()
+          // checks if connected network is mainnet (change this to rinkeby if you wanna test on testnet)
+          .then((network) => {
+            console.log(network);
+            if (network != "rinkeby") {
+              alert("You are on " + network + " network. Change network to rinkeby or you won't be able to do anything here")
+            }
+          });
 
+        let wallet = accounts[0]
+        setWalletAddress(wallet)
+        setSignedIn(true)
+        callContractData(wallet)
+
+      })
+      .catch(function(error) {
+        // Handle error. Likely the user rejected the login
+        console.error(error)
+      })
+
+//    setSignedIn(false);
   }
 
   async function signOut() {
