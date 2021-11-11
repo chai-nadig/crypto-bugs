@@ -421,6 +421,9 @@ def post_process(traits):
             combo_key = get_combo_key(trait)
             trait['Severity'] = combo_to_severity[combo_key]
 
+        elif trait['Background'] == 'Gold' or trait['Color'] == 'SmallGold':
+            trait['Severity'] = 'Blocker'
+
         elif trait['Accessory'] in ('Tux', 'Cloak', 'Bikini') or trait['Background'] in ('Matrix', 'Fire', 'Rainbow1'):
             trait['Severity'] = 'Blocker'
 
@@ -433,9 +436,6 @@ def post_process(traits):
         elif (trait['Accessory'] in ('BathRobe', 'Turban', 'PirateHat', 'Belt', 'Construction', 'ChefCap') or
               trait['Background'] in ('AmericanFootball', 'TennisBall', 'Leaf', 'Monitor', 'Hearts', 'SpiderWeb')):
             trait['Severity'] = 'Minor'
-
-        elif trait['Background'] == 'Gold' or trait['Color'] == 'SmallGold':
-            trait['Severity'] = 'Blocker'
 
         else:
             trait['Severity'] = 'Trivial'
