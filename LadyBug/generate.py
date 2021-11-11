@@ -450,8 +450,8 @@ def post_process(traits):
             if key != "Bug" and "Small" in value:
                 trait[key] = value[5:]
 
-            if 'Eyes' in value:
-                trait[key] = value[:len(value) - 4]
+            if trait[key] is not None and 'Eyes' in trait[key]:
+                trait[key] = trait[key][:len(trait[key]) - 4]
 
     for trait in traits:
         assert 'Severity' in trait
