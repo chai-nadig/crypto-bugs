@@ -450,6 +450,9 @@ def post_process(traits):
             if key != "Bug" and "Small" in value:
                 trait[key] = value[5:]
 
+            if 'Eyes' in value:
+                trait[key] = value[:len(value) - 4]
+
     for trait in traits:
         assert 'Severity' in trait
         assert trait['Severity'] in ['Blocker', 'Critical', 'Major', 'Minor', 'Trivial']
