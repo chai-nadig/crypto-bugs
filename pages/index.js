@@ -31,6 +31,8 @@ return (
         <a href="/#roadmap" className="text-4xl text-white-shadow hover:text-black m-6">Roadmap</a>
         <a href="/mint" className="text-4xl text-white-shadow hover:text-black m-6">Mint</a>
         <a href="/#team" className="text-4xl text-white-shadow hover:text-black m-6">Team</a>
+        <a href="https://twitter.com/CryptoBugsx2B67" target="_blank"><img src="images/twitter.png" width="70px"/></a>
+        <a href="https://discord.gg/Sw2PgseN" target="_blank"><img src="images/discord.png" width="70px"/></a>
       </nav>
     </div>
   </div>
