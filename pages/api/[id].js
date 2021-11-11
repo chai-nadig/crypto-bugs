@@ -4,12 +4,12 @@ import Web3 from "web3";
 // import the json containing all metadata. not recommended, try to fetch the database from a middleware if possible, I use MONGODB for example
 import traits from "../../database/traitsfinal.json";
 
-const infuraAddress = ALCHEMY_ADDRESS
+const alchemyAddress = ALCHEMY_ADDRESS
 
 const bugsApi = async(req, res) => {
 
     // SOME WEB3 STUFF TO CONNECT TO SMART CONTRACT
-  const provider = new Web3.providers.HttpProvider(infuraAddress)
+  const provider = new Web3.providers.HttpProvider(alchemyAddress)
   const web3alchemy = new Web3(provider);
   const bugsContract = new web3alchemy.eth.Contract(ABI, ADDRESS)
 

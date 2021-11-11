@@ -52,8 +52,8 @@ export default function Mint() {
           // checks if connected network is mainnet (change this to rinkeby if you wanna test on testnet)
           .then((network) => {
             console.log(network);
-            if (network != "rinkeby") {
-              alert("You are on " + network + " network. Change network to rinkeby or you won't be able to do anything here")
+            if (network != "main") {
+              alert("You are on " + network + " network. Change network to mainnet or you won't be able to do anything here")
             }
           });
 
@@ -67,8 +67,6 @@ export default function Mint() {
         // Handle error. Likely the user rejected the login
         console.error(error)
       })
-
-//    setSignedIn(false);
   }
 
   async function signOut() {
