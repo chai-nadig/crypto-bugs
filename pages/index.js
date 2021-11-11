@@ -39,14 +39,10 @@ return (
       <h1 className="text-6xl text-center text-white"><span className="text-crypto-red">crypto-bugs-0x2b67</span></h1>
       <div className="flex flex-wrap lg:flex-nowrap justify-around items-center py-6">
         <div className="lg:w-1/2 w-3/4">
-          <p className="text-2xl text-white my-6">We've discovered a variety of bugs and triaged their severities.
-
-          </p>
+          <p className="text-2xl text-white my-6">We've discovered a variety of bugs and triaged their severities.</p>
+          <p className="text-2xl text-white my-6">A detailed bug report of <span className="text-red">11,111</span> (0x2b67 in hexadecimal) bugs will be released soon.</p>
           <p className="text-2xl text-white my-6">
-            On <span className="text-red">11/11/21</span> a detailed bug report of <span className="text-red">11,111</span> (0x2b67 in hexadecimal) bugs will be released. <br/>
-          </p>
-          <p className="text-2xl text-white my-6">
-            First 111 swatters who bring along three friends to the bug bash will receive an NFT of the bug for free!<br/>
+            First 111 swatters who help us grow the bug bash will receive an NFT of the bug for free!<br/>
           </p>
           <p>
             <span class="text-red text-2xl">Join our Discord <u><a className="text-white-shadow hover:text-black" target="_blank" href="https://discord.gg/Sw2PgseN">here!</a></u></span>
@@ -105,7 +101,7 @@ return (
           <img src="images/set3/3.png"  width="240px" class="feature-image"/>
         </div>
         <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
-          <span className="text-red text-4xl">LAUNCH - 11/11/21</span>
+          <span className="text-red text-4xl">LAUNCH</span>
           <p class="text-2xl text-white my-6">
             <span className="text-red">Start of our bug bash!</span><br/>
              Reporting 11,111 bugs.
@@ -174,10 +170,10 @@ return (
         </div>
       </div>
     </div>
-    <div id="team" className="mx-12 my-16 ">
+    <div id="team" className="mx-12 my-16 border-b-2 py-6">
       <h2 className="text-crypto-red text-6xl text-center">TEAM</h2>
       <div className="flex justify-around flex-wrap">
-        <div className="flex flex-col  my-6">
+        <div className="flex flex-col my-6">
           <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image" /></div>
           <h3 className="my-4 text-center text-5xl text-center text-red hover:text-red">hellstealz</h3>
           <p className="text-center text-white text-2xl">
@@ -221,6 +217,24 @@ return (
       <p className="text-center">
          <span class="text-red text-3xl">Join our Discord <u><a className="text-white-shadow hover:text-black" target="_blank" href="https://discord.gg/Sw2PgseN">here!</a></u></span>
       </p>
+    </div>
+    <div id="verified-contract" className="mx-12 my-16 border-b-2 py-6">
+      <h2 className="text-crypto-red text-6xl text-center">VERIFIED CONTRACT</h2>
+      <div className="flex justify-around flex-wrap">
+        <div className="flex flex-col  my-6">
+          <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image" /></div>
+          <h3 className="my-4 text-center text-3xl text-center text-white-shadow hover:text-black">
+            <a href="https://etherscan.io/address/0x83e9b2ef39e28ecb3c6b0e8a72488f22dc668bde" target="_blank">View on Ethereum</a>
+          </h3>
+        </div>
+        <div className="flex flex-col  my-6">
+          <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image" /></div>
+          <h3 className="my-4 text-center text-3xl text-center text-white">Verified and Published</h3>
+          <p className="text-center text-white text-2xl">
+            <span className="text-2xl text-red">11/11/2021 10:23:38 AM +UTC</span><br/>
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
