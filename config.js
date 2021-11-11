@@ -148,19 +148,6 @@ export const ABI = [
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "TOTAL_BUGS",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "address",
@@ -731,19 +718,6 @@ export const ABI = [
       }
     ],
     "name": "transferFrom",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "withdraw",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
