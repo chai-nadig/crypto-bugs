@@ -15,6 +15,7 @@ simple_backgrounds = {
     "YellowGreen": 5,
     "RedPink": 5,
     "BlueBlack": 5,
+    "Gold": 0.1,
 }
 
 unique_backgrounds = {
@@ -76,6 +77,7 @@ smallColors = {
     "SmallOrange": 1,
     "SmallPurple": 1,
     "SmallCamo": 1,
+    "SmallGold": 0.01,
 
     # "SmallINFlag": 1,
 }
@@ -102,7 +104,7 @@ accessories = {
     "PirateHat": 1.5,
     "Tux": 3,
     "BathRobe": 2,
-    "Cloak": 0.25,
+    "Cloak": 0.1,
     "SnorkelGear": 1,
     "RedSunGlasses": 0.25,
     "GreySunGlasses": 0.25,
@@ -127,7 +129,7 @@ TOTAL_BUGS = (
 currentlocation = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 outputlocation = os.path.join(currentlocation, './output/')
 
-backgrounds_with_accessories = {
+unique_backgrounds_with_accessories = {
     'Beach': ['RedSunGlasses', 'GreySunGlasses', 'Bikini', 'BeachHat', 'PirateHat'],
     'Book': ['Graduation'],
     'Brickwall': ['Construction'],
@@ -141,8 +143,8 @@ backgrounds_with_accessories = {
 
 
 def is_combo(trait):
-    return trait['Background'] in backgrounds_with_accessories and trait['Accessory'] in backgrounds_with_accessories[
-        trait['Background']]
+    return (trait['Background'] in unique_backgrounds_with_accessories and
+            trait['Accessory'] in unique_backgrounds_with_accessories[trait['Background']])
 
 
 def get_combo_key(trait):
@@ -211,13 +213,36 @@ def get_ignored_combinations():
         {"Accessory": ["GreySunGlasses"], "Color": ["SmallBlack"]},
 
         # Ignore graduation cap with black color bug
-        {"Accessory": ["Graduation"], "Color": ["SmallBlack"]}
+        {"Accessory": ["Graduation"], "Color": ["SmallBlack"]},
+
+        # Ignore gold color with gold background
+        {"Color": ["SmallGold"], "Background": ["Gold"]},
+
+        # Ignore gold color with unique backgrounds
+        {"Color": ["SmallGold"], "Background": list(unique_backgrounds.keys())},
+
+        {"Color": ["SmallGold"],
+         "Accessory": ["Sombrero", "Construction", "Beanie", "ChefCap", "Bikini", "Belt", "WizardHat", "BeachHat",
+                       "Bedroom", "Halo", "ClownHat", "PirateHat", "Cloak", "SnorkelGear", "RedSunGlasses",
+                       "GreySunGlasses"]},
+
+        {"Background": ["Gold"], "Eyes": ["GreyEyes", "WhiteEyes"]},
+
+        {"Background": ["Gold"],
+         "Accessory": ["Sombrero", "Construction", "Beanie", "ChefCap", "Bikini", "Belt", "WizardHat", "BeachHat",
+                       "Bedroom", "Halo", "ClownHat", "PirateHat", "Cloak", "SnorkelGear", "RedSunGlasses",
+                       "GreySunGlasses"]},
+
+        {"Color": ["SmallGold"],
+         'Spots': ['SmallYellowSpotsA', 'SmallYellowSpotsB', 'SmallYellowSpotsC', 'SmallRedSpotsA', 'SmallRedSpotsB',
+                   'SmallRedSpotsC']}
 
     ]
 
     for bg in unique_backgrounds:
-        if bg in backgrounds_with_accessories:
-            ignore_combinations.append(allowed_accessories_as_ignore_combination(bg, backgrounds_with_accessories[bg]))
+        if bg in unique_backgrounds_with_accessories:
+            ignore_combinations.append(
+                allowed_accessories_as_ignore_combination(bg, unique_backgrounds_with_accessories[bg]))
         else:
             ignore_combinations.append({'Background': [bg], 'Accessory': set(accessories_without_none)})
 
@@ -408,6 +433,10 @@ def post_process(traits):
         elif (trait['Accessory'] in ('BathRobe', 'Turban', 'PirateHat', 'Belt', 'Construction', 'ChefCap') or
               trait['Background'] in ('AmericanFootball', 'TennisBall', 'Leaf', 'Monitor', 'Hearts', 'SpiderWeb')):
             trait['Severity'] = 'Minor'
+
+        elif trait['Background'] == 'Gold' or trait['Color'] == 'SmallGold':
+            trait['Severity'] = 'Blocker'
+
         else:
             trait['Severity'] = 'Trivial'
 

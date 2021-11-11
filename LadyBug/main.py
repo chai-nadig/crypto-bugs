@@ -11,7 +11,7 @@ from generate import (
     get_trait_key,
 )
 
-ONLY_UPLOAD_TO_PINATA = True
+ONLY_UPLOAD_TO_PINATA = False
 
 if __name__ == "__main__":
 
