@@ -3,13 +3,10 @@ pragma abicoder v2;
 
 
 import "@openzeppelin/contracts@3.3.0/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts@3.3.0/access/Ownable.sol";
 import "@openzeppelin/contracts@3.3.0/math/SafeMath.sol";
 
-contract CryptoBugs is ERC721  {
-
-    address private _owner;
-
-    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+contract CryptoBugs is ERC721, Ownable  {
 
     using SafeMath for uint256;
 
@@ -51,9 +48,6 @@ contract CryptoBugs is ERC721  {
 
     /// @param addrs The address received funds will be split between.
     constructor(address[] memory addrs) ERC721("crypto-bugs-0x2b67", "cb0x2b67") {
-        address msgSender = _msgSender();
-        _owner = msgSender;
-
         // Contracts can be deployed to addresses with ETH already in them. We
         // want to call balance on address not the balance function defined
         // below so a cast is necessary.
@@ -65,7 +59,6 @@ contract CryptoBugs is ERC721  {
             // loop over addrs and update set of included accounts
             between[addrs[i]] = true;
         }
-        emit OwnershipTransferred(address(0), msgSender);
     }
 
     function setProvenanceHash(string memory provenanceHash) public onlyOwner {
@@ -189,13 +182,5 @@ contract CryptoBugs is ERC721  {
         assert(available >= 0 && available <= share);
 
         return available;
-    }
-
-    /**
-     * @dev Throws if called by any account other than the owner.
-     */
-    modifier onlyOwner() {
-        require(_owner == _msgSender(), "Ownable: caller is not the owner");
-        _;
     }
 }
