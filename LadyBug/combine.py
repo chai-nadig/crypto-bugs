@@ -3,6 +3,7 @@ from tqdm import tqdm
 
 directory = "./output"
 
+SIZE = 120
 
 def getNearestSquare(n):
     i = 1
@@ -46,3 +47,30 @@ def combine(traits):
                 pbar.update(1)
 
     final.save('combined.png')
+
+
+def combineToGif(traits):
+    # Sort for evaluation
+    traits = sorted(traits,
+                    key=lambda t: (
+                        t['Background'] or 'None',
+                        t['Color'] or 'None',
+                        t['Spots'] or 'None',
+                        t['Accessory'] or 'None',
+                        t['Eyes'] or 'None',
+                    ))
+
+    total = len(traits)
+
+    images = []
+
+    with tqdm(total=total, desc="reading {} images".format(total), unit="image") as pbar:
+        for i in range(total):
+            file = '{}.png'.format(traits[i]['tokenId'])
+            im1 = Image.open(directory + '/' + file).convert('RGBA')
+            im1 = im1.resize((SIZE, SIZE), Image.NEAREST)
+            images.append(im1)
+            pbar.update(1)
+
+    images[0].save('combined.gif', save_all=True, append_images=images[1:],
+                   optimize=False, duration=400, loop=0)

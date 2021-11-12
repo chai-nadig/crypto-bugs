@@ -1,7 +1,7 @@
 import json
 
 from upload_to_pinata import upload_to_pinata
-from combine import combine
+from combine import combine, combineToGif
 from generate import (
     generate_images,
     generateCombinations,
@@ -11,7 +11,7 @@ from generate import (
     get_trait_key,
 )
 
-TO_GENERATE = 100
+TO_GENERATE = 50
 
 ONLY_UPLOAD_TO_PINATA = False
 
@@ -34,6 +34,8 @@ if __name__ == "__main__":
         assert allUnique([get_trait_key(trait) for trait in traits])
 
         combine(traits)
+
+        combineToGif(traits)
 
         count_traits(traits)
 

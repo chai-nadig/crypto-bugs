@@ -76,7 +76,7 @@ accessories = {
     "Belt": 2,
     "Wizard Hat": 3,
     "Beach Hat": 3,
-    "Bedroom": 2,
+    "Bedroom": 1,
     "Halo": 3,
     "Clown Hat": 3,
     "Red Hair": 2,
@@ -146,7 +146,7 @@ def get_ignored_combinations():
     ignore_combinations = [
         # Ignore Yellow spots with Yellow or Orange colored bugs
         {'Spots': ['Yellow Spots A', 'Yellow Spots B'],
-         'Color': ['SmallYellow', 'Orange']},
+         'Color': ['Yellow', 'Orange']},
 
         # Ignore Red spots with Red Colored Bugs
         {'Spots': ['Red Spots A', 'Red Spots B'], 'Color': ['Red', 'Purple']},
@@ -329,8 +329,8 @@ def generate_images(traits):
         im2 = getImage(os.path.join(currentlocation, 'Bugs', 'Small.png'))
         im3 = getImage(os.path.join(currentlocation, 'Colors', f'{trait["Color"]}.png'))
         im4 = getImage(os.path.join(currentlocation, 'Spots', f'{trait["Spots"]}.png'))
-        im5 = getImage(os.path.join(currentlocation, 'Accessories', f'{trait["Accessory"]}.png'))
-        im6 = getImage(os.path.join(currentlocation, 'Eyes', f'{trait["Eyes"]}.png'))
+        im5 = getImage(os.path.join(currentlocation, 'Eyes', f'{trait["Eyes"]}.png'))
+        im6 = getImage(os.path.join(currentlocation, 'Accessories', f'{trait["Accessory"]}.png'))
 
         com1 = Image.alpha_composite(im1, im2)
         com2 = Image.alpha_composite(com1, im3)
