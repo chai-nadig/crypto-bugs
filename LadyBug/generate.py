@@ -8,120 +8,99 @@ from collections import defaultdict
 
 TO_GENERATE = 11111
 
-# add up to or 100,
 simple_backgrounds = {
-    "PurpleBlue": 5,
-    "RedBlue": 5,
-    "YellowGreen": 5,
-    "RedPink": 5,
-    "BlueBlack": 5,
+    "Purple Blue": 5,
+    "Red Blue": 5,
+    "Yellow Green": 5,
+    "Red Pink": 5,
+    "Blue Black": 5,
     "Gold": 0.1,
 }
 
 unique_backgrounds = {
-    "AmericanFootball": 1,
-    "TennisBalls": 1,
+    "American Football": 1,
+    "Tennis Balls": 1,
     "Monitor": 2,
     "Fire": 5,
     "Clouds": 5,
     "Wave": 5,
-    "SpiderWeb": 2,
+    "Spider Web": 2,
     "Stick": 2,
     "Leaf": 2,
     "Hearts": 2,
     "Book": 2,
     "Matrix": 3,
-    "Rainbow1": 3,
-    "Brickwall": 4,
+    "Rainbow": 3,
+    "Brick Wall": 4,
     "Road": 3,
     "Beach": 5,
     "Sunset": 4,
     "City": 4,
-
-    # "Rainbow2": 1,
-    # "Rainbow3": 1,
-
-    # Cricket
-    # Football
-    # Basketball
-    # Soccer
 }
 
 backgrounds = {}
 backgrounds.update(simple_backgrounds)
 backgrounds.update(unique_backgrounds)
 
-bugs = {
-    "Small": 1,
+spots = {
+    "Black Spots A": 0.5,
+    "Black Spots B": 1,
+    "Red Spots A": 0.5,
+    "Red Spots B": 1,
+    "Yellow Spots A": 0.5,
+    "Yellow Spot B": 1,
 }
-
-smallSpots = {
-    'NoneSpots': 1,
-    "SmallBlackSpotsA": 0.5,
-    "SmallBlackSpotsB": 1,
-    "SmallRedSpotsA": 0.5,
-    "SmallRedSpotsB": 1,
-    "SmallYellowSpotsA": 0.5,
-    "SmallYellowSpotsB": 1,
-
-    # "SmallBlackSpotsC": 0.25,
-    # "SmallRedSpotsC": 0.25,
-    # "SmallYellowSpotsC": 0.25,
-}
-smallColors = {
-    "SmallRed": 1,
-    "SmallBlue": 1,
-    "SmallBlack": 1,
-    "SmallGreen": 1,
-    "SmallYellow": 1,
-    "SmallOrange": 1,
-    "SmallPurple": 1,
-    "SmallCamo": 1,
-    "SmallGold": 0.01,
-
-    # "SmallINFlag": 1,
+colors = {
+    "Red": 1,
+    "Blue": 1,
+    "Black": 1,
+    "Green": 1,
+    "Yellow": 1,
+    "Orange": 1,
+    "Purple": 1,
+    "Camo": 1,
+    "Gold": 0.01,
 }
 
 accessories = {
-    "NoneAccessory": 2,
+    None: 2,
     "Sombrero": 3,
-    "TopHat": 3,
-    "Turban": 1,  # Rare
+    "Top Hat": 3,
+    "Turban": 1,
     "Crown": 3,
-    "Construction": 2,
-    "Graduation": 2,
+    "Construction Hat": 2,
+    "Graduation Cap": 2,
     "Beanie": 1,
-    "ChefCap": 3,
+    "Chef Cap": 3,
     "Bikini": 2,
-    "VikingHelmet": 3,
+    "Viking Helmet": 3,
     "Belt": 2,
-    "WizardHat": 3,
-    "BeachHat": 3,
+    "Wizard Hat": 3,
+    "Beach Hat": 3,
     "Bedroom": 2,
     "Halo": 3,
-    "ClownHat": 3,
-    "RedHair": 2,
-    "PirateHat": 1.5,
+    "Clown Hat": 3,
+    "Red Hair": 2,
+    "Pirate Hat": 1.5,
     "Tux": 3,
-    "BathRobe": 2,
+    "Bathrobe": 2,
     "Cloak": 0.1,
-    "SnorkelGear": 1,
-    "RedSunGlasses": 0.25,
-    "GreySunGlasses": 0.25,
+    "Snorkel Gear": 1,
+    "Red Sunglasses": 0.25,
+    "Grey Sunglasses": 0.25,
 }
 
 eyes = {
-    "BlueEyes": 1,
-    "RedEyes": 1,
-    "WhiteEyes": 1,
-    "GreyEyes": 0.25,
+    "Blue": 1,
+    "Red": 1,
+    "White": 1,
+    "Grey": 0.25,
 }
 
 TOTAL_BUGS = (
         len(backgrounds)
-        * len(bugs)
-        * len(smallSpots)
-        * len(smallColors)
+        * len(spots)
+        * len(colors)
         * len(accessories)
         * len(eyes)
 )
@@ -130,15 +109,15 @@ currentlocation = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__f
 outputlocation = os.path.join(currentlocation, './output/')
 
 unique_backgrounds_with_accessories = {
-    'Beach': ['RedSunGlasses', 'GreySunGlasses', 'Bikini', 'BeachHat', 'PirateHat'],
-    'Book': ['Graduation'],
-    'Brickwall': ['Construction'],
+    'Beach': ['Red Sunglasses', 'Grey Sunglasses', 'Bikini', 'Beach Hat', 'Pirate Hat'],
+    'Book': ['Graduation Cap'],
+    'Brick Wall': ['Construction Hat'],
     'City': ['Tux'],
-    'Clouds': ['RedSunGlasses', 'GreySunGlasses'],
+    'Clouds': ['Red Sunglasses', 'Grey Sunglasses'],
     'Fire': ['Cloak'],
-    'SpiderWeb': ['WizardHat'],
-    'Sunset': ['GreySunGlasses'],
-    'Wave': ['RedSunGlasses', 'GreySunGlasses', 'Bikini', 'BeachHat', 'PirateHat'],
+    'Spider Web': ['Wizard Hat'],
+    'Sunset': ['Grey Sunglasses'],
+    'Wave': ['Red Sunglasses', 'Grey Sunglasses', 'Bikini', 'Beach Hat', 'Pirate Hat'],
 }
 
 
@@ -153,7 +132,7 @@ def get_combo_key(trait):
 
 def allowed_accessories_as_ignore_combination(background, allowed):
     aa = [a for a in allowed]
-    aa.append('NoneAccessory')
+    aa.append(None)
 
     return {
         'Background': [background],
@@ -162,81 +141,67 @@ def allowed_accessories_as_ignore_combination(background, allowed):
 
 
 def get_ignored_combinations():
-    small_spots_without_none = list(smallSpots.keys())
-    small_spots_without_none.remove('NoneSpots')
-
     accessories_without_none = list(accessories.keys())
-    accessories_without_none.remove('NoneAccessory')
+    accessories_without_none.remove(None)
 
     ignore_combinations = [
         # Ignore Yellow spots with Yellow or Orange colored bugs
-        {'Spots': ['SmallYellowSpotsA', 'SmallYellowSpotsB', 'SmallYellowSpotsC'],
-         'Color': ['SmallYellow', 'SmallOrange']},
+        {'Spots': ['Yellow Spots A', 'Yellow Spots B'],
+         'Color': ['SmallYellow', 'Orange']},
 
         # Ignore Red spots with Red Colored Bugs
-        {'Spots': ['SmallRedSpotsA', 'SmallRedSpotsB', 'SmallRedSpotsC'], 'Color': ['SmallRed', 'SmallPurple']},
+        {'Spots': ['Red Spots A', 'Red Spots B'], 'Color': ['Red', 'Purple']},
 
         # Ignore Green Colored bug with Matrix or Leaf Background
-        {'Color': ['SmallGreen'], 'Background': ['Matrix', 'Leaf']},
+        {'Color': ['Green'], 'Background': ['Matrix', 'Leaf']},
 
-        # Ignore Flag with any unique background
-        {'Color': ['SmallINFlag'], 'Background': list(unique_backgrounds.keys())},
-
-        # Ignore Flag with all spots
-        {'Color': ['SmallINFlag'], 'Spots': small_spots_without_none},
-
-        # Ignore Flag with all accessories
-        {'Color': ['SmallINFlag'], 'Accessory': accessories_without_none},
 
         # Ignore bikini accessory with red spots
-        {"Accessory": ['Bikini'], 'Spots': ['SmallRedSpotsA', 'SmallRedSpotsB', 'SmallRedSpotsC']},
+        {"Accessory": ['Bikini'], 'Spots': ['Red Spots A', 'Red Spots B']},
 
-        # Ignore cloak with redpink background
-        {"Accessory": ["Cloak"], 'Background': ['RedPink']},
+        # Ignore cloak with Red Pink background
+        {"Accessory": ["Cloak"], 'Background': ['Red Pink']},
 
         # Ignore bikini accessory with red or purple colored bugs
-        {"Accessory": ['Bikini'], 'Color': ['SmallRed', 'SmallPurple']},
+        {"Accessory": ['Bikini'], 'Color': ['Red', 'Purple']},
 
-        # Ignore Wizard hat accessory with blueblack or redblue backgrounds
-        {"Accessory": ["WizardHat"], "Background": ['BlueBlack', 'RedBlue']},
+        # Ignore Wizard hat accessory with blue black or red blue backgrounds
+        {"Accessory": ["Wizard Hat"], "Background": ['Blue Black', 'Red Blue']},
 
-        # Ignore pirate hat and cloak  accessory with purpleblue background
-        {"Accessory": ["PirateHat", "Cloak"], "Background": ['PurpleBlue']},
+        # Ignore pirate hat and cloak  accessory with Purple Blue background
+        {"Accessory": ["Pirate Hat", "Cloak"], "Background": ['Purple Blue']},
 
         # Ignore snorkel gear with orange color bug
-        {"Accessory": ["SnorkelGear"], "Color": ["SmallOrange"]},
+        {"Accessory": ["Snorkel Gear"], "Color": ["Orange"]},
 
         # Ignore red sunglasses with red bug
-        {"Accessory": ["RedSunGlasses"], "Color": ["SmallRed"]},
+        {"Accessory": ["Red Sunglasses"], "Color": ["Red"]},
 
         # Ignore grey sunglasses with red bug
-        {"Accessory": ["GreySunGlasses"], "Color": ["SmallBlack"]},
+        {"Accessory": ["Grey Sunglasses"], "Color": ["Black"]},
 
         # Ignore graduation cap with black color bug
-        {"Accessory": ["Graduation"], "Color": ["SmallBlack"]},
+        {"Accessory": ["Graduation Cap"], "Color": ["Black"]},
 
         # Ignore gold color with gold background
-        {"Color": ["SmallGold"], "Background": ["Gold"]},
+        {"Color": ["Gold"], "Background": ["Gold"]},
 
         # Ignore gold color with unique backgrounds
-        {"Color": ["SmallGold"], "Background": list(unique_backgrounds.keys())},
+        {"Color": ["Gold"], "Background": list(unique_backgrounds.keys())},
 
-        {"Color": ["SmallGold"],
-         "Accessory": ["Sombrero", "Construction", "Beanie", "ChefCap", "Bikini", "Belt", "WizardHat", "BeachHat",
-                       "Bedroom", "Halo", "ClownHat", "PirateHat", "Cloak", "SnorkelGear", "RedSunGlasses",
-                       "GreySunGlasses"]},
+        {"Color": ["Gold"],
+         "Accessory": ["Sombrero", "Construction Hat", "Beanie", "Chef Cap", "Bikini", "Belt", "Wizard Hat", "Beach Hat",
+                       "Bedroom", "Halo", "Clown Hat", "Pirate Hat", "Cloak", "Snorkel Gear", "Red Sunglasses",
+                       "Grey Sunglasses"]},
 
-        {"Background": ["Gold"], "Eyes": ["GreyEyes", "WhiteEyes"]},
+        {"Background": ["Gold"], "Eyes": ["Grey", "White"]},
 
         {"Background": ["Gold"],
-         "Accessory": ["Sombrero", "Construction", "Beanie", "ChefCap", "Bikini", "Belt", "WizardHat", "BeachHat",
-                       "Bedroom", "Halo", "ClownHat", "PirateHat", "Cloak", "SnorkelGear", "RedSunGlasses",
-                       "GreySunGlasses"]},
+         "Accessory": ["Sombrero", "Construction Hat", "Beanie", "Chef Cap", "Bikini", "Belt", "Wizard Hat", "Beach Hat",
+                       "Bedroom", "Halo", "Clown Hat", "Pirate Hat", "Cloak", "Snorkel Gear", "Red Sunglasses",
+                       "Grey Sunglasses"]},
 
-        {"Color": ["SmallGold"],
-         'Spots': ['SmallYellowSpotsA', 'SmallYellowSpotsB', 'SmallYellowSpotsC', 'SmallRedSpotsA', 'SmallRedSpotsB',
-                   'SmallRedSpotsC']}
-
+        {"Color": ["Gold"], 'Spots': ['Yellow Spots A', 'Yellow Spots B', 'Red Spots A', 'Red Spots B']}
     ]
 
     for bg in unique_backgrounds:
@@ -263,41 +228,30 @@ def shouldIgnore(trait):
         if count > 1:
             return True
 
-    if trait['Spots'] == 'NoneSpots':
-
-        # None spots can go with Flag
-        if trait['Color'] == 'SmallINFlag':
-            return False
-
-        # None spots cannot go with anything Tux or BathRobe
-        if trait['Accessory'] not in ('Tux', 'BathRobe'):
-            return True
-
     return False
 
 
 def createCombo():
     trait = {
         "Background": random.choices(list(backgrounds.keys()), list(backgrounds.values()))[0],
-        "Bug": random.choices(list(bugs.keys()), list(bugs.values()))[0],
-        "Spots": random.choices(list(smallSpots.keys()), list(smallSpots.values()))[0],
-        "Color": random.choices(list(smallColors.keys()), list(smallColors.values()))[0],
+        "Spots": random.choices(list(spots.keys()), list(spots.values()))[0],
+        "Color": random.choices(list(colors.keys()), list(colors.values()))[0],
         "Accessory": random.choices(list(accessories.keys()), list(accessories.values()))[0],
         "Eyes": random.choices(list(eyes.keys()), list(eyes.values()))[0],
     }
 
     if trait['Accessory'] == 'Bedroom':
-        trait['Background'] = 'NoneBackground'
+        trait['Background'] = None
 
     elif trait['Accessory'] == 'Tux':
-        trait['Color'] = 'NoneColor'
-        trait['Spots'] = 'NoneSpots'
+        trait['Color'] = None
+        trait['Spots'] = None
 
-    elif trait['Accessory'] == 'BathRobe':
-        trait['Spots'] = 'NoneAccessory'
+    elif trait['Accessory'] == 'Bathrobe':
+        trait['Spots'] = None
 
-    elif trait["Accessory"] in ("RedSunGlasses", "GreySunGlasses", "SnorkelGear"):
-        trait["Eyes"] = 'NoneEyes'
+    elif trait["Accessory"] in ("Red Sunglasses", "Grey Sunglasses", "Snorkel Gear"):
+        trait["Eyes"] = None
 
     return trait
 
@@ -363,7 +317,7 @@ def generate_images(traits):
             total=len(traits),
     ):
         im1 = getImage(f'./Backgrounds/{trait["Background"]}.png')
-        im2 = getImage(f'./Bugs/{trait["Bug"]}.png')
+        im2 = getImage(f'./Bugs/Small.png')
         im3 = getImage(f'./Colors/{trait["Color"]}.png')
         im4 = getImage(f'./Spots/{trait["Spots"]}.png')
         im5 = getImage(f'./Accessories/{trait["Accessory"]}.png')
@@ -395,72 +349,54 @@ def post_process(traits):
     ):
         if trait['Accessory'] == 'Bedroom':
             trait['Background'] = 'Bedroom'
-            trait['Accessory'] = 'NoneAccessory'
+            trait['Accessory'] = None
 
         if is_combo(trait):
             combo_to_severity = {
-                'Wave:BeachHat': 'Minor',
-                'Beach:BeachHat': 'Minor',
+                'Wave:Beach Hat': 'Minor',
+                'Beach:Beach Hat': 'Minor',
                 'City:Tux': 'Blocker',
-                'Beach:PirateHat': 'Trivial',
-                'Wave:GreySunGlasses': 'Trivial',
-                'Brickwall:Construction': 'Trivial',
-                'Wave:PirateHat': 'Trivial',
-                'Beach:RedSunGlasses': 'Blocker',
-                'SpiderWeb:WizardHat': 'Minor',
+                'Beach:Pirate Hat': 'Trivial',
+                'Wave:Grey Sunglasses': 'Trivial',
+                'Brick Wall:Construction Hat': 'Trivial',
+                'Wave:Pirate Hat': 'Trivial',
+                'Beach:Red Sunglasses': 'Blocker',
+                'Spider Web:Wizard Hat': 'Minor',
                 'Fire:Cloak': 'Blocker',
-                'Book:Graduation': 'Major',
+                'Book:Graduation Cap': 'Major',
                 'Beach:Bikini': 'Critical',
                 'Wave:Bikini': 'Major',
-                'Clouds:RedSunGlasses': 'Minor',
-                'Sunset:GreySunGlasses': 'Critical',
-                'Beach:GreySunGlasses': 'Minor',
-                'Clouds:GreySunGlasses': 'Minor',
-                'Wave:RedSunGlasses': 'Minor',
+                'Clouds:Red Sunglasses': 'Minor',
+                'Sunset:Grey Sunglasses': 'Critical',
+                'Beach:Grey Sunglasses': 'Minor',
+                'Clouds:Grey Sunglasses': 'Minor',
+                'Wave:Red Sunglasses': 'Minor',
             }
             combo_key = get_combo_key(trait)
             trait['Severity'] = combo_to_severity[combo_key]
 
-        elif trait['Background'] == 'Gold' or trait['Color'] == 'SmallGold':
+        elif trait['Background'] == 'Gold' or trait['Color'] == 'Gold':
             trait['Severity'] = 'Blocker'
 
         elif trait['Accessory'] in ('Tux', 'Cloak', 'Bikini') or trait['Background'] in ('Matrix', 'Fire', 'Rainbow1'):
             trait['Severity'] = 'Blocker'
 
-        elif trait['Accessory'] in ('RedHair', 'BeachHat') or trait['Background'] in ('Sunset', 'City'):
+        elif trait['Accessory'] in ('Red Hair', 'Beach Hat') or trait['Background'] in ('Sunset', 'City'):
             trait['Severity'] = 'Critical'
 
-        elif trait['Accessory'] in ('Crown', 'VikingHelmet', 'Halo', 'TopHat') or trait['Background'] in ('Stick',):
+        elif trait['Accessory'] in ('Crown', 'Viking Helmet', 'Halo', 'Top Hat') or trait['Background'] in ('Stick',):
             trait['Severity'] = 'Major'
 
-        elif (trait['Accessory'] in ('BathRobe', 'Turban', 'PirateHat', 'Belt', 'Construction', 'ChefCap') or
-              trait['Background'] in ('AmericanFootball', 'TennisBall', 'Leaf', 'Monitor', 'Hearts', 'SpiderWeb')):
+        elif (trait['Accessory'] in ('Bathrobe', 'Turban', 'Pirate Hat', 'Belt', 'Construction Hat', 'Chef Cap') or
+              trait['Background'] in ('American Football', 'Tennis Ball', 'Leaf', 'Monitor', 'Hearts', 'Spider Web')):
             trait['Severity'] = 'Minor'
 
         else:
             trait['Severity'] = 'Trivial'
 
-        for key, value in trait.items():
-            if key == "tokenId":
-                continue
-
-            if "None" in value:
-                trait[key] = None
-
-            if key != "Bug" and "Small" in value:
-                trait[key] = value[5:]
-
-            if trait[key] is not None and 'Eyes' in trait[key]:
-                trait[key] = trait[key][:len(trait[key]) - 4]
-
     for trait in traits:
         assert 'Severity' in trait
         assert trait['Severity'] in ['Blocker', 'Critical', 'Major', 'Minor', 'Trivial']
-
-        assert 'NoneAccessory' != trait['Accessory']
-        assert 'NoneBackground' != trait['Background']
-        assert 'NoneColor' != trait['Color']
-        assert 'NoneSpots' != trait['Spots']
 
     return traits
 
@@ -469,7 +405,6 @@ def count_traits(traits):
     # GET TRAIT COUNTS
 
     background_counts = defaultdict(int)
-    bug_counts = defaultdict(int)
     spots_counts = defaultdict(int)
     color_counts = defaultdict(int)
     accessory_count = defaultdict(int)
@@ -484,7 +419,6 @@ def count_traits(traits):
             total=len(traits),
     ):
 
-        bug_counts[trait["Bug"]] += 1
         spots_counts[trait["Spots"]] += 1
         color_counts[trait["Color"]] += 1
         eyes_count[trait["Eyes"]] += 1
@@ -497,7 +431,6 @@ def count_traits(traits):
             accessory_count[trait["Accessory"]] += 1
 
     print_csv(background_counts)
-    print_csv(bug_counts)
     print_csv(spots_counts)
     print_csv(color_counts)
     print_csv(accessory_count)
