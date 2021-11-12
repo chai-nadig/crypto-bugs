@@ -48,7 +48,7 @@ spots = {
     "Red Spots A": 0.5,
     "Red Spots B": 1,
     "Yellow Spots A": 0.5,
-    "Yellow Spot B": 1,
+    "Yellow Spots B": 1,
 }
 colors = {
     "Red": 1,
@@ -155,7 +155,6 @@ def get_ignored_combinations():
         # Ignore Green Colored bug with Matrix or Leaf Background
         {'Color': ['Green'], 'Background': ['Matrix', 'Leaf']},
 
-
         # Ignore bikini accessory with red spots
         {"Accessory": ['Bikini'], 'Spots': ['Red Spots A', 'Red Spots B']},
 
@@ -190,14 +189,16 @@ def get_ignored_combinations():
         {"Color": ["Gold"], "Background": list(unique_backgrounds.keys())},
 
         {"Color": ["Gold"],
-         "Accessory": ["Sombrero", "Construction Hat", "Beanie", "Chef Cap", "Bikini", "Belt", "Wizard Hat", "Beach Hat",
+         "Accessory": ["Sombrero", "Construction Hat", "Beanie", "Chef Cap", "Bikini", "Belt", "Wizard Hat",
+                       "Beach Hat",
                        "Bedroom", "Halo", "Clown Hat", "Pirate Hat", "Cloak", "Snorkel Gear", "Red Sunglasses",
                        "Grey Sunglasses"]},
 
         {"Background": ["Gold"], "Eyes": ["Grey", "White"]},
 
         {"Background": ["Gold"],
-         "Accessory": ["Sombrero", "Construction Hat", "Beanie", "Chef Cap", "Bikini", "Belt", "Wizard Hat", "Beach Hat",
+         "Accessory": ["Sombrero", "Construction Hat", "Beanie", "Chef Cap", "Bikini", "Belt", "Wizard Hat",
+                       "Beach Hat",
                        "Bedroom", "Halo", "Clown Hat", "Pirate Hat", "Cloak", "Snorkel Gear", "Red Sunglasses",
                        "Grey Sunglasses"]},
 
@@ -293,7 +294,7 @@ def generateCombinations():
 
 def getImage(img):
     if "None" not in img:
-        return Image.open(os.path.join(currentlocation, img)).convert('RGBA')
+        return Image.open(img).convert('RGBA')
 
     return Image.new('RGBA', (24, 24), (255, 0, 0, 0))
 
@@ -316,12 +317,12 @@ def generate_images(traits):
             unit="images",
             total=len(traits),
     ):
-        im1 = getImage(f'./Backgrounds/{trait["Background"]}.png')
-        im2 = getImage(f'./Bugs/Small.png')
-        im3 = getImage(f'./Colors/{trait["Color"]}.png')
-        im4 = getImage(f'./Spots/{trait["Spots"]}.png')
-        im5 = getImage(f'./Accessories/{trait["Accessory"]}.png')
-        im6 = getImage(f'./Eyes/{trait["Eyes"]}.png')
+        im1 = getImage(os.path.join(currentlocation, 'Backgrounds', f'{trait["Background"]}.png'))
+        im2 = getImage(os.path.join(currentlocation, 'Bugs', 'Small.png'))
+        im3 = getImage(os.path.join(currentlocation, 'Colors', f'{trait["Color"]}.png'))
+        im4 = getImage(os.path.join(currentlocation, 'Spots', f'{trait["Spots"]}.png'))
+        im5 = getImage(os.path.join(currentlocation, 'Accessories', f'{trait["Accessory"]}.png'))
+        im6 = getImage(os.path.join(currentlocation, 'Eyes', f'{trait["Eyes"]}.png'))
 
         com1 = Image.alpha_composite(im1, im2)
         com2 = Image.alpha_composite(com1, im3)
