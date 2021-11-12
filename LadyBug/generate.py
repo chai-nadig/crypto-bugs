@@ -1,12 +1,11 @@
 import glob
 import os
 
-from tqdm import tqdm
 from PIL import Image
 import random
 from collections import defaultdict
 
-TO_GENERATE = 11111
+from tqdm import tqdm
 
 simple_backgrounds = {
     "Purple Blue": 5,
@@ -258,9 +257,14 @@ def createCombo():
 
 
 def get_trait_key(trait):
-    trait_key = ''
-    for key, value in trait.items():
-        trait_key = '{},{}:{}'.format(trait_key, key, value)
+    trait_key = (
+        f"Accessory:{trait['Accessory']}"
+        f",Background:{trait['Background']}"
+        f",Color:{trait['Color']}"
+        f",Eyes:{trait['Eyes']}"
+        f",Spots:{trait['Spots']}"
+    )
+
     return trait_key
 
 
@@ -269,20 +273,24 @@ def allUnique(x):
     return not any(i in seen or seen.append(i) for i in x)
 
 
-def generateCombinations():
+def generateCombinations(n, excluded_traits=None):
+    if excluded_traits is None:
+        excluded_traits = []
+
     traits = []
     trait_keys = set()
+    excluded_trait_keys = set([get_trait_key(trait) for trait in excluded_traits])
 
     for i in tqdm(
-            iterable=range(TO_GENERATE),
-            desc="Generating {} combinations".format(TO_GENERATE),
-            total=TO_GENERATE,
+            iterable=range(n),
+            desc="Generating {} combinations".format(n),
+            total=n,
             unit="combos",
     ):
         trait = createCombo()
         trait_key = get_trait_key(trait)
 
-        while trait_key in trait_keys or shouldIgnore(trait):
+        while trait_key in trait_keys or shouldIgnore(trait) or trait_key in excluded_trait_keys:
             trait = createCombo()
             trait_key = get_trait_key(trait)
 

@@ -11,13 +11,21 @@ from generate import (
     get_trait_key,
 )
 
+TO_GENERATE = 100
+
 ONLY_UPLOAD_TO_PINATA = False
+
+EXCLUDE_TRAITS_IN_FILE = './traits.json'
 
 if __name__ == "__main__":
 
     if not ONLY_UPLOAD_TO_PINATA:
 
-        traits = generateCombinations()
+        if EXCLUDE_TRAITS_IN_FILE != '':
+            with open(EXCLUDE_TRAITS_IN_FILE) as f:
+                excluded_traits = json.load(f)
+
+        traits = generateCombinations(TO_GENERATE, excluded_traits=excluded_traits)
 
         traits = generate_images(traits)
 
