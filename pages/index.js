@@ -198,7 +198,7 @@ return (
           <h3 className="my-4 text-center text-5xl text-center text-red hover:text-red">theladybug</h3>
           <p className="text-center text-white text-2xl">
             <span className="text-3xl">Comms</span><br/>
-            uv@crypto-bugs.com
+            theladybug@crypto-bugs.com
           </p>
         </div>
         <div className="flex flex-col  my-6">
