@@ -32,7 +32,7 @@ return (
         <a href="/mint" className="text-4xl text-white-shadow hover:text-black m-6">Mint</a>
         <a href="/#team" className="text-4xl text-white-shadow hover:text-black m-6">Team</a>
         <a href="https://twitter.com/CryptoBugsx2B67" target="_blank"><img src="images/twitter.png" width="70px"/></a>
-        <a href="https://discord.gg/Sw2PgseN" target="_blank"><img src="images/discord.png" width="70px"/></a>
+        <a href="https://discord.gg/A6nkdvr2yR" target="_blank"><img src="images/discord.png" width="70px"/></a>
       </nav>
     </div>
   </div>
@@ -47,7 +47,7 @@ return (
             First 111 swatters who help us grow the bug bash will receive an NFT of the bug for free!<br/>
           </p>
           <p>
-            <span class="text-red text-2xl">Join our Discord <u><a className="text-white-shadow hover:text-black" target="_blank" href="https://discord.gg/Sw2PgseN">here!</a></u></span>
+            <span class="text-red text-2xl">Join our Discord <u><a className="text-white-shadow hover:text-black" target="_blank" href="https://discord.gg/A6nkdvr2yR">here!</a></u></span>
           </p>
         </div>
         <div className="border-4 border-red-500 p-2">
@@ -110,7 +110,7 @@ return (
             First 111 swatters who bring along three friends will receive an NFT of the bug for free!
           </p>
            <p>
-            <span class="text-red text-2xl">Join our Discord <u><a className="text-white-shadow hover:text-black" target="_blank" href="https://discord.gg/Sw2PgseN">here!</a></u></span>
+            <span class="text-red text-2xl">Join our Discord <u><a className="text-white-shadow hover:text-black" target="_blank" href="https://discord.gg/A6nkdvr2yR">here!</a></u></span>
           </p>
         </div>
       </div>
@@ -217,7 +217,7 @@ return (
         It's amazing how much you can do in a 24 x 24 pixel canvas!
       </p>
       <p className="text-center">
-         <span class="text-red text-3xl">Join our Discord <u><a className="text-white-shadow hover:text-black" target="_blank" href="https://discord.gg/Sw2PgseN">here!</a></u></span>
+         <span class="text-red text-3xl">Join our Discord <u><a className="text-white-shadow hover:text-black" target="_blank" href="https://discord.gg/A6nkdvr2yR">here!</a></u></span>
       </p>
     </div>
     <div id="verified-contract" className="mx-12 my-16 border-b-2 py-6">
