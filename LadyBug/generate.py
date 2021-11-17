@@ -35,6 +35,7 @@ unique_backgrounds = {
     "Beach": 5,
     "Sunset": 4,
     "City": 4,
+    "Bedroom": 1,
 }
 
 backgrounds = {}
@@ -76,7 +77,6 @@ accessories = {
     "Belt": 2,
     "Wizard Hat": 3,
     "Beach Hat": 3,
-    "Bedroom": 1,
     "Halo": 3,
     "Clown Hat": 3,
     "Red Hair": 2,
@@ -117,6 +117,7 @@ unique_backgrounds_with_accessories = {
     'Spider Web': ['Wizard Hat'],
     'Sunset': ['Grey Sunglasses'],
     'Wave': ['Red Sunglasses', 'Grey Sunglasses', 'Bikini', 'Beach Hat', 'Pirate Hat'],
+    'Bedroom': ['Bathrobe'],
 }
 
 
@@ -189,16 +190,14 @@ def get_ignored_combinations():
 
         {"Color": ["Gold"],
          "Accessory": ["Sombrero", "Construction Hat", "Beanie", "Chef Cap", "Bikini", "Belt", "Wizard Hat",
-                       "Beach Hat",
-                       "Bedroom", "Halo", "Clown Hat", "Pirate Hat", "Cloak", "Snorkel Gear", "Red Sunglasses",
+                       "Beach Hat", "Halo", "Clown Hat", "Pirate Hat", "Cloak", "Snorkel Gear", "Red Sunglasses",
                        "Grey Sunglasses"]},
 
         {"Background": ["Gold"], "Eyes": ["Grey", "White"]},
 
         {"Background": ["Gold"],
          "Accessory": ["Sombrero", "Construction Hat", "Beanie", "Chef Cap", "Bikini", "Belt", "Wizard Hat",
-                       "Beach Hat",
-                       "Bedroom", "Halo", "Clown Hat", "Pirate Hat", "Cloak", "Snorkel Gear", "Red Sunglasses",
+                       "Beach Hat", "Halo", "Clown Hat", "Pirate Hat", "Cloak", "Snorkel Gear", "Red Sunglasses",
                        "Grey Sunglasses"]},
 
         {"Color": ["Gold"], 'Spots': ['Yellow Spots A', 'Yellow Spots B', 'Red Spots A', 'Red Spots B']}
@@ -240,10 +239,7 @@ def createCombo():
         "Eyes": random.choices(list(eyes.keys()), list(eyes.values()))[0],
     }
 
-    if trait['Accessory'] == 'Bedroom':
-        trait['Background'] = None
-
-    elif trait['Accessory'] == 'Tux':
+    if trait['Accessory'] == 'Tux':
         trait['Color'] = None
         trait['Spots'] = None
 
@@ -356,10 +352,6 @@ def post_process(traits):
             unit="traits",
             total=len(traits),
     ):
-        if trait['Accessory'] == 'Bedroom':
-            trait['Background'] = 'Bedroom'
-            trait['Accessory'] = None
-
         if is_combo(trait):
             combo_to_severity = {
                 'Wave:Beach Hat': 'Minor',
