@@ -5,6 +5,7 @@ directory = "./output"
 
 SIZE = 120
 
+
 def getNearestSquare(n):
     i = 1
     while i * i < n:
