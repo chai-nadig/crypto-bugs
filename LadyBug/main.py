@@ -11,7 +11,7 @@ from generate import (
     get_trait_key,
 )
 
-TO_GENERATE = 50
+TO_GENERATE = 11111
 
 ONLY_UPLOAD_TO_PINATA = False
 
