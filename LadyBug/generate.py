@@ -8,11 +8,20 @@ from collections import defaultdict
 from tqdm import tqdm
 
 simple_backgrounds = {
+    "Green": 5,
+    "Light Blue": 5,
+    "Light Purple": 5,
+    "Light Red": 5,
+    "Orange": 5,
+    "Red": 5,
+    "Yellow": 5,
     "Purple Blue": 5,
     "Red Blue": 5,
     "Yellow Green": 5,
     "Red Pink": 5,
     "Blue Black": 5,
+    "Yellow Purple": 5,
+    "Light Red Light Blue": 5,
     "Gold": 0.1,
 }
 
@@ -372,6 +381,7 @@ def post_process(traits):
                 'Beach:Grey Sunglasses': 'Minor',
                 'Clouds:Grey Sunglasses': 'Minor',
                 'Wave:Red Sunglasses': 'Minor',
+                'Bedroom:Bathrobe': 'Major',
             }
             combo_key = get_combo_key(trait)
             trait['Severity'] = combo_to_severity[combo_key]
