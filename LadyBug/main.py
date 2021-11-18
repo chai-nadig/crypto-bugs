@@ -35,7 +35,7 @@ if __name__ == "__main__":
 
         combine(traits)
 
-        combineToGif(traits)
+        # combineToGif(traits)
 
         count_traits(traits)
 

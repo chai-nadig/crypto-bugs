@@ -45,6 +45,10 @@ unique_backgrounds = {
     "Sunset": 4,
     "City": 4,
     "Bedroom": 1,
+    "Snow": 2,
+    "Desert": 3,
+    "Trees": 3,
+    "Pillars": 2,
 }
 
 backgrounds = {}
@@ -62,7 +66,7 @@ spots = {
 colors = {
     "Red": 1,
     "Blue": 1,
-    "Black": 1,
+    "Black": 0.5,
     "Green": 1,
     "Yellow": 1,
     "Orange": 1,
@@ -92,17 +96,14 @@ accessories = {
     "Pirate Hat": 1.5,
     "Tux": 3,
     "Bathrobe": 2,
-    "Cloak": 0.1,
     "Snorkel Gear": 1,
     "Red Sunglasses": 0.25,
-    "Grey Sunglasses": 0.25,
 }
 
 eyes = {
     "Blue": 1,
     "Red": 1,
     "White": 1,
-    "Grey": 0.25,
 }
 
 TOTAL_BUGS = (
@@ -117,16 +118,34 @@ currentlocation = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__f
 outputlocation = os.path.join(currentlocation, './output/')
 
 unique_backgrounds_with_accessories = {
-    'Beach': ['Red Sunglasses', 'Grey Sunglasses', 'Bikini', 'Beach Hat', 'Pirate Hat'],
+    'Beach': ['Red Sunglasses', 'Bikini', 'Beach Hat', 'Pirate Hat'],
     'Book': ['Graduation Cap'],
     'Brick Wall': ['Construction Hat'],
     'City': ['Tux'],
-    'Clouds': ['Red Sunglasses', 'Grey Sunglasses'],
-    'Fire': ['Cloak'],
+    'Clouds': ['Red Sunglasses'],
     'Spider Web': ['Wizard Hat'],
-    'Sunset': ['Grey Sunglasses'],
-    'Wave': ['Red Sunglasses', 'Grey Sunglasses', 'Bikini', 'Beach Hat', 'Pirate Hat'],
+    'Wave': ['Red Sunglasses', 'Bikini', 'Beach Hat'],
     'Bedroom': ['Bathrobe'],
+    "Desert": ["Sombrero"],
+    "Snow": ["Beanie"],
+}
+
+combo_to_severity = {
+    'Wave:Beach Hat': 'Minor',
+    'Beach:Beach Hat': 'Minor',
+    'City:Tux': 'Blocker',
+    'Beach:Pirate Hat': 'Trivial',
+    'Brick Wall:Construction Hat': 'Trivial',
+    'Beach:Red Sunglasses': 'Blocker',
+    'Spider Web:Wizard Hat': 'Minor',
+    'Book:Graduation Cap': 'Major',
+    'Beach:Bikini': 'Critical',
+    'Wave:Bikini': 'Major',
+    'Clouds:Red Sunglasses': 'Minor',
+    'Wave:Red Sunglasses': 'Minor',
+    'Bedroom:Bathrobe': 'Major',
+    'Desert:Sombrero': 'Blocker',
+    'Snow:Beanie': 'Minor',
 }
 
 
@@ -155,11 +174,16 @@ def get_ignored_combinations():
 
     ignore_combinations = [
         # Ignore Yellow spots with Yellow or Orange colored bugs
-        {'Spots': ['Yellow Spots A', 'Yellow Spots B'],
-         'Color': ['Yellow', 'Orange']},
+        {'Spots': ['Yellow Spots A', 'Yellow Spots B'], 'Color': ['Yellow', 'Orange', 'Red', 'Gold']},
+
+        # Ignore Yellow spots with white eyes
+        {'Spots': ['Yellow Spots A', 'Yellow Spots B'], 'Eyes': ['White']},
+
+        # Ignore Yellow spots with matrix
+        {'Spots': ['Yellow Spots A', 'Yellow Spots B'], 'Background': ['Matrix', 'Tennis Balls']},
 
         # Ignore Red spots with Red Colored Bugs
-        {'Spots': ['Red Spots A', 'Red Spots B'], 'Color': ['Red', 'Purple']},
+        {'Spots': ['Red Spots A', 'Red Spots B'], 'Color': ['Red', 'Purple', 'Gold', "Camo", "Orange", "Black"]},
 
         # Ignore Green Colored bug with Matrix or Leaf Background
         {'Color': ['Green'], 'Background': ['Matrix', 'Leaf']},
@@ -167,8 +191,8 @@ def get_ignored_combinations():
         # Ignore bikini accessory with red spots
         {"Accessory": ['Bikini'], 'Spots': ['Red Spots A', 'Red Spots B']},
 
-        # Ignore cloak with Red Pink background
-        {"Accessory": ["Cloak"], 'Background': ['Red Pink']},
+        # Ignore red eyes with red spots
+        {"Eyes": ["Red"], 'Spots': ['Red Spots A', 'Red Spots B']},
 
         # Ignore bikini accessory with red or purple colored bugs
         {"Accessory": ['Bikini'], 'Color': ['Red', 'Purple']},
@@ -176,17 +200,14 @@ def get_ignored_combinations():
         # Ignore Wizard hat accessory with blue black or red blue backgrounds
         {"Accessory": ["Wizard Hat"], "Background": ['Blue Black', 'Red Blue']},
 
-        # Ignore pirate hat and cloak  accessory with Purple Blue background
-        {"Accessory": ["Pirate Hat", "Cloak"], "Background": ['Purple Blue']},
+        # Ignore pirate hat accessory with Purple Blue background
+        {"Accessory": ["Pirate Hat"], "Background": ['Purple Blue']},
 
         # Ignore snorkel gear with orange color bug
         {"Accessory": ["Snorkel Gear"], "Color": ["Orange"]},
 
         # Ignore red sunglasses with red bug
         {"Accessory": ["Red Sunglasses"], "Color": ["Red"]},
-
-        # Ignore grey sunglasses with red bug
-        {"Accessory": ["Grey Sunglasses"], "Color": ["Black"]},
 
         # Ignore graduation cap with black color bug
         {"Accessory": ["Graduation Cap"], "Color": ["Black"]},
@@ -199,17 +220,24 @@ def get_ignored_combinations():
 
         {"Color": ["Gold"],
          "Accessory": ["Sombrero", "Construction Hat", "Beanie", "Chef Cap", "Bikini", "Belt", "Wizard Hat",
-                       "Beach Hat", "Halo", "Clown Hat", "Pirate Hat", "Cloak", "Snorkel Gear", "Red Sunglasses",
-                       "Grey Sunglasses"]},
+                       "Beach Hat", "Halo", "Clown Hat", "Pirate Hat", "Snorkel Gear", "Red Sunglasses"]},
 
         {"Background": ["Gold"], "Eyes": ["Grey", "White"]},
 
         {"Background": ["Gold"],
          "Accessory": ["Sombrero", "Construction Hat", "Beanie", "Chef Cap", "Bikini", "Belt", "Wizard Hat",
-                       "Beach Hat", "Halo", "Clown Hat", "Pirate Hat", "Cloak", "Snorkel Gear", "Red Sunglasses",
-                       "Grey Sunglasses"]},
+                       "Beach Hat", "Halo", "Clown Hat", "Pirate Hat", "Snorkel Gear", "Red Sunglasses"]},
 
-        {"Color": ["Gold"], 'Spots': ['Yellow Spots A', 'Yellow Spots B', 'Red Spots A', 'Red Spots B']}
+        {"Background": ["Yellow"],
+         "Accessory": ["Construction Hat", "Beanie", "Beach Hat", "Viking Helmet", "Sombrero", "Graduation Cap"]},
+        {"Background": ["Orange"], "Accessory": ["Construction Hat"]},
+        {"Background": ["Monitor", "Red Blue", "Stick", "Blue Black"], "Color": ["Black"]},
+        {"Background": ["Monitor", "Red Blue", "Stick", "Blue Black"], "Color": ["Camo"]},
+        {"Accessory": ["Pirate Hat"], "Color": ["Black"]},
+        {"Background": ["Book", "Bedroom"], "Color": ["Yellow"]},
+        {"Background": ["Desert"], "Color": ["Orange"]},
+        {"Background": ["Trees"], "Color": ["Green"]},
+        {"Background": ["Blue Black"], "Color": ["Blue", "Black", "Camo", "Gold"]}
     ]
 
     for bg in unique_backgrounds:
@@ -255,7 +283,7 @@ def createCombo():
     elif trait['Accessory'] == 'Bathrobe':
         trait['Spots'] = None
 
-    elif trait["Accessory"] in ("Red Sunglasses", "Grey Sunglasses", "Snorkel Gear"):
+    elif trait["Accessory"] in ("Red Sunglasses", "Snorkel Gear"):
         trait["Eyes"] = None
 
     return trait
@@ -362,34 +390,13 @@ def post_process(traits):
             total=len(traits),
     ):
         if is_combo(trait):
-            combo_to_severity = {
-                'Wave:Beach Hat': 'Minor',
-                'Beach:Beach Hat': 'Minor',
-                'City:Tux': 'Blocker',
-                'Beach:Pirate Hat': 'Trivial',
-                'Wave:Grey Sunglasses': 'Trivial',
-                'Brick Wall:Construction Hat': 'Trivial',
-                'Wave:Pirate Hat': 'Trivial',
-                'Beach:Red Sunglasses': 'Blocker',
-                'Spider Web:Wizard Hat': 'Minor',
-                'Fire:Cloak': 'Blocker',
-                'Book:Graduation Cap': 'Major',
-                'Beach:Bikini': 'Critical',
-                'Wave:Bikini': 'Major',
-                'Clouds:Red Sunglasses': 'Minor',
-                'Sunset:Grey Sunglasses': 'Critical',
-                'Beach:Grey Sunglasses': 'Minor',
-                'Clouds:Grey Sunglasses': 'Minor',
-                'Wave:Red Sunglasses': 'Minor',
-                'Bedroom:Bathrobe': 'Major',
-            }
             combo_key = get_combo_key(trait)
             trait['Severity'] = combo_to_severity[combo_key]
 
         elif trait['Background'] == 'Gold' or trait['Color'] == 'Gold':
             trait['Severity'] = 'Blocker'
 
-        elif trait['Accessory'] in ('Tux', 'Cloak', 'Bikini') or trait['Background'] in ('Matrix', 'Fire', 'Rainbow1'):
+        elif trait['Accessory'] in ('Tux', 'Bikini') or trait['Background'] in ('Matrix', 'Fire', 'Rainbow1'):
             trait['Severity'] = 'Blocker'
 
         elif trait['Accessory'] in ('Red Hair', 'Beach Hat') or trait['Background'] in ('Sunset', 'City'):
