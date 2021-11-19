@@ -15,13 +15,13 @@ simple_backgrounds = {
     "Orange": 5,
     "Red": 5,
     "Yellow": 5,
-    "Purple Blue": 5,
-    "Red Blue": 5,
-    "Yellow Green": 5,
-    "Red Pink": 5,
-    "Blue Black": 5,
-    "Yellow Purple": 5,
-    "Light Red Light Blue": 5,
+    "Purple Blue": 4,
+    "Red Blue": 4,
+    "Yellow Green": 4,
+    "Red Pink": 4,
+    "Blue Black": 4,
+    "Yellow Purple": 4,
+    "Light Red Light Blue": 4,
     "Gold": 0.1,
 }
 
@@ -49,6 +49,7 @@ unique_backgrounds = {
     "Desert": 3,
     "Trees": 3,
     "Pillars": 2,
+    "June": 0.25,
 }
 
 backgrounds = {}
@@ -209,9 +210,6 @@ def get_ignored_combinations():
         # Ignore red sunglasses with red bug
         {"Accessory": ["Red Sunglasses"], "Color": ["Red"]},
 
-        # Ignore graduation cap with black color bug
-        {"Accessory": ["Graduation Cap"], "Color": ["Black"]},
-
         # Ignore gold color with gold background
         {"Color": ["Gold"], "Background": ["Gold"]},
 
@@ -233,11 +231,12 @@ def get_ignored_combinations():
         {"Background": ["Orange"], "Accessory": ["Construction Hat"]},
         {"Background": ["Monitor", "Red Blue", "Stick", "Blue Black"], "Color": ["Black"]},
         {"Background": ["Monitor", "Red Blue", "Stick", "Blue Black"], "Color": ["Camo"]},
-        {"Accessory": ["Pirate Hat"], "Color": ["Black"]},
+        {"Accessory": ["Pirate Hat", "Graduation Cap"], "Color": ["Black"]},
         {"Background": ["Book", "Bedroom"], "Color": ["Yellow"]},
         {"Background": ["Desert"], "Color": ["Orange"]},
         {"Background": ["Trees"], "Color": ["Green"]},
-        {"Background": ["Blue Black"], "Color": ["Blue", "Black", "Camo", "Gold"]}
+        {"Background": ["Blue Black"], "Color": ["Blue", "Black", "Camo", "Gold"]},
+        {"Background": ["Spider Web", "Sunset"], "Color": ["Black"]},
     ]
 
     for bg in unique_backgrounds:
