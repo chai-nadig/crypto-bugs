@@ -50,6 +50,7 @@ unique_backgrounds = {
     "Trees": 3,
     "Pillars": 2,
     "June": 0.25,
+    "Island": 2,
 }
 
 backgrounds = {}
@@ -129,21 +130,29 @@ unique_backgrounds_with_accessories = {
     'Bedroom': ['Bathrobe'],
     "Desert": ["Sombrero"],
     "Snow": ["Beanie"],
+    "Island": ["Red Sunglasses", "Bikini", "Beach Hat", "Pirate Hat"],
 }
 
 combo_to_severity = {
     'Wave:Beach Hat': 'Minor',
+    'Wave:Bikini': 'Major',
+    'Wave:Red Sunglasses': 'Minor',
+
     'Beach:Beach Hat': 'Minor',
-    'City:Tux': 'Blocker',
     'Beach:Pirate Hat': 'Trivial',
-    'Brick Wall:Construction Hat': 'Trivial',
+    'Beach:Bikini': 'Critical',
     'Beach:Red Sunglasses': 'Blocker',
+
+    'Island:Beach Hat': 'Minor',
+    'Island:Pirate Hat': 'Trivial',
+    'Island:Bikini': 'Critical',
+    'Island:Red Sunglasses': 'Major',
+
+    'City:Tux': 'Blocker',
+    'Brick Wall:Construction Hat': 'Trivial',
     'Spider Web:Wizard Hat': 'Minor',
     'Book:Graduation Cap': 'Major',
-    'Beach:Bikini': 'Critical',
-    'Wave:Bikini': 'Major',
     'Clouds:Red Sunglasses': 'Minor',
-    'Wave:Red Sunglasses': 'Minor',
     'Bedroom:Bathrobe': 'Major',
     'Desert:Sombrero': 'Blocker',
     'Snow:Beanie': 'Minor',
@@ -202,7 +211,7 @@ def get_ignored_combinations():
         {"Accessory": ["Wizard Hat"], "Background": ['Blue Black', 'Red Blue']},
 
         # Ignore pirate hat accessory with Purple Blue background
-        {"Accessory": ["Pirate Hat"], "Background": ['Purple Blue']},
+        {"Accessory": ["Pirate Hat"], "Background": ['Purple Blue', 'Blue Black']},
 
         # Ignore snorkel gear with orange color bug
         {"Accessory": ["Snorkel Gear"], "Color": ["Orange"]},
