@@ -8,13 +8,8 @@ from collections import defaultdict
 from tqdm import tqdm
 
 simple_backgrounds = {
-    "Green": 5,
-    "Light Blue": 5,
-    "Light Purple": 5,
-    "Light Red": 5,
-    "Orange": 5,
-    "Red": 5,
-    "Yellow": 5,
+    "Gold": 0.1,
+
     "Purple Blue": 4,
     "Red Blue": 4,
     "Yellow Green": 4,
@@ -22,35 +17,46 @@ simple_backgrounds = {
     "Blue Black": 4,
     "Yellow Purple": 4,
     "Light Red Light Blue": 4,
-    "Gold": 0.1,
-}
 
+    "Green": 5,
+    "Light Blue": 5,
+    "Light Purple": 5,
+    "Light Red": 5,
+    "Orange": 5,
+    "Red": 5,
+    "Yellow": 5,
+}
 unique_backgrounds = {
+    "June": 0.25,
+
+    "Bedroom": 1,
     "American Football": 1,
     "Tennis Balls": 1,
+
     "Monitor": 2,
-    "Fire": 5,
-    "Clouds": 5,
-    "Wave": 5,
     "Spider Web": 2,
     "Stick": 2,
     "Leaf": 2,
     "Hearts": 2,
     "Book": 2,
-    "Matrix": 3,
-    "Rainbow": 3,
-    "Brick Wall": 4,
-    "Road": 3,
-    "Beach": 5,
-    "Sunset": 4,
-    "City": 4,
-    "Bedroom": 1,
     "Snow": 2,
+    "Matrix": 2,
+
+    "Pillars": 3,
+    "Island": 3,
+    "Rainbow": 3,
+    "Road": 3,
     "Desert": 3,
     "Trees": 3,
-    "Pillars": 2,
-    "June": 0.25,
-    "Island": 2,
+
+    "Brick Wall": 4,
+    "Sunset": 4,
+    "City": 4,
+
+    "Beach": 5,
+    "Fire": 5,
+    "Clouds": 5,
+    "Wave": 5,
 }
 
 backgrounds = {}
@@ -66,40 +72,45 @@ spots = {
     "Yellow Spots B": 1,
 }
 colors = {
+    "Gold": 0.3,
+    "Black": 0.5,
+
     "Red": 1,
     "Blue": 1,
-    "Black": 0.5,
     "Green": 1,
     "Yellow": 1,
     "Orange": 1,
     "Purple": 1,
     "Camo": 1,
-    "Gold": 0.01,
 }
 
 accessories = {
-    None: 2,
-    "Sombrero": 3,
-    "Top Hat": 3,
+    "Red Sunglasses": 0.25,
+
     "Turban": 1,
-    "Crown": 3,
+    "Beanie": 1,
+    "Snorkel Gear": 1,
+
+    "Pirate Hat": 1.5,
+
+    None: 2,
+    "Red Hair": 2,
+    "Bathrobe": 2,
+    "Belt": 2,
     "Construction Hat": 2,
     "Graduation Cap": 2,
-    "Beanie": 1,
-    "Chef Cap": 3,
     "Bikini": 2,
+
     "Viking Helmet": 3,
-    "Belt": 2,
+    "Chef Cap": 3,
     "Wizard Hat": 3,
+    "Sombrero": 3,
+    "Top Hat": 3,
+    "Crown": 3,
     "Beach Hat": 3,
     "Halo": 3,
     "Clown Hat": 3,
-    "Red Hair": 2,
-    "Pirate Hat": 1.5,
     "Tux": 3,
-    "Bathrobe": 2,
-    "Snorkel Gear": 1,
-    "Red Sunglasses": 0.25,
 }
 
 eyes = {
@@ -132,31 +143,41 @@ unique_backgrounds_with_accessories = {
     "Snow": ["Beanie"],
     "Island": ["Red Sunglasses", "Bikini", "Beach Hat", "Pirate Hat"],
 }
-
 combo_to_severity = {
-    'Wave:Beach Hat': 'Minor',
-    'Wave:Bikini': 'Major',
-    'Wave:Red Sunglasses': 'Minor',
-
-    'Beach:Beach Hat': 'Minor',
-    'Beach:Pirate Hat': 'Trivial',
-    'Beach:Bikini': 'Critical',
     'Beach:Red Sunglasses': 'Blocker',
-
-    'Island:Beach Hat': 'Minor',
-    'Island:Pirate Hat': 'Trivial',
-    'Island:Bikini': 'Critical',
-    'Island:Red Sunglasses': 'Major',
-
     'City:Tux': 'Blocker',
-    'Brick Wall:Construction Hat': 'Trivial',
-    'Spider Web:Wizard Hat': 'Minor',
-    'Book:Graduation Cap': 'Major',
-    'Clouds:Red Sunglasses': 'Minor',
-    'Bedroom:Bathrobe': 'Major',
     'Desert:Sombrero': 'Blocker',
-    'Snow:Beanie': 'Minor',
+
+    'Beach:Bikini': 'Critical',
+    'Island:Red Sunglasses': 'Critical',
+    'Island:Beach Hat': 'Critical',
+
+    'Wave:Bikini': 'Major',
+    'Bedroom:Bathrobe': 'Major',
+    'Book:Graduation Cap': 'Major',
+
+    'Wave:Beach Hat': 'Minor',
+    'Wave:Red Sunglasses': 'Minor',
+    'Beach:Beach Hat': 'Minor',
+    'Spider Web:Wizard Hat': 'Minor',
+    'Clouds:Red Sunglasses': 'Minor',
+    'Island:Bikini': 'Minor',
+
+    'Beach:Pirate Hat': 'Trivial',
+    'Island:Pirate Hat': 'Trivial',
+    'Brick Wall:Construction Hat': 'Trivial',
+    'Snow:Beanie': 'Trivial',
 }
+
+expected_severities = {
+    'Blocker': 5,
+    'Critical': 10,
+    'Major': 20,
+    'Minor': 25,
+    'Trivial': 40,
+}
+
+SEVERITY_THRESHOLD = 0.75
 
 
 def is_combo(trait):
@@ -166,6 +187,32 @@ def is_combo(trait):
 
 def get_combo_key(trait):
     return '{}:{}'.format(trait['Background'], trait['Accessory'])
+
+
+def get_severity(trait):
+    if is_combo(trait):
+        combo_key = get_combo_key(trait)
+        return combo_to_severity[combo_key]
+
+    elif trait['Background'] == 'Gold' or trait['Color'] == 'Gold':
+        return 'Blocker'
+
+    elif trait['Accessory'] in ('Tux',) or trait['Background'] in ('Matrix', 'Rainbow',):
+        return 'Blocker'
+
+    elif trait['Accessory'] in ('Red Hair', 'Beach Hat',) or trait['Background'] in ('Fire',):
+        return 'Critical'
+
+    elif (trait['Accessory'] in ('Crown', 'Halo', 'Top Hat') or
+          trait['Background'] in ('Sunset', 'City', 'Desert', 'Island')):
+        return 'Major'
+
+    elif (trait['Accessory'] in ('Bathrobe', 'Viking Helmet', 'Turban') or
+          trait['Background'] in (
+                  'Wave', 'June', 'Trees', 'Pillars')):
+        return 'Minor'
+    else:
+        return 'Trivial'
 
 
 def allowed_accessories_as_ignore_combination(background, allowed):
@@ -294,6 +341,8 @@ def createCombo():
     elif trait["Accessory"] in ("Red Sunglasses", "Snorkel Gear"):
         trait["Eyes"] = None
 
+    trait['Severity'] = get_severity(trait)
+
     return trait
 
 
@@ -314,9 +363,19 @@ def allUnique(x):
     return not any(i in seen or seen.append(i) for i in x)
 
 
+def exceeds_expected_severity(counts, severity, total):
+    if total == 0:
+        return False
+    actual = round((counts[severity] * 100.0) / total, 2)
+    expected = expected_severities[severity] + SEVERITY_THRESHOLD
+    return actual >= expected
+
+
 def generateCombinations(n, excluded_traits=None):
     if excluded_traits is None:
         excluded_traits = []
+
+    severity_counts = defaultdict(int)
 
     traits = []
     trait_keys = set()
@@ -331,10 +390,12 @@ def generateCombinations(n, excluded_traits=None):
         trait = createCombo()
         trait_key = get_trait_key(trait)
 
-        while trait_key in trait_keys or shouldIgnore(trait) or trait_key in excluded_trait_keys:
+        while (trait_key in trait_keys or shouldIgnore(trait) or trait_key in excluded_trait_keys
+               or exceeds_expected_severity(severity_counts, trait['Severity'], len(trait_keys))):
             trait = createCombo()
             trait_key = get_trait_key(trait)
 
+        severity_counts[trait['Severity']] += 1
         trait_keys.add(trait_key)
         traits.append(trait)
 
@@ -397,30 +458,6 @@ def post_process(traits):
             unit="traits",
             total=len(traits),
     ):
-        if is_combo(trait):
-            combo_key = get_combo_key(trait)
-            trait['Severity'] = combo_to_severity[combo_key]
-
-        elif trait['Background'] == 'Gold' or trait['Color'] == 'Gold':
-            trait['Severity'] = 'Blocker'
-
-        elif trait['Accessory'] in ('Tux', 'Bikini') or trait['Background'] in ('Matrix', 'Fire', 'Rainbow1'):
-            trait['Severity'] = 'Blocker'
-
-        elif trait['Accessory'] in ('Red Hair', 'Beach Hat') or trait['Background'] in ('Sunset', 'City'):
-            trait['Severity'] = 'Critical'
-
-        elif trait['Accessory'] in ('Crown', 'Viking Helmet', 'Halo', 'Top Hat') or trait['Background'] in ('Stick',):
-            trait['Severity'] = 'Major'
-
-        elif (trait['Accessory'] in ('Bathrobe', 'Turban', 'Pirate Hat', 'Belt', 'Construction Hat', 'Chef Cap') or
-              trait['Background'] in ('American Football', 'Tennis Ball', 'Leaf', 'Monitor', 'Hearts', 'Spider Web')):
-            trait['Severity'] = 'Minor'
-
-        else:
-            trait['Severity'] = 'Trivial'
-
-    for trait in traits:
         assert 'Severity' in trait
         assert trait['Severity'] in ['Blocker', 'Critical', 'Major', 'Minor', 'Trivial']
 
@@ -466,5 +503,11 @@ def count_traits(traits):
 
 
 def print_csv(d):
+    total = sum(d.values())
+    csv = {}
+
     for key, value in d.items():
-        print("{},{}".format(key, value))
+        csv[key] = (value, round(value / total * 100, 2))
+
+    for i in sorted(csv.items(), key=lambda x: x[1][0]):
+        print("{},{},{}".format(i[0], i[1][0], i[1][1]))
