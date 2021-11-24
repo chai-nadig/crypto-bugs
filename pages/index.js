@@ -40,18 +40,32 @@ return (
 
     <div id="traits" className="mx-6 py-8">
       <h4 className="text-crypto-red text-6xl text-center py-10">TRAITS</h4>
-      <div className="flex flex-wrap items-center mx-6 py-10">
+      <div className="flex flex-wrap justify-center mx-6 py-10">
         <div className="md:w-1/2">
           <div>
-            <span class="text-white">sunset bug</span>
-            <img src="images/set2/1216.png"  width="400" className="feature-image"/>
+            <span class="text-white text-lg">sunset bug</span>
+            <img src="images/set2/1216.png"  className="feature-image w-4/5"/>
           </div>
         </div>
-        <div className="md:w-1/2 flex flex-wrap">
-          <div className=" p-2 "><span class="text-white">hipster bug</span><img src="images/set2/1815.png" alt="" width="200px" className="feature-image"/></div>
-          <div className=" p-2 "><span class="text-white">angel bug</span><img src="images/set2/1265.png" alt="" width="200px" className="feature-image"/></div>
-          <div className=" p-2 "><span class="text-white">witch bug</span><img src="images/set2/1479.png" alt="" width="200px" className="feature-image"/></div>
-          <div className=" p-2 "><span class="text-white">grad bug</span><img src="images/set2/1646.png" alt="" width="200px" className="feature-image"/></div>
+        <div className="md:w-1/2">
+          <div className="flex flex-wrap justify-center">
+            <div className=" md:w-1/2 p-1">
+              <span class="text-white text-lg">hipster bug</span>
+              <img src="images/set2/1815.png" className="feature-image w-4/5"/>
+            </div>
+            <div className="md:w-1/2  p-1">
+              <span class="text-white text-lg">angel bug</span>
+              <img src="images/set2/1265.png"  className="feature-image w-4/5"/>
+            </div>
+            <div className="md:w-1/2  p-1">
+              <span class="text-white text-lg">witch bug</span>
+              <img src="images/set2/1479.png"  className="feature-image w-4/5"/>
+            </div>
+            <div className="md:w-1/2  p-1">
+              <span class="text-white text-lg">grad bug</span>
+              <img src="images/set2/1646.png"  className="feature-image w-4/5"/>
+            </div>
+          </div>
         </div>
       </div>
     </div>
