@@ -1,5 +1,21 @@
 import Head from 'next/head'
 export default function Home() {
+
+  let image1 = "images/set2/1216.png";
+  let imageDesc1 = "sunset bug";
+
+  let image2 = "images/set2/1815.png";
+  let imageDesc2 = "hipster bug";
+
+  let image3 = "images/set2/1265.png";
+  let imageDesc3 = "angel bug";
+
+  let image4 = "images/set2/1479.png";
+  let imageDesc4 = "witch bug";
+
+  let image5 = "images/set2/1646.png";
+  let imageDesc5 = "grad bug";
+
 return (
 <div id="bodyy" className="flex flex-col items-center justify-center min-h-screen py-2">
   <Head>
@@ -43,27 +59,27 @@ return (
       <div className="flex flex-wrap justify-center mx-6 py-10">
         <div className="md:w-1/2">
           <div>
-            <span class="text-white text-lg">sunset bug</span>
-            <img src="images/set2/1216.png"  className="feature-image w-4/5"/>
+            <span class="text-white text-lg">{imageDesc1}</span>
+            <img src={image1}  className="feature-image w-4/5"/>
           </div>
         </div>
         <div className="md:w-1/2">
           <div className="flex flex-wrap justify-center">
             <div className=" md:w-1/2 p-1">
-              <span class="text-white text-lg">hipster bug</span>
-              <img src="images/set2/1815.png" className="feature-image w-4/5"/>
+              <span class="text-white text-lg">{imageDesc2}</span>
+              <img src={image2} className="feature-image w-4/5"/>
             </div>
             <div className="md:w-1/2  p-1">
-              <span class="text-white text-lg">angel bug</span>
-              <img src="images/set2/1265.png"  className="feature-image w-4/5"/>
+              <span class="text-white text-lg">{imageDesc3}</span>
+              <img src={image3} className="feature-image w-4/5"/>
             </div>
             <div className="md:w-1/2  p-1">
-              <span class="text-white text-lg">witch bug</span>
-              <img src="images/set2/1479.png"  className="feature-image w-4/5"/>
+              <span class="text-white text-lg">{imageDesc4}</span>
+              <img src={image4} className="feature-image w-4/5"/>
             </div>
             <div className="md:w-1/2  p-1">
-              <span class="text-white text-lg">grad bug</span>
-              <img src="images/set2/1646.png"  className="feature-image w-4/5"/>
+              <span class="text-white text-lg">{imageDesc5}</span>
+              <img src={image5} className="feature-image w-4/5"/>
             </div>
           </div>
         </div>
