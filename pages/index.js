@@ -17,72 +17,34 @@ return (
     <meta name="twitter:title" content="crypto-bugs" key="twtitle" />
     <meta name="twitter:description" content="a variety of NFT bugs triaged under severities blocker, critical, major, minor and trivial." key="twdesc" />
     <meta name="twitter:image" content="https://crypto-bugs.com/images/13.png" key="twimage" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu+Mono" />
   </Head>
-  <div>
-    <div className="flex items-center justify-between w-full border-b-2	pb-6">
-      <div className="border-4 border-red-800 p-1">
-        <a href="/" className=""><img src="images/13.png" width="120px" className="logo-image" /></a>
+
+  <div className="md:w-2/3 w-4/5" >
+    <div id="about" className="mx-6 py-8">
+      <div className="mt-6 py-1">
+        <h1 className="text-6xl text-center text-crypto-red">crypto-bugs-0x2b67</h1>
+        <p className="text-2xl text-center text-white my-6"><span className="text-red">11,111</span> (<span className="text-red">0x2b67</span> in hexadecimal) unique lady bugs.</p>
       </div>
 
-      <nav className="flex flex-wrap flex-row justify-around">
-        <a href="/#about" className="text-4xl text-white-shadow hover:text-black m-6">About</a>
-        <a href="/#severity" className="text-4xl text-white-shadow hover:text-black m-6">Severity</a>
-        <a href="/#traits" className="text-4xl text-white-shadow hover:text-black m-6">Traits</a>
-        <a href="/#roadmap" className="text-4xl text-white-shadow hover:text-black m-6">Roadmap</a>
-        <a href="/mint" className="text-4xl text-white-shadow hover:text-black m-6">Mint</a>
-        <a href="/#team" className="text-4xl text-white-shadow hover:text-black m-6">Team</a>
-        <a href="https://twitter.com/CryptoBugsx2B67" target="_blank"><img src="images/twitter.png" width="70px"/></a>
-        <a href="https://discord.gg/A6nkdvr2yR" target="_blank"><img src="images/discord.png" width="70px"/></a>
-      </nav>
-    </div>
-  </div>
-  <div className="md:w-2/3 w-4/5 " id="about">
-    <div className="mt-6 border-b-2 py-6">
-      <h1 className="text-6xl text-center text-white"><span className="text-crypto-red">crypto-bugs-0x2b67</span></h1>
-      <div className="flex flex-wrap lg:flex-nowrap justify-around items-center py-6">
-        <div className="lg:w-1/2 w-3/4">
-          <p className="text-2xl text-white my-6">We've discovered a variety of bugs and triaged their severities.</p>
-          <p className="text-2xl text-white my-6">A detailed bug report of <span className="text-red">11,111</span> (0x2b67 in hexadecimal) bugs will be released soon.</p>
-          <p className="text-2xl text-white my-6">
-            First 111 swatters who help us grow the bug bash will receive an NFT of the bug for free!<br/>
-          </p>
-          <p>
-            <span class="text-red text-2xl">Join our Discord <u><a className="text-white-shadow hover:text-black" target="_blank" href="https://discord.gg/A6nkdvr2yR">here!</a></u></span>
-          </p>
-        </div>
-        <div className="border-4 border-red-500 p-2">
-          <img  src="images/1391.png" width="240px" />
+      <div className="mt-6" >
+        <div className="items-center">
+          <nav className="flex flex-wrap flex-row justify-center">
+            <a href="https://twitter.com/CryptoBugsx2B67" target="_blank"><img src="images/twitter.png" width="50px"/></a>
+            <a href="https://discord.gg/A6nkdvr2yR" target="_blank"><img src="images/discord.png" width="50px"/></a>
+          </nav>
         </div>
       </div>
     </div>
-    <div id="severity" className="justify-around items-center mx-6 py-6 border-b-2">
-      <h2 className="text-crypto-red text-6xl text-center">SEVERITY</h2>
-      <div className="flex flex-wrap justify-around items-center mx-6 py-6">
-        <div className="border-4 border-red-500 p-2">
-          <img src="images/ani2.gif" alt="" width="240px" class="feature-image"/>
-        </div>
-        <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
-          <p class="text-2xl text-white my-6">
-            Severity levels more or less correspond to the rarity of traits.
-            <ul>
-              <li> <span className="text-red-700">blocker </span></li>
-              <li> <span className="text-red-600">critical </span> </li>
-              <li> <span className="text-red-500">major </span> </li>
-              <li> <span className="text-red-400">minor </span> </li>
-              <li> <span className="text-red-300">trivial </span> </li>
-            </ul>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div id="traits" className="mx-6 py-6 border-b-2">
-      <h2 className="text-crypto-red text-6xl text-center">TRAITS</h2>
-      <p class="text-2xl text-white my-6"><b>crypto-bugs-0x2b67</b> have traits like background, accessory, color, spots, and eye color.
-        There are some bugs with combinations of unique backgrounds and accessories.
-      </p>
-      <div className="flex flex-wrap  items-center mx-6 py-6">
+    
+
+    <div id="traits" className="mx-6 py-8">
+      <h4 className="text-crypto-red text-6xl text-center py-10">TRAITS</h4>
+      <div className="flex flex-wrap items-center mx-6 py-10">
         <div className="md:w-1/2">
-          <div className=" p-2"><span class="text-white">sunset bug</span><img src="images/set2/1216.png" alt="" width="400" className="feature-image"/>
+          <div>
+            <span class="text-white">sunset bug</span>
+            <img src="images/set2/1216.png"  width="400" className="feature-image"/>
           </div>
         </div>
         <div className="md:w-1/2 flex flex-wrap">
@@ -92,18 +54,17 @@ return (
           <div className=" p-2 "><span class="text-white">grad bug</span><img src="images/set2/1646.png" alt="" width="200px" className="feature-image"/></div>
         </div>
       </div>
-      <p class="text-xl text-white my-6"><i>name your bug as you please!</i>
-      </p>
-
     </div>
-    <div id="roadmap" className="mx-6 py-6 border-b-2">
-      <h2 className="text-crypto-red text-6xl text-center">ROADMAP</h2>
-      <div className="flex flex-wrap justify-around items-center mx-6 py-6">
+    
+    
+    <div id="roadmap" className="mx-6 py-8">
+      <h2 className="text-crypto-red text-6xl text-center py-10">ROADMAP</h2>
+      <div className="flex flex-wrap justify-around items-center mx-6 py-10">
         <div className="border-4 border-red-500 p-2">
           <img src="images/set3/3.png"  width="240px" class="feature-image"/>
         </div>
         <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
-          <span className="text-red text-4xl">LAUNCH</span>
+          <span className="text-red text-4xl">Launch</span>
           <p class="text-2xl text-white my-6">
             <span className="text-red">Start of our bug bash!</span><br/>
              Reporting 11,111 bugs.
@@ -172,9 +133,11 @@ return (
         </div>
       </div>
     </div>
-    <div id="team" className="mx-12 my-16 border-b-2 py-6">
-      <h2 className="text-crypto-red text-6xl text-center">TEAM</h2>
-      <div className="flex justify-around flex-wrap">
+    
+    
+    <div id="team" className="mx-12 my-16 border-b-2 py-8">
+      <h2 className="text-crypto-red text-6xl text-center py-10">TEAM</h2>
+      <div className="flex justify-around flex-wrap py-10">
         <div className="flex flex-col my-6">
           <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image" /></div>
           <h3 className="my-4 text-center text-5xl text-center text-red hover:text-red">hellstealz</h3>
@@ -205,18 +168,7 @@ return (
           <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image" /></div>
         </div>
       </div>
-      <p class="text-2xl text-white my-6">
-        We're three software techies, that got really engrossed in the world of NFT recently. Mostly inspired by
-        <a className="text-white-shadow hover:text-black" href="https://www.theverge.com/2021/3/11/22325054/beeple-christies-nft-sale-cost-everydays-69-million" target="_blank"> Beeple's sale for $69 Million</a>
-        &nbsp; and <a className="text-white-shadow hover:text-black" href="https://www.larvalabs.com/cryptopunks" target="_blank"> Cryptopunks' 24 x 24 pixel art,</a>
-        &nbsp; we came up with <b className="text-red ">crypto-bugs-0x2b67.</b>
-      </p>
-      <p class="text-2xl text-white my-6">
-        <b className="text-red ">crypto-bugs-0x2b67 </b> took two weeks to go from idea to product.
-        We bought a drawing tablet one weekend, started drawing bugs, adding backgrounds and accessories, and that was a lot of fun!
-        It's amazing how much you can do in a 24 x 24 pixel canvas!
-      </p>
-      <p className="text-center">
+      <p className="text-center py-8">
          <span class="text-red text-3xl">Join our Discord <u><a className="text-white-shadow hover:text-black" target="_blank" href="https://discord.gg/A6nkdvr2yR">here!</a></u></span>
       </p>
     </div>

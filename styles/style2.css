@@ -6,38 +6,31 @@
     background-attachment: fixed;
 }
 
-.montserrat {
-    font-family: Montserrat-Light, sans-serif;
-}
-
 .text-crypto-red {
-    color: #870019;
-    font-family: "Lucida Console", monospace;
+    color: #BB0000;
+    font-family: "Ubuntu Mono";
     font-weight: bold;
-    text-shadow: 1px 2px #ff0000;
-}
+    text-shadow: 1px 1px #110000;
 
+}
 
 .text-white {
     color: #eeeeee;
-    font-family: "Lucida Console", monospace;
+    font-family: "Ubuntu Mono";
     font-weight: 500;
 }
 
 
 .text-white-shadow {
     color: #eeeeee;
-    font-family: "Lucida Console", monospace;
+    font-family: "Ubuntu Mono";
     font-weight: 500;
     text-shadow: 1px 2px #ff0000;
 }
 
-
-
-
 .text-red {
     color: #FF0000;
-    font-family: "Lucida Console", monospace;
+    font-family: "Ubuntu Mono";
     font-weight: 100;
 }
 

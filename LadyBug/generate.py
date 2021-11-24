@@ -10,21 +10,21 @@ from tqdm import tqdm
 simple_backgrounds = {
     "Gold": 0.1,
 
-    "Purple Blue": 4,
-    "Red Blue": 4,
-    "Yellow Green": 4,
-    "Red Pink": 4,
-    "Blue Black": 4,
-    "Yellow Purple": 4,
-    "Light Red Light Blue": 4,
+    "Purple Blue": 3,
+    "Red Blue": 3,
+    "Yellow Green": 3,
+    "Red Pink": 3,
+    "Blue Black": 3,
+    "Yellow Purple": 3,
+    "Light Red Light Blue": 3,
 
-    "Green": 5,
-    "Light Blue": 5,
-    "Light Purple": 5,
-    "Light Red": 5,
-    "Orange": 5,
-    "Red": 5,
-    "Yellow": 5,
+    "Green": 4,
+    "Light Blue": 4,
+    "Light Purple": 4,
+    "Light Red": 4,
+    "Orange": 4,
+    "Red": 4,
+    "Yellow": 4,
 }
 unique_backgrounds = {
     "June": 0.25,
@@ -178,6 +178,7 @@ expected_severities = {
 }
 
 SEVERITY_THRESHOLD = 0.75
+DISABLE_SEVERITY_COUNTS = True
 
 
 def is_combo(trait):
@@ -197,19 +198,21 @@ def get_severity(trait):
     elif trait['Background'] == 'Gold' or trait['Color'] == 'Gold':
         return 'Blocker'
 
-    elif trait['Accessory'] in ('Tux',) or trait['Background'] in ('Matrix', 'Rainbow',):
+    elif trait['Accessory'] in ('Tux',) or trait['Background'] in ('Matrix', 'Rainbow', 'City'):
         return 'Blocker'
 
-    elif trait['Accessory'] in ('Red Hair', 'Beach Hat',) or trait['Background'] in ('Fire',):
+    elif (trait['Accessory'] in ('Red Hair', 'Beach Hat',) or
+          trait['Background'] in ('Fire', 'Sunset', 'Desert', 'Trees', 'Island',)):
         return 'Critical'
 
     elif (trait['Accessory'] in ('Crown', 'Halo', 'Top Hat') or
-          trait['Background'] in ('Sunset', 'City', 'Desert', 'Island')):
+          trait['Background'] in ('Wave', 'Beach', 'Pillars', 'Book', 'Snow')):
         return 'Major'
 
     elif (trait['Accessory'] in ('Bathrobe', 'Viking Helmet', 'Turban') or
           trait['Background'] in (
-                  'Wave', 'June', 'Trees', 'Pillars')):
+                  'June', 'Bedroom', 'American Football', 'Stick', 'Leaf', 'Brick Wall',
+                  'Clouds', 'Road', 'Monitor')):
         return 'Minor'
     else:
         return 'Trivial'
@@ -363,11 +366,14 @@ def allUnique(x):
     return not any(i in seen or seen.append(i) for i in x)
 
 
-def exceeds_expected_severity(counts, severity, total):
+def exceeds_expected_severity(counts, trait, total):
+    if DISABLE_SEVERITY_COUNTS:
+        return False
+
     if total == 0:
         return False
-    actual = round((counts[severity] * 100.0) / total, 2)
-    expected = expected_severities[severity] + SEVERITY_THRESHOLD
+    actual = round((counts[trait['Severity']] * 100.0) / total, 2)
+    expected = expected_severities[trait['Severity']] + SEVERITY_THRESHOLD
     return actual >= expected
 
 
@@ -391,7 +397,7 @@ def generateCombinations(n, excluded_traits=None):
         trait_key = get_trait_key(trait)
 
         while (trait_key in trait_keys or shouldIgnore(trait) or trait_key in excluded_trait_keys
-               or exceeds_expected_severity(severity_counts, trait['Severity'], len(trait_keys))):
+               or exceeds_expected_severity(severity_counts, trait, len(trait_keys))):
             trait = createCombo()
             trait_key = get_trait_key(trait)
 
