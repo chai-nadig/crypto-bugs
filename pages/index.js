@@ -1,20 +1,58 @@
 import Head from 'next/head'
+import {
+  useState,
+  useEffect
+} from 'react';
 export default function Home() {
 
-  let image1 = "images/set2/1216.png";
-  let imageDesc1 = "sunset bug";
+  const [traits, setTraits] = useState([]);
 
-  let image2 = "images/set2/1815.png";
-  let imageDesc2 = "hipster bug";
+  const [showTraits, setShowTraits] = useState(false);
 
-  let image3 = "images/set2/1265.png";
-  let imageDesc3 = "angel bug";
+  const allTraits = [
+    ["sunset bug", "images/set2/1216.png"],
+    ["hipster bug", "images/set2/1815.png"],
+    ["angel bug", "images/set2/473.png"],
+    ["witch bug", "images/set2/1479.png"],
+    ["grad bug","images/set2/1646.png" ],
+    ["beach bug", "images/set2/1396.png"],
+    ["queen bug", "images/set2/138.png"],
+    ["road bug", "images/set2/3169.png"],
+    ["love bug", "images/set2/3432.png"],
+    ["snow bug", "images/set2/387.png"],
+    ["island bug", "images/set2/512.png"],
+    ["construction bug", "images/set2/1411.png"],
+    ["book bug", "images/set2/3710.png"],
+    ["matrix bug", "images/set2/330.png"],
+    ["tux bug", "images/set2/6.png"],
+    ["chef bug", "images/set2/212.png"],
 
-  let image4 = "images/set2/1479.png";
-  let imageDesc4 = "witch bug";
+  ];
 
-  let image5 = "images/set2/1646.png";
-  let imageDesc5 = "grad bug";
+  useEffect(async () => {
+    setTraits(shuffle(allTraits))
+    setShowTraits(true);
+  }, [])
+  
+
+  function shuffle (array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+    return array;
+  }
+
+
 
 return (
 <div id="bodyy" className="flex flex-col items-center justify-center min-h-screen py-2">
@@ -53,38 +91,39 @@ return (
       </div>
     </div>
     
-
+    {showTraits ? 
     <div id="traits" className="mx-6 py-8">
       <h4 className="text-crypto-red text-6xl text-center py-10">TRAITS</h4>
       <div className="flex flex-wrap justify-center mx-6 py-10">
         <div className="md:w-1/2">
           <div>
-            <span class="text-white text-lg">{imageDesc1}</span>
-            <img src={image1}  className="feature-image w-4/5"/>
+            <span class="text-white text-lg">{traits[0][0]}</span>
+            <img src={traits[0][1]}  className="w-4/5"/>
           </div>
         </div>
         <div className="md:w-1/2">
           <div className="flex flex-wrap justify-center">
             <div className=" md:w-1/2 p-1">
-              <span class="text-white text-lg">{imageDesc2}</span>
-              <img src={image2} className="feature-image w-4/5"/>
+              <span class="text-white text-lg">{traits[1][0]}</span>
+              <img src={traits[1][1]} className="w-4/5"/>
             </div>
             <div className="md:w-1/2  p-1">
-              <span class="text-white text-lg">{imageDesc3}</span>
-              <img src={image3} className="feature-image w-4/5"/>
+              <span class="text-white text-lg">{traits[2][0]}</span>
+              <img src={traits[2][1]} className="w-4/5"/>
             </div>
             <div className="md:w-1/2  p-1">
-              <span class="text-white text-lg">{imageDesc4}</span>
-              <img src={image4} className="feature-image w-4/5"/>
+              <span class="text-white text-lg">{traits[3][0]}</span>
+              <img src={traits[3][1]} className="w-4/5"/>
             </div>
             <div className="md:w-1/2  p-1">
-              <span class="text-white text-lg">{imageDesc5}</span>
-              <img src={image5} className="feature-image w-4/5"/>
+              <span class="text-white text-lg">{traits[4][0]}</span>
+              <img src={traits[4][1]} className="w-4/5"/>
             </div>
           </div>
         </div>
       </div>
     </div>
+    : <div></div> }
     
     
     <div id="roadmap" className="mx-6 py-8">
