@@ -74,10 +74,12 @@ return (
   </Head>
 
   <div className="md:w-2/3 w-4/5" >
-    <div id="about" className="mx-6 py-8">
-      <div className="mt-6 py-1">
+    <div id="about" className="md:mx-6 lg:mx-6 py-4 md:py-8 lg:py-8">
+      <div className="mt-3 md:mt-6 lg:mt-6">
         <h1 className="text-6xl text-center text-crypto-red">crypto-bugs-0x2b67</h1>
-        <p className="text-2xl text-center text-white my-6"><span className="text-red">11,111</span> (<span className="text-red">0x2b67</span> in hexadecimal) unique lady bugs.</p>
+        <p className="text-2xl text-center text-white my-6">
+          <span className="text-red">11,111</span> unique lady bugs.
+        </p>
       </div>
 
       <div className="mt-6" >
@@ -91,39 +93,39 @@ return (
     </div>
     
     {showTraits ? 
-    <div id="traits" className="mx-6 py-8">
-      <h4 className="text-crypto-red text-6xl text-center py-10">TRAITS</h4>
-      <div className="flex flex-wrap justify-center mx-6 py-10">
-        <div className="grid justify-items-center  w-full md:w-1/2 lg:w-1/2 ">
+    <div id="traits" className="mx-2">
+      <h4 className="text-crypto-red text-5xl text-center py-10">TRAITS</h4>
+      <div className="flex flex-wrap px-4 pt-2 pb-7">
+        <div className="w-full md:w-1/3 lg:w-1/3 py-3 px-5  grid justify-items-center">
           <span class="text-white text-lg">{traits[0][0]}</span>
-          <img src={traits[0][1]}  className="w-4/5"/>
+          <img src={traits[0][1]} className="w-11/12 rounded-lg"/>
         </div>
-        <div className="w-full md:w-1/2 lg:w-1/2 ">
-          <div className="flex flex-wrap">
-            <div className="grid justify-items-center w-full md:w-1/2 lg:w-1/2 p-1">
-              <span class="text-white text-lg">{traits[1][0]}</span>
-              <img src={traits[1][1]} className="w-4/5"/>
-            </div>
-            <div className="grid justify-items-center  w-full md:w-1/2 lg:w-1/2 p-1">
-              <span class="text-white text-lg">{traits[2][0]}</span>
-              <img src={traits[2][1]} className="w-4/5"/>
-            </div>
-            <div className="grid justify-items-center  w-full md:w-1/2 lg:w-1/2 p-1">
-              <span class="text-white text-lg">{traits[3][0]}</span>
-              <img src={traits[3][1]} className="w-4/5"/>
-            </div>
-            <div className="grid justify-items-center  w-full md:w-1/2 lg:w-1/2 p-1">
-              <span class="text-white text-lg">{traits[4][0]}</span>
-              <img src={traits[4][1]} className="w-4/5"/>
-            </div>
-          </div>
+        <div className="w-full md:w-1/3 lg:w-1/3 py-3 px-5 grid justify-items-center">
+          <span class="text-white text-lg">{traits[1][0]}</span>
+          <img src={traits[1][1]} className="w-11/12 rounded-lg"/>
+        </div>
+        <div className="w-full md:w-1/3 lg:w-1/3 py-3 px-5  grid justify-items-center">
+          <span class="text-white text-lg">{traits[2][0]}</span>
+          <img src={traits[2][1]} className="w-11/12 rounded-lg"/>
+        </div>
+        <div className="w-full md:w-1/3 lg:w-1/3 py-3 px-5  grid justify-items-center">
+          <span class="text-white text-lg">{traits[3][0]}</span>
+          <img src={traits[3][1]} className="w-11/12 rounded-lg"/>
+        </div>
+        <div className="w-full md:w-1/3 lg:w-1/3 py-3 px-5  grid justify-items-center">
+          <span class="text-white text-lg">{traits[4][0]}</span>
+          <img src={traits[4][1]} className="w-11/12 rounded-lg"/>
+        </div>
+        <div className="w-full md:w-1/3 lg:w-1/3 py-3 px-5  grid justify-items-center">
+          <span class="text-white text-lg">{traits[5][0]}</span>
+          <img src={traits[5][1]} className="w-11/12 rounded-lg"/>
         </div>
       </div>
     </div>
     : <div></div> }
     
     
-    <div id="roadmap" className="mx-6 py-8">
+    <div id="roadmap" className="mx-6 py-4">
       <h2 className="text-crypto-red text-6xl text-center py-10">ROADMAP</h2>
       <div className="flex flex-wrap justify-around items-center mx-6 py-10">
         <div className="border-4 border-red-500 p-2">
