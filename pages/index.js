@@ -21,12 +21,11 @@ export default function Home() {
     ["love bug", "images/set2/3432.png"],
     ["snow bug", "images/set2/387.png"],
     ["island bug", "images/set2/512.png"],
-    ["construction bug", "images/set2/1411.png"],
+    ["hardhat bug", "images/set2/1411.png"],
     ["book bug", "images/set2/3710.png"],
     ["matrix bug", "images/set2/330.png"],
     ["tux bug", "images/set2/6.png"],
     ["chef bug", "images/set2/212.png"],
-
   ];
 
   useEffect(async () => {
@@ -95,27 +94,25 @@ return (
     <div id="traits" className="mx-6 py-8">
       <h4 className="text-crypto-red text-6xl text-center py-10">TRAITS</h4>
       <div className="flex flex-wrap justify-center mx-6 py-10">
-        <div className="md:w-1/2">
-          <div>
-            <span class="text-white text-lg">{traits[0][0]}</span>
-            <img src={traits[0][1]}  className="w-4/5"/>
-          </div>
+        <div className="grid justify-items-center  w-full md:w-1/2 lg:w-1/2 ">
+          <span class="text-white text-lg">{traits[0][0]}</span>
+          <img src={traits[0][1]}  className="w-4/5"/>
         </div>
-        <div className="md:w-1/2">
-          <div className="flex flex-wrap justify-center">
-            <div className=" md:w-1/2 p-1">
+        <div className="w-full md:w-1/2 lg:w-1/2 ">
+          <div className="flex flex-wrap">
+            <div className="grid justify-items-center w-full md:w-1/2 lg:w-1/2 p-1">
               <span class="text-white text-lg">{traits[1][0]}</span>
               <img src={traits[1][1]} className="w-4/5"/>
             </div>
-            <div className="md:w-1/2  p-1">
+            <div className="grid justify-items-center  w-full md:w-1/2 lg:w-1/2 p-1">
               <span class="text-white text-lg">{traits[2][0]}</span>
               <img src={traits[2][1]} className="w-4/5"/>
             </div>
-            <div className="md:w-1/2  p-1">
+            <div className="grid justify-items-center  w-full md:w-1/2 lg:w-1/2 p-1">
               <span class="text-white text-lg">{traits[3][0]}</span>
               <img src={traits[3][1]} className="w-4/5"/>
             </div>
-            <div className="md:w-1/2  p-1">
+            <div className="grid justify-items-center  w-full md:w-1/2 lg:w-1/2 p-1">
               <span class="text-white text-lg">{traits[4][0]}</span>
               <img src={traits[4][1]} className="w-4/5"/>
             </div>
