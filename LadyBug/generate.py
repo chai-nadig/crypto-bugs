@@ -8,22 +8,41 @@ from collections import defaultdict
 from tqdm import tqdm
 
 simple_backgrounds = {
-    "Gold": 0.1,
+    
 
-    "Purple Blue": 3,
-    "Red Blue": 3,
-    "Yellow Green": 3,
-    "Red Pink": 3,
-    "Blue Black": 3,
-    "Yellow Purple": 3,
-    "Light Red Light Blue": 3,
-
-    "Green": 4,
+    # "Purple Blue": 3,
+    # "Red Blue": 3,
+    # "Yellow Green": 3,
+    # "Red Pink": 3,
+    # "Blue Black": 3,
+    # "Yellow Purple": 3,
+    # "Light Red Light Blue": 3,
+    
+    "Beige":4,
+    
     "Light Blue": 4,
+    "Dark Blue": 4,
+    
+    "Cyan": 4,
+    
+    "Green": 4,
+    "Dirty Green": 4,
+    "Light Green": 4,
+    
+    "Gold": 0.1,
+    
+    "Light Grey": 4,
+    
+    "Dirty Purple": 4,
     "Light Purple": 4,
-    "Light Red": 4,
-    "Orange": 4,
+    
     "Red": 4,
+    "Light Red": 4,
+    
+    "Orange": 4,
+    
+    "Pink": 4,
+    
     "Yellow": 4,
 }
 unique_backgrounds = {
