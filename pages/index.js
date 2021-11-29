@@ -140,7 +140,7 @@ return (
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pr-20 lg:pr-20 text-justify">
           <span className="text-4xl text-white text-center md:text-left lg:text-left py-3"><span className="text-red ">0%</span> Eggs</span>
           <p class="text-xl text-white">
-             The eggs are laid. The loveliness is yet to hatch. We're running a giveaway where the first 111 ladybugs will be adopted for free.
+             The eggs are laid, a loveliness is yet to hatch. We're running a giveaway where the first 111 ladybugs will be adopted for free.
           </p>
         </div>
       </div>
@@ -153,7 +153,7 @@ return (
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pl-10 lg:pl-10 text-justify">
           <span className="text-4xl text-white text-center md:text-right lg:text-right py-3"><span className="text-red ">11%</span> Larva</span>
           <p class="text-xl text-white">
-            The loveliness has hatched. Once 11% of the ladybugs are adopted, we will choose a trait and all ladybugs with the 
+            The smallest among us are the bravest of all, the loveliness has hatched! Once 11% of the ladybugs are adopted, we will choose a trait and all ladybugs with the 
             chosen trait will be printed on T-Shirts.
           </p>
         </div>
@@ -166,8 +166,8 @@ return (
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pr-20 lg:pr-20 text-justify">
           <span className="text-4xl text-white text-center md:text-left lg:text-left py-3"><span className="text-red ">33%</span> Pupa</span>
           <p class="text-xl text-white">
-             The ladybugs have started showing colors at this stage. To ensure they have a healthy environment to grow,  
-             we will donate 10.18 ETH (11.11% of sales) to <a className="text-red hover:text-white" href="https://www.catf.us/" target="_blank">Clean Air Task Force.</a> 
+            Growing in all places they ever can, to ensure our loveliness has a clean world to live in,  
+            we will donate 10.18 ETH to <a className="text-red hover:text-white" href="https://www.catf.us/" target="_blank">Clean Air Task Force.</a> 
           </p>
         </div>
       </div>
@@ -179,8 +179,8 @@ return (
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pl-10 lg:pl-10 text-justify">
           <span className="text-4xl text-white text-center md:text-right lg:text-right py-3"><span className="text-red ">66%</span> Young Adults</span>
           <p class="text-xl text-white">
-             Our ladybugs have grown into a loveliness of young adults, and they deserve to be celebrated. 
-             We will make banners for every ladybug, so you can show off your ladybugs on Twitter.
+            Our ladybugs are now a loveliness of young adults, living young and wild and free.
+            We will make banners for every ladybug, so you can show off your ladybugs on Twitter.
           </p>
         </div>
       </div>
@@ -192,8 +192,9 @@ return (
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pr-20 lg:pr-20 text-justify">
           <span className="text-4xl text-white text-center md:text-left lg:text-left py-3"><span className="text-red ">99%</span> Adults</span>
           <p class="text-xl text-white">
-             A loveliness of fully grown adult ladybugs. This time we'll donate to two non-profits that are chosen by the community.
-             A total of 29.41 ETH (11.11% of remaining sales) will be donated.
+             Splattering specks of red and black, a loveliness of fully grown adult ladybugs. 
+             We will donate to two non-profits chosen by the community.
+             A total of 29.41 ETH will be donated.
           </p>
         </div>
       </div>
@@ -206,7 +207,7 @@ return (
           <span className="text-4xl text-white text-center md:text-right lg:text-right py-3"><span className="text-red ">100%</span> Flown</span>
           <p class="text-xl text-white">
              All ladybugs have spread their wings and flown. What happens next? We're happy to let you all decide. 
-             Until you speard your wings, you have no idea how far you can fly... :)
+             Until you speard your wings, you have no idea how far you can fly...
           </p>
         </div>
       </div>        
