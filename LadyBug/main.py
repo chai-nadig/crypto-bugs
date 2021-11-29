@@ -5,7 +5,6 @@ from combine import combine, combineToGif
 from generate import (
     generate_images,
     generateCombinations,
-    post_process,
     count_traits,
     allUnique,
     get_trait_key,
@@ -28,8 +27,6 @@ if __name__ == "__main__":
         traits = generateCombinations(TO_GENERATE, excluded_traits=excluded_traits)
 
         traits = generate_images(traits)
-
-        traits = post_process(traits)
 
         assert allUnique([get_trait_key(trait) for trait in traits])
 

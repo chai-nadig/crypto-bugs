@@ -46,11 +46,11 @@ simple_backgrounds = {
     "Yellow": 4,
 }
 unique_backgrounds = {
-    "June": 0.25,
+    "June": 2,
 
-    "Bedroom": 1,
-    "American Football": 1,
-    "Tennis Balls": 1,
+    "Bedroom": 2,
+    "American Football": 2,
+    "Tennis Balls": 2,
 
     "Monitor": 2,
     "Spider Web": 2,
@@ -162,31 +162,8 @@ unique_backgrounds_with_accessories = {
     "Snow": ["Beanie"],
     "Island": ["Red Sunglasses", "Bikini", "Beach Hat", "Pirate Hat"],
 }
-combo_to_severity = {
-    'Beach:Red Sunglasses': 'Blocker',
-    'City:Tux': 'Blocker',
-    'Desert:Sombrero': 'Blocker',
 
-    'Beach:Bikini': 'Critical',
-    'Island:Red Sunglasses': 'Critical',
-    'Island:Beach Hat': 'Critical',
 
-    'Wave:Bikini': 'Major',
-    'Bedroom:Bathrobe': 'Major',
-    'Book:Graduation Cap': 'Major',
-
-    'Wave:Beach Hat': 'Minor',
-    'Wave:Red Sunglasses': 'Minor',
-    'Beach:Beach Hat': 'Minor',
-    'Spider Web:Wizard Hat': 'Minor',
-    'Clouds:Red Sunglasses': 'Minor',
-    'Island:Bikini': 'Minor',
-
-    'Beach:Pirate Hat': 'Trivial',
-    'Island:Pirate Hat': 'Trivial',
-    'Brick Wall:Construction Hat': 'Trivial',
-    'Snow:Beanie': 'Trivial',
-}
 
 expected_severities = {
     'Blocker': 5,
@@ -196,9 +173,6 @@ expected_severities = {
     'Trivial': 40,
 }
 
-SEVERITY_THRESHOLD = 0.75
-DISABLE_SEVERITY_COUNTS = True
-
 
 def is_combo(trait):
     return (trait['Background'] in unique_backgrounds_with_accessories and
@@ -207,34 +181,6 @@ def is_combo(trait):
 
 def get_combo_key(trait):
     return '{}:{}'.format(trait['Background'], trait['Accessory'])
-
-
-def get_severity(trait):
-    if is_combo(trait):
-        combo_key = get_combo_key(trait)
-        return combo_to_severity[combo_key]
-
-    elif trait['Background'] == 'Gold' or trait['Color'] == 'Gold':
-        return 'Blocker'
-
-    elif trait['Accessory'] in ('Tux',) or trait['Background'] in ('Matrix', 'Rainbow', 'City'):
-        return 'Blocker'
-
-    elif (trait['Accessory'] in ('Red Hair', 'Beach Hat',) or
-          trait['Background'] in ('Fire', 'Sunset', 'Desert', 'Trees', 'Island',)):
-        return 'Critical'
-
-    elif (trait['Accessory'] in ('Crown', 'Halo', 'Top Hat') or
-          trait['Background'] in ('Wave', 'Beach', 'Pillars', 'Book', 'Snow')):
-        return 'Major'
-
-    elif (trait['Accessory'] in ('Bathrobe', 'Viking Helmet', 'Turban') or
-          trait['Background'] in (
-                  'June', 'Bedroom', 'American Football', 'Stick', 'Leaf', 'Brick Wall',
-                  'Clouds', 'Road', 'Monitor')):
-        return 'Minor'
-    else:
-        return 'Trivial'
 
 
 def allowed_accessories_as_ignore_combination(background, allowed):
@@ -363,8 +309,6 @@ def createCombo():
     elif trait["Accessory"] in ("Red Sunglasses", "Snorkel Gear"):
         trait["Eyes"] = None
 
-    trait['Severity'] = get_severity(trait)
-
     return trait
 
 
@@ -385,22 +329,11 @@ def allUnique(x):
     return not any(i in seen or seen.append(i) for i in x)
 
 
-def exceeds_expected_severity(counts, trait, total):
-    if DISABLE_SEVERITY_COUNTS:
-        return False
-
-    if total == 0:
-        return False
-    actual = round((counts[trait['Severity']] * 100.0) / total, 2)
-    expected = expected_severities[trait['Severity']] + SEVERITY_THRESHOLD
-    return actual >= expected
-
 
 def generateCombinations(n, excluded_traits=None):
     if excluded_traits is None:
         excluded_traits = []
 
-    severity_counts = defaultdict(int)
 
     traits = []
     trait_keys = set()
@@ -415,12 +348,10 @@ def generateCombinations(n, excluded_traits=None):
         trait = createCombo()
         trait_key = get_trait_key(trait)
 
-        while (trait_key in trait_keys or shouldIgnore(trait) or trait_key in excluded_trait_keys
-               or exceeds_expected_severity(severity_counts, trait, len(trait_keys))):
+        while trait_key in trait_keys or shouldIgnore(trait) or trait_key in excluded_trait_keys:
             trait = createCombo()
             trait_key = get_trait_key(trait)
 
-        severity_counts[trait['Severity']] += 1
         trait_keys.add(trait_key)
         traits.append(trait)
 
@@ -476,19 +407,6 @@ def generate_images(traits):
     return traits
 
 
-def post_process(traits):
-    for trait in tqdm(
-            iterable=traits,
-            desc="Postprocessing {} traits".format(len(traits)),
-            unit="traits",
-            total=len(traits),
-    ):
-        assert 'Severity' in trait
-        assert trait['Severity'] in ['Blocker', 'Critical', 'Major', 'Minor', 'Trivial']
-
-    return traits
-
-
 def count_traits(traits):
     # GET TRAIT COUNTS
 
@@ -497,7 +415,6 @@ def count_traits(traits):
     color_counts = defaultdict(int)
     accessory_count = defaultdict(int)
     eyes_count = defaultdict(int)
-    severity_count = defaultdict(int)
     combo_count = defaultdict(int)
 
     for trait in tqdm(
@@ -510,7 +427,6 @@ def count_traits(traits):
         spots_counts[trait["Spots"]] += 1
         color_counts[trait["Color"]] += 1
         eyes_count[trait["Eyes"]] += 1
-        severity_count[trait['Severity']] += 1
 
         if is_combo(trait):
             combo_count[get_combo_key(trait)] += 1
@@ -524,7 +440,6 @@ def count_traits(traits):
     print_csv(accessory_count)
     print_csv(eyes_count)
     print_csv(combo_count)
-    print_csv(severity_count)
 
 
 def print_csv(d):
