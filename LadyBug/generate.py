@@ -368,7 +368,7 @@ def generateCombinations(n, excluded_traits=None):
         trait_key = get_trait_key(trait)
         trait_csa_key = get_trait_csa_key(trait)
 
-        while trait_key in trait_keys or trait_key in excluded_trait_keys or shouldIgnore(trait) or trait_csa_key in trait_csa_keys:
+        while trait_key in trait_keys or trait_key in excluded_trait_keys or shouldIgnore(trait):
             trait = createCombo()
             trait_key = get_trait_key(trait)
             trait_csa_key = get_trait_csa_key(trait)
