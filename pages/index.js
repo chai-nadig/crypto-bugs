@@ -21,7 +21,7 @@ export default function Home() {
     ["love bug", "images/set2/3432.png"],
     ["snow bug", "images/set2/387.png"],
     ["island bug", "images/set2/512.png"],
-    ["hardhat bug", "images/set2/1411.png"],
+    ["hardhat bug", "images/set2/1837.png"],
     ["book bug", "images/set2/3710.png"],
     ["matrix bug", "images/set2/330.png"],
     ["tux bug", "images/set2/6.png"],
@@ -76,9 +76,9 @@ return (
   <div className="md:w-2/3 w-4/5" >
     <div id="about" className="md:mx-6 lg:mx-6 py-4 md:py-8 lg:py-8">
       <div className="mt-3 md:mt-6 lg:mt-6">
-        <h1 className="text-6xl text-center text-crypto-red">crypto-bugs-0x2b67</h1>
+        <h1 className="text-6xl text-center text-crypto-red">crypto-bugs</h1>
         <p className="text-2xl text-center text-white my-6">
-          <span className="text-red">11,111</span> unique lady bugs.
+          A <span className="italic">loveliness</span> of <span className="text-red">11,111</span> unique lady bugs.
         </p>
       </div>
 
@@ -125,81 +125,74 @@ return (
     : <div></div> }
     
     
-    <div id="roadmap" className="mx-6 py-4">
-      <h2 className="text-crypto-red text-6xl text-center py-10">ROADMAP</h2>
-      <div className="flex flex-wrap justify-around items-center mx-6 py-10">
-        <div className="border-4 border-red-500 p-2">
-          <img src="images/set3/3.png"  width="240px" class="feature-image"/>
+    <div id="lifecycle" className="mx-6 py-4">
+      <h2 className="text-crypto-red text-6xl text-center py-10">LIFECYCLE</h2>
+      
+      <div className="flex flex-wrap items-center py-6">
+        <div className="w-full place-items-center md:w-1/3 lg:w-1/3 grid md:px-20 lg:px-20 px-10 pb-6">
+          <img src="images/set3/3.png" className="w-11/12 rounded-lg"/>
         </div>
-        <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
-          <span className="text-red text-4xl">Launch</span>
-          <p class="text-2xl text-white my-6">
-            <span className="text-red">Start of our bug bash!</span><br/>
-             Reporting 11,111 bugs.
-            First 111 swatters who bring along three friends will receive an NFT of the bug for free!
-          </p>
-           <p>
-            <span class="text-red text-2xl">Join our Discord <u><a className="text-white-shadow hover:text-black" target="_blank" href="https://discord.gg/A6nkdvr2yR">here!</a></u></span>
+        <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pr-20 lg:pr-20 text-justify">
+          <span className="text-4xl text-white text-center md:text-left lg:text-left "><span className="text-red ">0%</span> Eggs</span>
+          <p class="text-xl text-white">
+             The eggs are laid. The loveliness of ladybugs is yet to hatch. We're running a giveaway where the first 111 bugs can be adopted for free.
           </p>
         </div>
       </div>
-      <div className="flex flex-wrap justify-around items-center mx-6 py-6">
-        <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
-          <span className="text-red text-right text-4xl">11% SOLD</span>
-          <p class="text-2xl text-right text-white my-6">
-            <span className="text-red">Free T-Shirts!</span><br/>
-            Swatters with bugs that have <b>exclusive traits</b> will be eligible for a free T-Shirt printed with their bug!
-          </p>
-          <p class="text-2xl text-right text-white my-6">
-          Trait will be revealed after 11% of bugs are sold. Claim your T-Shirt on our website.
-          </p>
+      
+      <div className="flex flex-wrap items-center py-6">
+        <div className="md:order-last lg:order-last w-full place-items-center md:w-1/3 lg:w-1/3 grid md:px-20 lg:px-20 px-10 pb-6">
+          <img src="images/set3/2.png" className="w-11/12 rounded-lg"/>
         </div>
-        <div className="border-4 border-red-500 p-2">
-          <img src="images/set3/2.png"  width="240px" class="feature-image"/>
-        </div>
-      </div>
-      <div className="flex flex-wrap justify-around items-center mx-6 py-6">
-        <div className="border-4 border-red-500 p-2">
-          <img src="images/set3/5.png"  width="240px" class="feature-image"/>
-        </div>
-        <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
-          <span className="text-red text-4xl">33% SOLD</span>
-          <p class="text-2xl text-white my-6">
-            <span className="text-red">Donate to <u><a className="text-white-shadow hover:text-black" href="https://www.catf.us/" target="_blank">Clean Air Task Force</a></u></span><br/>
-            We are concerned about the climate! This is how we want to give back.
-          </p>
-          <p class="text-2xl text-white my-6">
-            We will donate 10.18 ETH (11.11% of sales) after 3,666 bugs have sold.
+
+        <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pl-10 lg:pl-10 text-justify">
+          <span className="text-4xl text-white text-center md:text-right lg:text-right"><span className="text-red ">11%</span> Larva</span>
+          <p class="text-xl text-white md:text-right lg:text-right">
+            The lovelines has hatched. Once 11% of our loveliness is adopted, we will choose a trait and all bugs with the 
+            chosen trait will be printed on T-Shirts.
           </p>
         </div>
       </div>
-      <div className="flex flex-wrap justify-around items-center mx-6 py-6">
-        <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
-          <span className="text-red text-right text-4xl">66% SOLD</span>
-          <p class="text-2xl text-right text-white my-6">
-            <span className="text-red">Twitter Banners!</span><br/>
-            All swatters will get a Twitter Banner to show off your cool bugs! Claim your banner on our website.
-          </p>
+      
+      <div className="flex flex-wrap items-center py-6">
+        <div className="w-full place-items-center md:w-1/3 lg:w-1/3 grid md:px-20 lg:px-20 px-10 pb-6">
+          <img src="images/set3/5.png" className="w-11/12 rounded-lg"/>
         </div>
-        <div className="border-4 border-red-500 p-2">
-          <img src="images/set3/1.jpeg"  width="240px" class="feature-image"/>
-        </div>
-      </div>
-      <div className="flex flex-wrap justify-around items-center mx-6 py-6">
-        <div className="border-4 border-red-500 p-2">
-          <img src="images/set3/4.png"  width="240px" class="feature-image"/>
-        </div>
-        <div className="flex flex-col justify-between mx-6 sm:w-1/2 w-4/5 py-6 ">
-          <span className="text-red text-4xl">99% SOLD</span>
-          <p class="text-2xl text-white my-6">
-            <span className="text-red">Another round of donation</span><br/>
-            This time we'll donate to two non-profits that are chosen by the community.
-          </p>
-          <p class="text-2xl text-white my-6">
-            In this round, we will totally donate 29.41 ETH (11.11% of remaining sales) after 10,999 bugs have sold.
+        <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pr-20 lg:pr-20 text-justify">
+          <span className="text-4xl text-white text-center md:text-left lg:text-left "><span className="text-red ">33%</span> Pupa</span>
+          <p class="text-xl text-white">
+             Our ladybugs have started showing colors at this stage. To ensure that they have a healthy environment to grow,  
+             we will donate to <a className="text-red hover:text-white" href="https://www.catf.us/" target="_blank">Clean Air Task Force.</a> 
+             &nbsp;We will donate 10.18 ETH (11.11% of sales) after 3,666 ladybugs have been adopted.
           </p>
         </div>
       </div>
+      
+      <div className="flex flex-wrap items-center py-6">
+        <div className="md:order-last lg:order-last w-full place-items-center md:w-1/3 lg:w-1/3 grid md:px-20 lg:px-20 px-10 pb-6">
+          <img src="images/set3/1.jpeg"  className="w-11/12 rounded-lg"/>
+        </div>
+        <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pl-10 lg:pl-10 text-justify">
+          <span className="text-4xl text-white text-center md:text-right lg:text-right"><span className="text-red ">66%</span> Young Adults</span>
+          <p class="text-xl text-white md:text-right lg:text-right">
+             The ladybugs are a loveliness of young adults. They all deserve to be celebrated. 
+             We will make banners for every ladybug, so you can show them off on Twitter.
+          </p>
+        </div>
+      </div>
+
+      <div className="flex flex-wrap items-center py-6">
+        <div className="w-full place-items-center md:w-1/3 lg:w-1/3 grid md:px-20 lg:px-20 px-10 pb-6">
+          <img src="images/set3/4.png" className="w-11/12 rounded-lg"/>
+        </div>
+        <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pr-20 lg:pr-20 text-justify">
+        <span className="text-4xl text-white text-center md:text-left lg:text-left "><span className="text-red ">99%</span> Adults</span>
+          <p class="text-xl text-white">
+             All our ladybugs have spread their wings and flown. This time we'll donate to two non-profits that are chosen by the community.
+             A total of 29.41 ETH (11.11% of remaining sales) will be donated after 10,999 ladybugs are adopted.
+          </p>
+        </div>
+      </div>      
     </div>
     
     
