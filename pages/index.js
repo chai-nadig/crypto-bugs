@@ -14,10 +14,10 @@ export default function Home() {
     ["hipster bug", "images/set2/1815.png"],
     ["angel bug", "images/set2/473.png"],
     ["witch bug", "images/set2/1479.png"],
-    ["grad bug","images/set2/1646.png" ],
+    ["grad bug","images/set2/1383.png" ],
     ["beach bug", "images/set2/1396.png"],
     ["queen bug", "images/set2/138.png"],
-    ["road bug", "images/set2/3169.png"],
+    ["road bug", "images/set2/1420.png"],
     ["love bug", "images/set2/3432.png"],
     ["snow bug", "images/set2/387.png"],
     ["island bug", "images/set2/512.png"],
@@ -27,6 +27,11 @@ export default function Home() {
     ["tux bug", "images/set2/6.png"],
     ["chef bug", "images/set2/212.png"],
     ["desert bug", "images/set2/458.png"],
+    ["clown bug", "images/set2/1646.png"],
+    ["viking bug", "images/set2/1671.png"],
+    ["turban bug", "images/set2/1832.png"],
+    ["beanie bug", "images/set2/1913.png"],
+    ["sunglasses bug", "images/set2/1969.png"],
   ];
 
   useEffect(async () => {
