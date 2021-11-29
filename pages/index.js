@@ -65,7 +65,7 @@ return (
     <title>crypto-bugs</title>
     <link rel="icon" href="/images/3811.png" />
     <meta property="og:title" content="crypto-bugs" key="ogtitle" />
-    <meta property="og:description" content="a loveliness of 11,111 ladybugs" key="ogdesc" />
+    <meta property="og:description" content="An NFT loveliness of 11,111 ladybugs" key="ogdesc" />
     <meta property="og:type" content="website" key="ogtype" />
     <meta property="og:url" content="https://crypto-bugs.com/" key="ogurl"/>
     <meta property="og:image" content="https://crypto-bugs.com/images/3811.png" key="ogimage"/>
@@ -74,7 +74,7 @@ return (
     <meta property="twitter:domain" content="crypto-bugs.com" key="twdomain" />
     <meta property="twitter:url" content="https://crypto-bugs.com/" key="twurl" />
     <meta name="twitter:title" content="crypto-bugs" key="twtitle" />
-    <meta name="twitter:description" content="a loveliness of 11,111 ladybugs" key="twdesc" />
+    <meta name="twitter:description" content="An NFT loveliness of 11,111 ladybugs" key="twdesc" />
     <meta name="twitter:image" content="https://crypto-bugs.com/images/3811.png" key="twimage" />
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu+Mono" />
   </Head>
@@ -84,7 +84,7 @@ return (
       <div className="py-10">
         <h1 className="text-5xl mg:text-6xl lg:text-6xl text-center text-crypto-red">crypto-bugs</h1>
         <p className="text-2xl text-center text-white my-6">
-          A <span className="italic">loveliness</span> of <span className="text-red">11,111</span> ladybugs.
+          An NFT <span className="italic">loveliness</span> of <span className="text-red">11,111</span> ladybugs.
         </p>
       </div>
 
