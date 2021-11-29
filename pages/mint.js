@@ -136,17 +136,17 @@ export default function Mint() {
         <title>crypto-bugs</title>
         <link rel="icon" href="/images/3811.png" />
         <meta property="og:title" content="crypto-bugs" key="ogtitle" />
-        <meta property="og:description" content="a variety of NFT bugs triaged under severities blocker, critical, major, minor and trivial." key="ogdesc" />
+        <meta property="og:description" content="a loveliness of 11,111 ladybugs" key="ogdesc" />
         <meta property="og:type" content="website" key="ogtype" />
         <meta property="og:url" content="https://crypto-bugs.com/" key="ogurl"/>
-        <meta property="og:image" content="https://crypto-bugs.com/images/13.png" key="ogimage"/>
+        <meta property="og:image" content="https://crypto-bugs.com/images/3811.png" key="ogimage"/>
         <meta property="og:site_name" content="https://crypto-bugs.com/" key="ogsitename" />
         <meta name="twitter:card" content="summary_large_image" key="twcard"/>
         <meta property="twitter:domain" content="crypto-bugs.com" key="twdomain" />
         <meta property="twitter:url" content="https://crypto-bugs.com/" key="twurl" />
         <meta name="twitter:title" content="crypto-bugs" key="twtitle" />
-        <meta name="twitter:description" content="a variety of NFT bugs triaged under severities blocker, critical, major, minor and trivial." key="twdesc" />
-        <meta name="twitter:image" content="https://crypto-bugs.com/images/13.png" key="twimage" />
+        <meta name="twitter:description" content="a loveliness of 11,111 ladybugs" key="twdesc" />
+        <meta name="twitter:image" content="https://crypto-bugs.com/images/3811.png" key="twimage" />
       </Head>
       <div>
         <div className="flex items-center justify-between w-full border-b-2 pb-6">
