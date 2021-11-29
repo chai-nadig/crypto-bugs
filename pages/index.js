@@ -148,7 +148,7 @@ return (
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pl-10 lg:pl-10 text-justify">
           <span className="text-4xl text-white text-center md:text-right lg:text-right py-3"><span className="text-red ">11%</span> Larva</span>
           <p class="text-xl text-white">
-            The loveliness has hatched. Once 11% of our loveliness is adopted, we will choose a trait and all ladybugs with the 
+            The loveliness has hatched. Once 11% of the ladybugs are adopted, we will choose a trait and all ladybugs with the 
             chosen trait will be printed on T-Shirts.
           </p>
         </div>
@@ -161,9 +161,8 @@ return (
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pr-20 lg:pr-20 text-justify">
           <span className="text-4xl text-white text-center md:text-left lg:text-left py-3"><span className="text-red ">33%</span> Pupa</span>
           <p class="text-xl text-white">
-             Our ladybugs have started showing colors at this stage. To ensure that they have a healthy environment to grow,  
-             we will donate to <a className="text-red hover:text-white" href="https://www.catf.us/" target="_blank">Clean Air Task Force.</a> 
-             &nbsp;We will donate 10.18 ETH (11.11% of sales) after 3,666 ladybugs have been adopted.
+             The ladybugs have started showing colors at this stage. To ensure they have a healthy environment to grow,  
+             we will donate 10.18 ETH (11.11% of sales) to <a className="text-red hover:text-white" href="https://www.catf.us/" target="_blank">Clean Air Task Force.</a> 
           </p>
         </div>
       </div>
@@ -175,8 +174,8 @@ return (
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pl-10 lg:pl-10 text-justify">
           <span className="text-4xl text-white text-center md:text-right lg:text-right py-3"><span className="text-red ">66%</span> Young Adults</span>
           <p class="text-xl text-white">
-             The ladybugs are a loveliness of young adults. They all deserve to be celebrated. 
-             We will make banners for every ladybug, so you can show them off on Twitter.
+             Our ladybugs have grown into a loveliness of young adults, and they deserve to be celebrated. 
+             We will make banners for every ladybug, so you can show off your ladybugs on Twitter.
           </p>
         </div>
       </div>
@@ -186,13 +185,26 @@ return (
           <img src="images/set3/4.png" className="w-11/12 rounded-lg"/>
         </div>
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pr-20 lg:pr-20 text-justify">
-        <span className="text-4xl text-white text-center md:text-left lg:text-left py-3"><span className="text-red ">99%</span> Adults</span>
+          <span className="text-4xl text-white text-center md:text-left lg:text-left py-3"><span className="text-red ">99%</span> Adults</span>
           <p class="text-xl text-white">
-             All our ladybugs have spread their wings and flown. This time we'll donate to two non-profits that are chosen by the community.
-             A total of 29.41 ETH (11.11% of remaining sales) will be donated after 10,999 ladybugs are adopted.
+             A loveliness of fully grown adult ladybugs. This time we'll donate to two non-profits that are chosen by the community.
+             A total of 29.41 ETH (11.11% of remaining sales) will be donated.
           </p>
         </div>
-      </div>      
+      </div>
+
+      <div className="flex flex-wrap items-center py-8">
+        <div className="md:order-last lg:order-last w-full place-items-center md:w-1/3 lg:w-1/3 grid md:px-20 lg:px-20 px-10 py-10">
+          <img src="images/set3/6.png" className="w-11/12 rounded-lg"/>
+        </div>
+        <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pr-20 lg:pr-20 text-justify">
+          <span className="text-4xl text-white text-center md:text-right lg:text-right py-3"><span className="text-red ">66%</span> Young Adults</span>
+          <p class="text-xl text-white">
+             All ladybugs have spread their wings and flown. What happens next? We're happy to let you all decide. 
+             Until you speard your wings, you have no idea how far you can fly... :)
+          </p>
+        </div>
+      </div>        
     </div>
 
     <div id="team" className="py-10">
