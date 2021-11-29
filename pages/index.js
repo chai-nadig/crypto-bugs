@@ -198,7 +198,7 @@ return (
           <img src="images/set3/6.png" className="w-11/12 rounded-lg"/>
         </div>
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pr-20 lg:pr-20 text-justify">
-          <span className="text-4xl text-white text-center md:text-right lg:text-right py-3"><span className="text-red ">66%</span> Young Adults</span>
+          <span className="text-4xl text-white text-center md:text-right lg:text-right py-3"><span className="text-red ">100%</span> Flown</span>
           <p class="text-xl text-white">
              All ladybugs have spread their wings and flown. What happens next? We're happy to let you all decide. 
              Until you speard your wings, you have no idea how far you can fly... :)
