@@ -54,12 +54,12 @@ unique_backgrounds = {
     "Hearts": 2,
     "Book": 2,
     "Matrix": 2,
-    
+
     "Brick Wall": 4,
     "Pillars": 3,
     "Road": 3,
     "City": 4,
-    
+
     "Spider Web": 2,
     "Stick": 2,
     "Leaf": 2,
@@ -161,6 +161,8 @@ unique_backgrounds_with_accessories = {
     "Desert": ["Sombrero"],
     "Snow": ["Beanie"],
     "Island": ["Red Sunglasses", "Bikini", "Beach Hat", "Pirate Hat"],
+    "Night Sky": ["Beanie"],
+    "Mountains": ["Red Sunglasses"],
 }
 
 
