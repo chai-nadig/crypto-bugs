@@ -79,7 +79,7 @@ return (
       <div className="py-10">
         <h1 className="text-5xl mg:text-6xl lg:text-6xl text-center text-crypto-red">crypto-bugs</h1>
         <p className="text-2xl text-center text-white my-6">
-          A <span className="italic">loveliness</span> of <span className="text-red">11,111</span> unique lady bugs.
+          A <span className="italic">loveliness</span> of <span className="text-red">11,111</span> lady bugs.
         </p>
       </div>
 
@@ -135,7 +135,7 @@ return (
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pr-20 lg:pr-20 text-justify">
           <span className="text-4xl text-white text-center md:text-left lg:text-left py-3"><span className="text-red ">0%</span> Eggs</span>
           <p class="text-xl text-white">
-             The eggs are laid. A loveliness of ladybugs is yet to hatch. We're running a giveaway where the first 111 ladybugs will be adopted for free.
+             The eggs are laid. The loveliness is yet to hatch. We're running a giveaway where the first 111 ladybugs will be adopted for free.
           </p>
         </div>
       </div>
@@ -148,7 +148,7 @@ return (
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pl-10 lg:pl-10 text-justify">
           <span className="text-4xl text-white text-center md:text-right lg:text-right py-3"><span className="text-red ">11%</span> Larva</span>
           <p class="text-xl text-white">
-            The lovelines has hatched. Once 11% of our loveliness is adopted, we will choose a trait and all ladybugs with the 
+            The loveliness has hatched. Once 11% of our loveliness is adopted, we will choose a trait and all ladybugs with the 
             chosen trait will be printed on T-Shirts.
           </p>
         </div>
