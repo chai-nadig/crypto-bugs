@@ -21,11 +21,12 @@ export default function Home() {
     ["love bug", "images/set2/3432.png"],
     ["snow bug", "images/set2/387.png"],
     ["island bug", "images/set2/512.png"],
-    ["hardhat bug", "images/set2/1837.png"],
+    ["hard hat bug", "images/set2/1837.png"],
     ["book bug", "images/set2/3710.png"],
     ["matrix bug", "images/set2/330.png"],
     ["tux bug", "images/set2/6.png"],
     ["chef bug", "images/set2/212.png"],
+    ["desert bug", "images/set2/458.png"],
   ];
 
   useEffect(async () => {
