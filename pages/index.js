@@ -194,49 +194,48 @@ return (
         </div>
       </div>      
     </div>
-    
-    
+
     <div id="team" className="py-10">
       <h2 className="text-crypto-red text-6xl text-center">TEAM</h2>
-      <div className="flex justify-around flex-wrap py-10">
-        <div className="flex flex-col my-6">
-          <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image" /></div>
+      <div className="flex flex-wrap items-center py-8">
+        <div className="w-full grid place-items-center md:w-1/3 lg:w-1/3  py-10">
+          <div>
+            <img src="images/set4/hellstealz.png" className="w-11/12 rounded-full h-24 w-24"/>
+          </div>
           <h3 className="my-4 text-center text-5xl text-center text-red hover:text-red">hellstealz</h3>
           <p className="text-center text-white text-2xl">
             <span className="text-3xl">Artist | Engineer</span><br/>
-            hellstealz@crypto-bugs.com
+              hellstealz@crypto-bugs.com
           </p>
         </div>
-        <div className="flex flex-col  my-6">
-          <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image" /></div>
-          <h3 className="my-4 text-center text-5xl text-center text-red">ag</h3>
+        <div className="w-full grid place-items-center md:w-1/3 lg:w-1/3  py-10">
+          <div>
+            <img src="images/set4/ag.png" className="w-11/12 rounded-full h-24 w-24"/>
+          </div>
+          <h3 className="my-4 text-center text-5xl text-center text-red hover:text-red">ag</h3>
           <p className="text-center text-white text-2xl">
             <span className="text-3xl">Engineer</span><br/>
-            ag@crypto-bugs.com
+              ag@crypto-bugs.com
           </p>
         </div>
-      </div>
-      <div className="flex justify-around flex-wrap">
-        <div className="flex flex-col  my-6">
-          <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image" /></div>
+        <div className="w-full grid place-items-center md:w-1/3 lg:w-1/3 py-10">
+          <div>
+            <img src="images/set4/theladybug.png" className="w-11/12 rounded-full h-24 w-24"/>
+          </div>
           <h3 className="my-4 text-center text-5xl text-center text-red hover:text-red">theladybug</h3>
           <p className="text-center text-white text-2xl">
             <span className="text-3xl">Comms</span><br/>
-            theladybug@crypto-bugs.com
+              theladybug@crypto-bugs.com
           </p>
-        </div>
-        <div className="flex flex-col  my-6">
-          <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image" /></div>
         </div>
       </div>
     </div>
     
     <div id="verified-contract" className="py-10">
       <h2 className="text-crypto-red text-6xl text-center">VERIFIED CONTRACT</h2>
-      <div className="flex justify-around flex-wrap">
-        <div className="flex flex-col  my-6">
-          <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image" /></div>
-          <h3 className="my-4 text-center text-3xl text-center text-white-shadow hover:text-black">
+      <div className="flex flex-wrap justify-around py-10">
+        <div className="flex flex-col my-6">
+          <h3 className="my-4 text-3xl text-center text-white hover:text-red">
             <a href="https://etherscan.io/address/0x83e9b2ef39e28ecb3c6b0e8a72488f22dc668bde" target="_blank">View on Ethereum</a>
           </h3>
         </div>
