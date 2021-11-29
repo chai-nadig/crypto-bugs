@@ -134,7 +134,7 @@ export default function Mint() {
     <div id="bodyy" className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
         <title>crypto-bugs</title>
-        <link rel="icon" href="/images/favicon.png" />
+        <link rel="icon" href="/images/3811.png" />
         <meta property="og:title" content="crypto-bugs" key="ogtitle" />
         <meta property="og:description" content="a variety of NFT bugs triaged under severities blocker, critical, major, minor and trivial." key="ogdesc" />
         <meta property="og:type" content="website" key="ogtype" />
