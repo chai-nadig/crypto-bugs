@@ -30,6 +30,10 @@ if __name__ == "__main__":
 
         assert allUnique([get_trait_key(trait) for trait in traits])
 
+        for trait in traits:
+            if trait['Color'] is None:
+                assert trait['Accessory'] == 'Tux'
+
         combine(traits)
 
         # combineToGif(traits)

@@ -8,8 +8,6 @@ from collections import defaultdict
 from tqdm import tqdm
 
 simple_backgrounds = {
-    
-
     # "Purple Blue": 3,
     # "Red Blue": 3,
     # "Yellow Green": 3,
@@ -18,31 +16,22 @@ simple_backgrounds = {
     # "Yellow Purple": 3,
     # "Light Red Light Blue": 3,
     
-    "Beige":4,
+    "Gold": 0.5,
     
+    "Beige":4,
     "Light Blue": 4,
     "Dark Blue": 4,
-    
     "Cyan": 4,
-    
     "Green": 4,
     "Dirty Green": 4,
     "Light Green": 4,
-    
-    "Gold": 0.5,
-    
     "Light Grey": 4,
-    
     "Dirty Purple": 4,
     "Light Purple": 4,
-    
     "Red": 4,
     "Light Red": 4,
-    
     "Orange": 4,
-    
     "Pink": 4,
-    
     "Yellow": 4,
 }
 unique_backgrounds = {
@@ -161,7 +150,7 @@ unique_backgrounds_with_accessories = {
     "Desert": ["Sombrero"],
     "Snow": ["Beanie"],
     "Island": ["Red Sunglasses", "Bikini", "Beach Hat", "Pirate Hat"],
-    "Night Sky": ["Beanie"],
+    "Night Sky": ["Beanie", "Tux"],
     "Mountains": ["Red Sunglasses", "Viking Helmet"],
 }
 
@@ -453,24 +442,27 @@ def count_traits(traits):
         spots_counts[trait["Spots"]] += 1
         color_counts[trait["Color"]] += 1
         eyes_count[trait["Eyes"]] += 1
+        background_counts[trait["Background"]] += 1
+        accessory_count[trait["Accessory"]] += 1
 
         if is_combo(trait):
             combo_count[get_combo_key(trait)] += 1
-        else:
-            background_counts[trait["Background"]] += 1
-            accessory_count[trait["Accessory"]] += 1
 
-    print_csv(background_counts)
-    print_csv(spots_counts)
-    print_csv(color_counts)
-    print_csv(accessory_count)
-    print_csv(eyes_count)
-    print_csv(combo_count)
+    print_csv("backgrounds", background_counts)
+    print_csv("spots", spots_counts)
+    print_csv("colors", color_counts)
+    print_csv("accessories", accessory_count)
+    print_csv("eyes", eyes_count)
+    print_csv("combos", combo_count)
 
 
-def print_csv(d):
+def print_csv(label, d):
     total = sum(d.values())
     csv = {}
+
+    print("----------------")
+    print(label)
+    print("----------------")
 
     for key, value in d.items():
         csv[key] = (value, round(value / total * 100, 2))
