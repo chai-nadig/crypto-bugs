@@ -19,10 +19,10 @@ def combine(traits):
     traits = sorted(traits,
                     key=lambda t: (
                         t['Background'] or 'None',
-                        t['Color'] or 'None',
-                        t['Spots'] or 'None',
-                        t['Accessory'] or 'None',
-                        t['Eyes'] or 'None',
+                        # t['Color'] or 'None',
+                        # t['Spots'] or 'None',
+                        # t['Accessory'] or 'None',
+                        # t['Eyes'] or 'None',
                     ))
 
     total = len(traits)

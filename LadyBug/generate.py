@@ -29,7 +29,7 @@ simple_backgrounds = {
     "Dirty Green": 4,
     "Light Green": 4,
     
-    "Gold": 0.1,
+    "Gold": 0.5,
     
     "Light Grey": 4,
     
@@ -47,36 +47,35 @@ simple_backgrounds = {
 }
 unique_backgrounds = {
     "June": 2,
-
     "Bedroom": 2,
     "American Football": 2,
     "Tennis Balls": 2,
-
     "Monitor": 2,
+    "Hearts": 2,
+    "Book": 2,
+    "Matrix": 2,
+    
+    "Brick Wall": 4,
+    "Pillars": 3,
+    "Road": 3,
+    "City": 4,
+    
     "Spider Web": 2,
     "Stick": 2,
     "Leaf": 2,
-    "Hearts": 2,
-    "Book": 2,
     "Snow": 2,
-    "Matrix": 2,
-
-    "Pillars": 3,
     "Island": 3,
     "Rainbow": 3,
-    "Road": 3,
     "Desert": 3,
     "Trees": 3,
-
-    "Brick Wall": 4,
     "Sunset": 4,
-    "City": 4,
-
     "Beach": 5,
     "Fire": 5,
     "Clouds": 5,
     "Wave": 5,
-    "Mountains": 2,
+    "Mountains": 3,
+    "Sun": 4,
+    "Night Sky": 3,
 }
 
 backgrounds = {}
@@ -270,6 +269,8 @@ def get_ignored_combinations():
         {"Background": ["Trees"], "Color": ["Green"]},
         {"Background": ["Blue Black"], "Color": ["Blue", "Black", "Camo", "Gold"]},
         {"Background": ["Spider Web", "Sunset"], "Color": ["Black"]},
+        {"Background": ["Night Sky"], "Color": ["Blue"]},
+        {"Background": ["Night Sky"], "Spots": ["Pink", "Cyan", "Yellow", "Red"]}
     ]
 
     for bg in unique_backgrounds:
