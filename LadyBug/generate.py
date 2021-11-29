@@ -76,6 +76,7 @@ unique_backgrounds = {
     "Fire": 5,
     "Clouds": 5,
     "Wave": 5,
+    "Mountains": 2,
 }
 
 backgrounds = {}
@@ -83,12 +84,11 @@ backgrounds.update(simple_backgrounds)
 backgrounds.update(unique_backgrounds)
 
 spots = {
-    "Black Spots A": 0.5,
-    "Black Spots B": 1,
-    "Red Spots A": 0.5,
-    "Red Spots B": 1,
-    "Yellow Spots A": 0.5,
-    "Yellow Spots B": 1,
+    "Black": 1,
+    "Red": 1,
+    "Yellow": 1,
+    "Cyan": 1,
+    "Pink": 1,
 }
 colors = {
     "Gold": 0.3,
@@ -136,6 +136,7 @@ eyes = {
     "Blue": 1,
     "Red": 1,
     "White": 1,
+    "Green": 1,
 }
 
 TOTAL_BUGS = (
@@ -164,16 +165,6 @@ unique_backgrounds_with_accessories = {
 }
 
 
-
-expected_severities = {
-    'Blocker': 5,
-    'Critical': 10,
-    'Major': 20,
-    'Minor': 25,
-    'Trivial': 40,
-}
-
-
 def is_combo(trait):
     return (trait['Background'] in unique_backgrounds_with_accessories and
             trait['Accessory'] in unique_backgrounds_with_accessories[trait['Background']])
@@ -199,25 +190,43 @@ def get_ignored_combinations():
 
     ignore_combinations = [
         # Ignore Yellow spots with Yellow or Orange colored bugs
-        {'Spots': ['Yellow Spots A', 'Yellow Spots B'], 'Color': ['Yellow', 'Orange', 'Red', 'Gold']},
+        {'Spots': ['Yellow'], 'Color': ['Yellow', 'Orange', 'Red', 'Gold']},
 
         # Ignore Yellow spots with white eyes
-        {'Spots': ['Yellow Spots A', 'Yellow Spots B'], 'Eyes': ['White']},
+        {'Spots': ['Yellow'], 'Eyes': ['White']},
 
         # Ignore Yellow spots with matrix
-        {'Spots': ['Yellow Spots A', 'Yellow Spots B'], 'Background': ['Matrix', 'Tennis Balls']},
+        {'Spots': [ 'Yellow'], 'Background': ['Matrix', 'Tennis Balls']},
+
+        {'Spots': ['Cyan'], 'Color': ['Yellow', 'Gold', 'Green', 'Orange']},
+
+        {'Spots': ['Cyan'], 'Eyes': ['Blue']},
+
+        {'Spots': ['Cyan'], 'Background': ['Beach', 'Snow']},
+
+        {'Spots': ['Pink'], 'Eyes': ['Red']},
+
+        {'Spots': ['Pink'], 'Color': ['Orange', 'Gold', 'Purple', 'Red', ]},
+        
+        {'Spots': ['Pink'], 'Background': ['Pink'] },
+
+        {'Spots': ['Pink'], 'Accessory': ['Snorkel']},
+        
+        {'Eyes': ['Green'], 'Color': ['Green']},
+
+        {'Accessory': ['Viking Helmet', 'Beach Hat'], 'Background':['Beige']},
 
         # Ignore Red spots with Red Colored Bugs
-        {'Spots': ['Red Spots A', 'Red Spots B'], 'Color': ['Red', 'Purple', 'Gold', "Camo", "Orange", "Black"]},
+        {'Spots': ['Red', ], 'Color': ['Red', 'Purple', 'Gold', "Camo", "Orange", "Black"]},
 
         # Ignore Green Colored bug with Matrix or Leaf Background
         {'Color': ['Green'], 'Background': ['Matrix', 'Leaf']},
 
         # Ignore bikini accessory with red spots
-        {"Accessory": ['Bikini'], 'Spots': ['Red Spots A', 'Red Spots B']},
+        {"Accessory": ['Bikini'], 'Spots': ['Red',]},
 
         # Ignore red eyes with red spots
-        {"Eyes": ["Red"], 'Spots': ['Red Spots A', 'Red Spots B']},
+        {"Eyes": ["Red"], 'Spots': ['Red', ]},
 
         # Ignore bikini accessory with red or purple colored bugs
         {"Accessory": ['Bikini'], 'Color': ['Red', 'Purple']},
@@ -324,6 +333,15 @@ def get_trait_key(trait):
     return trait_key
 
 
+def get_trait_csa_key(trait):
+    trait_key = (
+        f"Accessory:{trait['Accessory']}"
+        f",Background:{trait['Background']}"
+        f",Color:{trait['Color']}"
+        f",Spots:{trait['Spots']}"
+    )
+    return trait_key  
+
 def allUnique(x):
     seen = list()
     return not any(i in seen or seen.append(i) for i in x)
@@ -337,6 +355,7 @@ def generateCombinations(n, excluded_traits=None):
 
     traits = []
     trait_keys = set()
+    trait_csa_keys = set()
     excluded_trait_keys = set([get_trait_key(trait) for trait in excluded_traits])
 
     for i in tqdm(
@@ -347,12 +366,16 @@ def generateCombinations(n, excluded_traits=None):
     ):
         trait = createCombo()
         trait_key = get_trait_key(trait)
+        trait_csa_key = get_trait_csa_key(trait)
 
-        while trait_key in trait_keys or shouldIgnore(trait) or trait_key in excluded_trait_keys:
+        while trait_key in trait_keys or trait_key in excluded_trait_keys or shouldIgnore(trait) or trait_csa_key in trait_csa_keys:
             trait = createCombo()
             trait_key = get_trait_key(trait)
+            trait_csa_key = get_trait_csa_key(trait)
+
 
         trait_keys.add(trait_key)
+        trait_csa_keys.add(trait_csa_key)
         traits.append(trait)
 
     return traits
