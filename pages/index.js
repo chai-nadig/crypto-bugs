@@ -202,7 +202,9 @@ return (
           <div>
             <img src="images/set4/hellstealz.png" className="w-11/12 rounded-full h-24 w-24"/>
           </div>
-          <h3 className="my-4 text-center text-5xl text-center text-red hover:text-red">hellstealz</h3>
+          <h3 className="my-4 text-center text-5xl text-center text-red hover:text-red">
+            <a href="https://twitter.com/hellstealzz" target="_blank">hellstealz</a>
+          </h3>
           <p className="text-center text-white text-2xl">
             <span className="text-3xl">Artist | Engineer</span><br/>
               hellstealz@crypto-bugs.com
@@ -212,7 +214,9 @@ return (
           <div>
             <img src="images/set4/ag.png" className="w-11/12 rounded-full h-24 w-24"/>
           </div>
-          <h3 className="my-4 text-center text-5xl text-center text-red hover:text-red">ag</h3>
+          <h3 className="my-4 text-center text-5xl text-center text-red hover:text-red">
+            <a href="https://twitter.com/Agmahi" target="_blank">ag</a>
+          </h3>
           <p className="text-center text-white text-2xl">
             <span className="text-3xl">Engineer</span><br/>
               ag@crypto-bugs.com
@@ -222,7 +226,9 @@ return (
           <div>
             <img src="images/set4/theladybug.png" className="w-11/12 rounded-full h-24 w-24"/>
           </div>
-          <h3 className="my-4 text-center text-5xl text-center text-red hover:text-red">theladybug</h3>
+          <h3 className="my-4 text-center text-5xl text-center text-red hover:text-red">
+            <a href="https://twitter.com/UshaVellala" target="_blank">theladybug</a>
+          </h3>
           <p className="text-center text-white text-2xl">
             <span className="text-3xl">Comms</span><br/>
               theladybug@crypto-bugs.com
