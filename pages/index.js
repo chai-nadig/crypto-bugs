@@ -81,7 +81,7 @@ return (
   <div className="md:w-2/3 w-4/5" >
     <div id="about" className="py-10">
       <div className="py-10">
-        <h1 className="text-5xl mg:text-6xl lg:text-6xl text-center text-crypto-red">crypto-bugs</h1>
+        <h1 className="text-5xl text-center text-crypto-red">crypto-bugs</h1>
         <p className="text-2xl text-center text-white my-6">
           An NFT <span className="italic">loveliness</span> of <span className="text-red">11,111</span> ladybugs.
         </p>
@@ -131,7 +131,7 @@ return (
     
     
     <div id="lifecycle" className="py-10">
-      <h2 className="text-crypto-red text-6xl text-center">LIFECYCLE</h2>
+      <h2 className="text-crypto-red text-5xl text-center">LIFECYCLE</h2>
       <div className="flex flex-wrap items-center py-8">
         <div className="w-full place-items-center md:w-1/3 lg:w-1/3 grid md:px-20 lg:px-20 px-10 py-10">
           <img src="images/set3/1.png" className="w-11/12 rounded-lg"/>
@@ -213,7 +213,7 @@ return (
     </div>
 
     <div id="team" className="py-10">
-      <h2 className="text-crypto-red text-6xl text-center">TEAM</h2>
+      <h2 className="text-crypto-red text-5xl text-center">TEAM</h2>
       <div className="flex flex-wrap items-center py-8">
         <div className="w-full grid place-items-center md:w-1/3 lg:w-1/3  py-10">
           <div>
@@ -255,7 +255,7 @@ return (
     </div>
     
     <div id="verified-contract" className="py-10">
-      <h2 className="text-crypto-red text-6xl text-center">VERIFIED CONTRACT</h2>
+      <h2 className="text-crypto-red text-5xl text-center">VERIFIED CONTRACT</h2>
       <div className="flex flex-wrap justify-around py-10">
         <div className="flex flex-col my-6">
           <h3 className="my-4 text-3xl text-center text-white hover:text-red">
