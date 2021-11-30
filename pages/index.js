@@ -17,7 +17,6 @@ export default function Home() {
     ["grad bug","images/set2/1383.png" ],
     ["beach bug", "images/set2/1396.png"],
     ["queen bug", "images/set2/138.png"],
-    ["road bug", "images/set2/1420.png"],
     ["love bug", "images/set2/3432.png"],
     ["snow bug", "images/set2/387.png"],
     ["island bug", "images/set2/512.png"],
