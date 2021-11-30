@@ -135,7 +135,7 @@ return (
       <h2 className="text-crypto-red text-6xl text-center">LIFECYCLE</h2>
       <div className="flex flex-wrap items-center py-8">
         <div className="w-full place-items-center md:w-1/3 lg:w-1/3 grid md:px-20 lg:px-20 px-10 py-10">
-          <img src="images/set3/3.png" className="w-11/12 rounded-lg"/>
+          <img src="images/set3/1.png" className="w-11/12 rounded-lg"/>
         </div>
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pr-20 lg:pr-20 text-justify">
           <span className="text-4xl text-white text-center md:text-left lg:text-left py-3"><span className="text-red ">0%</span> Eggs</span>
@@ -161,7 +161,7 @@ return (
       
       <div className="flex flex-wrap items-center py-8">
         <div className="w-full place-items-center md:w-1/3 lg:w-1/3 grid md:px-20 lg:px-20 px-10 py-10">
-          <img src="images/set3/5.png" className="w-11/12 rounded-lg"/>
+          <img src="images/set3/3.png" className="w-11/12 rounded-lg"/>
         </div>
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pr-20 lg:pr-20 text-justify">
           <span className="text-4xl text-white text-center md:text-left lg:text-left py-3"><span className="text-red ">33%</span> Pupa</span>
@@ -174,7 +174,7 @@ return (
       
       <div className="flex flex-wrap items-center py-8">
         <div className="md:order-last lg:order-last w-full place-items-center md:w-1/3 lg:w-1/3 grid md:px-20 lg:px-20 px-10 pb-6">
-          <img src="images/set3/1.jpeg"  className="w-11/12 rounded-lg"/>
+          <img src="images/set3/4.png"  className="w-11/12 rounded-lg"/>
         </div>
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pl-10 lg:pl-10 text-justify">
           <span className="text-4xl text-white text-center md:text-right lg:text-right py-3"><span className="text-red ">66%</span> Young Adults</span>
@@ -187,7 +187,7 @@ return (
 
       <div className="flex flex-wrap items-center py-8">
         <div className="w-full place-items-center md:w-1/3 lg:w-1/3 grid md:px-20 lg:px-20 px-10 py-10">
-          <img src="images/set3/4.png" className="w-11/12 rounded-lg"/>
+          <img src="images/set3/5.png" className="w-11/12 rounded-lg"/>
         </div>
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pr-20 lg:pr-20 text-justify">
           <span className="text-4xl text-white text-center md:text-left lg:text-left py-3"><span className="text-red ">99%</span> Adults</span>

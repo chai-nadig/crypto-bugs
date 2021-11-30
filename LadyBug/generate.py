@@ -252,7 +252,7 @@ def get_ignored_combinations():
         {"Background": ["Yellow"],
          "Accessory": ["Construction Hat", "Beanie", "Beach Hat", "Viking Helmet", "Sombrero", "Graduation Cap"]},
         {"Background": ["Orange"], "Accessory": ["Construction Hat"]},
-        {"Background": ["Monitor", "Red Blue", "Stick", "Blue Black"], "Color": ["Black"]},
+        {"Background": ["Monitor", "Red Blue", "Blue Black"], "Color": ["Black"]},
         {"Background": ["Monitor", "Red Blue", "Stick", "Blue Black"], "Color": ["Camo"]},
         {"Accessory": ["Pirate Hat", "Graduation Cap"], "Color": ["Black"]},
         {"Background": ["Book", "Bedroom"], "Color": ["Yellow"]},
