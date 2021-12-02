@@ -8,15 +8,7 @@ from collections import defaultdict
 from tqdm import tqdm
 
 simple_backgrounds = {
-    # "Purple Blue": 3,
-    # "Red Blue": 3,
-    # "Yellow Green": 3,
-    # "Red Pink": 3,
-    # "Blue Black": 3,
-    # "Yellow Purple": 3,
-    # "Light Red Light Blue": 3,
-    
-    "Gold": 0.5,
+    "Gold": 0.01,
     
     "Beige":4,
     "Light Blue": 4,
@@ -35,7 +27,6 @@ simple_backgrounds = {
     "Yellow": 4,
 }
 unique_backgrounds = {
-    "June": 2,
     "Bedroom": 2,
     "American Football": 2,
     "Tennis Balls": 2,
@@ -65,6 +56,19 @@ unique_backgrounds = {
     "Mountains": 3,
     "Sun": 4,
     "Night Sky": 3,
+
+    "January": 0.5,
+    "February": 0.5,
+    "March": 0.5,
+    "April": 0.5,
+    "May": 0.5,
+    "June": 0.5,
+    "July": 0.5,
+    "August": 0.5,
+    "September": 0.5,
+    "October": 0.5,
+    "November": 0.5,
+    "December": 0.5,
 }
 
 backgrounds = {}
@@ -251,7 +255,7 @@ def get_ignored_combinations():
 
         {"Background": ["Yellow"],
          "Accessory": ["Construction Hat", "Beanie", "Beach Hat", "Viking Helmet", "Sombrero", "Graduation Cap"]},
-        {"Background": ["Orange"], "Accessory": ["Construction Hat"]},
+        {"Background": ["Orange"], "Accessory": ["Construction Hat", "Sombrero"]},
         {"Background": ["Monitor", "Red Blue", "Blue Black"], "Color": ["Black"]},
         {"Background": ["Monitor", "Red Blue", "Stick", "Blue Black"], "Color": ["Camo"]},
         {"Accessory": ["Pirate Hat", "Graduation Cap"], "Color": ["Black"]},
@@ -261,7 +265,9 @@ def get_ignored_combinations():
         {"Background": ["Blue Black"], "Color": ["Blue", "Black", "Camo", "Gold"]},
         {"Background": ["Spider Web", "Sunset"], "Color": ["Black"]},
         {"Background": ["Night Sky"], "Color": ["Blue"]},
-        {"Background": ["Night Sky"], "Spots": ["Pink", "Cyan", "Yellow", "Red"]}
+        {"Background": ["Night Sky"], "Spots": ["Pink", "Cyan", "Yellow", "Red"]},
+        {"Eyes": ["White"],
+            "Background": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]},
     ]
 
     for bg in unique_backgrounds:
@@ -360,7 +366,7 @@ def generateCombinations(n, excluded_traits=None):
         trait_key = get_trait_key(trait)
         trait_csa_key = get_trait_csa_key(trait)
 
-        while trait_key in trait_keys or trait_key in excluded_trait_keys or shouldIgnore(trait) :
+        while trait_key in trait_keys or trait_key in excluded_trait_keys or shouldIgnore(trait):
             trait = createCombo()
             trait_key = get_trait_key(trait)
             trait_csa_key = get_trait_csa_key(trait)
