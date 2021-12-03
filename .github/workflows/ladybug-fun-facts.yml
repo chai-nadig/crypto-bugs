@@ -6,6 +6,9 @@ on:
 jobs:
   execute:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./ladybug-fun-facts
 
     steps:
       - uses: actions/checkout@v2
