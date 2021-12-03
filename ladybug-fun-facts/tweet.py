@@ -8,11 +8,11 @@ from PIL import Image
 
 
 def main():
-    fact, idx = get_next_fact()
     fact_number = get_next_fact_number()
-
-    print(fact)
     print(fact_number)
+
+    fact, idx = get_next_fact()
+    print(fact)
 
     img_file_name = '{}.png'.format(fact_number - 1)
     img_relative_path = './images/{}'.format(img_file_name)
@@ -20,13 +20,14 @@ def main():
     resize_and_save(img_relative_path)
 
     tweeted = False
-    while not tweeted:
+    while not tweeted and fact:
         tweeted = tweet(fact_number, fact, img_file_name, img_relative_path)
         if not tweeted:
             discard_fact(fact)
+            fact, idx = get_next_fact()
+            print(fact)
 
     save_tweeted_fact(fact)
-
     remove_fact(idx)
 
 
@@ -37,6 +38,9 @@ def resize_and_save(img_file_name):
 
 
 def remove_fact(idx):
+    if idx is None:
+        return
+
     with open('./facts.json') as f:
         facts = json.load(f)
 
@@ -51,7 +55,7 @@ def get_next_fact():
         facts = json.load(f)
 
     if len(facts) == 0:
-        return None
+        return None, None
 
     idx = random.randint(0, len(facts) - 1)
     fact = facts[idx]
@@ -76,6 +80,9 @@ def get_next_fact_number():
 
 
 def save_tweeted_fact(fact):
+    if fact is None:
+        return
+
     tweeted_facts = get_tweeted_facts()
     tweeted_facts.append(fact)
 
