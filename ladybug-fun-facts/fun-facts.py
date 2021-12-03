@@ -1,0 +1,1 @@
+print("Ladybug Fun Fact")

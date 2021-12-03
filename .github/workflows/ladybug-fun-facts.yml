@@ -1,0 +1,26 @@
+name: ladybug-fun-facts
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./ladybug-fun-facts
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: lff
+
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v2
+        with:
+          # Semantic version range syntax or exact version of a Python version
+          python-version: '3.6'
+      
+      # You can test your matrix by printing the current Python version
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
