@@ -24,6 +24,8 @@ def main():
         tweeted = tweet(fact_number, fact, img_file_name, img_relative_path)
         if not tweeted:
             discard_fact(fact)
+            remove_fact(idx)
+
             fact, idx = get_next_fact()
             print(fact)
 
