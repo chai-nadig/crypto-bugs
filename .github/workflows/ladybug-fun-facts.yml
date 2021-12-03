@@ -1,7 +1,7 @@
 name: ladybug-fun-facts
 on:
   schedule:
-    - cron: * * * * *
+    - cron: '* * * * *'
 
 jobs:
   execute:
