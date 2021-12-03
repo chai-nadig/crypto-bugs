@@ -1,4 +1,5 @@
 import json
+import os
 import random
 
 import tweepy
@@ -103,10 +104,10 @@ def discard_fact(fact):
 
 def tweet(fact_number, fact, img_file_name, img_relative_path):
     twitter_auth_keys = {
-        "consumer_key": "s2SyD5Gs7Yi6gU3z5UujPbcuf",
-        "consumer_secret": "mzWhAHI5rquSJBJiRPfN8H3gw2besSny0tqqDz4F3rhTFVvPQO",
-        "access_token": "1457120903695724545-Hhs0zB7Rv8flgetNXgPZa2fDeKQnwv",
-        "access_token_secret": "p2oPz4FuwvgfdpchldFX3LhWEWWFdXGaawp31fF1Adhoo"
+        "consumer_key": os.getenv('TWITTER_CONSUMER_KEY'),
+        "consumer_secret": os.getenv('TWITTER_CONSUMER_SECRET'),
+        "access_token": os.getenv('TWITTER_ACCESS_TOKEN'),
+        "access_token_secret": os.getenv('TWITTER_ACCESS_TOKEN_SECRET'),
     }
 
     auth = tweepy.OAuthHandler(
