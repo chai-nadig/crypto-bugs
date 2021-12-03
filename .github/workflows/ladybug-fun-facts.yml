@@ -34,3 +34,15 @@ jobs:
       
       - name: Post Tweet
         run: python tweet.py
+
+      - name: Commit Files
+        run: |
+          git config --local user.email "hellstealz@crypto-bugs.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "posted tweet" -a
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: lff
