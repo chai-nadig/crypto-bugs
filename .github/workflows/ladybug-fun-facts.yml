@@ -1,8 +1,10 @@
 name: ladybug-fun-facts
 on:
   schedule:
-    - cron: '*/5 * * * *'
-
+    - cron: '0 17-23/3 * * *'
+    - cron: '0 2-8/3 * * *'
+    - cron: '30 15-21/3 * * *'
+    - cron: '30 0-6/3 * * *'
 jobs:
   tweet:
     runs-on: ubuntu-latest
