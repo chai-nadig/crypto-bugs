@@ -9,8 +9,8 @@ from tqdm import tqdm
 
 simple_backgrounds = {
     "Gold": 0.01,
-    
-    "Beige":4,
+
+    "Beige": 4,
     "Light Blue": 4,
     "Dark Blue": 4,
     "Cyan": 4,
@@ -190,7 +190,7 @@ def get_ignored_combinations():
         {'Spots': ['Yellow'], 'Eyes': ['White']},
 
         # Ignore Yellow spots with matrix
-        {'Spots': [ 'Yellow'], 'Background': ['Matrix', 'Tennis Balls']},
+        {'Spots': ['Yellow'], 'Background': ['Matrix', 'Tennis Balls']},
 
         {'Spots': ['Cyan'], 'Color': ['Yellow', 'Gold', 'Green', 'Orange']},
 
@@ -201,14 +201,14 @@ def get_ignored_combinations():
         {'Spots': ['Pink'], 'Eyes': ['Red']},
 
         {'Spots': ['Pink'], 'Color': ['Orange', 'Gold', 'Purple', 'Red', ]},
-        
-        {'Spots': ['Pink'], 'Background': ['Pink'] },
 
-        {'Spots': ['Pink'], 'Accessory': ['Snorkel']},
-        
+        {'Spots': ['Pink'], 'Background': ['Pink']},
+
+        {'Spots': ['Pink'], 'Accessory': ['Snorkel Gear']},
+
         {'Eyes': ['Green'], 'Color': ['Green']},
 
-        {'Accessory': ['Viking Helmet', 'Beach Hat'], 'Background':['Beige']},
+        {'Accessory': ['Viking Helmet', 'Beach Hat'], 'Background': ['Beige']},
 
         # Ignore Red spots with Red Colored Bugs
         {'Spots': ['Red', ], 'Color': ['Red', 'Purple', 'Gold', "Camo", "Orange", "Black"]},
@@ -217,7 +217,7 @@ def get_ignored_combinations():
         {'Color': ['Green'], 'Background': ['Matrix', 'Leaf']},
 
         # Ignore bikini accessory with red spots
-        {"Accessory": ['Bikini'], 'Spots': ['Red',]},
+        {"Accessory": ['Bikini'], 'Spots': ['Red', ]},
 
         # Ignore red eyes with red spots
         {"Eyes": ["Red"], 'Spots': ['Red', ]},
@@ -267,7 +267,8 @@ def get_ignored_combinations():
         {"Background": ["Night Sky"], "Color": ["Blue"]},
         {"Background": ["Night Sky"], "Spots": ["Pink", "Cyan", "Yellow", "Red"]},
         {"Eyes": ["White"],
-            "Background": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]},
+         "Background": ["January", "February", "March", "April", "May", "June", "July", "August", "September",
+                        "October", "November", "December"]},
     ]
 
     for bg in unique_backgrounds:
@@ -338,18 +339,17 @@ def get_trait_csa_key(trait):
         f",Color:{trait['Color']}"
         f",Spots:{trait['Spots']}"
     )
-    return trait_key  
+    return trait_key
+
 
 def allUnique(x):
     seen = list()
     return not any(i in seen or seen.append(i) for i in x)
 
 
-
 def generateCombinations(n, excluded_traits=None):
     if excluded_traits is None:
         excluded_traits = []
-
 
     traits = []
     trait_keys = set()
@@ -370,7 +370,6 @@ def generateCombinations(n, excluded_traits=None):
             trait = createCombo()
             trait_key = get_trait_key(trait)
             trait_csa_key = get_trait_csa_key(trait)
-
 
         trait_keys.add(trait_key)
         trait_csa_keys.add(trait_csa_key)
