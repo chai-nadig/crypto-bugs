@@ -196,7 +196,7 @@ def get_ignored_combinations():
 
         {'Spots': ['Cyan'], 'Eyes': ['Blue']},
 
-        {'Spots': ['Cyan'], 'Background': ['Beach', 'Snow']},
+        {'Spots': ['Cyan'], 'Background': ['Beach', 'Snow', 'Light Green', 'Cyan']},
 
         {'Spots': ['Pink'], 'Eyes': ['Red']},
 
