@@ -1,5 +1,6 @@
 import json
 import os
+from os.path import isfile, join
 import random
 
 import tweepy
@@ -14,9 +15,7 @@ def main():
     fact, idx = get_next_fact()
     print(fact)
 
-    img_file_name = '{}.png'.format(fact_number - 1)
-    img_relative_path = './images/{}'.format(img_file_name)
-
+    img_file_name, img_relative_path = get_next_image()
     resize_and_save(img_relative_path)
 
     tweeted = False
@@ -33,12 +32,23 @@ def main():
 
     save_tweeted_fact(fact)
     remove_fact(idx)
+    remove_image(img_relative_path)
 
 
-def resize_and_save(img_file_name):
-    img = Image.open(img_file_name).convert('RGBA')
+def remove_image(img_file_name):
+    os.rename('./images/{}'.format(img_file_name), './uploaded_images/{}'.format(img_file_name))
+
+
+def get_next_image():
+    onlyfiles = [f for f in os.listdir('./images') if isfile(join('./images', f))]
+    filename = random.choices(onlyfiles)[0]
+    return filename, './images/{}'.format(filename)
+
+
+def resize_and_save(img_relative_path):
+    img = Image.open(img_relative_path).convert('RGBA')
     img = img.resize((240, 240), Image.NEAREST)
-    img.save(img_file_name)
+    img.save(img_relative_path)
 
 
 def remove_fact(idx):
