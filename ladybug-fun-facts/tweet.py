@@ -21,7 +21,9 @@ def main():
 
     tweeted = False
     while not tweeted and fact:
-        tweeted = tweet(fact_number, fact, img_file_name, img_relative_path)
+        tweet_content, _ = construct_tweet(fact_number, fact)
+        tweeted = tweet(tweet_content, img_file_name, img_relative_path)
+
         if not tweeted:
             discard_fact(fact)
             remove_fact(idx)
@@ -111,7 +113,32 @@ def discard_fact(fact):
         json.dump(discarded_facts, f, indent=4)
 
 
-def tweet(fact_number, fact, img_file_name, img_relative_path):
+def construct_tweet(fact_number, fact):
+    hash_tags = ["#NFT", "#CryptoBugs", "#Ladybug", "#FunFact", "#NFTCommunity",
+                 "#NFTs", "#NFTCollector", "#NFTCollectibles",
+                 "#NFTCollectible", "#DigitalArt", "#LadyBird"]
+    content = (
+        "🐞 Ladybug Fun Fact #{}: {} 🐞"
+    ).format(fact_number, fact)
+
+    hash_tag_count = 0
+    for i in range(len(hash_tags)):
+        if i == 0:
+            tag = "\n\n{}".format(hash_tags[i])
+        else:
+            tag = " {}".format(hash_tags[i])
+
+        if len(content) + len(tag) <= 280:
+            hash_tag_count += 1
+            content = content + tag
+
+    return content, hash_tag_count
+
+
+def tweet(content, img_file_name, img_relative_path):
+    if len(content) > 280:
+        return False
+
     twitter_auth_keys = {
         "consumer_key": os.getenv('TWITTER_CONSUMER_KEY'),
         "consumer_secret": os.getenv('TWITTER_CONSUMER_SECRET'),
@@ -128,15 +155,6 @@ def tweet(fact_number, fact, img_file_name, img_relative_path):
         twitter_auth_keys['access_token_secret']
     )
     api = tweepy.API(auth)
-
-    content = (
-        "🐞 Ladybug Fun Fact #{}: {}🐞\n\n"
-        "#NFT #NFTs #NFTCollector #NFTCollectibles "
-        "#NFTCollectible #NFTCommunity #DigitalArt #CryptoBugs #FunFact #LadyBird #Ladybug"
-    ).format(fact_number, fact)
-
-    if len(content) > 280:
-        return False
 
     with open(img_relative_path, 'rb') as img:
         media = api.media_upload(img_file_name, file=img, media_category="TWEET_IMAGE")
