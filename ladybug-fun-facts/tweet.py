@@ -16,6 +16,10 @@ def main():
     print(fact)
 
     img_file_name, img_relative_path = get_next_image()
+    if img_relative_path is None:
+        print("no image to tweet")
+        return
+
     resize_and_save(img_relative_path)
 
     tweeted = False
@@ -41,6 +45,9 @@ def remove_image(img_file_name):
 
 def get_next_image():
     onlyfiles = [f for f in os.listdir('./images') if isfile(join('./images', f))]
+    if len(onlyfiles) == 0:
+        return None, None
+
     filename = random.choices(onlyfiles)[0]
     return filename, './images/{}'.format(filename)
 
