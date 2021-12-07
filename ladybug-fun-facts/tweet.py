@@ -32,7 +32,7 @@ def main():
 
     save_tweeted_fact(fact)
     remove_fact(idx)
-    remove_image(img_relative_path)
+    remove_image(img_file_name)
 
 
 def remove_image(img_file_name):
