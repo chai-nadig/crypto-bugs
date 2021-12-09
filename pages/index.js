@@ -324,7 +324,7 @@ return (
                    :
                   <div className="w-full flex flex-wrap">
                     <div className="w-full py-3">
-                      <button className="w-full text-white text-2xl bg-metamask py-2 rounded-sm" onClick={ onClickMetamask }>
+                      <button className="w-full text-white text-2xl py-2 rounded-sm bg-metamask hover:bg-metamask-hover" onClick={ onClickMetamask }>
                         { metamaskButtonText }
                       </button>
                     </div>
