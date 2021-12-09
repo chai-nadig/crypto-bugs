@@ -252,27 +252,27 @@ return (
           <div className="flex flex-wrap">
             <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
               <span class="text-white text-lg">{traits[0][0]}</span>
-              <img src={traits[0][1]} className="w-4/5 rounded-lg"/>
+              <img src={traits[0][1]} className="w-11/12 rounded-lg"/>
             </div>
             <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
               <span class="text-white text-lg">{traits[1][0]}</span>
-              <img src={traits[1][1]} className="w-4/5 rounded-lg"/>
+              <img src={traits[1][1]} className="w-11/12 rounded-lg"/>
             </div>
             <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
               <span class="text-white text-lg">{traits[2][0]}</span>
-              <img src={traits[2][1]} className="w-4/5 rounded-lg"/>
+              <img src={traits[2][1]} className="w-11/12 rounded-lg"/>
             </div>
             <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
               <span class="text-white text-lg">{traits[3][0]}</span>
-              <img src={traits[3][1]} className="w-4/5 rounded-lg"/>
+              <img src={traits[3][1]} className="w-11/12 rounded-lg"/>
             </div>
             <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
               <span class="text-white text-lg">{traits[4][0]}</span>
-              <img src={traits[4][1]} className="w-4/5 rounded-lg"/>
+              <img src={traits[4][1]} className="w-11/12 rounded-lg"/>
             </div>
             <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
               <span class="text-white text-lg">{traits[5][0]}</span>
-              <img src={traits[5][1]} className="w-4/5 rounded-lg"/>
+              <img src={traits[5][1]} className="w-11/12 rounded-lg"/>
             </div>
           </div>
         </div>
