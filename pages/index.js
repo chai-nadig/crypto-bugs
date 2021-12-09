@@ -311,7 +311,7 @@ return (
                         className="w-full px-3 text-xl md:text-2xl bg-white lg:text-2xlinline py-2 rounded text-black" />
                     </div>
                     <div className="w-full pt-3">
-                      <button className={`w-full text-white text-2xl disabled:opacity-50 bg-red-800 py-2 rounded-sm ${saleStarted && parseInt(numberOfBugsText) > 0? 'hover:bg-red-700' : ''}`}
+                      <button className={`w-full text-white text-2xl disabled:opacity-40 bg-red-700 py-2 rounded-sm ${saleStarted && parseInt(numberOfBugsText) > 0? 'hover:bg-red-600' : ''}`}
                         onClick={() => mintBug(parseInt(numberOfBugsText))} disabled={!saleStarted || !(parseInt(numberOfBugsText) > 0)}> MINT
                       </button>
                     </div>
