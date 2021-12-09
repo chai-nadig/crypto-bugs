@@ -74,6 +74,7 @@ export default function Home() {
   }, [])
 
   function updateNumberOfBugs(n) {
+    setNumberOfBugsText(n);
     if (n == '') {
       setNumberOfBugs(0);
     } else  {
@@ -88,7 +89,6 @@ export default function Home() {
       }
       else {
         setNumberOfBugs(b);
-        setNumberOfBugsText(n);
       }
     }
   }
@@ -132,7 +132,7 @@ export default function Home() {
   async function installMetamask() {
     //We create a new MetaMask onboarding object to use in our app
     const onboarding = new MetaMaskOnboarding();
-    
+
     //On this object we have startOnboarding which will start the onboarding process for our end user
     onboarding.startOnboarding();
   }
@@ -150,7 +150,7 @@ export default function Home() {
     } else {
       installMetamask();
     }
-  }  
+  }
 
   async function connectMetamask() {
     if (typeof window.web3 !== 'undefined') {
@@ -274,7 +274,7 @@ return (
               <span class="text-white text-lg">{traits[5][0]}</span>
               <img src={traits[5][1]} className="w-4/5 rounded-lg"/>
             </div>
-          </div>          
+          </div>
         </div>
         <div className="w-full md-w-1/3 lg:w-1/3 grid justify-items-center">
           <div className="w-full flex flex-wrap">
@@ -291,7 +291,7 @@ return (
               </div>
               <div className="w-full px-3 grid justify-items-center">
                 <div className="w-full flex flex-wrap">
-                  { isMetamaskConnected ? 
+                  { isMetamaskConnected ?
                   <div className="w-full flex flex-wrap">
                     <div className="w-1/2">
                       <span className="text-white text-xl">Quantity</span>
@@ -301,20 +301,20 @@ return (
                     </div>
                     <div className="w-1/2">
                       <span className="text-white text-xl">Price</span>
-                      <input 
+                      <input
                         type="text" value={JSON.stringify((bugPrice * numberOfBugs) / (10 ** 18)) + ' ETH'} disabled={true}
                         className="w-full px-3 text-xl md:text-2xl bg-white lg:text-2xlinline py-2 rounded text-black" />
                     </div>
                     <div className="w-full pt-3">
                       <button className="w-full text-white text-2xl  disabled:opacity-50 bg-red-800 py-2 rounded-sm"
-                        onClick={() => mintBug(numberOfBugs)} disabled={!saleStarted}> MINT 
+                        onClick={() => mintBug(numberOfBugs)} disabled={!saleStarted}> MINT
                       </button>
-                    </div> 
+                    </div>
                     <div className="w-full pt-1">
                       <p className="text-crypto-red text-lg text-center">{ minted > 0 ? <span> Minted {minted} ladybugs!</span> : <span>&nbsp;</span> }</p>
-                    </div> 
+                    </div>
                   </div>
-                   : 
+                   :
                   <div className="w-full flex flex-wrap">
                     <div className="w-full py-3">
                       <button className="w-full text-white text-2xl bg-metamask py-2 rounded-sm" onClick={ onClickMetamask }>
