@@ -297,7 +297,7 @@ return (
               <div className="w-full px-3 grid justify-items-center">
                 <div className="w-full flex flex-wrap">
                   { isMetamaskConnected ?
-                  <div className="w-full flex flex-wrap">
+                  <div className="w-full flex flex-wrap px-5">
                     <div className="w-1/2">
                       <span className="text-white text-xl">Quantity</span>
                       <input type="number" value={numberOfBugsText} onChange={e => updateNumberOfBugs(e.target.value)}
@@ -323,7 +323,7 @@ return (
                   </div>
                    :
                   <div className="w-full flex flex-wrap">
-                    <div className="w-full py-3">
+                    <div className="w-full py-3 px-5">
                       <button className="w-full text-white text-2xl py-2 rounded-sm bg-metamask hover:bg-metamask-hover" onClick={ onClickMetamask }>
                         { metamaskButtonText }
                       </button>
