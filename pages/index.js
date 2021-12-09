@@ -360,7 +360,7 @@ return (
           <img src="images/set3/2.png" className="w-11/12 rounded-lg"/>
         </div>
 
-        <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pl-10 lg:pl-10 text-justify">
+        <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pl-20 lg:pl-20 text-justify">
           <span className="text-4xl text-white text-center md:text-right lg:text-right py-3"><span className="text-red ">11%</span> Larva</span>
           <p className="text-xl text-white">
             The smallest among us are the bravest of all, the loveliness has hatched! Once 11% of the ladybugs are adopted, we will choose a trait and all ladybugs with the 
@@ -383,10 +383,10 @@ return (
       </div>
       
       <div className="flex flex-wrap items-center py-8">
-        <div className="md:order-last lg:order-last w-full place-items-center md:w-1/3 lg:w-1/3 grid md:px-20 lg:px-20 px-10 pb-6">
+        <div className="md:order-last lg:order-last w-full place-items-center md:w-1/3 lg:w-1/3 grid md:px-20 lg:px-20 px-10 py-10">
           <img src="images/set3/4.png"  className="w-11/12 rounded-lg"/>
         </div>
-        <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pl-10 lg:pl-10 text-justify">
+        <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pl-20 lg:pl-20 text-justify">
           <span className="text-4xl text-white text-center md:text-right lg:text-right py-3"><span className="text-red ">66%</span> Young Adults</span>
           <p className="text-xl text-white">
             Our ladybugs are now a loveliness of young adults, living young and wild and free.
@@ -413,7 +413,7 @@ return (
         <div className="md:order-last lg:order-last w-full place-items-center md:w-1/3 lg:w-1/3 grid md:px-20 lg:px-20 px-10 py-10">
           <img src="images/set3/6.png" className="w-11/12 rounded-lg"/>
         </div>
-        <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pr-20 lg:pr-20 text-justify">
+        <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pl-20 lg:pl-20 text-justify">
           <span className="text-4xl text-white text-center md:text-right lg:text-right py-3"><span className="text-red ">100%</span> Flown</span>
           <p className="text-xl text-white">
              All ladybugs have spread their wings and flown. What happens next? We're happy to let you all decide. 
