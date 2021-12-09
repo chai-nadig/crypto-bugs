@@ -230,7 +230,7 @@ return (
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu+Mono" />
   </Head>
 
-  <div className="md:w-2/3 w-4/5" >
+  <div className="w-4/5 md:w-2/3 lg:w-2/3">
     <div id="about" className="py-10">
       <div className="py-10">
         <h1 className="text-5xl text-center text-crypto-red">crypto-bugs</h1>
@@ -308,7 +308,7 @@ return (
                       <span className="text-white text-xl">Price</span>
                       <input
                         type="text" value={JSON.stringify((bugPrice * (numberOfBugsText != '' ? parseInt(numberOfBugsText) : 0)) / (10 ** 18)) + ' ETH'} disabled={true}
-                        className="w-full px-3 text-xl md:text-2xl bg-white lg:text-2xlinline py-2 rounded text-black" />
+                        className="w-full px-3 text-xl md:text-2xl bg-white lg:text-2xl inline py-2 rounded text-black" />
                     </div>
                     <div className="w-full pt-3">
                       <button className={`w-full text-white text-2xl disabled:opacity-40 bg-red-700 py-2 rounded-sm ${saleStarted && parseInt(numberOfBugsText) > 0? 'hover:bg-red-600' : ''}`}
@@ -473,11 +473,30 @@ return (
             <a href="https://etherscan.io/address/0x83e9b2ef39e28ecb3c6b0e8a72488f22dc668bde" target="_blank">View on Ethereum</a>
           </h3>
         </div>
-        <div className="flex flex-col  my-6">
+        <div className="flex flex-col my-6">
           <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image" /></div>
           <h3 className="my-4 text-center text-3xl text-center text-white">Verified and Published</h3>
           <p className="text-center text-white text-2xl">
             <span className="text-2xl text-red">11/11/2021 10:23:38 AM +UTC</span><br/>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer" className="py-10">
+      <div className="flex flex-wrap">
+        <div className="w-full md:w-1/3 lg:w-1/3">
+          <p className="text-gray-300 text-lg text-center">© 2021 Crypto Bugs</p>
+        </div>
+        <div className="w-full md:w-1/3 lg:w-1/3 text-white text-lg">
+          <div className="flex flex-wrap flex-row justify-center">
+            <a href="https://twitter.com/CryptoBugsx2B67" target="_blank"><img src="images/twitter.png" width="40px"/></a>
+            <a href="https://discord.gg/A6nkdvr2yR" target="_blank"><img src="images/discord.png" width="40px"/></a>
+          </div>
+        </div>
+        <div className="w-full md:w-1/3 lg:w-1/3">
+          <p className="text-gray-300 text-lg text-center underline">
+            <a href="/terms-conditions">Terms & Conditions</a>
           </p>
         </div>
       </div>
