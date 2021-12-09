@@ -350,7 +350,7 @@ return (
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pr-20 lg:pr-20 text-justify">
           <span className="text-4xl text-white text-center md:text-left lg:text-left py-3"><span className="text-red ">0%</span> Eggs</span>
           <p className="text-xl text-white">
-             The eggs are laid, a loveliness is yet to hatch. We're running a giveaway where the first 111 ladybugs will be adopted for free.
+             The eggs are laid, a loveliness is yet to hatch. We're running a giveaway where the first 100 ladybugs will be adopted for free.
           </p>
         </div>
       </div>
