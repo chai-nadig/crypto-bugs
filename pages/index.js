@@ -23,11 +23,11 @@ export default function Home() {
   const [walletAddress, setWalletAddress] = useState(null);
 
   // FOR MINTING
-  const [numberOfBugs, setNumberOfBugs] = useState(0);
-
   const [numberOfBugsText, setNumberOfBugsText] = useState('');
 
   const [minted, setMinted] = useState(0)
+
+  const [transactionLink, setTransactionLink] = useState('')
 
   const [bugContract, setBugContract] = useState(null);
 
@@ -74,22 +74,15 @@ export default function Home() {
   }, [])
 
   function updateNumberOfBugs(n) {
-    setNumberOfBugsText(n);
-    if (n == '') {
-      setNumberOfBugs(0);
-    } else  {
-      let b = parseInt(n);
-      if (b > 20) {
-        setNumberOfBugs(20);
-        setNumberOfBugsText('20');
-      }
-      else if (b < 0) {
-        setNumberOfBugs(0);
-        setNumberOfBugsText('0');
-      }
-      else {
-        setNumberOfBugs(b);
-      }
+    let b = parseInt(n);
+    if (b > 20) {
+      setNumberOfBugsText('20');
+    }
+    else if (b < 0) {
+      setNumberOfBugsText('0');
+    }
+    else {
+      setNumberOfBugsText(n);
     }
   }
 
@@ -162,6 +155,8 @@ export default function Home() {
 
     ethereum.enable()
       .then(function(accounts){
+
+
         let wallet = accounts[0]
         setWalletAddress(wallet)
         setIsMetamaskConnected(true)
@@ -184,23 +179,33 @@ export default function Home() {
     setBugPrice(bugPrice);
   }
 
-  async function mintBug(numberOfBugs) {
+  async function mintBug(n) {
     if (bugContract) {
-      const price = Number(bugPrice) * numberOfBugs
-      const gasAmount = await bugContract.methods.mintBugs(numberOfBugs).estimateGas({
+      const price = Number(bugPrice) * n
+      const gasAmount = await bugContract.methods.mintBugs(n).estimateGas({
         from: walletAddress,
         value: price
       })
 
       bugContract.methods
-        .mintBugs(numberOfBugs)
+        .mintBugs(n)
         .send({
           from: walletAddress,
           value: price,
           gas: String(gasAmount)
         })
         .on('transactionHash', function(hash) {
-          setMinted(numberOfBugs);
+          setMinted(n);
+          setNumberOfBugsText('')
+
+          window.web3.eth.net.getNetworkType()
+            .then((network) => {
+              if (network == 'mainnet') {
+                setTransactionLink('https://etherscan.io/tx/' + hash)
+              } else {
+                setTransactionLink('https://' + network + '.etherscan.io/tx/' + hash)
+              }
+            })
         })
     }
   };
@@ -251,27 +256,27 @@ return (
         <div className="w-full md:w-2/3 lg:w-2/3 grid justify-items-center">
           <div className="flex flex-wrap">
             <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
-              <span class="text-white text-lg">{traits[0][0]}</span>
+              <span className="text-white text-lg">{traits[0][0]}</span>
               <img src={traits[0][1]} className="w-11/12 rounded-lg"/>
             </div>
             <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
-              <span class="text-white text-lg">{traits[1][0]}</span>
+              <span className="text-white text-lg">{traits[1][0]}</span>
               <img src={traits[1][1]} className="w-11/12 rounded-lg"/>
             </div>
             <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
-              <span class="text-white text-lg">{traits[2][0]}</span>
+              <span className="text-white text-lg">{traits[2][0]}</span>
               <img src={traits[2][1]} className="w-11/12 rounded-lg"/>
             </div>
             <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
-              <span class="text-white text-lg">{traits[3][0]}</span>
+              <span className="text-white text-lg">{traits[3][0]}</span>
               <img src={traits[3][1]} className="w-11/12 rounded-lg"/>
             </div>
             <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
-              <span class="text-white text-lg">{traits[4][0]}</span>
+              <span className="text-white text-lg">{traits[4][0]}</span>
               <img src={traits[4][1]} className="w-11/12 rounded-lg"/>
             </div>
             <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
-              <span class="text-white text-lg">{traits[5][0]}</span>
+              <span className="text-white text-lg">{traits[5][0]}</span>
               <img src={traits[5][1]} className="w-11/12 rounded-lg"/>
             </div>
           </div>
@@ -302,16 +307,18 @@ return (
                     <div className="w-1/2">
                       <span className="text-white text-xl">Price</span>
                       <input
-                        type="text" value={JSON.stringify((bugPrice * numberOfBugs) / (10 ** 18)) + ' ETH'} disabled={true}
+                        type="text" value={JSON.stringify((bugPrice * (numberOfBugsText != '' ? parseInt(numberOfBugsText) : 0)) / (10 ** 18)) + ' ETH'} disabled={true}
                         className="w-full px-3 text-xl md:text-2xl bg-white lg:text-2xlinline py-2 rounded text-black" />
                     </div>
                     <div className="w-full pt-3">
-                      <button className="w-full text-white text-2xl  disabled:opacity-50 bg-red-800 py-2 rounded-sm"
-                        onClick={() => mintBug(numberOfBugs)} disabled={!saleStarted}> MINT
+                      <button className={`w-full text-white text-2xl disabled:opacity-50 bg-red-800 py-2 rounded-sm ${saleStarted && parseInt(numberOfBugsText) > 0? 'hover:bg-red-700' : ''}`}
+                        onClick={() => mintBug(parseInt(numberOfBugsText))} disabled={!saleStarted || !(parseInt(numberOfBugsText) > 0)}> MINT
                       </button>
                     </div>
                     <div className="w-full pt-1">
-                      <p className="text-crypto-red text-lg text-center">{ minted > 0 ? <span> Minted {minted} ladybugs!</span> : <span>&nbsp;</span> }</p>
+                      <p className="text-crypto-red hover:text-red-600 text-lg text-center">
+                        { minted > 0 ? <a href={ transactionLink } target="_blank" className="underline">View transaction</a> : <span>&nbsp;</span> }
+                      </p>
                     </div>
                   </div>
                    :
@@ -342,7 +349,7 @@ return (
         </div>
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pr-20 lg:pr-20 text-justify">
           <span className="text-4xl text-white text-center md:text-left lg:text-left py-3"><span className="text-red ">0%</span> Eggs</span>
-          <p class="text-xl text-white">
+          <p className="text-xl text-white">
              The eggs are laid, a loveliness is yet to hatch. We're running a giveaway where the first 111 ladybugs will be adopted for free.
           </p>
         </div>
@@ -355,7 +362,7 @@ return (
 
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pl-10 lg:pl-10 text-justify">
           <span className="text-4xl text-white text-center md:text-right lg:text-right py-3"><span className="text-red ">11%</span> Larva</span>
-          <p class="text-xl text-white">
+          <p className="text-xl text-white">
             The smallest among us are the bravest of all, the loveliness has hatched! Once 11% of the ladybugs are adopted, we will choose a trait and all ladybugs with the 
             chosen trait will be printed on T-Shirts.
           </p>
@@ -368,7 +375,7 @@ return (
         </div>
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pr-20 lg:pr-20 text-justify">
           <span className="text-4xl text-white text-center md:text-left lg:text-left py-3"><span className="text-red ">33%</span> Pupa</span>
-          <p class="text-xl text-white">
+          <p className="text-xl text-white">
             Growing in all places they ever can, to ensure our loveliness has a clean world to live in,  
             we will donate 10.18 ETH to <a className="text-red hover:text-white" href="https://www.catf.us/" target="_blank">Clean Air Task Force.</a> 
           </p>
@@ -381,7 +388,7 @@ return (
         </div>
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pl-10 lg:pl-10 text-justify">
           <span className="text-4xl text-white text-center md:text-right lg:text-right py-3"><span className="text-red ">66%</span> Young Adults</span>
-          <p class="text-xl text-white">
+          <p className="text-xl text-white">
             Our ladybugs are now a loveliness of young adults, living young and wild and free.
             We will make banners for every ladybug, so you can show off your ladybugs on Twitter.
           </p>
@@ -394,7 +401,7 @@ return (
         </div>
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pr-20 lg:pr-20 text-justify">
           <span className="text-4xl text-white text-center md:text-left lg:text-left py-3"><span className="text-red ">99%</span> Adults</span>
-          <p class="text-xl text-white">
+          <p className="text-xl text-white">
              Splattering specks of red and black, a loveliness of fully grown adult ladybugs. 
              We will donate to two non-profits chosen by the community.
              A total of 29.41 ETH will be donated.
@@ -408,7 +415,7 @@ return (
         </div>
         <div className="flex flex-col md:w-2/3 lg:w-2/3 md:pr-20 lg:pr-20 text-justify">
           <span className="text-4xl text-white text-center md:text-right lg:text-right py-3"><span className="text-red ">100%</span> Flown</span>
-          <p class="text-xl text-white">
+          <p className="text-xl text-white">
              All ladybugs have spread their wings and flown. What happens next? We're happy to let you all decide. 
              Until you speard your wings, you have no idea how far you can fly...
           </p>
