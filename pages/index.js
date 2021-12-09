@@ -1,9 +1,43 @@
 import Head from 'next/head'
+import Web3 from "web3";
 import {
   useState,
   useEffect
 } from 'react';
+import {
+  ADDRESS,
+  ABI
+} from "../config.js"
+import MetaMaskOnboarding from '@metamask/onboarding'
+
 export default function Home() {
+
+  // METAMASK
+  const [isMetamaskInstalled, setIsMetamaskInstalled] = useState(false);
+
+  // FOR WALLET
+  const [isMetamaskConnected, setIsMetamaskConnected] = useState(false);
+
+  const [metamaskButtonText, setMetamaskButtonText] = useState('');
+
+  const [walletAddress, setWalletAddress] = useState(null);
+
+  // FOR MINTING
+  const [numberOfBugs, setNumberOfBugs] = useState(0);
+
+  const [numberOfBugsText, setNumberOfBugsText] = useState('');
+
+  const [minted, setMinted] = useState(0)
+
+  const [bugContract, setBugContract] = useState(null);
+
+  // INFO FROM SMART Contract
+
+  const [totalSupply, setTotalSupply] = useState(0);
+
+  const [saleStarted, setSaleStarted] = useState(false);
+
+  const [bugPrice, setBugPrice] = useState(0);
 
   const [traits, setTraits] = useState([]);
 
@@ -34,10 +68,30 @@ export default function Home() {
   ];
 
   useEffect(async () => {
-    setTraits(shuffle(allTraits))
+    setTraits(shuffle(allTraits));
     setShowTraits(true);
+    checkMetamaskInstalled();
   }, [])
-  
+
+  function updateNumberOfBugs(n) {
+    if (n == '') {
+      setNumberOfBugs(0);
+    } else  {
+      let b = parseInt(n);
+      if (b > 20) {
+        setNumberOfBugs(20);
+        setNumberOfBugsText('20');
+      }
+      else if (b < 0) {
+        setNumberOfBugs(0);
+        setNumberOfBugsText('0');
+      }
+      else {
+        setNumberOfBugs(b);
+        setNumberOfBugsText(n);
+      }
+    }
+  }
 
   function shuffle (array) {
     let currentIndex = array.length,  randomIndex;
@@ -56,7 +110,100 @@ export default function Home() {
     return array;
   }
 
+  //Created check function to see if the MetaMask extension is installed
+  const checkMetamaskInstalled = () => {
+    //Have to check the ethereum binding on the window object to see if it's installed
+    const { ethereum } = window;
+    let installed = Boolean(ethereum && ethereum.isMetaMask);
+    setIsMetamaskInstalled(installed);
+    if (!installed) {
+      setMetamaskButtonText('INSTALL METAMASK');
+    } else {
+      if (isMetamaskConnected) {
+        console.log('metamask is connected')
+      } else {
+        setMetamaskButtonText('CONNECT METAMASK');
+      }
+    }
+  }
 
+
+  //This will start the onboarding proccess
+  async function installMetamask() {
+    //We create a new MetaMask onboarding object to use in our app
+    const onboarding = new MetaMaskOnboarding();
+    
+    //On this object we have startOnboarding which will start the onboarding process for our end user
+    onboarding.startOnboarding();
+  }
+
+  function onClickMetamask() {
+    console.log('onClickMetamask');
+    if (isMetamaskInstalled) {
+      console.log('metamask is installed');
+      if (isMetamaskConnected) {
+        console.log('metamask is connected');
+      } else {
+        console.log('going to signin');
+        connectMetamask();
+      }
+    } else {
+      installMetamask();
+    }
+  }  
+
+  async function connectMetamask() {
+    if (typeof window.web3 !== 'undefined') {
+      // Use existing gateway
+      window.web3 = new Web3(window.ethereum);
+    } else {
+      alert("No Ethereum interface injected into browser. Read-only access");
+    }
+
+    ethereum.enable()
+      .then(function(accounts){
+        let wallet = accounts[0]
+        setWalletAddress(wallet)
+        setIsMetamaskConnected(true)
+        callContractData(wallet)
+        console.log(wallet);
+    });
+  }
+
+  async function callContractData(wallet) {
+    const bugContract = new window.web3.eth.Contract(ABI, ADDRESS);
+    setBugContract(bugContract);
+
+    const salebool = await bugContract.methods.saleIsActive().call();
+    setSaleStarted(salebool);
+
+    const totalSupply = await bugContract.methods.totalSupply().call()
+    setTotalSupply(totalSupply);
+
+    const bugPrice = await bugContract.methods.bugPrice().call()
+    setBugPrice(bugPrice);
+  }
+
+  async function mintBug(numberOfBugs) {
+    if (bugContract) {
+      const price = Number(bugPrice) * numberOfBugs
+      const gasAmount = await bugContract.methods.mintBugs(numberOfBugs).estimateGas({
+        from: walletAddress,
+        value: price
+      })
+
+      bugContract.methods
+        .mintBugs(numberOfBugs)
+        .send({
+          from: walletAddress,
+          value: price,
+          gas: String(gasAmount)
+        })
+        .on('transactionHash', function(hash) {
+          setMinted(numberOfBugs);
+        })
+    }
+  };
 
 return (
 <div id="bodyy" className="flex flex-col items-center justify-center min-h-screen py-2">
@@ -100,30 +247,87 @@ return (
     {showTraits ? 
     <div id="traits" className="py-10">
       <h2 className="text-crypto-red text-5xl text-center">TRAITS</h2>
-      <div className="flex flex-wrap px-6 py-10">
-        <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
-          <span class="text-white text-lg">{traits[0][0]}</span>
-          <img src={traits[0][1]} className="w-4/5 rounded-lg"/>
+      <div className="flex flex-wrap">
+        <div className="w-full md:w-2/3 lg:w-2/3 grid justify-items-center">
+          <div className="flex flex-wrap">
+            <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
+              <span class="text-white text-lg">{traits[0][0]}</span>
+              <img src={traits[0][1]} className="w-4/5 rounded-lg"/>
+            </div>
+            <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
+              <span class="text-white text-lg">{traits[1][0]}</span>
+              <img src={traits[1][1]} className="w-4/5 rounded-lg"/>
+            </div>
+            <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
+              <span class="text-white text-lg">{traits[2][0]}</span>
+              <img src={traits[2][1]} className="w-4/5 rounded-lg"/>
+            </div>
+            <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
+              <span class="text-white text-lg">{traits[3][0]}</span>
+              <img src={traits[3][1]} className="w-4/5 rounded-lg"/>
+            </div>
+            <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
+              <span class="text-white text-lg">{traits[4][0]}</span>
+              <img src={traits[4][1]} className="w-4/5 rounded-lg"/>
+            </div>
+            <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
+              <span class="text-white text-lg">{traits[5][0]}</span>
+              <img src={traits[5][1]} className="w-4/5 rounded-lg"/>
+            </div>
+          </div>          
         </div>
-        <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
-          <span class="text-white text-lg">{traits[1][0]}</span>
-          <img src={traits[1][1]} className="w-4/5 rounded-lg"/>
-        </div>
-        <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
-          <span class="text-white text-lg">{traits[2][0]}</span>
-          <img src={traits[2][1]} className="w-4/5 rounded-lg"/>
-        </div>
-        <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
-          <span class="text-white text-lg">{traits[3][0]}</span>
-          <img src={traits[3][1]} className="w-4/5 rounded-lg"/>
-        </div>
-        <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
-          <span class="text-white text-lg">{traits[4][0]}</span>
-          <img src={traits[4][1]} className="w-4/5 rounded-lg"/>
-        </div>
-        <div className="w-full md:w-1/3 lg:w-1/3 py-3 grid justify-items-center">
-          <span class="text-white text-lg">{traits[5][0]}</span>
-          <img src={traits[5][1]} className="w-4/5 rounded-lg"/>
+        <div className="w-full md-w-1/3 lg:w-1/3 grid justify-items-center">
+          <div className="w-full flex flex-wrap">
+          <div className="w-full grid justify-items-center pt-10 pb-3">
+            <div className="w-11/12 flex flex-wrap py-3 border border-red-500 rounded-lg grid justify-items-center">
+              <div className="w-full px-3 py-3">
+                <p className="text-white text-2xl text-center ">MINTED {totalSupply.toLocaleString('en-US')} / 11,111</p>
+                <p className="text-crypto-red text-xl text-center ">
+                  {saleStarted ? <span>&nbsp;</span> : <span>Sale is not active</span> }
+                </p>
+              </div>
+              <div className="w-full h-full px-3 py-3 grid justify-items-center">
+                <img src={traits[6][1]} className="w-55 py-1 rounded-lg"/>
+              </div>
+              <div className="w-full px-3 grid justify-items-center">
+                <div className="w-full flex flex-wrap">
+                  { isMetamaskConnected ? 
+                  <div className="w-full flex flex-wrap">
+                    <div className="w-1/2">
+                      <span className="text-white text-xl">Quantity</span>
+                      <input type="number" value={numberOfBugsText} onChange={e => updateNumberOfBugs(e.target.value)}
+                      placeholder="MAX 20"
+                      className="w-4/5 px-3 text-xl md:text-2xl lg:text-2xl inline py-2 rounded text-black" />
+                    </div>
+                    <div className="w-1/2">
+                      <span className="text-white text-xl">Price</span>
+                      <input 
+                        type="text" value={JSON.stringify((bugPrice * numberOfBugs) / (10 ** 18)) + ' ETH'} disabled={true}
+                        className="w-full px-3 text-xl md:text-2xl bg-white lg:text-2xlinline py-2 rounded text-black" />
+                    </div>
+                    <div className="w-full pt-3">
+                      <button className="w-full text-white text-2xl  disabled:opacity-50 bg-red-800 py-2 rounded-sm"
+                        onClick={() => mintBug(numberOfBugs)} disabled={!saleStarted}> MINT 
+                      </button>
+                    </div> 
+                    <div className="w-full pt-1">
+                      <p className="text-crypto-red text-lg text-center">{ minted > 0 ? <span> Minted {minted} ladybugs!</span> : <span>&nbsp;</span> }</p>
+                    </div> 
+                  </div>
+                   : 
+                  <div className="w-full flex flex-wrap">
+                    <div className="w-full py-3">
+                      <button className="w-full text-white text-2xl bg-metamask py-2 rounded-sm" onClick={ onClickMetamask }>
+                        { metamaskButtonText }
+                      </button>
+                    </div>
+                  </div>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
         </div>
       </div>
     </div>

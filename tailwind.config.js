@@ -9,8 +9,8 @@ module.exports = {
     extend: {
       backgroundImage: theme => ({
         'banana': "url('/images/BG3.jpg')",
-       })
-
+       }),
+      opacity: ['disabled']
     },
   },
   plugins: [],

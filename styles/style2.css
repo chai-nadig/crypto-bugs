@@ -10,12 +10,17 @@
     color: #BB0000;
     font-family: "Ubuntu Mono";
     font-weight: bold;
-    text-shadow: 1px 1px #110000;
 
 }
 
 .text-white {
     color: #eeeeee;
+    font-family: "Ubuntu Mono";
+    font-weight: 500;
+}
+
+.text-black {
+    color: #000;
     font-family: "Ubuntu Mono";
     font-weight: 500;
 }
@@ -35,6 +40,11 @@
 }
 
 
+.bg-metamask {
+    background-color: #f38530;
+}
+
+
 li {
   margin-left: 40px;
   list-style-type: circle;
@@ -48,4 +58,10 @@ li {
     /* text-decoration: underline; */
     font-weight: bold;
 
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }
