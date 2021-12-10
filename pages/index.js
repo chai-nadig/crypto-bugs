@@ -464,24 +464,6 @@ return (
         </div>
       </div>
     </div>
-    
-    <div id="verified-contract" className="py-10">
-      <h2 className="text-crypto-red text-5xl text-center">VERIFIED CONTRACT</h2>
-      <div className="flex flex-wrap justify-around py-10">
-        <div className="flex flex-col my-6">
-          <div className="cards-image-mask"><img src="" width="360px" alt="" className="cards-image" /></div>
-          <h3 className="my-4 text-center text-3xl text-center text-white">Published</h3>
-          <p className="text-center text-white text-2xl">
-            <span className="text-2xl text-red">11/11/2021 10:23:38 AM +UTC</span><br/>
-          </p>
-        </div>
-        <div className="flex flex-col my-6">
-          <h3 className="my-4 text-3xl text-center text-white hover:text-red-300">
-            <a href="https://etherscan.io/address/0x83e9b2ef39e28ecb3c6b0e8a72488f22dc668bde" target="_blank">View on Ethereum</a>
-          </h3>
-        </div>
-      </div>
-    </div>
 
     <div id="footer" className="py-10">
       <div className="flex flex-wrap">
