@@ -5,7 +5,13 @@ from json import JSONDecodeError
 
 import backoff as backoff
 import tweepy
-from tweet import get_next_image, resize_and_save, upload_media, tweet, remove_image
+from tweet import (
+    get_next_image,
+    resize_and_save,
+    upload_media,
+    tweet,
+    remove_image,
+)
 
 """
 1. Get Tweets after previous max id
