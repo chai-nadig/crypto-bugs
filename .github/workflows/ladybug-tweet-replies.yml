@@ -2,7 +2,7 @@ name: ladybug-tweet-replies
 on:
   schedule:
     # Every 30 minutes
-    - cron: '30 * * * *'
+    - cron: '*/30 * * * *'
 jobs:
   tweet-replies:
     runs-on: ubuntu-latest
