@@ -39,6 +39,7 @@ jobs:
         run: |
           git config --local user.email "hellstealz@crypto-bugs.com"
           git config --local user.name "Tweet Replies Bot"
+          git status
           git commit -m "tweeted replies" -a
 
       - name: Push changes
