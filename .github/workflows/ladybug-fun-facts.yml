@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./ladybug-fun-facts
+        working-directory: ./ladybug-twitter-bot
 
     steps:
       - uses: actions/checkout@v2
