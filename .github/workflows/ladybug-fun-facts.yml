@@ -39,6 +39,7 @@ jobs:
         run: |
           git config --local user.email "hellstealz@crypto-bugs.com"
           git config --local user.name "Fun Fact Tweet Bot"
+          git add uploaded_images
           git commit -m "posted tweet" -a
 
       - name: Push changes
