@@ -22,10 +22,12 @@ def main():
 
     resize_and_save(img_relative_path)
 
+    media = upload_media(img_file_name, img_relative_path)
+
     tweeted = False
     while not tweeted and fact:
         tweet_content, _ = construct_tweet(fact_number, fact)
-        tweeted = tweet(tweet_content, img_file_name, img_relative_path)
+        tweeted = tweet(tweet_content, media_ids=[media.media_id])
 
         if not tweeted:
             discard_fact(fact)
@@ -152,10 +154,7 @@ def construct_tweet(fact_number, fact):
     return content, hash_tag_count
 
 
-def tweet(content, img_file_name, img_relative_path):
-    if len(content) > 280:
-        return False
-
+def upload_media(img_file_name, img_relative_path):
     twitter_auth_keys = {
         "consumer_key": os.getenv('TWITTER_CONSUMER_KEY'),
         "consumer_secret": os.getenv('TWITTER_CONSUMER_SECRET'),
@@ -176,9 +175,23 @@ def tweet(content, img_file_name, img_relative_path):
     with open(img_relative_path, 'rb') as img:
         media = api.media_upload(img_file_name, file=img, media_category="TWEET_IMAGE")
 
-    status = api.update_status(status=content, media_ids=[media.media_id])
+    return media
 
-    print(status.entities['urls'][0]['expanded_url'])
+
+def tweet(content, media_ids=None):
+    if len(content) > 280:
+        return False
+
+    client = tweepy.Client(
+        consumer_key=os.getenv('TWITTER_CONSUMER_KEY'),
+        consumer_secret=os.getenv('TWITTER_CONSUMER_SECRET'),
+        access_token=os.getenv('TWITTER_ACCESS_TOKEN'),
+        access_token_secret=os.getenv('TWITTER_ACCESS_TOKEN_SECRET'),
+    )
+
+    response = client.create_tweet(text=content, media_ids=media_ids)
+
+    print(response)
 
     return True
 
