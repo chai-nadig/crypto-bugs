@@ -189,7 +189,7 @@ def get_tweets(max_results=100, since_id=None):
     client = tweepy.Client(bearer_token=os.getenv('TWITTER_BEARER_TOKEN'))
 
     tweets = client.search_recent_tweets(
-        query='-is:retweet -is:reply "drop your nft"',
+        query='-is:retweet -is:reply "drop your" (nft OR nfts)',
         max_results=max_results,
         user_fields=['public_metrics'],
         expansions=['author_id'],
