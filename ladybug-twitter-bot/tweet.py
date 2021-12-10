@@ -189,9 +189,7 @@ def tweet(content, media_ids=None):
         access_token_secret=os.getenv('TWITTER_ACCESS_TOKEN_SECRET'),
     )
 
-    response = client.create_tweet(text=content, media_ids=media_ids)
-
-    print(response)
+    client.create_tweet(text=content, media_ids=media_ids)
 
     return True
 
