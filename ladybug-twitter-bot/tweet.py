@@ -15,6 +15,10 @@ def main():
     fact, idx = get_next_fact()
     print(fact)
 
+    if fact is None:
+        print("no facts to tweet")
+        return
+
     img_file_name, img_relative_path = get_next_image()
     if img_relative_path is None:
         print("no image to tweet")
@@ -35,6 +39,10 @@ def main():
 
             fact, idx = get_next_fact()
             print(fact)
+
+            if fact is None:
+                print("no facts to tweet")
+                return
 
     save_tweeted_fact(fact)
     remove_fact(idx)
@@ -178,7 +186,7 @@ def upload_media(img_file_name, img_relative_path):
     return media
 
 
-def tweet(content, media_ids=None):
+def tweet(content, media_ids=None, in_reply_to_tweet_id=None):
     if len(content) > 280:
         return False
 
@@ -189,9 +197,13 @@ def tweet(content, media_ids=None):
         access_token_secret=os.getenv('TWITTER_ACCESS_TOKEN_SECRET'),
     )
 
-    client.create_tweet(text=content, media_ids=media_ids)
+    response = client.create_tweet(
+        text=content,
+        media_ids=media_ids,
+        in_reply_to_tweet_id=in_reply_to_tweet_id,
+    )
 
-    return True
+    return response.data['id']
 
 
 if __name__ == "__main__":
