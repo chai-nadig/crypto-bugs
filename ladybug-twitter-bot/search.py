@@ -59,22 +59,26 @@ def main():
 
     for author_id, tweets in tweet_by_popular_authors.items():
         for tw in tweets:
-            img_file_name, img_relative_path = get_next_image()
-            if img_relative_path is None:
-                print("no image to tweet")
-                return
+            try:
+                img_file_name, img_relative_path = get_next_image()
+                if img_relative_path is None:
+                    print("no image to tweet")
+                    return
 
-            resize_and_save(img_relative_path)
+                resize_and_save(img_relative_path)
 
-            media = upload_media(img_file_name, img_relative_path)
+                media = upload_media(img_file_name, img_relative_path)
 
-            tweet_reply_content = construct_tweet_reply()
+                tweet_reply_content = construct_tweet_reply()
 
-            r = tweet(tweet_reply_content, media_ids=[media.media_id], in_reply_to_tweet_id=tw.id)
+                r = tweet(tweet_reply_content, media_ids=[media.media_id], in_reply_to_tweet_id=tw.id)
 
-            print(r)
+                print(r)
 
-            remove_image(img_file_name)
+                remove_image(img_file_name)
+
+            except Exception as e:
+                print(e)
 
 
 def get_max_tweet_id():
@@ -98,7 +102,8 @@ def construct_tweet_reply():
                  "#NFTs", "#NFTCollector", "#NFTCollectibles",
                  "#NFTCollectible", "#DigitalArt"]
 
-    return ' '.join(hash_tags)
+    text = "🐞 An NFT loveliness of 11,111 ladybugs! 🐞"
+    return text + ' '.join(hash_tags)
 
 
 def get_tweets_by_author(tweets):
@@ -174,23 +179,12 @@ def follow_author(author_id):
     return client.follow_user(author_id)
 
 
-def tweet_reply(tweet):
-    client = tweepy.Client(
-        consumer_key=os.getenv('TWITTER_CONSUMER_KEY'),
-        consumer_secret=os.getenv('TWITTER_CONSUMER_SECRET'),
-        access_token=os.getenv('TWITTER_ACCESS_TOKEN'),
-        access_token_secret=os.getenv('TWITTER_ACCESS_TOKEN_SECRET'),
-    )
-
-    client.create_tweet()
-
-
 def get_tweets(max_results=100, since_id=None):
     client = tweepy.Client(bearer_token=os.getenv('TWITTER_BEARER_TOKEN'))
 
     tweets = client.search_recent_tweets(
         query='-is:retweet -is:reply "drop your nft"',
-        max_results=100,
+        max_results=max_results,
         user_fields=['public_metrics'],
         expansions=['author_id'],
         tweet_fields=['created_at'],
