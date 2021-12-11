@@ -141,9 +141,11 @@ def discard_fact(fact):
 
 
 def construct_tweet(fact_number, fact):
-    hash_tags = ["#NFT", "#CryptoBugs", "#Ladybug", "#FunFact", "#NFTCommunity",
+    hash_tags = ["#NFT", "#CryptoBugs", "#Ladybug", "#NFTCommunity",
                  "#NFTs", "#NFTCollector", "#NFTCollectibles",
-                 "#NFTCollectible", "#DigitalArt", "#LadyBird"]
+                 "#NFTCollectible", "#DigitalArt", "#LadyBird",
+                 # "#FunFact",
+                 ]
     # content = (
     #     "🐞 Ladybug Fun Fact #{}: {} 🐞"
     # ).format(fact_number, fact)
