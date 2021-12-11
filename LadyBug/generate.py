@@ -260,7 +260,7 @@ def get_ignored_combinations():
         {"Background": ["Monitor", "Red Blue", "Stick", "Blue Black"], "Color": ["Camo"]},
         {"Accessory": ["Pirate Hat", "Graduation Cap"], "Color": ["Black"]},
         {"Background": ["Book", "Bedroom"], "Color": ["Yellow"]},
-        {"Background": ["Desert"], "Color": ["Orange"]},
+        {"Background": ["Desert", "Orange"], "Color": ["Orange"]},
         {"Background": ["Trees"], "Color": ["Green"]},
         {"Background": ["Blue Black"], "Color": ["Blue", "Black", "Camo", "Gold"]},
         {"Background": ["Spider Web", "Sunset"], "Color": ["Black"]},
