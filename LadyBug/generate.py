@@ -155,7 +155,7 @@ unique_backgrounds_with_accessories = {
     "Snow": ["Beanie"],
     "Island": ["Red Sunglasses", "Bikini", "Beach Hat", "Pirate Hat"],
     "Night Sky": ["Beanie", "Tux"],
-    "Mountains": ["Red Sunglasses", "Viking Helmet"],
+    "Mountains": ["Red Sunglasses"],
 }
 
 
