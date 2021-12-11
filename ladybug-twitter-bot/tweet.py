@@ -72,17 +72,17 @@ def remove_fact(idx):
     if idx is None:
         return
 
-    with open('./facts.json') as f:
+    with open('./tweets.json') as f:
         facts = json.load(f)
 
     facts.pop(idx)
 
-    with open('./facts.json', 'w') as f:
+    with open('./tweets.json', 'w') as f:
         json.dump(facts, f, indent=4)
 
 
 def get_next_fact():
-    with open('./facts.json') as f:
+    with open('./tweets.json') as f:
         facts = json.load(f)
 
     if len(facts) == 0:
@@ -96,7 +96,7 @@ def get_next_fact():
 
 def get_tweeted_facts():
     tweeted_facts = []
-    with open('./tweeted-facts.json') as f:
+    with open('./tweeted-tweets.json') as f:
         try:
             tweeted_facts = json.load(f)
         except JSONDecodeError:
@@ -117,7 +117,7 @@ def save_tweeted_fact(fact):
     tweeted_facts = get_tweeted_facts()
     tweeted_facts.append(fact)
 
-    with open('./tweeted-facts.json', 'w') as f:
+    with open('./tweeted-tweets.json', 'w') as f:
         json.dump(tweeted_facts, f, indent=4)
 
 
@@ -144,9 +144,13 @@ def construct_tweet(fact_number, fact):
     hash_tags = ["#NFT", "#CryptoBugs", "#Ladybug", "#FunFact", "#NFTCommunity",
                  "#NFTs", "#NFTCollector", "#NFTCollectibles",
                  "#NFTCollectible", "#DigitalArt", "#LadyBird"]
+    # content = (
+    #     "🐞 Ladybug Fun Fact #{}: {} 🐞"
+    # ).format(fact_number, fact)
+
     content = (
-        "🐞 Ladybug Fun Fact #{}: {} 🐞"
-    ).format(fact_number, fact)
+        "🐞 {} 🐞"
+    ).format(fact)
 
     hash_tag_count = 0
     for i in range(len(hash_tags)):
