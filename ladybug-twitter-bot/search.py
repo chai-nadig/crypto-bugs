@@ -76,7 +76,9 @@ def main():
 
                 media = upload_media(img_file_name, img_relative_path)
 
-                tweet_reply_content = construct_tweet_reply()
+                tw = get_random_tweet()
+
+                tweet_reply_content = construct_tweet_reply(tw)
 
                 r = tweet(tweet_reply_content, media_ids=[media.media_id], in_reply_to_tweet_id=tw.id)
 
@@ -104,12 +106,16 @@ def save_max_tweet_id(max_tweet_id):
         json.dump(max_tweet_id, f, indent=4)
 
 
-def construct_tweet_reply():
-    content = get_random_tweet()
+def construct_tweet_reply(tw):
+    hash_tags = [
+        "#NFT", "#CryptoBugs", "#Ladybug", "#NFTCommunity",
+        "#NFTs", "#NFTCollector", "#NFTCollectibles",
+        "#NFTCollectible", "#DigitalArt", "#LadyBird",
+    ]
 
-    hash_tags = ["#NFT", "#CryptoBugs", "#Ladybug", "#NFTCommunity",
-                 "#NFTs", "#NFTCollector", "#NFTCollectibles",
-                 "#NFTCollectible", "#DigitalArt"]
+    content = (
+        "🐞 {} 🐞"
+    ).format(tw)
 
     hash_tag_count = 0
     for i in range(len(hash_tags)):
