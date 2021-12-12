@@ -1,5 +1,6 @@
 import json
 import os
+import random
 from collections import defaultdict
 from json import JSONDecodeError
 
@@ -104,12 +105,24 @@ def save_max_tweet_id(max_tweet_id):
 
 
 def construct_tweet_reply():
+    content = get_random_tweet()
+
     hash_tags = ["#NFT", "#CryptoBugs", "#Ladybug", "#NFTCommunity",
                  "#NFTs", "#NFTCollector", "#NFTCollectibles",
                  "#NFTCollectible", "#DigitalArt"]
 
-    text = "🐞 An NFT loveliness of 11,111 ladybugs! 🐞"
-    return text + ' '.join(hash_tags)
+    hash_tag_count = 0
+    for i in range(len(hash_tags)):
+        if i == 0:
+            tag = "\n\n{}".format(hash_tags[i])
+        else:
+            tag = " {}".format(hash_tags[i])
+
+        if len(content) + len(tag) <= 280:
+            hash_tag_count += 1
+            content = content + tag
+
+    return content
 
 
 def get_tweets_by_author(tweets):
@@ -198,6 +211,16 @@ def get_tweets(max_results=100, since_id=None):
     )
 
     return tweets
+
+
+def get_random_tweet():
+    with open('./tweets.json') as f:
+        facts = json.load(f)
+
+    with open('./tweeted-tweets.json') as f:
+        facts.extend(json.load(f))
+
+    return random.choice(facts)
 
 
 if __name__ == "__main__":
