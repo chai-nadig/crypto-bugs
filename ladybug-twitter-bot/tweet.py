@@ -30,7 +30,7 @@ def main():
 
     tweeted = False
     while not tweeted and random_tweet:
-        tweet_content, _ = construct_tweet(tweet_number, random_tweet)
+        tweet_content, _ = construct_tweet(random_tweet, tweet_number=tweet_number)
         tweeted = tweet(tweet_content, media_ids=[media.media_id])
 
         if not tweeted:
@@ -140,12 +140,14 @@ def discard_tweet(tw):
         json.dump(discarded_tweets, f, indent=4)
 
 
-def construct_tweet(tweet_number, tw):
-    hash_tags = ["#NFT", "#CryptoBugs", "#Ladybug", "#NFTCommunity",
-                 "#NFTs", "#NFTCollector", "#NFTCollectibles",
-                 "#NFTCollectible", "#DigitalArt", "#LadyBird",
-                 # "#FunFact",
-                 ]
+def construct_tweet(tw, tweet_number=None):
+    hash_tags = [
+        "#NFT", "#CryptoBugs", "#Ladybug", "#NFTCommunity",
+        "#NFTs", "#NFTCollector", "#NFTCollectibles",
+        "#NFTCollectible", "#DigitalArt", "#LadyBird",
+        # "#FunFact",
+    ]
+
     # content = (
     #     "🐞 Ladybug Fun Fact #{}: {} 🐞"
     # ).format(tweet_number, tweet)
