@@ -76,9 +76,9 @@ def main():
 
                 media = upload_media(img_file_name, img_relative_path)
 
-                tw = get_random_tweet()
+                random_tweet = get_random_tweet()
 
-                tweet_reply_content = construct_tweet_reply(tw)
+                tweet_reply_content = construct_tweet_reply(random_tweet)
 
                 r = tweet(tweet_reply_content, media_ids=[media.media_id], in_reply_to_tweet_id=tw.id)
 
