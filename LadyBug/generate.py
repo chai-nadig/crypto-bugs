@@ -269,6 +269,7 @@ def get_ignored_combinations():
         {"Eyes": ["White"],
          "Background": ["January", "February", "March", "April", "May", "June", "July", "August", "September",
                         "October", "November", "December"]},
+        {"Accessory": ["Crown"], "Background": ["Red"]}
     ]
 
     for bg in unique_backgrounds:
