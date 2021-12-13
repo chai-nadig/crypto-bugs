@@ -292,7 +292,7 @@ def get_tweets(query, max_results=100, since_id=None):
         max_results=max_results,
         user_fields=['public_metrics', 'verified'],
         expansions=['author_id'],
-        tweet_fields=['created_at', 'referenced_tweets'],
+        tweet_fields=['created_at'],
         since_id=since_id,
     )
 
