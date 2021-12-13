@@ -41,6 +41,8 @@ FOLLOWERS_THRESHOLD = 1000
 
 
 def main():
+    send_message("<b>--------start--------</b>")
+
     d_aware = datetime.now(pytz.timezone("America/Los_Angeles"))
     send_message("<b>Tweeting Replies to Drop Tweets: {}</b>".format(f"{d_aware:%Y-%m-%d %H:%M:%S}"))
 
