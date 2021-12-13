@@ -40,7 +40,7 @@ FOLLOWERS_THRESHOLD = 1000
 def main():
     max_tweet_id = get_max_tweet_id()
 
-    response = get_tweets(since_id=max_tweet_id)
+    response = get_tweets('-is:retweet -is:reply "drop your" (nft OR nfts)', since_id=max_tweet_id)
 
     if response.data is None or len(response.data) == 0:
         print("no new recent tweets found")
@@ -52,19 +52,22 @@ def main():
 
     tweets_by_author = get_tweets_by_author(response.data)
 
-    tweet_by_popular_authors = get_tweets_by_popular_authors(tweets_by_author, response.includes['users'])
+    tweets_by_popular_authors = get_tweets_by_popular_authors(tweets_by_author, response.includes['users'])
 
-    if len(tweet_by_popular_authors) == 0:
-        print("no tweets from popular authors found")
+    tweets_by_unpopular_authors = get_tweets_by_unpopular_authors(tweets_by_author, response.includes['users'])
+
+    if len(tweets_by_popular_authors) == 0 and len(tweets_by_unpopular_authors) == 0:
+        print("no tweets from popular authors or unpopular authors found")
         return
 
-    followed_authors = follow_authors(list(tweet_by_popular_authors.keys()))
+    followed_authors = follow_authors(list(tweets_by_popular_authors.keys()))
 
-    print(followed_authors)
+    if len(followed_authors) > 0:
+        print("followed {} new authors".len(followed_authors))
 
     save_followed_authors(followed_authors)
 
-    for author_id, tweets in tweet_by_popular_authors.items():
+    for author_id, tweets in tweets_by_popular_authors.items():
         for tw in tweets:
             try:
                 img_file_name, img_relative_path = get_next_image()
@@ -87,7 +90,71 @@ def main():
                 remove_image(img_file_name)
 
             except Exception as e:
-                print(e)
+                print("error processing tweet by popular author", e, author_id, tw)
+
+    already_liked_authors = set(get_authors_with_liked_tweets())
+    authors_with_liked_tweets = set()
+
+    for author_id, tweets in tweets_by_unpopular_authors.items():
+        should_break = False
+        for tw in tweets:
+            try:
+                replies = get_tweets('conversation_id:{} is:reply -"promote it on" '.format(tw.id))
+
+                if replies.data is None or len(replies.data) == 0:
+                    continue
+
+                for reply in replies.data:
+                    if reply.author_id not in already_liked_authors and reply.author_id not in authors_with_liked_tweets:
+                        like_tweet(reply)
+                        print("liked {}".format(reply.id))
+                        authors_with_liked_tweets.add(reply.author_id)
+
+            except tweepy.TooManyRequests:
+                print("too many likes posted")
+                should_break = True
+                break
+
+            except Exception as e:
+                print("error processing tweet by unpopular author", e, author_id, tw)
+
+        if should_break:
+            break
+
+    save_authors_with_liked_tweets(list(authors_with_liked_tweets))
+
+
+def like_tweet(tw):
+    client = tweepy.Client(
+        consumer_key=os.getenv('TWITTER_CONSUMER_KEY'),
+        consumer_secret=os.getenv('TWITTER_CONSUMER_SECRET'),
+        access_token=os.getenv('TWITTER_ACCESS_TOKEN'),
+        access_token_secret=os.getenv('TWITTER_ACCESS_TOKEN_SECRET'),
+    )
+
+    return client.like(tw.id)
+
+
+def get_authors_with_liked_tweets():
+    authors_with_liked_tweets = []
+    with open('./authors-with-liked-tweets.json') as f:
+        try:
+            authors_with_liked_tweets = json.load(f)
+        except JSONDecodeError:
+            pass
+
+    return authors_with_liked_tweets
+
+
+def save_authors_with_liked_tweets(authors_with_liked_tweets):
+    if len(authors_with_liked_tweets) == 0:
+        return
+
+    already_liked_authors = get_authors_with_liked_tweets()
+    already_liked_authors.extend(authors_with_liked_tweets)
+
+    with open('./authors-with-liked-tweets.json', 'w') as f:
+        json.dump(already_liked_authors, f, indent=4)
 
 
 def get_max_tweet_id():
@@ -139,13 +206,26 @@ def get_tweets_by_author(tweets):
     return tweets_by_author
 
 
+def is_author_popular(author):
+    return author.public_metrics['followers_count'] > FOLLOWERS_THRESHOLD or author.verified
+
+
 def get_tweets_by_popular_authors(tweets_by_author, authors):
     tweets_by_popular_authors = defaultdict(list)
     for author in authors:
-        if author.public_metrics['followers_count'] > FOLLOWERS_THRESHOLD:
+        if is_author_popular(author):
             tweets_by_popular_authors[author.id] = tweets_by_author[author.id]
 
     return tweets_by_popular_authors
+
+
+def get_tweets_by_unpopular_authors(tweets_by_author, authors):
+    tweets_by_unpopular_authors = defaultdict(list)
+    for author in authors:
+        if not is_author_popular(author):
+            tweets_by_unpopular_authors[author.id] = tweets_by_author[author.id]
+
+    return tweets_by_unpopular_authors
 
 
 def follow_authors(author_ids):
@@ -204,15 +284,15 @@ def follow_author(author_id):
     return client.follow_user(author_id)
 
 
-def get_tweets(max_results=100, since_id=None):
+def get_tweets(query, max_results=100, since_id=None):
     client = tweepy.Client(bearer_token=os.getenv('TWITTER_BEARER_TOKEN'))
 
     tweets = client.search_recent_tweets(
-        query='-is:retweet -is:reply "drop your" (nft OR nfts)',
+        query=query,
         max_results=max_results,
-        user_fields=['public_metrics'],
+        user_fields=['public_metrics', 'verified'],
         expansions=['author_id'],
-        tweet_fields=['created_at'],
+        tweet_fields=['created_at', 'referenced_tweets'],
         since_id=since_id,
     )
 
