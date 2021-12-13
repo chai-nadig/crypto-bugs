@@ -37,6 +37,8 @@ FOLLOW_LIMIT = 50
 # We only want to reply to tweets by authors having more than this number of followers
 FOLLOWERS_THRESHOLD = 1000
 
+CRYPTO_BUGS_AUTHOR_ID = 1457120903695724545
+
 
 @batch_telegram_messages()
 def main():
@@ -117,8 +119,9 @@ def main():
                     continue
 
                 for reply in replies.data:
-                    like_tweet(reply)
-                    likes_count += 1
+                    if reply.author_id != CRYPTO_BUGS_AUTHOR_ID:
+                        like_tweet(reply)
+                        likes_count += 1
 
             except tweepy.TwitterServerError:
                 if likes_count == 0:
