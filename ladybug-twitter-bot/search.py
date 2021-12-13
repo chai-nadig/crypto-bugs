@@ -63,7 +63,7 @@ def main():
     followed_authors = follow_authors(list(tweets_by_popular_authors.keys()))
 
     if len(followed_authors) > 0:
-        print("followed {} new authors".len(followed_authors))
+        print("followed {} new authors".format(len(followed_authors)))
 
     save_followed_authors(followed_authors)
 
