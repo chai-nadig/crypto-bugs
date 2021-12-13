@@ -57,7 +57,7 @@ def main():
 
     send_message("liked {} tweets".format(likes_count))
 
-    send_message("<b>done</b>")
+    send_message("<b>--------done--------</b>")
 
 
 def get_max_tweet_id_liked():
