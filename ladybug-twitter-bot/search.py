@@ -72,6 +72,8 @@ def main():
 
     save_followed_authors(followed_authors)
 
+    count_replies = 0
+
     for author_id, tweets in tweets_by_popular_authors.items():
         for tw in tweets:
             try:
@@ -90,13 +92,16 @@ def main():
 
                 r = tweet(tweet_reply_content, media_ids=[media.media_id], in_reply_to_tweet_id=tw.id)
 
-                print("posted tweet reply", r)
+                count_replies += 1
 
                 remove_image(img_file_name)
 
             except Exception as e:
                 print("error processing tweet by popular author", e, author_id, tw)
 
+    print("posted {} replies".format(count_replies))
+
+    likes_count = 0
     for author_id, tweets in tweets_by_unpopular_authors.items():
         should_break = False
         for tw in tweets:
@@ -108,7 +113,7 @@ def main():
 
                 for reply in replies.data:
                     like_tweet(reply)
-                    print("liked tweet {}".format(reply.id))
+                    likes_count += 1
 
             except tweepy.TooManyRequests:
                 print("too many likes posted")
@@ -120,6 +125,8 @@ def main():
 
         if should_break:
             break
+
+    print("liked {} tweets".format(likes_count))
 
 
 def like_tweet(tw):
