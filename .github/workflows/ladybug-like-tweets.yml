@@ -1,7 +1,7 @@
 name: ladybug-like-tweets
 on:
   schedule:
-    - cron: '15,45 * * * *'
+    - cron: '*/10 * * * *'
 jobs:
   like:
     runs-on: ubuntu-latest
