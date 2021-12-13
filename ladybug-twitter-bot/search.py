@@ -6,6 +6,7 @@ from datetime import datetime
 from json import JSONDecodeError
 
 import backoff as backoff
+import pytz
 import tweepy
 from tweet import (
     get_next_image,
@@ -40,7 +41,10 @@ FOLLOWERS_THRESHOLD = 1000
 
 
 def main():
-    send_message("<b>Tweeting Replies to Drop Tweets: {}</b>".format(f"{datetime.now():%Y-%m-%d %H:%M:%S}"))
+    d = datetime.now()
+    timezone = pytz.timezone("America/Los_Angeles")
+    d_aware = timezone.localize(d)
+    send_message("<b>Tweeting Replies to Drop Tweets: {}</b>".format(f"{d_aware:%Y-%m-%d %H:%M:%S}"))
 
     max_tweet_id = get_max_tweet_id()
 
