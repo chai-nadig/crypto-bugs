@@ -15,7 +15,7 @@ from tweet import (
     tweet,
     remove_image,
 )
-from telegram_bot import send_message
+from telegram_bot import send_message, batch_telegram_messages
 
 """
 1. Get Tweets after previous max id
@@ -40,6 +40,7 @@ FOLLOW_LIMIT = 50
 FOLLOWERS_THRESHOLD = 1000
 
 
+@batch_telegram_messages()
 def main():
     send_message("<b>--------start--------</b>")
 

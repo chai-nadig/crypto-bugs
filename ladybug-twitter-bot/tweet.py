@@ -1,27 +1,36 @@
 import json
 import os
+from datetime import datetime
 from os.path import isfile, join
 import random
 
+import pytz
 import tweepy
 from json.decoder import JSONDecodeError
 from PIL import Image
+from telegram_bot import send_message, batch_telegram_messages
 
 
+@batch_telegram_messages()
 def main():
+    send_message("<b>--------start--------</b>")
+    d_aware = datetime.now(pytz.timezone("America/Los_Angeles"))
+    send_message("<b>Tweeting: {}</b>".format(f"{d_aware:%Y-%m-%d %H:%M:%S}"))
+
     tweet_number = get_count_tweeted() + 1
-    print(tweet_number)
+    send_message("Sending tweet_number: {}".format(tweet_number))
 
     random_tweet, idx = get_random_tweet()
-    print(random_tweet)
 
     if random_tweet is None:
-        print("no tweets to tweet")
+        send_message("no tweets to tweet")
         return
+
+    send_message("Tweet: {}".format(random_tweet))
 
     img_file_name, img_relative_path = get_next_image()
     if img_relative_path is None:
-        print("no image to tweet")
+        send_message("no image to tweet")
         return
 
     resize_and_save(img_relative_path)
@@ -34,15 +43,16 @@ def main():
         tweeted = tweet(tweet_content, media_ids=[media.media_id])
 
         if not tweeted:
+            send_message("Discarding: {}".format(random_tweet))
             discard_tweet(random_tweet)
             remove_tweet(idx)
 
             random_tweet, idx = get_random_tweet()
-            print(random_tweet)
-
             if random_tweet is None:
-                print("no tweets to tweet")
+                send_message("no tweets to tweet")
                 return
+
+            send_message("Another Tweet: {}".format(random_tweet))
 
     save_tweeted_tweet(random_tweet)
     remove_tweet(idx)

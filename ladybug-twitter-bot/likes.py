@@ -11,9 +11,10 @@ from search import (
     get_tweets_by_unpopular_authors, like_tweet,
 )
 
-from telegram_bot import send_message
+from telegram_bot import send_message, batch_telegram_messages
 
 
+@batch_telegram_messages()
 def main():
     send_message("<b>--------start--------</b>")
     d_aware = datetime.now(pytz.timezone("America/Los_Angeles"))
