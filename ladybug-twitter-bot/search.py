@@ -40,7 +40,7 @@ FOLLOWERS_THRESHOLD = 1000
 
 
 def main():
-    send_message("<b>Tweeting Replies to Drop Tweets: {}</b>".format(str(datetime.now())))
+    send_message("<b>Tweeting Replies to Drop Tweets: {}</b>".format(f"{datetime.now():%Y-%m-%d %H:%M:%S}"))
 
     max_tweet_id = get_max_tweet_id()
 

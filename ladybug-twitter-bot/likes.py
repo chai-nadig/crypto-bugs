@@ -14,7 +14,7 @@ from telegram_bot import send_message
 
 
 def main():
-    send_message("<b>Sending Likes to New Tweets: {}<b>".format(str(datetime.now())))
+    send_message("<b>Sending Likes to New Tweets: {}<b>".format(f"{datetime.now():%Y-%m-%d %H:%M:%S}"))
 
     max_tweet_id = get_max_tweet_id_liked()
 
