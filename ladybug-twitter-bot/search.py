@@ -90,7 +90,7 @@ def main():
 
                 r = tweet(tweet_reply_content, media_ids=[media.media_id], in_reply_to_tweet_id=tw.id)
 
-                print(r)
+                print("posted tweet reply", r)
 
                 remove_image(img_file_name)
 
@@ -108,7 +108,7 @@ def main():
 
                 for reply in replies.data:
                     like_tweet(reply)
-                    print("liked {}".format(reply.id))
+                    print("liked tweet {}".format(reply.id))
 
             except tweepy.TooManyRequests:
                 print("too many likes posted")
