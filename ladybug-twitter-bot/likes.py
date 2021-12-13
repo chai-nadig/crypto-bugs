@@ -1,9 +1,7 @@
 import json
 import os
-from datetime import datetime
 from json import JSONDecodeError
 
-import pytz
 import tweepy
 
 from search import (
@@ -17,8 +15,7 @@ from telegram_bot import send_message, batch_telegram_messages
 @batch_telegram_messages()
 def main():
     send_message("<b>--------start--------</b>")
-    d_aware = datetime.now(pytz.timezone("America/Los_Angeles"))
-    send_message("<b>Sending Likes to New Tweets: {}</b>".format(f"{d_aware:%Y-%m-%d %H:%M:%S}"))
+    send_message("<b>Sending Likes to New Tweets</b>")
 
     max_tweet_id = get_max_tweet_id_liked()
 

@@ -1,10 +1,8 @@
 import json
 import os
-from datetime import datetime
 from os.path import isfile, join
 import random
 
-import pytz
 import tweepy
 from json.decoder import JSONDecodeError
 from PIL import Image
@@ -14,8 +12,7 @@ from telegram_bot import send_message, batch_telegram_messages
 @batch_telegram_messages()
 def main():
     send_message("<b>--------start--------</b>")
-    d_aware = datetime.now(pytz.timezone("America/Los_Angeles"))
-    send_message("<b>Tweeting: {}</b>".format(f"{d_aware:%Y-%m-%d %H:%M:%S}"))
+    send_message("<b>Tweeting</b>")
 
     tweet_number = get_count_tweeted() + 1
     send_message("Sending tweet_number: {}".format(tweet_number))

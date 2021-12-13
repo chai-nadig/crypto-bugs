@@ -2,11 +2,9 @@ import json
 import os
 import random
 from collections import defaultdict
-from datetime import datetime
 from json import JSONDecodeError
 
 import backoff as backoff
-import pytz
 import tweepy
 from tweet import (
     get_next_image,
@@ -43,9 +41,7 @@ FOLLOWERS_THRESHOLD = 1000
 @batch_telegram_messages()
 def main():
     send_message("<b>--------start--------</b>")
-
-    d_aware = datetime.now(pytz.timezone("America/Los_Angeles"))
-    send_message("<b>Tweeting Replies to Drop Tweets: {}</b>".format(f"{d_aware:%Y-%m-%d %H:%M:%S}"))
+    send_message("<b>Tweeting Replies to Drop Tweets</b>")
 
     max_tweet_id = get_max_tweet_id()
 
