@@ -124,7 +124,9 @@ def main():
                     likes_count += 1
 
             except tweepy.TooManyRequests:
-                send_message("too many likes posted")
+                if likes_count == 0:
+                    send_message("too many likes posted")
+
                 should_break = True
                 break
 
