@@ -97,8 +97,6 @@ def main():
             except Exception as e:
                 print("error processing tweet by popular author", e, author_id, tw)
 
-    already_liked_authors = set(get_authors_with_liked_tweets())
-    authors_with_liked_tweets = set()
 
     for author_id, tweets in tweets_by_unpopular_authors.items():
         should_break = False
@@ -110,12 +108,9 @@ def main():
                     continue
 
                 for reply in replies.data:
-                    if reply.author_id not in already_liked_authors and reply.author_id not in authors_with_liked_tweets:
-                        like_tweet(reply)
-                        print("liked {}".format(reply.id))
-                        authors_with_liked_tweets.add(reply.author_id)
-                    else:
-                        print("ignoring reply {} by author {}".format(reply.id, reply.author_id))
+                    like_tweet(reply)
+                    print("liked {}".format(reply.id))
+                    authors_with_liked_tweets.add(reply.author_id)
 
             except tweepy.TooManyRequests:
                 print("too many likes posted")
@@ -127,8 +122,6 @@ def main():
 
         if should_break:
             break
-
-    save_authors_with_liked_tweets(list(authors_with_liked_tweets))
 
 
 def like_tweet(tw):
