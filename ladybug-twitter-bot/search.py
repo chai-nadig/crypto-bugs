@@ -136,8 +136,7 @@ def main():
                 break
 
             except Exception as e:
-                send_message(
-                    "error liking replies to tweet by unpopular author: {}, {}, {}".format(str(e), author_id, str(tw)))
+                send_message("error liking replies to tweet by unpopular author: {}".format(str(e)))
 
         if should_break:
             break
