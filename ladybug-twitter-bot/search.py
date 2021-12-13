@@ -122,7 +122,7 @@ def main():
                     likes_count += 1
 
             except tweepy.TooManyRequests:
-                print("too many likes posted")
+                send_message("too many likes posted")
                 should_break = True
                 break
 

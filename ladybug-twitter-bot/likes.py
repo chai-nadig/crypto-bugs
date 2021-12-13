@@ -14,7 +14,7 @@ from telegram_bot import send_message
 
 
 def main():
-    send_message("<b>Sending Likes to New Tweets: {}<b>".format(f"{datetime.now():%Y-%m-%d %H:%M:%S}"))
+    send_message("<b>Sending Likes to New Tweets: {}</b>".format(f"{datetime.now():%Y-%m-%d %H:%M:%S}"))
 
     max_tweet_id = get_max_tweet_id_liked()
 
@@ -44,7 +44,7 @@ def main():
                 likes_count += 1
 
             except tweepy.TooManyRequests:
-                print("too many likes posted")
+                send_message("too many likes posted")
                 should_break = True
                 break
 
