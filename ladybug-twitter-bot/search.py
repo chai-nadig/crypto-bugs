@@ -56,10 +56,10 @@ def main():
 
     tweets_by_unpopular_authors = get_tweets_by_unpopular_authors(tweets_by_author, response.includes['users'])
 
-    print("number tweets popular authors", sum([len(tweets) for author, tweets in tweets_by_popular_authors.items() ]))
+    print("number tweets popular authors", sum([len(tweets) for author, tweets in tweets_by_popular_authors.items()]))
 
-    print("number tweets unpopular authors", sum([len(tweets) for author, tweets in tweets_by_unpopular_authors.items() ]))
-
+    print("number tweets unpopular authors",
+          sum([len(tweets) for author, tweets in tweets_by_unpopular_authors.items()]))
 
     if len(tweets_by_popular_authors) == 0 and len(tweets_by_unpopular_authors) == 0:
         print("no tweets from popular authors or unpopular authors found")
@@ -96,7 +96,6 @@ def main():
 
             except Exception as e:
                 print("error processing tweet by popular author", e, author_id, tw)
-
 
     for author_id, tweets in tweets_by_unpopular_authors.items():
         should_break = False
