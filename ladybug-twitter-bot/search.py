@@ -110,7 +110,6 @@ def main():
                 for reply in replies.data:
                     like_tweet(reply)
                     print("liked {}".format(reply.id))
-                    authors_with_liked_tweets.add(reply.author_id)
 
             except tweepy.TooManyRequests:
                 print("too many likes posted")
