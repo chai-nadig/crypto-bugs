@@ -40,7 +40,6 @@ FOLLOWERS_THRESHOLD = 1000
 
 @batch_telegram_messages()
 def main():
-    send_message("<b>--------start--------</b>")
     send_message("<b>Tweeting Replies to Drop Tweets</b>")
 
     max_tweet_id = get_max_tweet_id()
@@ -141,8 +140,6 @@ def main():
     user = get_crypto_bugs_user()
 
     send_message("<b>Followers: {}</b>".format(user.public_metrics['followers_count']))
-
-    send_message("<b>--------done--------</b>")
 
 
 def like_tweet(tw):

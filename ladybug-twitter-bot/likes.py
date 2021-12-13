@@ -14,7 +14,6 @@ from telegram_bot import send_message, batch_telegram_messages
 
 @batch_telegram_messages()
 def main():
-    send_message("<b>--------start--------</b>")
     send_message("<b>Sending Likes to New Tweets</b>")
 
     max_tweet_id = get_max_tweet_id_liked()
@@ -59,12 +58,8 @@ def main():
             break
 
     send_message("liked {} tweets".format(likes_count))
-
     user = get_crypto_bugs_user()
-
     send_message("<b>Followers: {}</b>".format(user.public_metrics['followers_count']))
-
-    send_message("<b>--------done--------</b>")
 
 
 def get_max_tweet_id_liked():

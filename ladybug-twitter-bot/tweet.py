@@ -11,7 +11,6 @@ from telegram_bot import send_message, batch_telegram_messages
 
 @batch_telegram_messages()
 def main():
-    send_message("<b>--------start--------</b>")
     send_message("<b>Tweeting</b>")
 
     tweet_number = get_count_tweeted() + 1
@@ -54,6 +53,9 @@ def main():
     save_tweeted_tweet(random_tweet)
     remove_tweet(idx)
     remove_image(img_file_name)
+
+    user = get_crypto_bugs_user()
+    send_message("<b>Followers: {}</b>".format(user.public_metrics['followers_count']))
 
 
 def remove_image(img_file_name):
@@ -219,6 +221,17 @@ def tweet(content, media_ids=None, in_reply_to_tweet_id=None):
     )
 
     return response.data['id']
+
+
+def get_crypto_bugs_user():
+    client = tweepy.Client(bearer_token=os.getenv('TWITTER_BEARER_TOKEN'))
+
+    user = client.get_user(
+        username='CryptoBugsX2B67',
+        user_fields="public_metrics",
+    )
+
+    return user.data
 
 
 if __name__ == "__main__":
