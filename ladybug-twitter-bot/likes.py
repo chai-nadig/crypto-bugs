@@ -13,7 +13,7 @@ from search import (
 def main():
     max_tweet_id = get_max_tweet_id_liked()
 
-    response = get_tweets()
+    response = get_tweets(since_id=max_tweet_id)
 
     if response.data is None or len(response.data) == 0:
         print("no new recent tweets found")
@@ -68,7 +68,7 @@ def save_max_tweet_id_liked(max_tweet_id):
         json.dump(max_tweet_id, f, indent=4)
 
 
-def get_tweets(max_results=100):
+def get_tweets(max_results=100, since_id=None):
     client = tweepy.Client(bearer_token=os.getenv('TWITTER_BEARER_TOKEN'))
 
     return client.search_recent_tweets(
@@ -79,6 +79,7 @@ def get_tweets(max_results=100):
         user_fields=['public_metrics'],
         expansions=['author_id'],
         tweet_fields=['created_at'],
+        since_id=since_id,
 
     )
 
