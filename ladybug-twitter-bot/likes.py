@@ -43,6 +43,13 @@ def main():
                 like_tweet(tw)
                 likes_count += 1
 
+            except tweepy.TwitterServerError:
+                if likes_count == 0:
+                    send_message("Server down")
+
+                should_break = True
+                break
+
             except tweepy.TooManyRequests:
                 if likes_count == 0:
                     send_message("too many likes posted")
