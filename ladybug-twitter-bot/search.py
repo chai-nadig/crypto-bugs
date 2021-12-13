@@ -2,6 +2,7 @@ import json
 import os
 import random
 from collections import defaultdict
+from datetime import datetime
 from json import JSONDecodeError
 
 import backoff as backoff
@@ -13,6 +14,7 @@ from tweet import (
     tweet,
     remove_image,
 )
+from telegram_bot import send_message
 
 """
 1. Get Tweets after previous max id
@@ -38,12 +40,14 @@ FOLLOWERS_THRESHOLD = 1000
 
 
 def main():
+    send_message("<b>Tweeting Replies to Drop Tweets: {}</b>".format(str(datetime.now())))
+
     max_tweet_id = get_max_tweet_id()
 
     response = get_tweets('-is:retweet -is:reply "drop your" (nft OR nfts)', since_id=max_tweet_id)
 
     if response.data is None or len(response.data) == 0:
-        print("no new recent tweets found")
+        send_message("no new recent tweets found")
         return
 
     max_tweet_id = max([tw.id for tw in response.data])
@@ -56,19 +60,20 @@ def main():
 
     tweets_by_unpopular_authors = get_tweets_by_unpopular_authors(tweets_by_author, response.includes['users'])
 
-    print("number tweets popular authors", sum([len(tweets) for author, tweets in tweets_by_popular_authors.items()]))
+    send_message("number tweets popular authors: {}".format(
+        sum([len(tweets) for author, tweets in tweets_by_popular_authors.items()])))
 
-    print("number tweets unpopular authors",
-          sum([len(tweets) for author, tweets in tweets_by_unpopular_authors.items()]))
+    send_message("number tweets unpopular authors: {}".format(
+        sum([len(tweets) for author, tweets in tweets_by_unpopular_authors.items()])))
 
     if len(tweets_by_popular_authors) == 0 and len(tweets_by_unpopular_authors) == 0:
-        print("no tweets from popular authors or unpopular authors found")
+        send_message("no tweets from popular authors or unpopular authors found")
         return
 
     followed_authors = follow_authors(list(tweets_by_popular_authors.keys()))
 
     if len(followed_authors) > 0:
-        print("followed {} new authors".format(len(followed_authors)))
+        send_message("followed {} new authors".format(len(followed_authors)))
 
     save_followed_authors(followed_authors)
 
@@ -79,7 +84,7 @@ def main():
             try:
                 img_file_name, img_relative_path = get_next_image()
                 if img_relative_path is None:
-                    print("no image to tweet")
+                    send_message("no image to tweet")
                     return
 
                 resize_and_save(img_relative_path)
@@ -90,16 +95,17 @@ def main():
 
                 tweet_reply_content = construct_tweet_reply(random_tweet)
 
-                r = tweet(tweet_reply_content, media_ids=[media.media_id], in_reply_to_tweet_id=tw.id)
+                tweet(tweet_reply_content, media_ids=[media.media_id], in_reply_to_tweet_id=tw.id)
 
                 count_replies += 1
 
                 remove_image(img_file_name)
 
             except Exception as e:
-                print("error processing tweet by popular author", e, author_id, tw)
+                send_message(
+                    "error tweeting reply to tweet by popular author: {}, {}, {}".format(str(e), author_id, str(tw)))
 
-    print("posted {} replies".format(count_replies))
+    send_message("posted {} replies".format(count_replies))
 
     likes_count = 0
     for author_id, tweets in tweets_by_unpopular_authors.items():
@@ -121,12 +127,13 @@ def main():
                 break
 
             except Exception as e:
-                print("error processing tweet by unpopular author", e, author_id, tw)
+                send_message(
+                    "error liking replies to tweet by unpopular author: {}, {}, {}".format(str(e), author_id, str(tw)))
 
         if should_break:
             break
 
-    print("liked {} tweets".format(likes_count))
+    send_message("liked {} tweets".format(likes_count))
 
 
 def like_tweet(tw):
