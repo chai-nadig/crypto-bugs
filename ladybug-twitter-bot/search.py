@@ -137,6 +137,10 @@ def main():
 
     send_message("liked {} replies".format(likes_count))
 
+    user = get_crypto_bugs_user()
+
+    send_message("<b>Followers: {}</b>".format(user.public_metrics['followers_count']))
+
     send_message("<b>--------done--------</b>")
 
 
@@ -323,6 +327,17 @@ def get_random_tweet():
         facts.extend(json.load(f))
 
     return random.choice(facts)
+
+
+def get_crypto_bugs_user():
+    client = tweepy.Client(bearer_token=os.getenv('TWITTER_BEARER_TOKEN'))
+
+    user = client.get_user(
+        username='CryptoBugsX2B67',
+        user_fields="public_metrics",
+    )
+
+    return user.data
 
 
 if __name__ == "__main__":
