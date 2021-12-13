@@ -133,7 +133,7 @@ def main():
         if should_break:
             break
 
-    send_message("liked {} tweets".format(likes_count))
+    send_message("liked {} replies".format(likes_count))
 
     send_message("<b>--------done--------</b>")
 
