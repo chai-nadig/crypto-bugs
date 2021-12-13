@@ -15,9 +15,7 @@ from telegram_bot import send_message
 
 
 def main():
-    d = datetime.now()
-    timezone = pytz.timezone("America/Los_Angeles")
-    d_aware = timezone.localize(d)
+    d_aware = datetime.now(pytz.timezone("America/Los_Angeles"))
     send_message("<b>Sending Likes to New Tweets: {}</b>".format(f"{d_aware:%Y-%m-%d %H:%M:%S}"))
 
     max_tweet_id = get_max_tweet_id_liked()
