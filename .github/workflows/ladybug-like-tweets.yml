@@ -1,4 +1,4 @@
-name: ladybug-fun-facts
+name: ladybug-like-tweets
 on:
   schedule:
     - cron: '15,45 * * * *'
@@ -17,7 +17,7 @@ jobs:
       - name: Set up Python 3.x
         uses: actions/setup-python@v2
         with:
-          # Semantic version range syntax or exact version of a Python version
+          # Semantic versi  on range syntax or exact version of a Python version
           python-version: '3.6'
 
       - name: Install dependencies
