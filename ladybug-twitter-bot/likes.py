@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import datetime
 from json import JSONDecodeError
 
 import tweepy
@@ -9,14 +10,18 @@ from search import (
     get_tweets_by_unpopular_authors, like_tweet,
 )
 
+from telegram_bot import send_message
+
 
 def main():
+    send_message("<b>Sending Likes to New Tweets: {}<b>".format(str(datetime.now())))
+
     max_tweet_id = get_max_tweet_id_liked()
 
     response = get_tweets(since_id=max_tweet_id)
 
     if response.data is None or len(response.data) == 0:
-        print("no new recent tweets found")
+        send_message("no new recent tweets found")
         return
 
     max_tweet_id = max([tw.id for tw in response.data])
@@ -27,8 +32,8 @@ def main():
 
     tweets_by_unpopular_authors = get_tweets_by_unpopular_authors(tweets_by_author, response.includes['users'])
 
-    print("number tweets unpopular authors",
-          sum([len(tweets) for author, tweets in tweets_by_unpopular_authors.items()]))
+    send_message("number tweets unpopular authors: {}".format(
+        sum([len(tweets) for author, tweets in tweets_by_unpopular_authors.items()])))
 
     likes_count = 0
     for author_id, tweets in tweets_by_unpopular_authors.items():
@@ -44,12 +49,15 @@ def main():
                 break
 
             except Exception as e:
-                print("error liking tweet by unpopular author", e, author_id, tw)
+                send_message(
+                    "error liking tweet by unpopular author: {}, {}, {}".format(str(e), str(author_id), str(tw)))
 
         if should_break:
             break
 
-    print("liked {} tweets".format(likes_count))
+    send_message("liked {} tweets".format(likes_count))
+
+    send_message("done")
 
 
 def get_max_tweet_id_liked():
