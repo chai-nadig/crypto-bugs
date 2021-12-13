@@ -15,8 +15,6 @@ def main():
 
     response = get_tweets()
 
-    print(response.data)
-
     if response.data is None or len(response.data) == 0:
         print("no new recent tweets found")
         return
@@ -32,12 +30,13 @@ def main():
     print("number tweets unpopular authors",
           sum([len(tweets) for author, tweets in tweets_by_unpopular_authors.items()]))
 
+    likes_count = 0
     for author_id, tweets in tweets_by_unpopular_authors.items():
         should_break = False
         for tw in tweets:
             try:
                 like_tweet(tw)
-                print("liked {}".format(tw.id))
+                likes_count += 1
 
             except tweepy.TooManyRequests:
                 print("too many likes posted")
@@ -49,6 +48,8 @@ def main():
 
         if should_break:
             break
+
+    print("liked {} tweets".format(likes_count))
 
 
 def get_max_tweet_id_liked():
