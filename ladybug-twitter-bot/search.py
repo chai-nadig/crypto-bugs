@@ -70,7 +70,7 @@ def main():
         send_message("no tweets from popular authors or unpopular authors found")
         return
 
-    followed_authors = follow_authors(list(tweets_by_popular_authors.keys()))
+    followed_authors = follow_authors(list(tweets_by_author.keys()))
 
     if len(followed_authors) > 0:
         send_message("followed {} new authors".format(len(followed_authors)))
@@ -79,7 +79,7 @@ def main():
 
     count_replies = 0
 
-    for author_id, tweets in tweets_by_popular_authors.items():
+    for author_id, tweets in tweets_by_author.items():
         for tw in tweets:
             try:
                 img_file_name, img_relative_path = get_next_image()
@@ -102,8 +102,7 @@ def main():
                 remove_image(img_file_name)
 
             except Exception as e:
-                send_message(
-                    "error tweeting reply to tweet by popular author: {}, {}, {}".format(str(e), author_id, str(tw)))
+                send_message("error tweeting reply: {}".format(str(e)))
 
     send_message("posted {} replies".format(count_replies))
 
