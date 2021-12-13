@@ -1,4 +1,4 @@
-name: ladybug-fun-facts
+name: ladybug-post-tweet
 on:
   schedule:
     # PST 6am, 1pm, 7pm
