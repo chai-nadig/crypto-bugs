@@ -11,6 +11,7 @@ const telegramBot = async (req, res) => {
     }
 
     const message = req.body.message.text;
+    const user = req.body.message.from;
 
     if (message === "/f") {
         const client = new Twitter({
@@ -81,6 +82,21 @@ const telegramBot = async (req, res) => {
             'parse_mode': 'HTML',
             'chat_id': parseInt(process.env.TELEGRAM_CHAT_ID),
             'text': 'Supported commands\nt - Number of Tweets\nf - Number of Followers\nft, tf - Number of Tweets & Followers'
+        }
+        
+        const res = await axios.get(`https://api.telegram.org/bot${telegramToken}/sendMessage`, { params: telegramParams })
+
+        if (res.status != 200) {
+            console.log(res);
+        }
+    }
+
+    if (message === "/fu") {
+        const telegramToken = process.env.TELEGRAM_TOKEN
+        const telegramParams = {
+            'parse_mode': 'HTML',
+            'chat_id': parseInt(process.env.TELEGRAM_CHAT_ID),
+            'text': '\uD83D\uDD95 Fuck you ' + user.first_name + ' \uD83D\uDD95'
         }
         
         const res = await axios.get(`https://api.telegram.org/bot${telegramToken}/sendMessage`, { params: telegramParams })
