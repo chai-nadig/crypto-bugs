@@ -12,7 +12,7 @@ const telegramBot = async (req, res) => {
 
     const message = req.body.message.text;
 
-    if (message === "/followers" || message === "/f") {
+    if (message === "/f") {
         const client = new Twitter({
             bearer_token: process.env.TWITTER_BEARER_TOKEN
         });
@@ -24,6 +24,27 @@ const telegramBot = async (req, res) => {
             'parse_mode': 'HTML',
             'chat_id': parseInt(process.env.TELEGRAM_CHAT_ID),
             'text': 'Followers: ' + JSON.stringify(user.data.public_metrics.followers_count)
+        }
+        
+        const res = await axios.get(`https://api.telegram.org/bot${telegramToken}/sendMessage`, { params: telegramParams })
+
+        if (res.status != 200) {
+            console.log(res);
+        }
+    }
+
+    if (message === '/t') {
+        const client = new Twitter({
+            bearer_token: process.env.TWITTER_BEARER_TOKEN
+        });
+
+        const user = await client.get('users/1457120903695724545',{'user.fields': ['public_metrics']});
+        
+        const telegramToken = process.env.TELEGRAM_TOKEN
+        const telegramParams = {
+            'parse_mode': 'HTML',
+            'chat_id': parseInt(process.env.TELEGRAM_CHAT_ID),
+            'text': 'Tweets: ' + JSON.stringify(user.data.public_metrics.tweet_count)
         }
         
         const res = await axios.get(`https://api.telegram.org/bot${telegramToken}/sendMessage`, { params: telegramParams })
