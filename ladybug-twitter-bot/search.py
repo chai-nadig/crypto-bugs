@@ -351,9 +351,12 @@ def get_crypto_bugs_user():
         user_fields="public_metrics",
     )
 
+    client.get_users_followers()
+
     return user.data
 
 
 if __name__ == "__main__":
-    main()
+    # main()
     print("Dropped our NFT")
+    get_crypto_bugs_user()
