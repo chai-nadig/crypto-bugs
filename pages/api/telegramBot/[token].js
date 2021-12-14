@@ -54,6 +54,28 @@ const telegramBot = async (req, res) => {
         }
     }
 
+    if (message === "/tf" || message === "/ft") {
+        const client = new Twitter({
+            bearer_token: process.env.TWITTER_BEARER_TOKEN
+        });
+
+        const user = await client.get('users/1457120903695724545',{'user.fields': ['public_metrics']});
+        
+        const telegramToken = process.env.TELEGRAM_TOKEN
+        const telegramParams = {
+            'parse_mode': 'HTML',
+            'chat_id': parseInt(process.env.TELEGRAM_CHAT_ID),
+            'text': 'Tweets: ' + JSON.stringify(user.data.public_metrics.tweet_count) + '\nFollowers: ' + JSON.stringify(user.data.public_metrics.followers_count)
+        }
+        
+        const res = await axios.get(`https://api.telegram.org/bot${telegramToken}/sendMessage`, { params: telegramParams })
+
+        if (res.status != 200) {
+            console.log(res);
+        }
+    }
+
+
     res.json({ "message":"done" })
 }
 
