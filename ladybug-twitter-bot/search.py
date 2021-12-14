@@ -46,7 +46,14 @@ def main():
 
     max_tweet_id = get_max_tweet_id()
 
-    response = get_tweets('-is:retweet -is:reply "drop your" (nft OR nfts)', since_id=max_tweet_id)
+    response = get_tweets(
+        query=(
+            '-is:retweet -is:reply (("drop your" (nft OR nfts)) OR ("shill your" (nft OR nfts)) '
+            'OR ("buy your" (nft OR nfts))) '
+            '-wallet -address -giveaway -"drop your eth"'
+        ),
+        since_id=max_tweet_id,
+    )
 
     if response.data is None or len(response.data) == 0:
         send_message("no new recent tweets found")
