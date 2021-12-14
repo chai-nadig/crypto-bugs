@@ -120,7 +120,8 @@ def main():
         should_break = False
         for tw in tweets:
             try:
-                replies = get_tweets('conversation_id:{} is:reply -promote '.format(tw.id))
+                replies = get_tweets(
+                    'conversation_id:{} is:reply -promote -giveaway -address -eth -wallet'.format(tw.id))
 
                 if replies.data is None or len(replies.data) == 0:
                     continue
