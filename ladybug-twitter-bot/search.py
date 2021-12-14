@@ -355,6 +355,5 @@ def get_crypto_bugs_user():
 
 
 if __name__ == "__main__":
-    # main()
+    main()
     print("Dropped our NFT")
-    get_crypto_bugs_user()
