@@ -75,6 +75,21 @@ const telegramBot = async (req, res) => {
         }
     }
 
+    if (message === "/help") {
+        const telegramToken = process.env.TELEGRAM_TOKEN
+        const telegramParams = {
+            'parse_mode': 'HTML',
+            'chat_id': parseInt(process.env.TELEGRAM_CHAT_ID),
+            'text': 'Supported commands\nt - Number of Tweets\nf - Number of Followers\nft, tf - Number of Tweets & Followers'
+        }
+        
+        const res = await axios.get(`https://api.telegram.org/bot${telegramToken}/sendMessage`, { params: telegramParams })
+
+        if (res.status != 200) {
+            console.log(res);
+        }
+    }
+
 
     res.json({ "message":"done" })
 }
