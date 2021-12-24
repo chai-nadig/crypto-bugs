@@ -46,13 +46,6 @@ if __name__ == "__main__":
             count_traits(traits)
         )
 
-        print_csv("backgrounds", background_counts)
-        print_csv("spots", spots_counts)
-        print_csv("colors", color_counts)
-        print_csv("accessories", accessory_counts)
-        print_csv("eyes", eyes_counts)
-        print_csv("combos", combo_counts)
-
         with open('traits.json', 'w') as outfile:
             json.dump(traits, outfile, indent=4)
 
