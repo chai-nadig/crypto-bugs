@@ -90,80 +90,81 @@ spots = {
     # "Cyan": 1,
     # "Pink": 1,
 
-    "Zero": 0.1,
-    "Two Black": 1,
-    "Twelve Black": 1,
-    "Three Black Stripes": 1,
+    "Zero": 0.01,
+    "Two Black": 0.2,
+    "Twelve Black": 0.5,
+    "Three Black Stripes": 0.05,
     "Seven Black": 1,
     "Thirteen Black": 1,
-    "Fourteen Orange": 1,
-    "Fifteen Black": 1,
-    # "Twenty Black": 1,
+    "Fourteen Orange": 0.2,
+    "Fifteen Black": 0.25,
+    "Twenty Black": 0.25,
 
-    "Twenty Brown": 1,
-    "Twenty Two Black": 1,
-    "Twenty Four Black": 1,
-    "Twenty Eight Black": 1,
+    "Twenty Brown": 0.5,
+    "Twenty Two Black": 0.5,
+    "Twenty Four Black": 0.5,
+    "Twenty Eight Black": 0.25,
 }
 colors = {
     "Gold": 0.3,
-    "Black": 0.5,
-
-    "Red": 1,
     "Blue": 1,
     "Green": 1,
-    "Yellow": 1,
+    "Camo": 1,
+
+    "Black": 0.2,
     "Orange": 1,
     "Purple": 1,
-    "Camo": 1,
-    "White": 1,
+    "Yellow": 1,
     "Pink": 1,
+    "Red": 1,
+    "White": 1,
     "Cream": 1,
 }
 
 accessories = {
+    "Crown": 1,
+    "Halo": 1,
+    "Tux": 1,
+    "Horns": 1,
+    "Shield": 1,
+
     None: 3,
 
-    "Red Sunglasses": 1,
-
-    "Turban": 1,
-    "Beanie": 1,
-    "Snorkel Gear": 1,
-
-    "Pirate Hat": 1.5,
-
+    "Red Sunglasses": 2,
     "Red Hair": 2,
     "Bathrobe": 2,
-    "Belt": 2,
-    "Construction Hat": 2,
     "Graduation Cap": 2,
-    "Bikini": 2,
+    "Snorkel Gear": 2,
+    "Top Hat": 2,
 
     "Viking Helmet": 3,
-    "Chef Cap": 3,
-    "Wizard Hat": 3,
-    "Sombrero": 3,
-    "Top Hat": 3,
-    "Crown": 3,
     "Beach Hat": 3,
-    "Halo": 3,
-    "Clown Hat": 3,
-    "Tux": 3,
-
     "Astronaut Helmet": 3,
-    "Baseball Cap": 3,
-    "Big Green Glasses": 3,
-    "Bow": 3,
-    "Cowboy Hat": 3,
-    "Ear Muffs": 3,
-    "Horns": 3,
-    "Life Vest": 3,
     "Motorcycle Helmet": 3,
-    "Pom Pom Hat": 3,
-    "Santa Hat": 3,
-    "Sash": 3,
-    "Shield": 3,
-    "Umbrella": 3,
+
+    "Chef Cap": 4,
+    "Wizard Hat": 4,
+    "Sombrero": 4,
+
+    "Beanie": 5,
+    "Pirate Hat": 5,
+    "Construction Hat": 5,
+    "Clown Hat": 5,
+    "Big Green Glasses": 5,
+    "Cowboy Hat": 5,
+    "Ear Muffs": 5,
+    "Life Vest": 5,
+    "Santa Hat": 5,
+
+    "Belt": 6,
+    "Turban": 6,
+    "Bikini": 6,
+
+    "Bow": 7,
+    "Pom Pom Hat": 7,
+    "Sash": 7,
+    "Umbrella": 7,
+    "Baseball Cap": 7,
 }
 
 eyes = {
@@ -396,26 +397,24 @@ def create_combo():
                                 "Astronaut Helmet", "Big Green Glasses",):
         trait["Eyes"] = None
 
-    if trait['Spots'] == 'Zero':
-        trait['Color'] = 'Red'
-
-    elif trait['Spots'] == 'Two Black':
+    if trait['Spots'] in ('Zero', 'Two Black', 'Three Black Stripes'):
         trait['Color'] = 'Red'
 
     elif trait['Spots'] == 'Twelve Black':
         trait['Color'] = 'Pink'
 
-    elif trait['Spots'] == 'Three Black Stripes':
-        trait['Color'] = 'Red'
-
     elif trait['Spots'] == 'Fourteen Orange':
         trait['Color'] = 'Black'
 
     elif trait['Spots'] == 'Fifteen Black':
-        trait['Color'] = random.choice(['White', 'Purple'])
+        cs = ['White', 'Purple']
+        trait['Color'] = random.choices(cs, [w for c, w in colors.items() if c in cs])[0]
 
     elif trait['Spots'] == 'Twenty Brown':
         trait['Color'] = 'Cream'
+
+    elif trait['Spots'] == 'Twenty Black':
+        trait['Color'] = 'White'
 
     elif trait['Spots'] == 'Twenty Two Black':
         trait['Color'] = 'Yellow'
@@ -424,7 +423,42 @@ def create_combo():
         trait['Color'] = 'Orange'
 
     elif trait['Spots'] == 'Twenty Eight Black':
-        trait['Color'] = random.choice(['Yellow', 'Orange'])
+        cs = ['Yellow', 'Orange']
+        trait['Color'] = random.choices(cs, [w for c, w in colors.items() if c in cs])[0]
+
+    if trait['Color'] == 'Cream':
+        trait['Spots'] = 'Twenty Brown'
+
+    elif trait['Color'] == 'White' and trait['Spots'] not in ['Twenty Black', 'Fifteen Black']:
+        ss = ['Twenty Black', 'Fifteen Black']
+        trait['Spots'] = random.choices(ss, [w for s, w in spots.items() if s in ss])[0]
+
+    elif trait['Color'] == 'Black':
+        trait['Spots'] = 'Fourteen Orange'
+
+    elif trait['Color'] == 'Yellow' and trait['Spots'] not in ['Twenty Two Black', 'Twenty Eight Black']:
+        ss = ['Twenty Two Black', 'Twenty Eight Black']
+        trait['Spots'] = random.choices(ss, [w for s, w in spots.items() if s in ss])[0]
+
+    elif trait['Color'] == 'Orange' and trait['Spots'] not in ['Twenty Four Black', 'Twenty Eight Black']:
+        ss = ['Twenty Four Black', 'Twenty Eight Black']
+        trait['Spots'] = random.choices(ss, [w for s, w in spots.items() if s in ss])[0]
+
+    elif trait['Color'] == 'Purple':
+        trait['Spots'] = 'Fifteen Black'
+
+    elif trait['Color'] == 'Pink':
+        trait['Spots'] = 'Twelve Black'
+
+    elif trait['Color'] == 'Red' and trait['Spots'] not in ['Zero', 'Two Black', 'Three Black Stripes',
+                                                            'Seven Black', 'Thirteen Black']:
+        ss = ['Zero', 'Two Black', 'Three Black Stripes', 'Seven Black', 'Thirteen Black']
+        trait['Spots'] = random.choices(ss, [w for s, w in spots.items() if s in ss])[0]
+
+    elif trait['Color'] in ['Gold', 'Blue', 'Green', 'Camo'] and trait['Spots'] not in ['Seven Black',
+                                                                                        'Thirteen Black']:
+        ss = ['Seven Black', 'Thirteen Black']
+        trait['Spots'] = random.choices(ss, [w for s, w in spots.items() if s in ss])[0]
 
     return trait
 

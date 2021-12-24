@@ -91,22 +91,49 @@ def get_scores_for_counts(counts):
 
 
 def generate_histogram_from_scores(scores):
+    total = float(len(scores))
+
     scores = [s for s in scores if s <= 100]
     # scores = sorted(scores, key=lambda s: -s)
 
-    # the histogram of the data
-    plt.figure(figsize=(16, 6))
+    num_bins = 50
 
-    n, bins, patches = plt.hist(scores, bins=8, facecolor='g', alpha=0.75, rwidth=0.5, )
+    # the histogram of the data
+    plt.figure(figsize=(num_bins / 2.0, 6))
+
+    n, bins, patches = plt.hist(scores, bins=num_bins, facecolor='g', alpha=0.75, rwidth=0.5, )
 
     plt.xlabel('Scores')
 
-    print('number of scores', len(scores))
+    print('\n\nnumber of scores', len(scores))
     print('max scores', max(scores))
 
     plt.xlim(0, max(scores))
     plt.ylabel('Probability')
     plt.title('Histogram of Scores')
     plt.grid(True)
-    # plt.subplots_adjust(left=0.15)
+    plt.bar_label(patches, n)
+
+    percentiles = [25.0, 50.0, 75.0, 90.0, 99.0]
+    count = 0.0
+    min_ylim, max_ylim = plt.ylim()
+    for i in range(len(n)):
+        v = n[i]
+        count += v
+
+        p_count = (percentiles[0] * total / 100) if len(percentiles) > 0 else None
+
+        if p_count is not None and count >= p_count:
+            mid = (bins[i] + bins[i + 1]) / 2
+
+            plt.axvline(mid + 0.5, color='red', linestyle='dashed', linewidth=2)
+
+            actual_percentile = count / total * 100
+
+            plt.text(mid + 0.6, max_ylim * 0.9,
+                     'P{:.2f}\n({})'.format(actual_percentile, count), color='red')
+
+            while len(percentiles) > 0 and percentiles[0] <= actual_percentile:
+                percentiles.pop(0)
+
     plt.savefig('scores.png')
