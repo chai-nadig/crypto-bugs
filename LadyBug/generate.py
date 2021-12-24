@@ -8,67 +8,76 @@ from collections import defaultdict
 from tqdm import tqdm
 
 simple_backgrounds = {
-    "Gold": 0.01,
+    "Gold": 0.05,
 
-    "Beige": 4,
-    "Light Blue": 4,
-    "Dark Blue": 4,
-    "Cyan": 4,
-    "Green": 4,
-    "Dirty Green": 4,
-    "Light Green": 4,
-    "Light Grey": 4,
-    "Dirty Purple": 4,
-    "Light Purple": 4,
-    "Red": 4,
-    "Light Red": 4,
-    "Orange": 4,
-    "Pink": 4,
-    "Yellow": 4,
+    "Beige": 3,
+    "Light Blue": 3,
+    "Dark Blue": 3,
+    "Cyan": 3,
+    "Green": 3,
+    "Dirty Green": 3,
+    "Light Green": 3,
+    "Light Grey": 3,
+    "Dirty Purple": 3,
+    "Light Purple": 3,
+    "Red": 3,
+    "Light Red": 3,
+    "Orange": 3,
+    "Pink": 3,
+    "Yellow": 3,
 }
 unique_backgrounds = {
-    "Bedroom": 2,
-    "American Football": 2,
-    "Tennis Balls": 2,
-    "Monitor": 2,
-    "Hearts": 2,
-    "Book": 2,
-    "Matrix": 2,
+    "Throne": 3,
+    "Matrix": 3,
 
-    "Brick Wall": 4,
-    "Pillars": 3,
-    "Road": 3,
-    "City": 4,
+    "Fire": 4,
+    "Chessboard": 4,
+    "Book": 4,
+    "Road": 4,
+    "Bedroom": 4,
+    "Classroom": 4,
+    "Storefront": 4,
 
-    "Spider Web": 2,
-    "Stick": 2,
-    "Leaf": 2,
-    "Snow": 2,
-    "Island": 3,
-    "Rainbow": 3,
-    "Desert": 3,
-    "Trees": 3,
-    "Sunset": 4,
+    "January": 4,
+    "February": 4,
+    "March": 4,
+    "April": 4,
+    "May": 4,
+    "June": 4,
+    "July": 4,
+    "August": 4,
+    "September": 4,
+    "October": 4,
+    "November": 4,
+    "December": 4,
+
+    "Stick": 5,
     "Beach": 5,
-    "Fire": 5,
     "Clouds": 5,
     "Wave": 5,
-    "Mountains": 3,
-    "Sun": 4,
-    "Night Sky": 3,
+    "Leaf": 5,
+    "Hearts": 5,
+    "Monitor": 5,
+    "Spider Web": 5,
+    "American Football": 5,
+    "Tennis Balls": 5,
 
-    "January": 0.5,
-    "February": 0.5,
-    "March": 0.5,
-    "April": 0.5,
-    "May": 0.5,
-    "June": 0.5,
-    "July": 0.5,
-    "August": 0.5,
-    "September": 0.5,
-    "October": 0.5,
-    "November": 0.5,
-    "December": 0.5,
+    "Sunset": 6,
+    "Sun": 6,
+    "Night Sky": 6,
+    "Bush": 6,
+    "Stream": 6,
+    "Waterfall": 6,
+    "Snow": 6,
+    "Island": 6,
+    "Rainbow": 6,
+    "Desert": 6,
+    "Trees": 6,
+    "Mountains": 6,
+    "Brick Wall": 6,
+    "City": 6,
+    "Pillars": 6,
+
 }
 
 backgrounds = {}
@@ -96,7 +105,9 @@ colors = {
 }
 
 accessories = {
-    "Red Sunglasses": 0.25,
+    None: 3,
+
+    "Red Sunglasses": 1,
 
     "Turban": 1,
     "Beanie": 1,
@@ -104,7 +115,6 @@ accessories = {
 
     "Pirate Hat": 1.5,
 
-    None: 2,
     "Red Hair": 2,
     "Bathrobe": 2,
     "Belt": 2,
@@ -122,6 +132,21 @@ accessories = {
     "Halo": 3,
     "Clown Hat": 3,
     "Tux": 3,
+
+    "Astronaut Helmet": 3,
+    "Baseball Cap": 3,
+    "Big Green Glasses": 3,
+    "Bow": 3,
+    "Cowboy Hat": 3,
+    "Ear Muffs": 3,
+    "Horns": 3,
+    "Life Vest": 3,
+    "Motorcycle Helmet": 3,
+    "Pom Pom Hat": 3,
+    "Santa Hat": 3,
+    "Sash": 3,
+    "Shield": 3,
+    "Umbrella": 3,
 }
 
 eyes = {
@@ -143,19 +168,32 @@ currentlocation = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__f
 outputlocation = os.path.join(currentlocation, './output/')
 
 unique_backgrounds_with_accessories = {
-    'Beach': ['Red Sunglasses', 'Bikini', 'Beach Hat', 'Pirate Hat'],
+    'Beach': ['Red Sunglasses', 'Bikini', 'Beach Hat', 'Pirate Hat', "Life Vest", "Snorkel Gear"],
     'Book': ['Graduation Cap'],
     'Brick Wall': ['Construction Hat'],
     'City': ['Tux'],
-    'Clouds': ['Red Sunglasses'],
+    'Clouds': ['Red Sunglasses', "Life Vest"],
     'Spider Web': ['Wizard Hat'],
-    'Wave': ['Red Sunglasses', 'Bikini', 'Beach Hat'],
-    'Bedroom': ['Bathrobe'],
-    "Desert": ["Sombrero"],
-    "Snow": ["Beanie"],
-    "Island": ["Red Sunglasses", "Bikini", "Beach Hat", "Pirate Hat"],
-    "Night Sky": ["Beanie", "Tux"],
+    'Wave': ['Red Sunglasses', 'Bikini', 'Beach Hat', "Life Vest", "Snorkel Gear"],
+    'Bedroom': ['Bathrobe', "Ear Muffs"],
+    "Desert": ["Sombrero", "Cowboy Hat"],
+    "Snow": ["Beanie", "Ear Muffs", "Santa Hat"],
+    "Island": ["Red Sunglasses", "Bikini", "Beach Hat", "Pirate Hat", "Life Vest", "Snorkel Gear"],
+    "Night Sky": ["Beanie", "Tux", "Astronaut Helmet", "Bow", "Horns", "Santa Hat", "Halo"],
     "Mountains": ["Red Sunglasses"],
+    "American Football": ["Baseball Cap"],
+    "Tennis": ["Baseball Cap"],
+    "Bush": ["Red Sunglasses", "Wizard Hat"],
+    "Storefront": ["Red Sunglasses", "Red Hair", "Motorcycle Helmet"],
+    "Stream": ["Life Vest", "Red Sunglasses", "Bikini", "Beach Hat", "Snorkel Gear"],
+    "Waterfall": ["Life Vest", "Red Sunglasses", "Bikini", "Beach Hat"],
+    "Throne": ["Crown", "Sash", "Tux"],
+    "Hearts": ["Bow"],
+    "Pillars": ["Shield"],
+    "Road": ["Motorcycle Helmet"],
+    "Classroom": ["Graduation Cap"],
+    # 'Sunset': ['Tux'],  # In two minds about this
+    "Sun": ["Tux"],
 }
 
 
@@ -190,9 +228,9 @@ def get_ignored_combinations():
         {'Spots': ['Yellow'], 'Eyes': ['White']},
 
         # Ignore Yellow spots with matrix
-        {'Spots': ['Yellow'], 'Background': ['Matrix', 'Tennis Balls']},
+        {'Spots': ['Yellow'], 'Background': ['Matrix', 'Tennis Balls', "Throne"]},
 
-        {'Spots': ['Cyan'], 'Color': ['Yellow', 'Gold', 'Green', 'Orange']},
+        {'Spots': ['Cyan'], 'Color': ['Yellow', 'Gold', 'Green', 'Orange', "Red"]},
 
         {'Spots': ['Cyan'], 'Eyes': ['Blue']},
 
@@ -200,9 +238,9 @@ def get_ignored_combinations():
 
         {'Spots': ['Pink'], 'Eyes': ['Red']},
 
-        {'Spots': ['Pink'], 'Color': ['Orange', 'Gold', 'Purple', 'Red', ]},
+        {'Spots': ['Pink'], 'Color': ['Orange', 'Gold', 'Purple', 'Red', "Yellow", "Green"]},
 
-        {'Spots': ['Pink'], 'Background': ['Pink']},
+        {'Spots': ['Pink'], 'Background': ['Pink', "Throne"]},
 
         {'Spots': ['Pink'], 'Accessory': ['Snorkel Gear']},
 
@@ -231,8 +269,7 @@ def get_ignored_combinations():
         # Ignore pirate hat accessory with Purple Blue background
         {"Accessory": ["Pirate Hat"], "Background": ['Purple Blue', 'Blue Black']},
 
-        # Ignore snorkel gear with orange color bug
-        {"Accessory": ["Snorkel Gear"], "Color": ["Orange"]},
+        {"Accessory": ["Snorkel Gear", "Astronaut Helmet"], "Color": ["Orange"]},
 
         # Ignore red sunglasses with red bug
         {"Accessory": ["Red Sunglasses"], "Color": ["Red"]},
@@ -244,14 +281,22 @@ def get_ignored_combinations():
         {"Color": ["Gold"], "Background": list(unique_backgrounds.keys())},
 
         {"Color": ["Gold"],
-         "Accessory": ["Sombrero", "Construction Hat", "Beanie", "Chef Cap", "Bikini", "Belt", "Wizard Hat",
-                       "Beach Hat", "Halo", "Clown Hat", "Pirate Hat", "Snorkel Gear", "Red Sunglasses"]},
+         "Accessory": [
+             "Sombrero", "Construction Hat", "Beanie", "Chef Cap", "Bikini", "Belt", "Wizard Hat",
+             "Beach Hat", "Halo", "Clown Hat", "Pirate Hat", "Snorkel Gear", "Red Sunglasses",
+             "Bow", "Big Green Glasses", "Astronaut Helmet", "Baseball Cap", "Umbrella", "Horns",
+             "Cowboy Hat", "Ear Muffs", "Motorcycle Helmet",
+         ]},
 
         {"Background": ["Gold"], "Eyes": ["Grey", "White"]},
 
         {"Background": ["Gold"],
-         "Accessory": ["Sombrero", "Construction Hat", "Beanie", "Chef Cap", "Bikini", "Belt", "Wizard Hat",
-                       "Beach Hat", "Halo", "Clown Hat", "Pirate Hat", "Snorkel Gear", "Red Sunglasses"]},
+         "Accessory": [
+             "Sombrero", "Construction Hat", "Beanie", "Chef Cap", "Bikini", "Belt", "Wizard Hat",
+             "Beach Hat", "Clown Hat", "Pirate Hat", "Snorkel Gear", "Red Sunglasses",
+             "Bow", "Astronaut Helmet", "Baseball Cap", "Umbrella", "Cowboy Hat", "Ear Muffs",
+             "Motorcycle Helmet", "Life Vest"
+         ]},
 
         {"Background": ["Yellow"],
          "Accessory": ["Construction Hat", "Beanie", "Beach Hat", "Viking Helmet", "Sombrero", "Graduation Cap"]},
@@ -261,7 +306,9 @@ def get_ignored_combinations():
         {"Accessory": ["Pirate Hat", "Graduation Cap"], "Color": ["Black"]},
         {"Background": ["Book", "Bedroom"], "Color": ["Yellow"]},
         {"Background": ["Desert", "Orange"], "Color": ["Orange"]},
-        {"Background": ["Trees"], "Color": ["Green"]},
+
+        {"Background": ["Trees", "Stream"], "Color": ["Green"]},
+
         {"Background": ["Blue Black"], "Color": ["Blue", "Black", "Camo", "Gold"]},
         {"Background": ["Spider Web", "Sunset"], "Color": ["Black"]},
         {"Background": ["Night Sky"], "Color": ["Blue"]},
@@ -270,7 +317,19 @@ def get_ignored_combinations():
          "Background": ["January", "February", "March", "April", "May", "June", "July", "August", "September",
                         "October", "November", "December"]},
         {"Accessory": ["Crown"], "Background": ["Red"]},
-        {"Color": ["Purple"], "Background": ["Light Purple"]}
+
+        {"Color": ["Purple"], "Background": ["Light Purple", "Throne"]},
+
+        {"Accessory": ["Bow"], "Spots": ["Yellow", "Cyan"]},
+        {"Accessory": ["Bow"], "Color": ["Yellow"]},
+        {"Accessory": ["Sash"], "Spots": ["Cyan", "Yellow"]},
+
+        {"Accessory": ["Shield"], "Color": ["Purple"]},
+
+        {"Accessory": ["Pom Pom Hat"], "Background": ["Light Red", "Pink"]},
+
+        {"Accessory": ["Horns"], "Background": ["Red"]},
+
     ]
 
     for bg in unique_backgrounds:
@@ -316,7 +375,8 @@ def createCombo():
     elif trait['Accessory'] == 'Bathrobe':
         trait['Spots'] = None
 
-    elif trait["Accessory"] in ("Red Sunglasses", "Snorkel Gear"):
+    elif trait["Accessory"] in ("Red Sunglasses", "Snorkel Gear", "Motorcycle Helmet",
+                                "Astronaut Helmet", "Big Green Glasses",):
         trait["Eyes"] = None
 
     return trait
@@ -354,7 +414,6 @@ def generateCombinations(n, excluded_traits=None):
         excluded_traits = []
 
     traits = []
-    trait_keys = set()
     trait_csa_keys = set()
     excluded_trait_keys = set([get_trait_key(trait) for trait in excluded_traits])
 
@@ -368,12 +427,11 @@ def generateCombinations(n, excluded_traits=None):
         trait_key = get_trait_key(trait)
         trait_csa_key = get_trait_csa_key(trait)
 
-        while trait_key in trait_keys or trait_key in excluded_trait_keys or shouldIgnore(trait):
+        while trait_key in excluded_trait_keys or shouldIgnore(trait) or trait_csa_key in trait_csa_keys:
             trait = createCombo()
             trait_key = get_trait_key(trait)
             trait_csa_key = get_trait_csa_key(trait)
 
-        trait_keys.add(trait_key)
         trait_csa_keys.add(trait_csa_key)
         traits.append(trait)
 
@@ -435,9 +493,9 @@ def count_traits(traits):
     background_counts = defaultdict(int)
     spots_counts = defaultdict(int)
     color_counts = defaultdict(int)
-    accessory_count = defaultdict(int)
-    eyes_count = defaultdict(int)
-    combo_count = defaultdict(int)
+    accessory_counts = defaultdict(int)
+    eyes_counts = defaultdict(int)
+    combo_counts = defaultdict(int)
 
     for trait in tqdm(
             iterable=traits,
@@ -448,19 +506,14 @@ def count_traits(traits):
 
         spots_counts[trait["Spots"]] += 1
         color_counts[trait["Color"]] += 1
-        eyes_count[trait["Eyes"]] += 1
+        eyes_counts[trait["Eyes"]] += 1
         background_counts[trait["Background"]] += 1
-        accessory_count[trait["Accessory"]] += 1
+        accessory_counts[trait["Accessory"]] += 1
 
         if is_combo(trait):
-            combo_count[get_combo_key(trait)] += 1
+            combo_counts[get_combo_key(trait)] += 1
 
-    print_csv("backgrounds", background_counts)
-    print_csv("spots", spots_counts)
-    print_csv("colors", color_counts)
-    print_csv("accessories", accessory_count)
-    print_csv("eyes", eyes_count)
-    print_csv("combos", combo_count)
+    return background_counts, spots_counts, color_counts, accessory_counts, eyes_counts, combo_counts
 
 
 def print_csv(label, d):

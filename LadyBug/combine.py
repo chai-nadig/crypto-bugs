@@ -6,7 +6,7 @@ directory = "./output"
 SIZE = 120
 
 
-def getNearestSquare(n):
+def get_nearest_square(n):
     i = 1
     while i * i < n:
         i += 1
@@ -19,15 +19,15 @@ def combine(traits):
     traits = sorted(traits,
                     key=lambda t: (
                         t['Background'] or 'None',
-                        # t['Color'] or 'None',
-                        # t['Spots'] or 'None',
-                        # t['Accessory'] or 'None',
-                        # t['Eyes'] or 'None',
+                        t['Color'] or 'None',
+                        t['Spots'] or 'None',
+                        t['Accessory'] or 'None',
+                        t['Eyes'] or 'None',
                     ))
 
     total = len(traits)
 
-    ns = getNearestSquare(total)
+    ns = get_nearest_square(total)
 
     final = Image.new('RGBA', (ns * 120, ns * 120))
 
