@@ -23,16 +23,14 @@ def generate_bar_graph_from_counts(
     counts = [c[1] for c in all_counts]
     colors = [get_color_for_trait(t[0]) for t in all_counts]
 
-    plt.figure(figsize=(20, len(traits) / 4.0))
+    plt.figure(figsize=(20, len(traits) / 3.5))
     container = plt.barh(traits, counts, color=colors)
     plt.bar_label(container, counts)
-    plt.xlabel("Trait")
-    plt.ylabel("Counts")
+    plt.xlabel("Number of Bugs")
+    plt.ylabel("Traits")
     plt.title("Trait counts across all traits")
 
     plt.savefig('trait_counts.png')
-
-    print("total ticks", len(traits), len(counts))
 
 
 def get_color_for_trait(t):
@@ -105,14 +103,11 @@ def generate_histogram_from_scores(scores):
 
     plt.xlabel('Scores')
 
-    print('\n\nnumber of scores', len(scores))
-    print('max scores', max(scores))
-
     plt.xlim(0, max(scores))
-    plt.ylabel('Counts')
+    plt.ylabel('Number of bugs')
     plt.title('Histogram of Scores')
     plt.grid(True)
-    plt.bar_label(patches, n)
+    plt.bar_label(patches, [int(i) for i in n])
 
     percentiles = [25.0, 50.0, 75.0, 90.0, 99.0]
     count = 0.0
@@ -131,7 +126,7 @@ def generate_histogram_from_scores(scores):
             actual_percentile = count / total * 100
 
             plt.text(mid + 0.6, max_ylim * 0.9,
-                     'P{:.2f}\n({})'.format(actual_percentile, count), color='red')
+                     'P{:.2f}\n({})'.format(actual_percentile, int(count)), color='red')
 
             while len(percentiles) > 0 and percentiles[0] <= actual_percentile:
                 percentiles.pop(0)
