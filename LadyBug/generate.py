@@ -85,11 +85,25 @@ backgrounds.update(simple_backgrounds)
 backgrounds.update(unique_backgrounds)
 
 spots = {
-    "Black": 1,
-    "Red": 1,
-    "Yellow": 1,
-    "Cyan": 1,
-    "Pink": 1,
+    # "Red": 1,
+    # "Yellow": 1,
+    # "Cyan": 1,
+    # "Pink": 1,
+
+    "Zero": 0.1,
+    "Two Black": 1,
+    "Twelve Black": 1,
+    "Three Black Stripes": 1,
+    "Seven Black": 1,
+    "Thirteen Black": 1,
+    "Fourteen Orange": 1,
+    "Fifteen Black": 1,
+    # "Twenty Black": 1,
+
+    "Twenty Brown": 1,
+    "Twenty Two Black": 1,
+    "Twenty Four Black": 1,
+    "Twenty Eight Black": 1,
 }
 colors = {
     "Gold": 0.3,
@@ -102,6 +116,9 @@ colors = {
     "Orange": 1,
     "Purple": 1,
     "Camo": 1,
+    "White": 1,
+    "Pink": 1,
+    "Cream": 1,
 }
 
 accessories = {
@@ -359,7 +376,7 @@ def shouldIgnore(trait):
     return False
 
 
-def createCombo():
+def create_combo():
     trait = {
         "Background": random.choices(list(backgrounds.keys()), list(backgrounds.values()))[0],
         "Spots": random.choices(list(spots.keys()), list(spots.values()))[0],
@@ -372,12 +389,42 @@ def createCombo():
         trait['Color'] = None
         trait['Spots'] = None
 
-    elif trait['Accessory'] == 'Bathrobe':
+    elif trait['Accessory'] == 'Bathrobe' or trait['Accessory'] == 'Shield':
         trait['Spots'] = None
 
     elif trait["Accessory"] in ("Red Sunglasses", "Snorkel Gear", "Motorcycle Helmet",
                                 "Astronaut Helmet", "Big Green Glasses",):
         trait["Eyes"] = None
+
+    if trait['Spots'] == 'Zero':
+        trait['Color'] = 'Red'
+
+    elif trait['Spots'] == 'Two Black':
+        trait['Color'] = 'Red'
+
+    elif trait['Spots'] == 'Twelve Black':
+        trait['Color'] = 'Pink'
+
+    elif trait['Spots'] == 'Three Black Stripes':
+        trait['Color'] = 'Red'
+
+    elif trait['Spots'] == 'Fourteen Orange':
+        trait['Color'] = 'Black'
+
+    elif trait['Spots'] == 'Fifteen Black':
+        trait['Color'] = random.choice(['White', 'Purple'])
+
+    elif trait['Spots'] == 'Twenty Brown':
+        trait['Color'] = 'Cream'
+
+    elif trait['Spots'] == 'Twenty Two Black':
+        trait['Color'] = 'Yellow'
+
+    elif trait['Spots'] == 'Twenty Four Black':
+        trait['Color'] = 'Orange'
+
+    elif trait['Spots'] == 'Twenty Eight Black':
+        trait['Color'] = random.choice(['Yellow', 'Orange'])
 
     return trait
 
@@ -423,12 +470,12 @@ def generateCombinations(n, excluded_traits=None):
             total=n,
             unit="combos",
     ):
-        trait = createCombo()
+        trait = create_combo()
         trait_key = get_trait_key(trait)
         trait_csa_key = get_trait_csa_key(trait)
 
         while trait_key in excluded_trait_keys or shouldIgnore(trait) or trait_csa_key in trait_csa_keys:
-            trait = createCombo()
+            trait = create_combo()
             trait_key = get_trait_key(trait)
             trait_csa_key = get_trait_csa_key(trait)
 

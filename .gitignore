@@ -4,7 +4,10 @@
 .ipynb_checkpoints
 __pycache__
 combined.png
+scores.png
+trait_counts.png
 node_modules/
 .next
 /venv/
 LadyBug/output/*
+.env.local
