@@ -109,7 +109,7 @@ def generate_histogram_from_scores(scores):
     print('max scores', max(scores))
 
     plt.xlim(0, max(scores))
-    plt.ylabel('Probability')
+    plt.ylabel('Counts')
     plt.title('Histogram of Scores')
     plt.grid(True)
     plt.bar_label(patches, n)
