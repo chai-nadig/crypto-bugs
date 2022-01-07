@@ -8,6 +8,15 @@ from json.decoder import JSONDecodeError
 from PIL import Image
 from telegram_bot import send_message, batch_telegram_messages
 
+READ_FILE = './facts.json'
+TWEETED_FILE = './tweeted-facts.json'
+DISCARDED_FILE = './discarded-facts.json'
+
+
+# READ_FILE = './tweets.json'
+# TWEETED_FILE = './tweeted-tweets.json'
+# DISCARDED_FILE = './discarded-tweets.json'
+
 
 @batch_telegram_messages()
 def main():
@@ -81,17 +90,17 @@ def remove_tweet(idx):
     if idx is None:
         return
 
-    with open('./tweets.json') as f:
+    with open(READ_FILE) as f:
         tweets = json.load(f)
 
     tweets.pop(idx)
 
-    with open('./tweets.json', 'w') as f:
+    with open(READ_FILE, 'w') as f:
         json.dump(tweets, f, indent=4)
 
 
 def get_random_tweet():
-    with open('./tweets.json') as f:
+    with open(READ_FILE) as f:
         tweets = json.load(f)
 
     if len(tweets) == 0:
@@ -105,7 +114,7 @@ def get_random_tweet():
 
 def get_tweeted_tweets():
     tweeted_tweets = []
-    with open('./tweeted-tweets.json') as f:
+    with open(TWEETED_FILE) as f:
         try:
             tweeted_tweets = json.load(f)
         except JSONDecodeError:
@@ -126,13 +135,13 @@ def save_tweeted_tweet(tweeted_tweet):
     tweeted_tweets = get_tweeted_tweets()
     tweeted_tweets.append(tweeted_tweet)
 
-    with open('./tweeted-tweets.json', 'w') as f:
+    with open(TWEETED_FILE, 'w') as f:
         json.dump(tweeted_tweets, f, indent=4)
 
 
 def get_discarded_tweet():
     discarded_tweets = []
-    with open('./discarded-tweets.json') as f:
+    with open(DISCARDED_FILE) as f:
         try:
             discarded_tweets = json.load(f)
         except JSONDecodeError:
@@ -145,7 +154,7 @@ def discard_tweet(tw):
     discarded_tweets = get_discarded_tweet()
     discarded_tweets.append(tw)
 
-    with open('./discarded-tweets.json', 'w') as f:
+    with open(DISCARDED_FILE, 'w') as f:
         json.dump(discarded_tweets, f, indent=4)
 
 
@@ -154,16 +163,16 @@ def construct_tweet(tw, tweet_number=None):
         "#NFT", "#CryptoBugs", "#Ladybug", "#NFTCommunity",
         "#NFTs", "#NFTCollector", "#NFTCollectibles",
         "#NFTCollectible", "#DigitalArt", "#LadyBird",
-        # "#FunFact",
+        "#FunFact",
     ]
 
-    # content = (
-    #     "🐞 Ladybug Fun Fact #{}: {} 🐞"
-    # ).format(tweet_number, tweet)
-
     content = (
-        "🐞 {} 🐞"
-    ).format(tw)
+        "🐞 Ladybug Fun Fact #{}: {} 🐞"
+    ).format(tweet_number, tw)
+
+    # content = (
+    #     "🐞 {} 🐞"
+    # ).format(tw)
 
     hash_tag_count = 0
     for i in range(len(hash_tags)):

@@ -1,9 +1,9 @@
 name: ladybug-post-tweet
 on:
   schedule:
-    # PST 6am, 1pm, 7pm
-    # UTC 14   21   3
-    - cron: '0 14,21,3 * * *'
+    # PST 6am, 12pm 4pm, 7pm
+    # UTC 14   20   0   3
+    - cron: '0 0,3,14,20 * * *'
 jobs:
   tweet:
     runs-on: ubuntu-latest
