@@ -39,6 +39,11 @@ def main():
     for author_id, tweets in tweets_by_unpopular_authors.items():
         should_break = False
         for tw in tweets:
+
+            if likes_count == 50:
+                should_break = True
+                break
+
             try:
                 like_tweet(tw)
                 likes_count += 1
