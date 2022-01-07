@@ -468,7 +468,7 @@ return (
     <div id="footer" className="py-10">
       <div className="flex flex-wrap">
         <div className="w-full md:w-1/3 lg:w-1/3">
-          <p className="text-gray-300 text-lg text-center">© 2021 Crypto Bugs</p>
+          <p className="text-gray-300 text-lg text-center">© 2022 Crypto Bugs</p>
         </div>
         <div className="w-full md:w-1/3 lg:w-1/3 text-white text-lg">
           <div className="flex flex-wrap flex-row justify-center">
