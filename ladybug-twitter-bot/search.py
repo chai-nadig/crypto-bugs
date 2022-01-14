@@ -31,7 +31,7 @@ from telegram_bot import send_message, batch_telegram_messages
 # Limit specified by twitter
 # 50 requests per 15 min window
 # user limit: 400 successful requests per 24-hour window
-# app limit: 1000 successful requests per 24-hou
+# app limit: 1000 successful requests per 24-hour
 FOLLOW_LIMIT = 50
 
 # We only want to reply to tweets by authors having more than this number of followers
