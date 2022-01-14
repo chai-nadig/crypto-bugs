@@ -6,7 +6,9 @@ import tweepy
 
 from search import (
     get_tweets_by_author,
-    get_tweets_by_unpopular_authors, like_tweet,
+    get_tweets_by_unpopular_authors,
+    get_tweets_by_popular_authors,
+    like_tweet,
 )
 
 from telegram_bot import send_message, batch_telegram_messages
@@ -35,8 +37,18 @@ def main():
     send_message("number tweets unpopular authors: {}".format(
         sum([len(tweets) for author, tweets in tweets_by_unpopular_authors.items()])))
 
+    tweets_by_popular_authors = get_tweets_by_popular_authors(tweets_by_author, response.includes['users'])
+
+    send_message("number tweets popular authors: {}".format(
+        sum([len(tweets) for author, tweets in tweets_by_popular_authors.items()])))
+
     likes_count = 0
-    for author_id, tweets in tweets_by_unpopular_authors.items():
+
+    all_tweets = []
+    all_tweets.extend(tweets_by_popular_authors.items())
+    all_tweets.extend(tweets_by_unpopular_authors.items())
+
+    for author_id, tweets in all_tweets:
         should_break = False
         for tw in tweets:
 
