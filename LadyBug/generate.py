@@ -26,6 +26,7 @@ simple_backgrounds = {
     "Pink": 3,
     "Yellow": 3,
 }
+
 unique_backgrounds = {
     "Throne": 3,
     "Matrix": 3,
@@ -423,7 +424,7 @@ def create_combo():
         trait['Color'] = 'Orange'
 
     elif trait['Spots'] == 'Twenty Eight Black':
-        cs = ['Yellow', 'Orange']
+        cs = ['Orange']
         trait['Color'] = random.choices(cs, [w for c, w in colors.items() if c in cs])[0]
 
     if trait['Color'] == 'Cream':
@@ -436,8 +437,8 @@ def create_combo():
     elif trait['Color'] == 'Black':
         trait['Spots'] = 'Fourteen Orange'
 
-    elif trait['Color'] == 'Yellow' and trait['Spots'] not in ['Twenty Two Black', 'Twenty Eight Black']:
-        ss = ['Twenty Two Black', 'Twenty Eight Black']
+    elif trait['Color'] == 'Yellow' and trait['Spots'] not in ['Twenty Two Black']:
+        ss = ['Twenty Two Black']
         trait['Spots'] = random.choices(ss, [w for s, w in spots.items() if s in ss])[0]
 
     elif trait['Color'] == 'Orange' and trait['Spots'] not in ['Twenty Four Black', 'Twenty Eight Black']:
