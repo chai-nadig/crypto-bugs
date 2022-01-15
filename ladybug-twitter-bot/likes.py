@@ -83,6 +83,7 @@ def main():
     send_message("liked {} tweets".format(likes_count))
     user = get_crypto_bugs_user()
     send_message("<b>Followers: {}</b>".format(user.public_metrics['followers_count']))
+    send_message("<b>Following: {}</b>".format(user.public_metrics['following_count']))
 
 
 def get_max_tweet_id_liked():

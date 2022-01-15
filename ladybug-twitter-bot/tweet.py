@@ -65,6 +65,7 @@ def main():
 
     user = get_crypto_bugs_user()
     send_message("<b>Followers: {}</b>".format(user.public_metrics['followers_count']))
+    send_message("<b>Following: {}</b>".format(user.public_metrics['following_count']))
 
 
 def remove_image(img_file_name):
