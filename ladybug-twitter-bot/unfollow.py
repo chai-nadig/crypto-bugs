@@ -79,7 +79,7 @@ def save_followed_authors(followed_authors):
 
 def get_verified_users():
     verified_authors = []
-    with open('./verified-authors.json') as f:
+    with open('./verified-users.json') as f:
         try:
             verified_authors = json.load(f)
         except JSONDecodeError:
