@@ -33,7 +33,7 @@ def main():
     except Exception as e:
         send_message("error unfollowing users: {}".format(str(e)))
 
-    currently_followed = [user for user in followed_authors if user not in unfollowed]
+    currently_followed = [user for user in followed_authors if user not in unfollowed and user not in verified_users]
 
     save_followed_authors(currently_followed)
 
