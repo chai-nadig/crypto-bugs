@@ -12,21 +12,28 @@ def main():
     send_message("<b>Unfollowing users</b>")
 
     followed_authors = get_followed_authors()
-    subset_followed = random.choices(followed_authors, k=50)
 
     unfollowed = []
     verified_users = []
 
+    count = 0
+
     try:
 
-        for followed_user_id in subset_followed:
+        for followed_user_id in followed_authors:
+            if count == 50:
+                break
+
             user = get_twitter_user(followed_user_id)
 
             if not user:
                 unfollowed.append(followed_user_id)
+
             elif not user.verified:
                 unfollow(user.id)
+
                 unfollowed.append(user.id)
+                count += 1
             else:
                 verified_users.append(user.id)
 

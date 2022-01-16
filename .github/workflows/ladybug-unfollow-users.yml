@@ -40,7 +40,7 @@ jobs:
         run: |
           git config --local user.email "hellstealz@crypto-bugs.com"
           git config --local user.name "Unfollow Bot"
-          git commit -m "Unfollowed users" -a
+          git commit -m "Unfollowed users" -a --allow-empty
 
       - name: Push changes
         uses: ad-m/github-push-action@master
