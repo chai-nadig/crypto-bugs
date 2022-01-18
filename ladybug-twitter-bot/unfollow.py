@@ -1,35 +1,29 @@
 import json
 import os
-import random
 from json import JSONDecodeError
 
 import tweepy
 from telegram_bot import send_message, batch_telegram_messages
+
+CRYPTO_BUGS_AUTHOR_ID = 1457120903695724545
 
 
 @batch_telegram_messages()
 def main():
     send_message("<b>Unfollowing users</b>")
 
-    followed_authors = get_followed_authors()
-
+    count = 0
     unfollowed = []
     verified_users = []
 
-    count = 0
-
     try:
+        followed_users = get_crypto_bugs_following(max_results=100)
 
-        for followed_user_id in followed_authors:
+        for user in followed_users:
             if count == 50:
                 break
 
-            user = get_twitter_user(followed_user_id)
-
-            if not user:
-                unfollowed.append(followed_user_id)
-
-            elif not user.verified:
+            if not user.verified:
                 unfollow(user.id)
 
                 unfollowed.append(user.id)
@@ -40,13 +34,10 @@ def main():
     except Exception as e:
         send_message("error unfollowing users: {}".format(str(e)))
 
-    currently_followed = [user for user in followed_authors if user not in unfollowed and user not in verified_users]
-
-    save_followed_authors(currently_followed)
-
     save_verified_users(verified_users)
 
     send_message("unfollowed {} users".format(len(unfollowed)))
+    send_message("saved {} verified users".format(len(verified_users)))
 
     user = get_crypto_bugs_user()
 
@@ -103,7 +94,7 @@ def save_verified_users(verified_users):
     already_verified_users.extend(verified_users)
 
     with open('./verified-users.json', 'w') as f:
-        json.dump(already_verified_users, f, indent=4)
+        json.dump(list(set(already_verified_users)), f, indent=4)
 
 
 def get_twitter_user(user_id):
@@ -115,6 +106,16 @@ def get_twitter_user(user_id):
     )
 
     return user.data
+
+
+def get_crypto_bugs_following(max_results=50):
+    client = tweepy.Client(bearer_token=os.getenv('TWITTER_BEARER_TOKEN'))
+
+    return client.get_users_following(
+        id=CRYPTO_BUGS_AUTHOR_ID,
+        max_results=max_results,
+        user_fields=['public_metrics', 'verified'],
+    ).data
 
 
 def unfollow(user_id):
