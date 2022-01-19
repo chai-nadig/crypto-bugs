@@ -15,21 +15,27 @@ def main():
     count = 0
     unfollowed = []
     verified_users = []
+    pagination_token = None
 
     try:
-        followed_users = get_crypto_bugs_following(max_results=100)
+        while count < 50:
 
-        for user in followed_users:
-            if count == 50:
-                break
+            followed_users, pagination_token = get_crypto_bugs_following(
+                max_results=100,
+                pagination_token=pagination_token,
+            )
 
-            if not user.verified:
-                unfollow(user.id)
+            for user in followed_users:
+                if count == 50:
+                    break
 
-                unfollowed.append(user.id)
-                count += 1
-            else:
-                verified_users.append(user.id)
+                if not user.verified:
+                    unfollow(user.id)
+
+                    unfollowed.append(user.id)
+                    count += 1
+                else:
+                    verified_users.append(user.id)
 
     except Exception as e:
         send_message("error unfollowing users: {}".format(str(e)))
@@ -108,14 +114,17 @@ def get_twitter_user(user_id):
     return user.data
 
 
-def get_crypto_bugs_following(max_results=50):
+def get_crypto_bugs_following(max_results=50, pagination_token=None):
     client = tweepy.Client(bearer_token=os.getenv('TWITTER_BEARER_TOKEN'))
 
-    return client.get_users_following(
+    response = client.get_users_following(
         id=CRYPTO_BUGS_AUTHOR_ID,
         max_results=max_results,
         user_fields=['public_metrics', 'verified'],
-    ).data
+        pagination_token=pagination_token,
+    )
+
+    return response.data, response.meta['next_token']
 
 
 def unfollow(user_id):
