@@ -37,6 +37,9 @@ def main():
                 else:
                     verified_users.append(user.id)
 
+            if pagination_token is None:
+                break
+
     except Exception as e:
         send_message("error unfollowing users: {}".format(str(e)))
 
@@ -124,7 +127,7 @@ def get_crypto_bugs_following(max_results=50, pagination_token=None):
         pagination_token=pagination_token,
     )
 
-    return response.data, response.meta['next_token']
+    return response.data, response.meta.get('next_token')
 
 
 def unfollow(user_id):
