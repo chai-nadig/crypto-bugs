@@ -349,6 +349,10 @@ def get_ignored_combinations():
 
         {"Accessory": ["Horns"], "Background": ["Red"]},
 
+        {"Background": ["Bush"], "Eyes": ["Green", "Blue"]},
+        {"Background": ["American Football"], "Eyes": ["Green"]},
+        {"Background": ["Classroom"], "Eyes": ["Green"]},
+
     ]
 
     for bg in unique_backgrounds:
@@ -391,7 +395,7 @@ def create_combo():
         trait['Color'] = None
         trait['Spots'] = None
 
-    elif trait['Accessory'] == 'Bathrobe' or trait['Accessory'] == 'Shield':
+    elif trait['Accessory'] in ['Bathrobe', 'Shield', 'Life Vest']:
         trait['Spots'] = None
 
     elif trait["Accessory"] in ("Red Sunglasses", "Snorkel Gear", "Motorcycle Helmet",
