@@ -431,39 +431,40 @@ def create_combo():
         cs = ['Orange']
         trait['Color'] = random.choices(cs, [w for c, w in colors.items() if c in cs])[0]
 
-    if trait['Color'] == 'Cream':
-        trait['Spots'] = 'Twenty Brown'
+    if trait['Spots'] is not None:
+        if trait['Color'] == 'Cream':
+            trait['Spots'] = 'Twenty Brown'
 
-    elif trait['Color'] == 'White' and trait['Spots'] not in ['Twenty Black', 'Fifteen Black']:
-        ss = ['Twenty Black', 'Fifteen Black']
-        trait['Spots'] = random.choices(ss, [w for s, w in spots.items() if s in ss])[0]
+        elif trait['Color'] == 'White' and trait['Spots'] not in ['Twenty Black', 'Fifteen Black']:
+            ss = ['Twenty Black', 'Fifteen Black']
+            trait['Spots'] = random.choices(ss, [w for s, w in spots.items() if s in ss])[0]
 
-    elif trait['Color'] == 'Black':
-        trait['Spots'] = 'Fourteen Orange'
+        elif trait['Color'] == 'Black':
+            trait['Spots'] = 'Fourteen Orange'
 
-    elif trait['Color'] == 'Yellow' and trait['Spots'] not in ['Twenty Two Black']:
-        ss = ['Twenty Two Black']
-        trait['Spots'] = random.choices(ss, [w for s, w in spots.items() if s in ss])[0]
+        elif trait['Color'] == 'Yellow' and trait['Spots'] not in ['Twenty Two Black']:
+            ss = ['Twenty Two Black']
+            trait['Spots'] = random.choices(ss, [w for s, w in spots.items() if s in ss])[0]
 
-    elif trait['Color'] == 'Orange' and trait['Spots'] not in ['Twenty Four Black', 'Twenty Eight Black']:
-        ss = ['Twenty Four Black', 'Twenty Eight Black']
-        trait['Spots'] = random.choices(ss, [w for s, w in spots.items() if s in ss])[0]
+        elif trait['Color'] == 'Orange' and trait['Spots'] not in ['Twenty Four Black', 'Twenty Eight Black']:
+            ss = ['Twenty Four Black', 'Twenty Eight Black']
+            trait['Spots'] = random.choices(ss, [w for s, w in spots.items() if s in ss])[0]
 
-    elif trait['Color'] == 'Purple':
-        trait['Spots'] = 'Fifteen Black'
+        elif trait['Color'] == 'Purple':
+            trait['Spots'] = 'Fifteen Black'
 
-    elif trait['Color'] == 'Pink':
-        trait['Spots'] = 'Twelve Black'
+        elif trait['Color'] == 'Pink':
+            trait['Spots'] = 'Twelve Black'
 
-    elif trait['Color'] == 'Red' and trait['Spots'] not in ['Zero', 'Two Black', 'Three Black Stripes',
-                                                            'Seven Black', 'Thirteen Black']:
-        ss = ['Zero', 'Two Black', 'Three Black Stripes', 'Seven Black', 'Thirteen Black']
-        trait['Spots'] = random.choices(ss, [w for s, w in spots.items() if s in ss])[0]
+        elif trait['Color'] == 'Red' and trait['Spots'] not in ['Zero', 'Two Black', 'Three Black Stripes',
+                                                                'Seven Black', 'Thirteen Black']:
+            ss = ['Zero', 'Two Black', 'Three Black Stripes', 'Seven Black', 'Thirteen Black']
+            trait['Spots'] = random.choices(ss, [w for s, w in spots.items() if s in ss])[0]
 
-    elif trait['Color'] in ['Gold', 'Blue', 'Green', 'Camo'] and trait['Spots'] not in ['Seven Black',
-                                                                                        'Thirteen Black']:
-        ss = ['Seven Black', 'Thirteen Black']
-        trait['Spots'] = random.choices(ss, [w for s, w in spots.items() if s in ss])[0]
+        elif trait['Color'] in ['Gold', 'Blue', 'Green', 'Camo'] and trait['Spots'] not in ['Seven Black',
+                                                                                            'Thirteen Black']:
+            ss = ['Seven Black', 'Thirteen Black']
+            trait['Spots'] = random.choices(ss, [w for s, w in spots.items() if s in ss])[0]
 
     return trait
 
