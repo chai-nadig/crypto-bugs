@@ -3,7 +3,7 @@
 .idea
 .ipynb_checkpoints
 __pycache__
-combined.png
+combined*.png
 scores.png
 trait_counts.png
 node_modules/
@@ -11,3 +11,4 @@ node_modules/
 /venv/
 LadyBug/output/*
 .env.local
+*.pyc

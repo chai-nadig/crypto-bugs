@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 from PIL import Image
 from tqdm import tqdm
 
@@ -14,7 +16,16 @@ def get_nearest_square(n):
     return i
 
 
-def combine(traits):
+def combine_by_background(traits):
+    traits_by_background = defaultdict(list)
+    for trait in traits:
+        traits_by_background[trait['Background']].append(trait)
+
+    for background, traits in traits_by_background.items():
+        combine(traits, combined_file_name='combined {}.png'.format(background))
+
+
+def combine(traits, combined_file_name='combined.png'):
     # Sort for evaluation
     traits = sorted(traits,
                     key=lambda t: (
@@ -47,7 +58,7 @@ def combine(traits):
                 imgNo += 1
                 pbar.update(1)
 
-    final.save('combined.png')
+    final.save(combined_file_name)
 
 
 def combineToGif(traits):

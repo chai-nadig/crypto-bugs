@@ -207,7 +207,6 @@ unique_backgrounds_with_accessories = {
     "Stream": ["Life Vest", "Red Sunglasses", "Bikini", "Beach Hat", "Snorkel Gear"],
     "Waterfall": ["Life Vest", "Red Sunglasses", "Bikini", "Beach Hat"],
     "Throne": ["Crown", "Sash", "Tux"],
-    "Hearts": ["Bow"],
     "Pillars": ["Shield"],
     "Road": ["Motorcycle Helmet"],
     "Classroom": ["Graduation Cap"],
@@ -318,7 +317,8 @@ def get_ignored_combinations():
          ]},
 
         {"Background": ["Yellow"],
-         "Accessory": ["Construction Hat", "Beanie", "Beach Hat", "Viking Helmet", "Sombrero", "Graduation Cap"]},
+         "Accessory": ["Construction Hat", "Beanie", "Beach Hat", "Viking Helmet", "Sombrero", "Graduation Cap",
+                       "Ear Muffs"]},
         {"Background": ["Orange"], "Accessory": ["Construction Hat", "Sombrero", "Ear Muffs"]},
         {"Background": ["Monitor", "Red Blue", "Blue Black"], "Color": ["Black"]},
         {"Background": ["Monitor", "Red Blue", "Stick", "Blue Black"], "Color": ["Camo"]},
@@ -335,12 +335,12 @@ def get_ignored_combinations():
         {"Eyes": ["White"],
          "Background": ["January", "February", "March", "April", "May", "June", "July", "August", "September",
                         "October", "November", "December"]},
-        {"Accessory": ["Crown"], "Background": ["Red"]},
+        {"Accessory": ["Crown", "Red Sunglasses"], "Background": ["Red"]},
 
         {"Color": ["Purple"], "Background": ["Light Purple", "Throne"]},
 
         {"Accessory": ["Bow"], "Spots": ["Yellow", "Cyan"]},
-        {"Accessory": ["Bow"], "Color": ["Yellow"]},
+        {"Accessory": ["Bow", "Ear Muffs"], "Color": ["Yellow"]},
         {"Accessory": ["Sash"], "Spots": ["Cyan", "Yellow"]},
 
         {"Accessory": ["Shield"], "Color": ["Purple"]},

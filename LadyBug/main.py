@@ -1,14 +1,13 @@
 import json
 
 from upload_to_pinata import upload_to_pinata
-from combine import combine, combineToGif
+from combine import combine_by_background
 from generate import (
     generate_images,
     generateCombinations,
     count_traits,
     allUnique,
     get_trait_key,
-    print_csv,
 )
 
 from rarity import generate_bar_graph_from_counts, calculate_scores, generate_histogram_from_scores
@@ -38,9 +37,7 @@ if __name__ == "__main__":
             if trait['Color'] is None:
                 assert trait['Accessory'] == 'Tux'
 
-        combine(traits)
-
-        # combineToGif(traits)
+        combine_by_background(traits)
 
         background_counts, spots_counts, color_counts, accessory_counts, eyes_counts, combo_counts = (
             count_traits(traits)
