@@ -5,19 +5,19 @@ export default function TermsConditions() {
     <div id="bodyy" className="flex flex-col items-center justify-center min-h-screen py-2">
     <Head>
       <title>crypto-bugs</title>
-      <link rel="icon" href="/images/3811.png" />
+      <link rel="icon" href="/images/favicon.png" />
       <meta property="og:title" content="crypto-bugs" key="ogtitle" />
       <meta property="og:description" content="An NFT loveliness of 11,111 ladybugs" key="ogdesc" />
       <meta property="og:type" content="website" key="ogtype" />
       <meta property="og:url" content="https://crypto-bugs.com/" key="ogurl"/>
-      <meta property="og:image" content="https://crypto-bugs.com/images/3811.png" key="ogimage"/>
+      <meta property="og:image" content="https://crypto-bugs.com/images/favicon.png" key="ogimage"/>
       <meta property="og:site_name" content="https://crypto-bugs.com/" key="ogsitename" />
       <meta name="twitter:card" content="summary_large_image" key="twcard"/>
       <meta property="twitter:domain" content="crypto-bugs.com" key="twdomain" />
       <meta property="twitter:url" content="https://crypto-bugs.com/" key="twurl" />
       <meta name="twitter:title" content="crypto-bugs" key="twtitle" />
       <meta name="twitter:description" content="An NFT loveliness of 11,111 ladybugs" key="twdesc" />
-      <meta name="twitter:image" content="https://crypto-bugs.com/images/3811.png" key="twimage" />
+      <meta name="twitter:image" content="https://crypto-bugs.com/images/favicon.png" key="twimage" />
       <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu+Mono" />
     </Head>
     <div className="w-4/5 md:w-2/3 lg:w-2/3">
