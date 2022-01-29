@@ -8,14 +8,14 @@ from json.decoder import JSONDecodeError
 from PIL import Image
 from telegram_bot import send_message, batch_telegram_messages
 
-# READ_FILE = './facts.json'
-# TWEETED_FILE = './tweeted-facts.json'
-# DISCARDED_FILE = './discarded-facts.json'
+READ_FILE = './facts.json'
+TWEETED_FILE = './tweeted-facts.json'
+DISCARDED_FILE = './discarded-facts.json'
 
 
-READ_FILE = './tweets.json'
-TWEETED_FILE = './tweeted-tweets.json'
-DISCARDED_FILE = './discarded-tweets.json'
+# READ_FILE = './tweets.json'
+# TWEETED_FILE = './tweeted-tweets.json'
+# DISCARDED_FILE = './discarded-tweets.json'
 
 
 @batch_telegram_messages()
@@ -167,13 +167,13 @@ def construct_tweet(tw, tweet_number=None):
         "#FunFact",
     ]
 
-    # content = (
-    #     "🐞 Ladybug Fun Fact #{}: {} 🐞"
-    # ).format(tweet_number, tw)
-
     content = (
-        "🐞 {} 🐞"
-    ).format(tw)
+        "🐞 Ladybug Fun Fact #{}: {} 🐞"
+    ).format(tweet_number, tw)
+
+    # content = (
+    #     "🐞 {} 🐞"
+    # ).format(tw)
 
     hash_tag_count = 0
     for i in range(len(hash_tags)):
