@@ -20,12 +20,15 @@ export default function Appd() {
     var mapHeight = 37;
     var distance = 0;
     var tiles = [7, 7, 7, 6, 6, 6, 0, 0, 0, 1, 1, 2, 3, 4, 5];
+    var cursors;
     var controls;
+    var bug;
 
 
     function preload() {
         this.load.image("crypto-bugs-world-tiles", "../images/crypto-bugs-world-tiles.png");
-        this.load.tilemapCSV("crypto-bugs-world-map", "../assets/crypto-bugs-world-map.csv")
+        this.load.tilemapCSV("crypto-bugs-world-map", "../assets/crypto-bugs-world-map.csv");
+        this.load.multiatlas('crawl', '../assets/crawl.json', '../images/crawl');
     }
 
     function create() {
@@ -33,12 +36,47 @@ export default function Appd() {
         var tileset = map.addTilesetImage("crypto-bugs-world-tiles");
         var layer = map.createLayer(0, tileset, 0, 0);
 
+        var frameRate = 10;
+
+        bug = this.physics.add.sprite(50, 200, 'crawl', 'up0000.png');
+        
+        var crawlUpFrames = this.anims.generateFrameNames('crawl', {
+            start: 0, end: 3, zeroPad: 4, prefix: 'up', suffix: '.png',
+        })
+
+        this.anims.create({ key: 'crawl-up', frames: crawlUpFrames, frameRate: frameRate, repeat: -1 });
+        bug.anims.play('crawl-up');
+
+
+        var crawlDownFrames = this.anims.generateFrameNames('crawl', {
+            start: 0, end: 3, zeroPad: 4, prefix: 'down', suffix: '.png',
+        })
+
+        this.anims.create({ key: 'crawl-down', frames: crawlDownFrames, frameRate: frameRate, repeat: -1 });
+
+
+        var crawlRightFrames = this.anims.generateFrameNames('crawl', {
+            start: 0, end: 3, zeroPad: 4, prefix: 'right', suffix: '.png',
+        })
+
+        this.anims.create({ key: 'crawl-right', frames: crawlRightFrames, frameRate: frameRate, repeat: -1 });
+
+
+        var crawlLeftFrames = this.anims.generateFrameNames('crawl', {
+            start: 0, end: 3, zeroPad: 4, prefix: 'left', suffix: '.png',
+        })
+
+        this.anims.create({ key: 'crawl-left', frames: crawlLeftFrames, frameRate: frameRate, repeat: -1 });
+
 
         // Phaser supports multiple cameras, but you can access the default camera like this:
         const camera = this.cameras.main;
+        camera.startFollow(bug);
+        // Constrain the camera so that it isn't allowed to move outside the width/height of tilemap
+        camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
         // Set up the arrows to control the camera
-        const cursors = this.input.keyboard.createCursorKeys();
+        cursors = this.input.keyboard.createCursorKeys();
         controls = new Phaser.Cameras.Controls.FixedKeyControl({
             camera: camera,
             left: cursors.left,
@@ -48,15 +86,50 @@ export default function Appd() {
             speed: 0.5
         });
 
-        // Constrain the camera so that it isn't allowed to move outside the width/height of tilemap
-        camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
     }
 
 
     function update(time, delta) {
+
+        const speed = 90;
+        const prevVelocity = bug.body.velocity.clone();
+
+        // Stop any previous movement from the last frame
+        bug.body.setVelocity(0);
+
+        // Horizontal movement
+        if (cursors.left.isDown) {
+            bug.body.setVelocityX(-speed);
+        } else if (cursors.right.isDown) {
+            bug.body.setVelocityX(speed);
+        }
+
+        // Vertical movement
+        if (cursors.up.isDown) {
+            bug.body.setVelocityY(-speed);
+        } else if (cursors.down.isDown) {
+            bug.body.setVelocityY(speed);
+        }
+
+        // Normalize and scale the velocity so that bug can't move faster along a diagonal
+        bug.body.velocity.normalize().scale(speed);
+
+
+        // Update the animation last and give left/right animations precedence over up/down animations
+        if (cursors.left.isDown) {
+            bug.anims.play("crawl-left", true);
+        } else if (cursors.right.isDown) {
+            bug.anims.play("crawl-right", true);
+        } else if (cursors.up.isDown) {
+            bug.anims.play("crawl-up", true);
+        } else if (cursors.down.isDown) {
+            bug.anims.play("crawl-down", true);
+        } else {
+            bug.anims.stop();
+        }
+
         controls.update(delta);
-       
     }
 
 
@@ -72,6 +145,12 @@ export default function Appd() {
                         preload: preload,
                         create: create,
                         update: update
+                    },
+                    physics: {
+                        default: "arcade",
+                        arcade: {
+                            gravity: { y: 0 }
+                        }
                     }
                 });
 
