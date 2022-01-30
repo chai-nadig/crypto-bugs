@@ -1,0 +1,32 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "crypto-bugs-world/crypto-bugs-world-tileset.tsx": {
+            "scaleInDock": 1.7699,
+            "scaleInEditor": 1
+        }
+    },
+    "last.exportedFilePath": "/Users/chai.nadig/workspace/crypto-bugs/assets",
+    "last.imagePath": "/Users/chai.nadig/Downloads",
+    "map.lastUsedExportFilter": "CSV files (*.csv)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 24,
+    "map.tileWidth": 24,
+    "openFiles": [
+    ],
+    "project": "crypto-bugs-world.tiled-project",
+    "recentFiles": [
+        "crypto-bugs-world/crypto-bugs-world-tileset.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 24,
+        "width": 24
+    }
+}

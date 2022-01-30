@@ -20,84 +20,43 @@ export default function Appd() {
     var mapHeight = 37;
     var distance = 0;
     var tiles = [7, 7, 7, 6, 6, 6, 0, 0, 0, 1, 1, 2, 3, 4, 5];
+    var controls;
 
 
     function preload() {
-        this.load.setBaseURL('http://labs.phaser.io');  
-        this.load.image('tiles', 'assets/tilemaps/tiles/muddy-ground.png');
-        this.load.bitmapFont('nokia16', 'assets/fonts/bitmap/nokia16.png', 'assets/fonts/bitmap/nokia16.xml');
+        this.load.image("crypto-bugs-world-tiles", "../images/crypto-bugs-world-tiles.png");
+        this.load.tilemapCSV("crypto-bugs-world-map", "../assets/crypto-bugs-world-map.csv")
     }
 
     function create() {
-        var mapData = [];
-
-        for (var y = 0; y < mapHeight; y++) {
-            var row = [];
-
-            for (var x = 0; x < mapWidth; x++) {
-                //  Scatter the tiles so we get more mud and less stones
-                var tileIndex = Phaser.Math.RND.weightedPick(tiles);
-
-                row.push(tileIndex);
-            }
-
-            mapData.push(row);
-        }
-
-        map = this.make.tilemap({ data: mapData, tileWidth: 16, tileHeight: 16 });
-
-        var tileset = map.addTilesetImage('tiles');
+        map = this.make.tilemap({ key: "crypto-bugs-world-map", tileWidth: 24, tileHeight: 24});
+        var tileset = map.addTilesetImage("crypto-bugs-world-tiles");
         var layer = map.createLayer(0, tileset, 0, 0);
 
-        text = this.add.bitmapText(10, 50, 'nokia16').setScrollFactor(0);
+
+        // Phaser supports multiple cameras, but you can access the default camera like this:
+        const camera = this.cameras.main;
+
+        // Set up the arrows to control the camera
+        const cursors = this.input.keyboard.createCursorKeys();
+        controls = new Phaser.Cameras.Controls.FixedKeyControl({
+            camera: camera,
+            left: cursors.left,
+            right: cursors.right,
+            up: cursors.up,
+            down: cursors.down,
+            speed: 0.5
+        });
+
+        // Constrain the camera so that it isn't allowed to move outside the width/height of tilemap
+        camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+
     }
 
 
     function update(time, delta) {
-        //  Any speed as long as 16 evenly divides by it
-        sx += 0.5;
-
-        distance += sx;
-
-        text.setText("Distance: " + distance + 'px');
-
-        if (sx === 16) {  // (sx === 16) {
-            //  Reset and create new strip
-
-            var tile;
-            var prev;
-
-            for (var y = 0; y < mapHeight; y++) {
-                for (var x = 1; x < mapWidth; x++) {
-                    tile = map.getTileAt(x, y);
-                    prev = map.getTileAt(x - 1, y);
-
-                    prev.index = tile.index;
-
-                    if (x === mapWidth - 1) {
-                        tile.index = Phaser.Math.RND.weightedPick(tiles);
-                    }
-                }
-            }
-
-            // for (var x = 0; y < mapWidth; x++) {
-            //     for (var y = 1; x < mapHeight; y++) {
-            //         tile = map.getTileAt(x, y);
-            //         prev = map.getTileAt(x, y-1);
-
-            //         prev.index = tile.index;
-
-            //         if (y === mapHeight - 1) {
-            //             tile.index = Phaser.Math.RND.weightedPick(tiles);
-            //         }
-            //     }
-            // }
-
-            sx = 0;
-
-        }
-
-        this.cameras.main.scrollX = sx;
+        controls.update(delta);
+       
     }
 
 
@@ -107,7 +66,7 @@ export default function Appd() {
             import('phaser').then(({ Game }) => {
                 setGameConfig({
                     type: Phaser.AUTO,
-                    width: 600,
+                    width: 800,
                     height: 300,
                     scene: {
                         preload: preload,
@@ -148,6 +107,9 @@ export default function Appd() {
                 <meta name="twitter:image" content="https://crypto-bugs.com/images/favicon.png" key="twimage" />
                 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu+Mono" />
             </Head>
+            <h1 className="p-10 text-5xl text-crypto-red">
+                <a href="/">crypto-bugs</a>
+            </h1>
             <div id="tbContainer" ref={containerRef}></div>
         </div>
     );
