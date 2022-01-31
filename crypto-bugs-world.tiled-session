@@ -5,28 +5,70 @@
     },
     "activeFile": "",
     "expandedProjectPaths": [
+        "crypto-bugs-world"
     ],
     "fileStates": {
         "crypto-bugs-world/crypto-bugs-world-tileset.tsx": {
-            "scaleInDock": 1.7699,
+            "scaleInDock": 2.2563,
+            "scaleInEditor": 2.96
+        },
+        "crypto-bugs-world/map.tmx": {
+            "scale": 0.49,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 544.8979591836735,
+                "y": 602.0408163265306
+            }
+        },
+        "crypto-bugs-world/map.tmx#outdoor tileset": {
+            "scaleInEditor": 1
+        },
+        "crypto-bugs-world/plains.tsx": {
+            "scaleInDock": 1.9033,
+            "scaleInEditor": 2.918
+        },
+        "crypto-bugs-world/sscap world.tmx": {
+            "scale": 0.1355,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1129.1512915129151,
+                "y": 2619.926199261992
+            }
+        },
+        "crypto-bugs-world/sscap world.tmx#Outdoor": {
+            "scaleInDock": 1
+        },
+        "crypto-bugs-world/sscap world.tmx#crypto-bugs-world-tileset": {
+            "scaleInDock": 1
+        },
+        "crypto-bugs-world/sscap.tsx": {
+            "scaleInDock": 1,
             "scaleInEditor": 1
         }
     },
-    "last.exportedFilePath": "/Users/chai.nadig/workspace/crypto-bugs/assets",
-    "last.imagePath": "/Users/chai.nadig/Downloads",
-    "map.lastUsedExportFilter": "CSV files (*.csv)",
+    "last.exportedFilePath": "/Users/chai.nadig/workspace/crypto-bugs/public/assets",
+    "last.imagePath": "/Users/chai.nadig/Downloads/SSCAP Tileset",
+    "map.height": 99,
+    "map.lastUsedExportFilter": "JSON map files (*.json)",
     "map.lastUsedFormat": "tmx",
-    "map.tileHeight": 24,
-    "map.tileWidth": 24,
+    "map.tileHeight": 32,
+    "map.tileWidth": 32,
+    "map.width": 99,
     "openFiles": [
     ],
     "project": "crypto-bugs-world.tiled-project",
+    "property.type": "bool",
     "recentFiles": [
-        "crypto-bugs-world/crypto-bugs-world-tileset.tsx"
+        "crypto-bugs-world/map.tmx",
+        "crypto-bugs-world/sscap world.tmx",
+        "crypto-bugs-world/crypto-bugs-world-tileset.tsx",
+        "crypto-bugs-world/plains.tsx",
+        "crypto-bugs-world/sscap.tsx"
     ],
+    "tileset.embedInMap": true,
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
-        "height": 24,
-        "width": 24
+        "height": 32,
+        "width": 32
     }
 }

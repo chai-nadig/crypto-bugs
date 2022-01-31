@@ -26,19 +26,26 @@ export default function Appd() {
 
 
     function preload() {
-        this.load.image("crypto-bugs-world-tiles", "../images/crypto-bugs-world-tiles.png");
-        this.load.tilemapCSV("crypto-bugs-world-map", "../assets/crypto-bugs-world-map.csv");
+        this.load.image("tiles", "../images/outdoor-tileset.png");
+        this.load.tilemapTiledJSON("map", "../assets/empty-maze.json");
         this.load.multiatlas('crawl', '../assets/crawl.json', '../images/crawl');
     }
 
     function create() {
-        map = this.make.tilemap({ key: "crypto-bugs-world-map", tileWidth: 24, tileHeight: 24});
-        var tileset = map.addTilesetImage("crypto-bugs-world-tiles");
-        var layer = map.createLayer(0, tileset, 0, 0);
+        map = this.make.tilemap({ key: "map" });
+        var tileset = map.addTilesetImage("outdoor tileset", "tiles");
+        
+        var grassLayer = map.createLayer("Grass", tileset, 0, 0);
+        var wallLayer = map.createLayer("Walls", tileset, 0, 0);
 
-        var frameRate = 10;
+        wallLayer.setCollisionByProperty({ collides: true });
 
-        bug = this.physics.add.sprite(50, 200, 'crawl', 'up0000.png');
+        var frameRate = 15;
+
+        const spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn Point");
+        bug = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'crawl', 'up0000.png');
+
+        this.physics.add.collider(bug, wallLayer);
         
         var crawlUpFrames = this.anims.generateFrameNames('crawl', {
             start: 0, end: 3, zeroPad: 4, prefix: 'up', suffix: '.png',
@@ -92,7 +99,7 @@ export default function Appd() {
 
     function update(time, delta) {
 
-        const speed = 90;
+        const speed = 150;
         const prevVelocity = bug.body.velocity.clone();
 
         // Stop any previous movement from the last frame
