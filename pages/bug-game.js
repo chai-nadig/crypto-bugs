@@ -2,28 +2,164 @@ import React, { useState, useEffect, useRef } from 'react';
 import Head from 'next/head'
 
 
-// import logo from './assets/logo.png'
-
-
 export default function Appd() {
     const containerRef = useRef(null);
     const gameRef = useRef(null);
     const [game, setGame] = useState();
     const [gameConfig, setGameConfig] = useState();
 
-
     var map;
-    var text;
-    var sx = 0;
-    var sy = 0;
-    var mapWidth = 51;
-    var mapHeight = 37;
-    var distance = 0;
-    var tiles = [7, 7, 7, 6, 6, 6, 0, 0, 0, 1, 1, 2, 3, 4, 5];
     var cursors;
     var controls;
     var bug;
 
+    function shuffle(array) {
+        let currentIndex = array.length, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (currentIndex != 0) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+
+            // And swap it with the current element.
+            [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex], array[currentIndex]];
+        }
+        return array;
+    }
+
+    function arrayEquals(a, b) {
+        return Array.isArray(a) &&
+            Array.isArray(b) &&
+            a.length === b.length &&
+            a.every((val, index) => val === b[index]);
+    }
+
+    function explore(grid, wallTileID, i, j) {
+        let directions = [
+            [0, 1],  // Right
+            [0, -1], // Left
+            [1, 0],  // Down
+            [-1, 0], // Up
+        ];
+
+        if (grid[i][j] == 0) {
+            return
+        }
+
+        grid[i][j] = 0;
+
+        for (var d in shuffle(directions)) {
+            let dir = directions[d];
+
+            let pi = i + dir[0];
+            let pj = j + dir[1];
+            if (isViableCell(pi, pj, grid, dir, wallTileID)) {
+                explore(grid, wallTileID, pi, pj );
+            }
+        }
+    }
+
+    function isViableCell(i, j, grid, direction, wallTileID) {
+        const m = grid.length
+        const n = grid[0].length
+
+        if (i < 0 || j < 0 || i >= m || j >= n) {
+            return false;
+        }
+
+        if (grid[i][j] == 0) {
+            return false;
+        }
+
+        var cellsToCheck = [];
+        if (arrayEquals(direction, [0, 1])) {
+            cellsToCheck = [
+                [i - 1, j],
+                [i + 1, j],
+                [i - 1, j + 1],
+                [i + 1, j + 1],
+            ];
+        } else if (arrayEquals(direction, [0, -1])) {
+            cellsToCheck = [
+                [i - 1, j],
+                [i + 1, j],
+                [i - 1, j - 1],
+                [i + 1, j - 1],
+            ];
+        } else if (arrayEquals(direction, [1, 0])) {
+            cellsToCheck = [
+                [i, j - 1],
+                [i, j + 1],
+                [i + 1, j - 1],
+                [i + 1, j + 1],
+            ];
+        } else if (arrayEquals(direction, [-1, 0])) {
+            cellsToCheck = [
+                [i, j - 1],
+                [i, j + 1],
+                [i - 1, j - 1],
+                [i - 1, j + 1],
+            ];
+        }
+
+        let countWalls = 0;
+        for (var c in cellsToCheck) {
+            let cell = cellsToCheck[c];
+            if (isWall(cell[0], cell[1], grid, wallTileID)) {
+                countWalls += 1;
+            }
+        }
+
+        return countWalls == 4;
+    }
+
+    function isWall(i, j, grid, wallTileID) {
+        const m = grid.length
+        const n = grid[0].length
+
+        if (i < 0 || j < 0 || i >= m || j >= n) {
+            return true;
+        }
+
+        if (grid[i][j] == wallTileID) {
+            return true;
+        }
+        return false;
+    }
+
+
+    function generateMaze(map, layer, wallTileID) {
+        // m rows, n columns
+        const m = layer.layer.height;
+        const n = layer.layer.width;
+
+        let grid = [];
+        for (let i = 0; i < 27; i++) {
+            let row = []
+            for (let j = 0; j < 27; j++) {
+                row.push(wallTileID);
+            }
+            grid.push(row);
+        }
+
+        explore(grid, wallTileID, 0, 0);
+
+        for (let i = 1; i < 27; i++) {
+            for (let j = 1; j < 27; j++) {
+                if (grid[i - 1][j - 1] != wallTileID) {
+                    continue
+                }
+
+                let oldTile = layer.layer.data[i][j];
+                let newTile = new Phaser.Tilemaps.Tile(oldTile.layer, wallTileID, oldTile.x, oldTile.y, oldTile.width, oldTile.height, oldTile.baseWidth, oldTile.baseHeight);
+
+                map.putTileAt(newTile, oldTile.x, oldTile.y, true, "Walls");
+            }
+        }
+    }
 
     function preload() {
         this.load.image("tiles", "../images/outdoor-tileset.png");
@@ -34,9 +170,11 @@ export default function Appd() {
     function create() {
         map = this.make.tilemap({ key: "map" });
         var tileset = map.addTilesetImage("outdoor tileset", "tiles");
-        
+
         var grassLayer = map.createLayer("Grass", tileset, 0, 0);
         var wallLayer = map.createLayer("Walls", tileset, 0, 0);
+
+        generateMaze(map, wallLayer, 77);
 
         wallLayer.setCollisionByProperty({ collides: true });
 
@@ -46,7 +184,7 @@ export default function Appd() {
         bug = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'crawl', 'up0000.png');
 
         this.physics.add.collider(bug, wallLayer);
-        
+
         var crawlUpFrames = this.anims.generateFrameNames('crawl', {
             start: 0, end: 3, zeroPad: 4, prefix: 'up', suffix: '.png',
         })
@@ -54,25 +192,20 @@ export default function Appd() {
         this.anims.create({ key: 'crawl-up', frames: crawlUpFrames, frameRate: frameRate, repeat: -1 });
         bug.anims.play('crawl-up');
 
-
         var crawlDownFrames = this.anims.generateFrameNames('crawl', {
             start: 0, end: 3, zeroPad: 4, prefix: 'down', suffix: '.png',
         })
-
         this.anims.create({ key: 'crawl-down', frames: crawlDownFrames, frameRate: frameRate, repeat: -1 });
-
 
         var crawlRightFrames = this.anims.generateFrameNames('crawl', {
             start: 0, end: 3, zeroPad: 4, prefix: 'right', suffix: '.png',
         })
-
         this.anims.create({ key: 'crawl-right', frames: crawlRightFrames, frameRate: frameRate, repeat: -1 });
 
 
         var crawlLeftFrames = this.anims.generateFrameNames('crawl', {
             start: 0, end: 3, zeroPad: 4, prefix: 'left', suffix: '.png',
         })
-
         this.anims.create({ key: 'crawl-left', frames: crawlLeftFrames, frameRate: frameRate, repeat: -1 });
 
 
@@ -92,15 +225,12 @@ export default function Appd() {
             down: cursors.down,
             speed: 0.5
         });
-
-
     }
 
 
     function update(time, delta) {
-
         const speed = 150;
-        const prevVelocity = bug.body.velocity.clone();
+        const prevVelocity = bug.body.velocity.clone(); 
 
         // Stop any previous movement from the last frame
         bug.body.setVelocity(0);
@@ -135,7 +265,7 @@ export default function Appd() {
         } else {
             bug.anims.stop();
         }
-
+        
         controls.update(delta);
     }
 

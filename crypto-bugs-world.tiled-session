@@ -3,24 +3,28 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "crypto-bugs-world/map.tmx",
     "expandedProjectPaths": [
         "crypto-bugs-world"
     ],
     "fileStates": {
+        "": {
+            "scaleInEditor": 1
+        },
         "crypto-bugs-world/crypto-bugs-world-tileset.tsx": {
             "scaleInDock": 2.2563,
             "scaleInEditor": 2.96
         },
         "crypto-bugs-world/map.tmx": {
-            "scale": 0.49,
-            "selectedLayer": 0,
+            "scale": 0.1137,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 544.8979591836735,
-                "y": 602.0408163265306
+                "x": -57.16798592788018,
+                "y": 905.8927000879507
             }
         },
         "crypto-bugs-world/map.tmx#outdoor tileset": {
+            "scaleInDock": 1.6659,
             "scaleInEditor": 1
         },
         "crypto-bugs-world/plains.tsx": {
@@ -55,6 +59,7 @@
     "map.tileWidth": 32,
     "map.width": 99,
     "openFiles": [
+        "crypto-bugs-world/map.tmx"
     ],
     "project": "crypto-bugs-world.tiled-project",
     "property.type": "bool",
@@ -65,6 +70,7 @@
         "crypto-bugs-world/plains.tsx",
         "crypto-bugs-world/sscap.tsx"
     ],
+    "resizeMap.removeObjects": true,
     "tileset.embedInMap": true,
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
