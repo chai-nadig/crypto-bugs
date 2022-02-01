@@ -155,7 +155,7 @@ export default function Appd() {
 
                 let oldTile = layer.layer.data[i][j];
                 let newTile = new Phaser.Tilemaps.Tile(oldTile.layer, wallTileID, oldTile.x, oldTile.y, oldTile.width, oldTile.height, oldTile.baseWidth, oldTile.baseHeight);
-
+                newTile.properties['collides'] = true;
                 map.putTileAt(newTile, oldTile.x, oldTile.y, true, "Walls");
             }
         }
@@ -177,6 +177,8 @@ export default function Appd() {
         generateMaze(map, wallLayer, 77);
 
         wallLayer.setCollisionByProperty({ collides: true });
+        
+        console.log(wallLayer);
 
         var frameRate = 15;
 
@@ -265,7 +267,7 @@ export default function Appd() {
         } else {
             bug.anims.stop();
         }
-        
+
         controls.update(delta);
     }
 
@@ -276,8 +278,8 @@ export default function Appd() {
             import('phaser').then(({ Game }) => {
                 setGameConfig({
                     type: Phaser.AUTO,
-                    width: 800,
-                    height: 300,
+                    width: 500,
+                    height: 500,
                     scene: {
                         preload: preload,
                         create: create,
