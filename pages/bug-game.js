@@ -213,9 +213,12 @@ export default function Appd() {
 
         // Phaser supports multiple cameras, but you can access the default camera like this:
         const camera = this.cameras.main;
+
         camera.startFollow(bug);
         // Constrain the camera so that it isn't allowed to move outside the width/height of tilemap
         camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+
+        camera.setZoom(1.5);
 
         // Set up the arrows to control the camera
         cursors = this.input.keyboard.createCursorKeys();
@@ -278,8 +281,8 @@ export default function Appd() {
             import('phaser').then(({ Game }) => {
                 setGameConfig({
                     type: Phaser.AUTO,
-                    width: 500,
-                    height: 500,
+                    width: 800,
+                    height: 800,
                     scene: {
                         preload: preload,
                         create: create,
