@@ -137,18 +137,20 @@ export default function Appd() {
         const n = layer.layer.width;
 
         let grid = [];
-        for (let i = 0; i < 27; i++) {
+        for (let i = 0; i < m-2; i++) {
             let row = []
-            for (let j = 0; j < 27; j++) {
+            for (let j = 0; j < n-2; j++) {
                 row.push(wallTileID);
             }
             grid.push(row);
         }
 
-        explore(grid, wallTileID, 0, 0);
+        grid[0][0] = 0;
 
-        for (let i = 1; i < 27; i++) {
-            for (let j = 1; j < 27; j++) {
+        explore(grid, wallTileID, m-3, n-3 );
+
+        for (let i = 1; i < m-1; i++) {
+            for (let j = 1; j < n-1; j++) {
                 if (grid[i - 1][j - 1] != wallTileID) {
                     continue
                 }
@@ -184,6 +186,7 @@ export default function Appd() {
 
         const spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn Point");
         bug = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'crawl', 'up0000.png');
+        bug.body.setCircle(9, 3, 3);
 
         this.physics.add.collider(bug, wallLayer);
 
@@ -291,6 +294,7 @@ export default function Appd() {
                     physics: {
                         default: "arcade",
                         arcade: {
+                            debug: true,
                             gravity: { y: 0 }
                         }
                     }
