@@ -294,7 +294,6 @@ export default function Appd() {
                     physics: {
                         default: "arcade",
                         arcade: {
-                            debug: true,
                             gravity: { y: 0 }
                         }
                     }
