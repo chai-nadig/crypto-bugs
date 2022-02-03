@@ -12,6 +12,7 @@ export default function Appd() {
     var cursors;
     var controls;
     var bug;
+    var slimes;
 
     function shuffle(array) {
         let currentIndex = array.length, randomIndex;
@@ -58,17 +59,17 @@ export default function Appd() {
             let pi = i + dir[0];
             let pj = j + dir[1];
             if (isViableCell(pi, pj, grid, dir, wallTileID)) {
-                explore(grid, wallTileID, pi, pj, dir );
+                explore(grid, wallTileID, pi, pj, dir);
             }
         }
     }
 
 
     function getDirections(allDirections, previousDirection) {
-        if (previousDirection === undefined) {  
+        if (previousDirection === undefined) {
             return shuffle(allDirections);
         }
-        
+
         if (Math.random() <= 0.7) {
             var directions = [previousDirection];
             for (var d in allDirections) {
@@ -158,9 +159,9 @@ export default function Appd() {
         const n = layer.layer.width;
 
         let grid = [];
-        for (let i = 0; i < m-2; i++) {
+        for (let i = 0; i < m - 2; i++) {
             let row = []
-            for (let j = 0; j < n-2; j++) {
+            for (let j = 0; j < n - 2; j++) {
                 row.push(wallTileID);
             }
             grid.push(row);
@@ -168,10 +169,10 @@ export default function Appd() {
 
         grid[0][0] = 0;
 
-        explore(grid, wallTileID, m-3, n-3);
+        explore(grid, wallTileID, m - 3, n - 3);
 
-        for (let i = 1; i < m-1; i++) {
-            for (let j = 1; j < n-1; j++) {
+        for (let i = 1; i < m - 1; i++) {
+            for (let j = 1; j < n - 1; j++) {
                 if (grid[i - 1][j - 1] != wallTileID) {
                     continue
                 }
@@ -182,6 +183,37 @@ export default function Appd() {
                 map.putTileAt(newTile, oldTile.x, oldTile.y, true, "Walls");
             }
         }
+        return grid;
+    }
+
+    function generateSlimes(grid) {
+        var m = grid.length;
+        var n = grid[0].length;
+
+        var countSlimes = 50;
+
+        var slimes = [];
+
+        while (countSlimes > 0) {
+            var i = Math.floor(Math.random() * m);
+            var j = Math.floor(Math.random() * n);
+            
+            // Ignore starting position and end position
+            if ((i == 0 && j == 0) || (i == m - 1 && j == n - 1)) {
+                continue;
+            }
+
+            if (grid[i][j] != 0) {
+                continue;
+            }
+
+            console.log(grid[i][j]);
+
+            grid[i][j] = 1;
+            slimes.push([i, j]);
+            countSlimes -= 1;
+        }
+        return slimes;
     }
 
     function preload() {
@@ -189,7 +221,10 @@ export default function Appd() {
         this.load.image("grass", "../images/grass.png");
         this.load.tilemapTiledJSON("map", "../assets/empty-maze.json");
         this.load.multiatlas('crawl', '../assets/crawl.json', '../images/crawl');
+        this.load.multiatlas('slime', '../images/slime/slime.json', '../images/slime');
     }
+
+
 
     function create() {
         map = this.make.tilemap({ key: "map" });
@@ -199,13 +234,11 @@ export default function Appd() {
         var grassLayer = map.createLayer("Grass", grassTileset, 0, 0);
         var wallLayer = map.createLayer("Walls", outdoorTileset, 0, 0);
 
-        generateMaze(map, wallLayer, 77);
+        var grid = generateMaze(map, wallLayer, 77);
 
         wallLayer.setCollisionByProperty({ collides: true });
-        
-        console.log(wallLayer);
 
-        var frameRate = 15;
+        var bugFrameRate = 15;
 
         const spawnPoint = map.findObject("Objects", obj => obj.name === "Spawn Point");
         bug = this.physics.add.sprite(spawnPoint.x, spawnPoint.y, 'crawl', 'up0000.png');
@@ -217,24 +250,44 @@ export default function Appd() {
             start: 0, end: 3, zeroPad: 4, prefix: 'up', suffix: '.png',
         })
 
-        this.anims.create({ key: 'crawl-up', frames: crawlUpFrames, frameRate: frameRate, repeat: -1 });
+        this.anims.create({ key: 'crawl-up', frames: crawlUpFrames, frameRate: bugFrameRate, repeat: -1 });
         bug.anims.play('crawl-up');
 
         var crawlDownFrames = this.anims.generateFrameNames('crawl', {
             start: 0, end: 3, zeroPad: 4, prefix: 'down', suffix: '.png',
         })
-        this.anims.create({ key: 'crawl-down', frames: crawlDownFrames, frameRate: frameRate, repeat: -1 });
+        this.anims.create({ key: 'crawl-down', frames: crawlDownFrames, frameRate: bugFrameRate, repeat: -1 });
 
         var crawlRightFrames = this.anims.generateFrameNames('crawl', {
             start: 0, end: 3, zeroPad: 4, prefix: 'right', suffix: '.png',
         })
-        this.anims.create({ key: 'crawl-right', frames: crawlRightFrames, frameRate: frameRate, repeat: -1 });
-
+        this.anims.create({ key: 'crawl-right', frames: crawlRightFrames, frameRate: bugFrameRate, repeat: -1 });
 
         var crawlLeftFrames = this.anims.generateFrameNames('crawl', {
             start: 0, end: 3, zeroPad: 4, prefix: 'left', suffix: '.png',
         })
-        this.anims.create({ key: 'crawl-left', frames: crawlLeftFrames, frameRate: frameRate, repeat: -1 });
+        this.anims.create({ key: 'crawl-left', frames: crawlLeftFrames, frameRate: bugFrameRate, repeat: -1 });
+
+
+        var idleSlimeFrames = this.anims.generateFrameNames('slime', {
+            start: 28, end: 33, prefix: 'slime-', suffix: '.png',
+        })
+        this.anims.create({ key: 'slime-idle', frames: idleSlimeFrames, frameRate: 10, repeate: -1 });
+
+        slimes = [];
+        var gridSlimes = generateSlimes(grid);
+        
+        for (var s in gridSlimes) {
+            var gridSlime = gridSlimes[s];
+            var x = ((gridSlime[1] + 1) * 32 ) + 16;
+            var y = ((gridSlime[0] + 1) * 32 ) + 10;
+
+            var slime = this.physics.add.sprite(x, y, 'slime', 'slime-28.png');
+            slimes[s] = { slime: slime};
+
+            this.physics.add.collider(bug, slime);
+            this.physics.add.collider(slime, wallLayer);
+        }
 
 
         // Phaser supports multiple cameras, but you can access the default camera like this:
@@ -260,8 +313,13 @@ export default function Appd() {
 
 
     function update(time, delta) {
+        for (var s in slimes) {
+            var slime = slimes[s];
+            slime.slime.anims.play('slime-idle', true);
+        }
+
         const speed = 150;
-        const prevVelocity = bug.body.velocity.clone(); 
+        const prevVelocity = bug.body.velocity.clone();
 
         // Stop any previous movement from the last frame
         bug.body.setVelocity(0);
