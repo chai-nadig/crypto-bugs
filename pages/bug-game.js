@@ -37,7 +37,7 @@ export default function Appd() {
             a.every((val, index) => val === b[index]);
     }
 
-    function explore(grid, wallTileID, i, j) {
+    function explore(grid, wallTileID, i, j, previousDirection) {
         let directions = [
             [0, 1],  // Right
             [0, -1], // Left
@@ -50,15 +50,36 @@ export default function Appd() {
         }
 
         grid[i][j] = 0;
+        var orderedDirections = getDirections(directions, previousDirection);
 
-        for (var d in shuffle(directions)) {
-            let dir = directions[d];
+        for (var d in orderedDirections) {
+            let dir = orderedDirections[d];
 
             let pi = i + dir[0];
             let pj = j + dir[1];
             if (isViableCell(pi, pj, grid, dir, wallTileID)) {
-                explore(grid, wallTileID, pi, pj );
+                explore(grid, wallTileID, pi, pj, dir );
             }
+        }
+    }
+
+
+    function getDirections(allDirections, previousDirection) {
+        if (previousDirection === undefined) {  
+            return shuffle(allDirections);
+        }
+        
+        if (Math.random() <= 0.7) {
+            var directions = [previousDirection];
+            for (var d in allDirections) {
+                var direction = allDirections[d];
+                if (!arrayEquals(direction, previousDirection)) {
+                    directions.push(direction);
+                }
+            }
+            return directions;
+        } else {
+            return shuffle(allDirections);
         }
     }
 
@@ -147,7 +168,7 @@ export default function Appd() {
 
         grid[0][0] = 0;
 
-        explore(grid, wallTileID, m-3, n-3 );
+        explore(grid, wallTileID, m-3, n-3);
 
         for (let i = 1; i < m-1; i++) {
             for (let j = 1; j < n-1; j++) {
@@ -164,17 +185,19 @@ export default function Appd() {
     }
 
     function preload() {
-        this.load.image("tiles", "../images/outdoor-tileset.png");
+        this.load.image("outdoor tiles", "../images/outdoor-tileset.png");
+        this.load.image("grass", "../images/grass.png");
         this.load.tilemapTiledJSON("map", "../assets/empty-maze.json");
         this.load.multiatlas('crawl', '../assets/crawl.json', '../images/crawl');
     }
 
     function create() {
         map = this.make.tilemap({ key: "map" });
-        var tileset = map.addTilesetImage("outdoor tileset", "tiles");
+        var outdoorTileset = map.addTilesetImage("outdoor tileset", "outdoor tiles");
+        var grassTileset = map.addTilesetImage("grass", "grass");
 
-        var grassLayer = map.createLayer("Grass", tileset, 0, 0);
-        var wallLayer = map.createLayer("Walls", tileset, 0, 0);
+        var grassLayer = map.createLayer("Grass", grassTileset, 0, 0);
+        var wallLayer = map.createLayer("Walls", outdoorTileset, 0, 0);
 
         generateMaze(map, wallLayer, 77);
 
@@ -284,8 +307,8 @@ export default function Appd() {
             import('phaser').then(({ Game }) => {
                 setGameConfig({
                     type: Phaser.AUTO,
-                    width: 800,
-                    height: 800,
+                    width: 1400,
+                    height: 600,
                     scene: {
                         preload: preload,
                         create: create,

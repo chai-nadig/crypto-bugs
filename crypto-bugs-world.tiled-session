@@ -9,6 +9,7 @@
     ],
     "fileStates": {
         "": {
+            "scaleInDock": 2.4393,
             "scaleInEditor": 1
         },
         "crypto-bugs-world/crypto-bugs-world-tileset.tsx": {
@@ -16,15 +17,18 @@
             "scaleInEditor": 2.96
         },
         "crypto-bugs-world/map.tmx": {
-            "scale": 0.1137,
+            "scale": 0.7083,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -57.16798592788018,
-                "y": 905.8927000879507
+                "x": 522.3775236481716,
+                "y": 310.60285189891295
             }
         },
+        "crypto-bugs-world/map.tmx#grass": {
+            "scaleInDock": 2.4393
+        },
         "crypto-bugs-world/map.tmx#outdoor tileset": {
-            "scaleInDock": 1.6659,
+            "scaleInDock": 1.4477,
             "scaleInEditor": 1
         },
         "crypto-bugs-world/plains.tsx": {
@@ -51,7 +55,7 @@
         }
     },
     "last.exportedFilePath": "/Users/chai.nadig/workspace/crypto-bugs/public/assets",
-    "last.imagePath": "/Users/chai.nadig/Downloads/SSCAP Tileset",
+    "last.imagePath": "/Users/chai.nadig/Downloads",
     "map.height": 99,
     "map.lastUsedExportFilter": "JSON map files (*.json)",
     "map.lastUsedFormat": "tmx",
